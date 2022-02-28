@@ -1,0 +1,590 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */; };
+		FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA04527CD55CA00CA4338 /* ContentView.swift */; };
+		FF7DA04827CD55CC00CA4338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7DA04727CD55CC00CA4338 /* Assets.xcassets */; };
+		FF7DA04B27CD55CC00CA4338 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7DA04A27CD55CC00CA4338 /* Preview Assets.xcassets */; };
+		FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05427CD55CC00CA4338 /* MeetraTests.swift */; };
+		FF7DA05F27CD55CC00CA4338 /* MeetraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */; };
+		FF7DA06127CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF7DA05127CD55CC00CA4338 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF7DA03827CD55CA00CA4338 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF7DA03F27CD55CA00CA4338;
+			remoteInfo = Meetra;
+		};
+		FF7DA05B27CD55CC00CA4338 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF7DA03827CD55CA00CA4338 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF7DA03F27CD55CA00CA4338;
+			remoteInfo = Meetra;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FF7DA04027CD55CA00CA4338 /* Meetra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meetra.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraApp.swift; sourceTree = "<group>"; };
+		FF7DA04527CD55CA00CA4338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FF7DA04727CD55CC00CA4338 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF7DA04A27CD55CC00CA4338 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FF7DA05027CD55CC00CA4338 /* MeetraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF7DA05427CD55CC00CA4338 /* MeetraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraTests.swift; sourceTree = "<group>"; };
+		FF7DA05A27CD55CC00CA4338 /* MeetraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITests.swift; sourceTree = "<group>"; };
+		FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF7DA03D27CD55CA00CA4338 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF7DA04D27CD55CC00CA4338 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF7DA05727CD55CC00CA4338 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF7DA03727CD55CA00CA4338 = {
+			isa = PBXGroup;
+			children = (
+				FF7DA04227CD55CA00CA4338 /* Meetra */,
+				FF7DA05327CD55CC00CA4338 /* MeetraTests */,
+				FF7DA05D27CD55CC00CA4338 /* MeetraUITests */,
+				FF7DA04127CD55CA00CA4338 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF7DA04127CD55CA00CA4338 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF7DA04027CD55CA00CA4338 /* Meetra.app */,
+				FF7DA05027CD55CC00CA4338 /* MeetraTests.xctest */,
+				FF7DA05A27CD55CC00CA4338 /* MeetraUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF7DA04227CD55CA00CA4338 /* Meetra */ = {
+			isa = PBXGroup;
+			children = (
+				FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */,
+				FF7DA04527CD55CA00CA4338 /* ContentView.swift */,
+				FF7DA04727CD55CC00CA4338 /* Assets.xcassets */,
+				FF7DA04927CD55CC00CA4338 /* Preview Content */,
+			);
+			path = Meetra;
+			sourceTree = "<group>";
+		};
+		FF7DA04927CD55CC00CA4338 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FF7DA04A27CD55CC00CA4338 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FF7DA05327CD55CC00CA4338 /* MeetraTests */ = {
+			isa = PBXGroup;
+			children = (
+				FF7DA05427CD55CC00CA4338 /* MeetraTests.swift */,
+			);
+			path = MeetraTests;
+			sourceTree = "<group>";
+		};
+		FF7DA05D27CD55CC00CA4338 /* MeetraUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */,
+				FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */,
+			);
+			path = MeetraUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF7DA03F27CD55CA00CA4338 /* Meetra */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF7DA06427CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "Meetra" */;
+			buildPhases = (
+				FF7DA03C27CD55CA00CA4338 /* Sources */,
+				FF7DA03D27CD55CA00CA4338 /* Frameworks */,
+				FF7DA03E27CD55CA00CA4338 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Meetra;
+			productName = Meetra;
+			productReference = FF7DA04027CD55CA00CA4338 /* Meetra.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF7DA04F27CD55CC00CA4338 /* MeetraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF7DA06727CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "MeetraTests" */;
+			buildPhases = (
+				FF7DA04C27CD55CC00CA4338 /* Sources */,
+				FF7DA04D27CD55CC00CA4338 /* Frameworks */,
+				FF7DA04E27CD55CC00CA4338 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF7DA05227CD55CC00CA4338 /* PBXTargetDependency */,
+			);
+			name = MeetraTests;
+			productName = MeetraTests;
+			productReference = FF7DA05027CD55CC00CA4338 /* MeetraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FF7DA05927CD55CC00CA4338 /* MeetraUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF7DA06A27CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "MeetraUITests" */;
+			buildPhases = (
+				FF7DA05627CD55CC00CA4338 /* Sources */,
+				FF7DA05727CD55CC00CA4338 /* Frameworks */,
+				FF7DA05827CD55CC00CA4338 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF7DA05C27CD55CC00CA4338 /* PBXTargetDependency */,
+			);
+			name = MeetraUITests;
+			productName = MeetraUITests;
+			productReference = FF7DA05A27CD55CC00CA4338 /* MeetraUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF7DA03827CD55CA00CA4338 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					FF7DA03F27CD55CA00CA4338 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					FF7DA04F27CD55CC00CA4338 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = FF7DA03F27CD55CA00CA4338;
+					};
+					FF7DA05927CD55CC00CA4338 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = FF7DA03F27CD55CA00CA4338;
+					};
+				};
+			};
+			buildConfigurationList = FF7DA03B27CD55CA00CA4338 /* Build configuration list for PBXProject "Meetra" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF7DA03727CD55CA00CA4338;
+			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF7DA03F27CD55CA00CA4338 /* Meetra */,
+				FF7DA04F27CD55CC00CA4338 /* MeetraTests */,
+				FF7DA05927CD55CC00CA4338 /* MeetraUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF7DA03E27CD55CA00CA4338 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF7DA04B27CD55CC00CA4338 /* Preview Assets.xcassets in Resources */,
+				FF7DA04827CD55CC00CA4338 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF7DA04E27CD55CC00CA4338 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF7DA05827CD55CC00CA4338 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF7DA03C27CD55CA00CA4338 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */,
+				FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF7DA04C27CD55CC00CA4338 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF7DA05627CD55CC00CA4338 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF7DA06127CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift in Sources */,
+				FF7DA05F27CD55CC00CA4338 /* MeetraUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FF7DA05227CD55CC00CA4338 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF7DA03F27CD55CA00CA4338 /* Meetra */;
+			targetProxy = FF7DA05127CD55CC00CA4338 /* PBXContainerItemProxy */;
+		};
+		FF7DA05C27CD55CC00CA4338 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF7DA03F27CD55CA00CA4338 /* Meetra */;
+			targetProxy = FF7DA05B27CD55CC00CA4338 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FF7DA06227CD55CC00CA4338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FF7DA06327CD55CC00CA4338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FF7DA06527CD55CC00CA4338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
+				DEVELOPMENT_TEAM = SH2JVKZG3B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xpn-development.Meetra";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FF7DA06627CD55CC00CA4338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
+				DEVELOPMENT_TEAM = SH2JVKZG3B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xpn-development.Meetra";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FF7DA06827CD55CC00CA4338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SH2JVKZG3B;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xpn-development.MeetraTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Meetra.app/Meetra";
+			};
+			name = Debug;
+		};
+		FF7DA06927CD55CC00CA4338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SH2JVKZG3B;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xpn-development.MeetraTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Meetra.app/Meetra";
+			};
+			name = Release;
+		};
+		FF7DA06B27CD55CC00CA4338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SH2JVKZG3B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xpn-development.MeetraUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Meetra;
+			};
+			name = Debug;
+		};
+		FF7DA06C27CD55CC00CA4338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SH2JVKZG3B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xpn-development.MeetraUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Meetra;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF7DA03B27CD55CA00CA4338 /* Build configuration list for PBXProject "Meetra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF7DA06227CD55CC00CA4338 /* Debug */,
+				FF7DA06327CD55CC00CA4338 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF7DA06427CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "Meetra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF7DA06527CD55CC00CA4338 /* Debug */,
+				FF7DA06627CD55CC00CA4338 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF7DA06727CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "MeetraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF7DA06827CD55CC00CA4338 /* Debug */,
+				FF7DA06927CD55CC00CA4338 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF7DA06A27CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "MeetraUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF7DA06B27CD55CC00CA4338 /* Debug */,
+				FF7DA06C27CD55CC00CA4338 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF7DA03827CD55CA00CA4338 /* Project object */;
+}
