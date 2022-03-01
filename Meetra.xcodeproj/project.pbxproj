@@ -14,6 +14,18 @@
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
 		FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF227CE71E400A828C7 /* Extensions.swift */; };
+		FF7D0CFA27CE7C5400A828C7 /* Introduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF927CE7C5400A828C7 /* Introduction.swift */; };
+		FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CFB27CE7C8A00A828C7 /* NetworkError.swift */; };
+		FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CFD27CE7CAE00A828C7 /* AuthService.swift */; };
+		FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CFF27CE7CB600A828C7 /* AuthViewModel.swift */; };
+		FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0D0127CE7CD200A828C7 /* GlobalAuth.swift */; };
+		FF7D0D0427CE7D2A00A828C7 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0D0327CE7D2A00A828C7 /* Authentication.swift */; };
+		FF7D0D0727CE7F2200A828C7 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D0D0627CE7F2200A828C7 /* Inter-Regular.ttf */; };
+		FF7D0D0A27CE819500A828C7 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D0D0927CE819500A828C7 /* Inter-Bold.ttf */; };
+		FF7D0D0C27CE81E600A828C7 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D0D0B27CE81E600A828C7 /* Inter-Medium.ttf */; };
+		FF7D0D0E27CE82AB00A828C7 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D0D0D27CE82AB00A828C7 /* Inter-Black.ttf */; };
+		FF7D0D1027CE86F400A828C7 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D0D0F27CE86F400A828C7 /* Inter-SemiBold.ttf */; };
+		FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0D1127CE889D00A828C7 /* GetTapLocation.swift */; };
 		FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */; };
 		FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA04527CD55CA00CA4338 /* ContentView.swift */; };
 		FF7DA04827CD55CC00CA4338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7DA04727CD55CC00CA4338 /* Assets.xcassets */; };
@@ -54,6 +66,19 @@
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		FF7D0CF227CE71E400A828C7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FF7D0CF927CE7C5400A828C7 /* Introduction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Introduction.swift; sourceTree = "<group>"; };
+		FF7D0CFB27CE7C8A00A828C7 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		FF7D0CFD27CE7CAE00A828C7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		FF7D0CFF27CE7CB600A828C7 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		FF7D0D0127CE7CD200A828C7 /* GlobalAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalAuth.swift; sourceTree = "<group>"; };
+		FF7D0D0327CE7D2A00A828C7 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		FF7D0D0627CE7F2200A828C7 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Regular.ttf"; path = "../../../../Library/Fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
+		FF7D0D0827CE7FFE00A828C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FF7D0D0927CE819500A828C7 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Bold.ttf"; path = "../../../../Library/Fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
+		FF7D0D0B27CE81E600A828C7 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Medium.ttf"; path = "../../../../Library/Fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
+		FF7D0D0D27CE82AB00A828C7 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Black.ttf"; path = "../../../../Library/Fonts/Inter-Black.ttf"; sourceTree = "<group>"; };
+		FF7D0D0F27CE86F400A828C7 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-SemiBold.ttf"; path = "../../../../Library/Fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		FF7D0D1127CE889D00A828C7 /* GetTapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTapLocation.swift; sourceTree = "<group>"; };
 		FF7DA04027CD55CA00CA4338 /* Meetra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meetra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraApp.swift; sourceTree = "<group>"; };
 		FF7DA04527CD55CA00CA4338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -123,8 +148,63 @@
 			children = (
 				FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */,
 				FF7D0CF227CE71E400A828C7 /* Extensions.swift */,
+				FF7D0D1127CE889D00A828C7 /* GetTapLocation.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		FF7D0CF427CE7BF000A828C7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FF7D0CF827CE7C3900A828C7 /* Authentication */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FF7D0CF527CE7BFA00A828C7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FF7D0CFF27CE7CB600A828C7 /* AuthViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FF7D0CF627CE7C0100A828C7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FF7D0CFD27CE7CAE00A828C7 /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FF7D0CF727CE7C0D00A828C7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FF7D0CFB27CE7C8A00A828C7 /* NetworkError.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FF7D0CF827CE7C3900A828C7 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				FF7D0CF927CE7C5400A828C7 /* Introduction.swift */,
+				FF7D0D0127CE7CD200A828C7 /* GlobalAuth.swift */,
+				FF7D0D0327CE7D2A00A828C7 /* Authentication.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		FF7D0D0527CE7ED200A828C7 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FF7D0D0F27CE86F400A828C7 /* Inter-SemiBold.ttf */,
+				FF7D0D0D27CE82AB00A828C7 /* Inter-Black.ttf */,
+				FF7D0D0B27CE81E600A828C7 /* Inter-Medium.ttf */,
+				FF7D0D0927CE819500A828C7 /* Inter-Bold.ttf */,
+				FF7D0D0627CE7F2200A828C7 /* Inter-Regular.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		FF7DA03727CD55CA00CA4338 = {
@@ -153,10 +233,16 @@
 		FF7DA04227CD55CA00CA4338 /* Meetra */ = {
 			isa = PBXGroup;
 			children = (
+				FF7D0D0827CE7FFE00A828C7 /* Info.plist */,
+				FF7D0CF727CE7C0D00A828C7 /* Models */,
+				FF7D0CF627CE7C0100A828C7 /* Services */,
+				FF7D0CF527CE7BFA00A828C7 /* ViewModels */,
+				FF7D0CF427CE7BF000A828C7 /* Views */,
 				FF7D0CEF27CE6DEE00A828C7 /* Utils */,
 				FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */,
 				FF7DA04527CD55CA00CA4338 /* ContentView.swift */,
 				FF7DA04727CD55CC00CA4338 /* Assets.xcassets */,
+				FF7D0D0527CE7ED200A828C7 /* fonts */,
 				FF7DA04927CD55CC00CA4338 /* Preview Content */,
 				FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */,
 			);
@@ -304,7 +390,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF7DA04B27CD55CC00CA4338 /* Preview Assets.xcassets in Resources */,
+				FF7D0D0E27CE82AB00A828C7 /* Inter-Black.ttf in Resources */,
+				FF7D0D0727CE7F2200A828C7 /* Inter-Regular.ttf in Resources */,
+				FF7D0D0A27CE819500A828C7 /* Inter-Bold.ttf in Resources */,
+				FF7D0D0C27CE81E600A828C7 /* Inter-Medium.ttf in Resources */,
 				FF7DA04827CD55CC00CA4338 /* Assets.xcassets in Resources */,
+				FF7D0D1027CE86F400A828C7 /* Inter-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,10 +524,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */,
+				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
+				FF7D0CFA27CE7C5400A828C7 /* Introduction.swift in Sources */,
 				FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */,
 				FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */,
+				FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */,
 				FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */,
 				FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */,
+				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
+				FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */,
+				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,
+				FF7D0D0427CE7D2A00A828C7 /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +699,7 @@
 				DEVELOPMENT_TEAM = 8GVVA24YR6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Meetra/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -632,6 +731,7 @@
 				DEVELOPMENT_TEAM = 8GVVA24YR6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Meetra/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
