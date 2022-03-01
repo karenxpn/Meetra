@@ -47,6 +47,7 @@
 		DF3082C8763DD8C9EB15FCC8 /* Pods_MeetraTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetraTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B7310B686C4CCC21E50983 /* Pods-Meetra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.debug.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.debug.xcconfig"; sourceTree = "<group>"; };
 		E4DBB1C4C17AB5C66353B5AC /* Pods_Meetra_MeetraUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meetra_MeetraUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7DA04027CD55CA00CA4338 /* Meetra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meetra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraApp.swift; sourceTree = "<group>"; };
 		FF7DA04527CD55CA00CA4338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		FF7DA05A27CD55CC00CA4338 /* MeetraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITests.swift; sourceTree = "<group>"; };
 		FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FF7DA06D27CD56A000CA4338 /* .gitignore.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = .gitignore.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,14 +109,13 @@
 				748FA824CF2BAC305DA76C61 /* Pods-MeetraTests.debug.xcconfig */,
 				C48423C1BE00FD5BEED08286 /* Pods-MeetraTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		FF7DA03727CD55CA00CA4338 = {
 			isa = PBXGroup;
 			children = (
-				FF7DA06D27CD56A000CA4338 /* .gitignore.md */,
+				FF7D0CEC27CE6CC600A828C7 /* .gitignore */,
 				FF7DA04227CD55CA00CA4338 /* Meetra */,
 				FF7DA05327CD55CC00CA4338 /* MeetraTests */,
 				FF7DA05D27CD55CC00CA4338 /* MeetraUITests */,
