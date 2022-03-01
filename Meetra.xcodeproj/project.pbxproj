@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D11AB85AE62E4AF6BBE455D /* Pods_MeetraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF3082C8763DD8C9EB15FCC8 /* Pods_MeetraTests.framework */; };
+		AEB80D21A9B6D8D5F18BD15E /* Pods_Meetra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 472B3795E48CFB3C34010CD4 /* Pods_Meetra.framework */; };
+		E0FAE1DC0420047D13FB5810 /* Pods_Meetra_MeetraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4DBB1C4C17AB5C66353B5AC /* Pods_Meetra_MeetraUITests.framework */; };
+		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */; };
 		FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA04527CD55CA00CA4338 /* ContentView.swift */; };
 		FF7DA04827CD55CC00CA4338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7DA04727CD55CC00CA4338 /* Assets.xcassets */; };
@@ -34,6 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FC9935216F070CF0C66996B /* Pods-Meetra-MeetraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra-MeetraUITests.release.xcconfig"; path = "Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests.release.xcconfig"; sourceTree = "<group>"; };
+		472B3795E48CFB3C34010CD4 /* Pods_Meetra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meetra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5397960E9D837059B0969DBD /* Pods-Meetra-MeetraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra-MeetraUITests.debug.xcconfig"; path = "Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		748FA824CF2BAC305DA76C61 /* Pods-MeetraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetraTests.debug.xcconfig"; path = "Target Support Files/Pods-MeetraTests/Pods-MeetraTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7A875C0FA5937CF924879836 /* Pods-Meetra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.release.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.release.xcconfig"; sourceTree = "<group>"; };
+		C48423C1BE00FD5BEED08286 /* Pods-MeetraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetraTests.release.xcconfig"; path = "Target Support Files/Pods-MeetraTests/Pods-MeetraTests.release.xcconfig"; sourceTree = "<group>"; };
+		DF3082C8763DD8C9EB15FCC8 /* Pods_MeetraTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetraTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B7310B686C4CCC21E50983 /* Pods-Meetra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.debug.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.debug.xcconfig"; sourceTree = "<group>"; };
+		E4DBB1C4C17AB5C66353B5AC /* Pods_Meetra_MeetraUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meetra_MeetraUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7DA04027CD55CA00CA4338 /* Meetra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meetra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraApp.swift; sourceTree = "<group>"; };
 		FF7DA04527CD55CA00CA4338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */,
+				AEB80D21A9B6D8D5F18BD15E /* Pods_Meetra.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D11AB85AE62E4AF6BBE455D /* Pods_MeetraTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +82,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0FAE1DC0420047D13FB5810 /* Pods_Meetra_MeetraUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44CC57ABDCE82AAD176CE844 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				472B3795E48CFB3C34010CD4 /* Pods_Meetra.framework */,
+				E4DBB1C4C17AB5C66353B5AC /* Pods_Meetra_MeetraUITests.framework */,
+				DF3082C8763DD8C9EB15FCC8 /* Pods_MeetraTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		491E653C2C54BA66A011BCBC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E4B7310B686C4CCC21E50983 /* Pods-Meetra.debug.xcconfig */,
+				7A875C0FA5937CF924879836 /* Pods-Meetra.release.xcconfig */,
+				5397960E9D837059B0969DBD /* Pods-Meetra-MeetraUITests.debug.xcconfig */,
+				0FC9935216F070CF0C66996B /* Pods-Meetra-MeetraUITests.release.xcconfig */,
+				748FA824CF2BAC305DA76C61 /* Pods-MeetraTests.debug.xcconfig */,
+				C48423C1BE00FD5BEED08286 /* Pods-MeetraTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		FF7DA03727CD55CA00CA4338 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +121,8 @@
 				FF7DA05327CD55CC00CA4338 /* MeetraTests */,
 				FF7DA05D27CD55CC00CA4338 /* MeetraUITests */,
 				FF7DA04127CD55CA00CA4338 /* Products */,
+				491E653C2C54BA66A011BCBC /* Pods */,
+				44CC57ABDCE82AAD176CE844 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,15 +179,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF7DA06427CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "Meetra" */;
 			buildPhases = (
+				030A63D4A85343ED9CAA48CC /* [CP] Check Pods Manifest.lock */,
 				FF7DA03C27CD55CA00CA4338 /* Sources */,
 				FF7DA03D27CD55CA00CA4338 /* Frameworks */,
 				FF7DA03E27CD55CA00CA4338 /* Resources */,
+				9E2C6B3467E8C3DA86A0B6EE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Meetra;
+			packageProductDependencies = (
+				FF7D0CE927CE6A9800A828C7 /* TagLayoutView */,
+			);
 			productName = Meetra;
 			productReference = FF7DA04027CD55CA00CA4338 /* Meetra.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +201,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF7DA06727CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "MeetraTests" */;
 			buildPhases = (
+				5B4F2AEA7D8423291455B39E /* [CP] Check Pods Manifest.lock */,
 				FF7DA04C27CD55CC00CA4338 /* Sources */,
 				FF7DA04D27CD55CC00CA4338 /* Frameworks */,
 				FF7DA04E27CD55CC00CA4338 /* Resources */,
@@ -171,9 +220,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF7DA06A27CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "MeetraUITests" */;
 			buildPhases = (
+				463DF346223A0A1BDBA29F41 /* [CP] Check Pods Manifest.lock */,
 				FF7DA05627CD55CC00CA4338 /* Sources */,
 				FF7DA05727CD55CC00CA4338 /* Frameworks */,
 				FF7DA05827CD55CC00CA4338 /* Resources */,
+				544C6C0C12867D2693108680 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -217,6 +268,9 @@
 				Base,
 			);
 			mainGroup = FF7DA03727CD55CA00CA4338;
+			packageReferences = (
+				FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
+			);
 			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -253,6 +307,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		030A63D4A85343ED9CAA48CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Meetra-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		463DF346223A0A1BDBA29F41 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Meetra-MeetraUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		544C6C0C12867D2693108680 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B4F2AEA7D8423291455B39E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MeetraTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E2C6B3467E8C3DA86A0B6EE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Meetra/Pods-Meetra-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Meetra/Pods-Meetra-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Meetra/Pods-Meetra-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FF7DA03C27CD55CA00CA4338 /* Sources */ = {
@@ -415,6 +572,7 @@
 		};
 		FF7DA06527CD55CC00CA4338 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4B7310B686C4CCC21E50983 /* Pods-Meetra.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -445,6 +603,7 @@
 		};
 		FF7DA06627CD55CC00CA4338 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A875C0FA5937CF924879836 /* Pods-Meetra.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -475,6 +634,7 @@
 		};
 		FF7DA06827CD55CC00CA4338 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 748FA824CF2BAC305DA76C61 /* Pods-MeetraTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -495,6 +655,7 @@
 		};
 		FF7DA06927CD55CC00CA4338 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C48423C1BE00FD5BEED08286 /* Pods-MeetraTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -515,6 +676,7 @@
 		};
 		FF7DA06B27CD55CC00CA4338 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5397960E9D837059B0969DBD /* Pods-Meetra-MeetraUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -533,6 +695,7 @@
 		};
 		FF7DA06C27CD55CC00CA4338 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FC9935216F070CF0C66996B /* Pods-Meetra-MeetraUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -589,6 +752,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/giiiita/TagLayoutView";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FF7D0CE927CE6A9800A828C7 /* TagLayoutView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */;
+			productName = TagLayoutView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FF7DA03827CD55CA00CA4338 /* Project object */;
 }
