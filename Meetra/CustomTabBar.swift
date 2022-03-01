@@ -11,7 +11,7 @@ import SwiftUI
 struct CustomTabBar: View {
     @Binding var currentTab: Int
     @State private var tab: Bool = true
-    let icons = ["profiles_icon", "place_icon", "chat_icon", "account_icon"]
+    let icons = ["place_icon", "profiles_icon", "chat_icon", "account_icon"]
     
     var body: some View {
         Group {
@@ -30,11 +30,10 @@ struct CustomTabBar: View {
                             Spacer()
                             Image(icons[id])
                                 .resizable()
-                                .aspectRatio(contentMode: .fill)
+                                .aspectRatio(contentMode: .fit)
                                 .foregroundColor(id == currentTab ? AppColors.accentColor : .black)
                                 .frame(width: 28, height: 28)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 6)
+                                .padding(10)
                                 .onTapGesture {
                                     withAnimation {
                                         currentTab = id
