@@ -56,7 +56,7 @@ struct Introduction: View {
                         .padding(.horizontal, UIScreen.main.bounds.size.width * 0.25)
                         .background(AppColors.proceedButtonColor)
                         .cornerRadius(30)
-                }
+                }.padding(.bottom, 50)
             }
             
             GetTapLocation { point in
