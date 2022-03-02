@@ -10,6 +10,7 @@
 		0A09865424D3A77BA9558C26 /* Pods_MeetraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19D249EFD529D5705C3320C3 /* Pods_MeetraTests.framework */; };
 		CEA4657C4A230B4159F48F3E /* Pods_Meetra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB6E29C616E4FC4E7C6BFDFC /* Pods_Meetra.framework */; };
 		FA4A9A9AF2818E300423F90E /* Pods_Meetra_MeetraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43DAAD7C28834988A9EE2783 /* Pods_Meetra_MeetraUITests.framework */; };
+		FF07F23027D0210A009B46B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -70,6 +71,7 @@
 		AAB107F17947F51791C61B6F /* Pods-Meetra-MeetraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra-MeetraUITests.debug.xcconfig"; path = "Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FB6E29C616E4FC4E7C6BFDFC /* Pods_Meetra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meetra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC008B374886975E547AC195 /* Pods-Meetra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.release.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.release.xcconfig"; sourceTree = "<group>"; };
+		FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				FF7DA04927CD55CC00CA4338 /* Preview Content */,
 				FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */,
 				FF7D0D1527CFDD3900A828C7 /* Credentials.swift */,
+				FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */,
 			);
 			path = Meetra;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF7DA04B27CD55CC00CA4338 /* Preview Assets.xcassets in Resources */,
+				FF07F23027D0210A009B46B7 /* LaunchScreen.storyboard in Resources */,
 				FF7D0D0E27CE82AB00A828C7 /* Inter-Black.ttf in Resources */,
 				FF7D0D0727CE7F2200A828C7 /* Inter-Regular.ttf in Resources */,
 				FF7D0D0A27CE819500A828C7 /* Inter-Bold.ttf in Resources */,
@@ -734,9 +738,11 @@
 				INFOPLIST_FILE = Meetra/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -766,9 +772,11 @@
 				INFOPLIST_FILE = Meetra/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
