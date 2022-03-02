@@ -13,7 +13,7 @@ struct Authentication: View {
     
     @ObservedObject var authVM = AuthViewModel()
     @State private var showPicker: Bool = false
-
+    
     
     
     var body: some View {
@@ -64,10 +64,12 @@ struct Authentication: View {
                 Spacer()
                 
                 Button {
+                    authVM.sendVerificationCode()
                 } label: {
                     
                     HStack {
                         Spacer()
+                        
                         Text( "Продолжить" )
                             .font(.custom("Inter-SemiBold", size: 22))
                             .foregroundColor(.white)
@@ -81,7 +83,12 @@ struct Authentication: View {
                     }
                     
                 }.padding(.bottom, 30)
-                
+                    .disabled(authVM.loading)
+                    .background(
+                        NavigationLink(destination: VerifyPhoneNumber(), isActive: $authVM.navigateToCheckVerification, label: {
+                            EmptyView()
+                        }).hidden()
+                    )
             }
             
         }.padding(.horizontal, 40)
@@ -89,7 +96,9 @@ struct Authentication: View {
             .sheet(isPresented: $showPicker) {
                 CountryCodeSelection(isPresented: $showPicker, country: $authVM.country, code: $authVM.code)
             }
-        
+            .alert(isPresented: $authVM.showAlert) {
+                Alert(title: Text("Error"), message: Text(authVM.alertMessage), dismissButton: .default(Text("Got it!")))
+            }
     }
 }
 
