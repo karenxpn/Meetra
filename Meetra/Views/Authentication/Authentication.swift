@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct Authentication: View {
-    @State private var phoneNumber = ""
     
+    @ObservedObject var authVM = AuthViewModel()
+        
     var body: some View {
 //        NavigationView {
             
@@ -43,7 +44,7 @@ struct Authentication: View {
                             .shadow(radius: 3, x: 0, y: 3)
                     }
                     
-                    TextField("(954)411-11-33", text: $phoneNumber)
+                    TextField("(954)411-11-33", text: $authVM.phoneNumber)
                         .keyboardType(.phonePad)
                         .font(.custom("Inter-SemiBold", size: 18))
                         .padding(.vertical, 15)
@@ -68,13 +69,13 @@ struct Authentication: View {
                             .padding(.vertical, 15)
                             .padding(.horizontal, 73)
                             .background(AppColors.proceedButtonColor)
-                            .opacity(phoneNumber == "" ? 0.5 : 1)
-                            .cornerRadius(20)
+                            .opacity(authVM.phoneNumber == "" ? 0.5 : 1)
+                            .cornerRadius(30)
                         
                         Spacer()
                     }
                     
-                }
+                }.padding(.bottom, 30)
                 
                 
             }.padding(.horizontal)

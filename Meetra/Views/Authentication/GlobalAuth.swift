@@ -13,6 +13,9 @@ struct GlobalAuth: View {
         NavigationView {
             Introduction()
         }.navigationViewStyle(StackNavigationViewStyle())
+            .gesture(DragGesture().onChanged({ _ in
+                UIApplication.shared.endEditing()
+            }))
     }
 }
 
