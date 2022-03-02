@@ -13,8 +13,7 @@ struct Authentication: View {
     
     @ObservedObject var authVM = AuthViewModel()
     @State private var showPicker: Bool = false
-    @State private var country: String = "Russia"
-    @State private var code: String = "+7"
+
     
     
     var body: some View {
@@ -38,7 +37,7 @@ struct Authentication: View {
                         
                     } label: {
                         HStack {
-                            Text( "\(country) +\(code)" )
+                            Text( "\(authVM.country) +\(authVM.code)" )
                                 .foregroundColor(.black)
                                 .font(.custom("Inter-SemiBold", size: 18))
                             
@@ -88,7 +87,7 @@ struct Authentication: View {
         }.padding(.horizontal, 40)
             .navigationBarTitle("")
             .sheet(isPresented: $showPicker) {
-                CountryCodeSelection(isPresented: $showPicker, country: $country, code: $code)
+                CountryCodeSelection(isPresented: $showPicker, country: $authVM.country, code: $authVM.code)
             }
         
     }
