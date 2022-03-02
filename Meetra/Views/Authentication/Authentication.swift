@@ -6,14 +6,20 @@
 //
 
 import SwiftUI
+import ActionSheetPicker_3_0
+
 
 struct Authentication: View {
     
     @ObservedObject var authVM = AuthViewModel()
-        
+    @State private var showPicker: Bool = false
+    @State private var country: String = "Russia"
+    @State private var code: String = "+7"
+    
+    
     var body: some View {
-//        NavigationView {
-            
+        
+        ZStack {
             VStack( alignment: .leading, spacing: 20) {
                 Text("Ваш номер:")
                     .foregroundColor(.black)
@@ -28,10 +34,11 @@ struct Authentication: View {
                 HStack {
                     
                     Button {
+                        showPicker.toggle()
                         
                     } label: {
                         HStack {
-                            Text( "RU +7" )
+                            Text( "\(country) +\(code)" )
                                 .foregroundColor(.black)
                                 .font(.custom("Inter-SemiBold", size: 18))
                             
@@ -58,7 +65,6 @@ struct Authentication: View {
                 Spacer()
                 
                 Button {
-                    
                 } label: {
                     
                     HStack {
@@ -77,11 +83,14 @@ struct Authentication: View {
                     
                 }.padding(.bottom, 30)
                 
-                
-            }.padding(.horizontal)
-            .navigationBarTitle("")
+            }
             
-//        }.navigationViewStyle(StackNavigationViewStyle())
+        }.padding(.horizontal, 40)
+            .navigationBarTitle("")
+            .sheet(isPresented: $showPicker) {
+                CountryCodeSelection(isPresented: $showPicker, country: $country, code: $code)
+            }
+        
     }
 }
 

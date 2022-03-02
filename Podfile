@@ -11,6 +11,8 @@ target 'Meetra' do
 	pod 'SDWebImageSVGCoder'
 	pod 'ActivityIndicatorView'
 	pod 'PusherSwift', '~> 10.0'
+	pod 'ActionSheetPicker-3.0'
+
 
 
   target 'MeetraTests' do
