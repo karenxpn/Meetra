@@ -71,7 +71,7 @@ struct Authentication: View {
                         Spacer()
                         
                         Text( "Продолжить" )
-                            .font(.custom("Inter-SemiBold", size: 22))
+                            .font(.custom("Inter-SemiBold", size: 20))
                             .foregroundColor(.white)
                             .padding(.vertical, 15)
                             .padding(.horizontal, 73)

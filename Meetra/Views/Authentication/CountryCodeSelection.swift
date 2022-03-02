@@ -57,7 +57,7 @@ struct CountryCodeSelection: View {
     }
     
     func countryName(countryCode: String) -> String? {
-            let current = Locale(identifier: "en_US")
+            let current = Locale(identifier: "ru_RU")
             return current.localizedString(forRegionCode: countryCode)
         }
 }

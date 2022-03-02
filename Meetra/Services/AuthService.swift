@@ -37,7 +37,5 @@ extension AuthService: AuthServiceProtocol {
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-    }
-    
-    
+    }    
 }
