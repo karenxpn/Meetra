@@ -8,8 +8,79 @@
 import SwiftUI
 
 struct Authentication: View {
+    @State private var phoneNumber = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//        NavigationView {
+            
+            VStack( alignment: .leading, spacing: 20) {
+                Text("Ваш номер:")
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-SemiBold", size: 30))
+                
+                Text("Введите номер телефона для прохождения быстрой регистрации")
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-Regular", size: 16))
+                    .padding(.trailing)
+                
+                
+                HStack {
+                    
+                    Button {
+                        
+                    } label: {
+                        HStack {
+                            Text( "RU +7" )
+                                .foregroundColor(.black)
+                                .font(.custom("Inter-SemiBold", size: 18))
+                            
+                            Image("dropdown")
+                            
+                        }.padding(.vertical, 15)
+                            .padding(.horizontal, 10)
+                            .background(.white)
+                            .cornerRadius(10)
+                            .shadow(radius: 3, x: 0, y: 3)
+                    }
+                    
+                    TextField("(954)411-11-33", text: $phoneNumber)
+                        .keyboardType(.phonePad)
+                        .font(.custom("Inter-SemiBold", size: 18))
+                        .padding(.vertical, 15)
+                        .padding(.horizontal, 10)
+                        .background(.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 3, x: 0, y: 3)
+                }.padding(.top, 20)
+                
+                
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    
+                    HStack {
+                        Spacer()
+                        Text( "Продолжить" )
+                            .font(.custom("Inter-SemiBold", size: 22))
+                            .foregroundColor(.white)
+                            .padding(.vertical, 15)
+                            .padding(.horizontal, 73)
+                            .background(AppColors.proceedButtonColor)
+                            .opacity(phoneNumber == "" ? 0.5 : 1)
+                            .cornerRadius(20)
+                        
+                        Spacer()
+                    }
+                    
+                }
+                
+                
+            }.padding(.horizontal)
+            .navigationBarTitle("")
+            
+//        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

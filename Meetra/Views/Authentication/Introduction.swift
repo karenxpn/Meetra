@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct Introduction: View {
-    @Binding var showIntro: Bool
+    @State private var showAuth: Bool = false
+    
     @State private var page: Int = 0
     let images = ["start_screen", "start_screen2", "start_screen3"]
     let texts = ["Посети классные места", "Найди собеседников по интересам", "Выбери компанию по душе"]
     
     var body: some View {
         ZStack {
+            
+            NavigationLink(destination: Authentication(), isActive: $showAuth) {
+                EmptyView()
+            }.hidden()
+            
             Image(images[page])
                 .resizable()
                 .edgesIgnoringSafeArea(.all)
@@ -46,13 +52,14 @@ struct Introduction: View {
                 
                 Spacer()
                 
+                
                 Button {
-                    showIntro.toggle()
+                    showAuth.toggle()
                 } label: {
                     Text("Начать")
                         .font(.custom("Inter-SemiBold", size: 22))
                         .foregroundColor(.white)
-                        .padding(.vertical)
+                        .frame(height: 56)
                         .padding(.horizontal, UIScreen.main.bounds.size.width * 0.25)
                         .background(AppColors.proceedButtonColor)
                         .cornerRadius(30)
@@ -68,18 +75,21 @@ struct Introduction: View {
                                 page += 1
                             }
                         } else {
-                            showIntro.toggle()
+                            showAuth.toggle()
                         }
                     }
                 }
             }.frame(height: UIScreen.main.bounds.size.height * 0.7)
             
-        }
+            
+            
+        }.navigationBarHidden(true)
+            .navigationBarTitle("")
     }
 }
 
 struct Introduction_Previews: PreviewProvider {
     static var previews: some View {
-        Introduction(showIntro: .constant(false))
+        Introduction()
     }
 }

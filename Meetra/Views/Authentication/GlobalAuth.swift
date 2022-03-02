@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct GlobalAuth: View {
-    @State private var showIntro: Bool = true
     var body: some View {
         
-        if showIntro {
-            Introduction(showIntro: $showIntro)
-        } else {
-            Authentication()
-        }
+        NavigationView {
+            Introduction()
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
