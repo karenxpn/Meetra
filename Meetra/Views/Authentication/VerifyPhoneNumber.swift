@@ -36,7 +36,7 @@ struct VerifyPhoneNumber: View {
                     .font(.custom("Inter-Regular", size: 12))
                 
                 Button(action: {
-                    // do smth
+                    authVM.resendVerificationCode(phone: phone)
                 }) {
                     Text( " Отправить ещё раз" )
                         .foregroundColor(.black)

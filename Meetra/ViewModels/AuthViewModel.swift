@@ -54,4 +54,10 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 }
             }.store(in: &cancellableSet)
     }
+    
+    func resendVerificationCode(phone: String) {
+        dataManager.resendVerificationCode(phoneNumber: phone)
+            .sink { _ in
+            }.store(in: &cancellableSet)
+    }
 }
