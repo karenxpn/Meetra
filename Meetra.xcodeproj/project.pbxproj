@@ -31,6 +31,8 @@
 		FF7D0D1827CFE2E300A828C7 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0D1727CFE2E300A828C7 /* AuthResponse.swift */; };
 		FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0D1927CFE46700A828C7 /* AlertViewModel.swift */; };
 		FF7D0D1C27CFE53E00A828C7 /* VerifyPhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0D1B27CFE53E00A828C7 /* VerifyPhoneNumber.swift */; };
+		FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0D1D27CFFDA100A828C7 /* OTPTextFieldView.swift */; };
+		FF7D0D2127CFFE1200A828C7 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0D2027CFFE1200A828C7 /* SwiftUIX */; };
 		FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */; };
 		FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA04527CD55CA00CA4338 /* ContentView.swift */; };
 		FF7DA04827CD55CC00CA4338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7DA04727CD55CC00CA4338 /* Assets.xcassets */; };
@@ -89,6 +91,7 @@
 		FF7D0D1727CFE2E300A828C7 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		FF7D0D1927CFE46700A828C7 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		FF7D0D1B27CFE53E00A828C7 /* VerifyPhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneNumber.swift; sourceTree = "<group>"; };
+		FF7D0D1D27CFFDA100A828C7 /* OTPTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextFieldView.swift; sourceTree = "<group>"; };
 		FF7DA04027CD55CA00CA4338 /* Meetra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meetra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7DA04327CD55CA00CA4338 /* MeetraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraApp.swift; sourceTree = "<group>"; };
 		FF7DA04527CD55CA00CA4338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF7D0D2127CFFE1200A828C7 /* SwiftUIX in Frameworks */,
 				FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */,
 				CEA4657C4A230B4159F48F3E /* Pods_Meetra.framework in Frameworks */,
 			);
@@ -205,6 +209,7 @@
 				FF7D0D0327CE7D2A00A828C7 /* Authentication.swift */,
 				FF7D0D1327CFDD2200A828C7 /* CountryCodeSelection.swift */,
 				FF7D0D1B27CFE53E00A828C7 /* VerifyPhoneNumber.swift */,
+				FF7D0D1D27CFFDA100A828C7 /* OTPTextFieldView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 			name = Meetra;
 			packageProductDependencies = (
 				FF7D0CE927CE6A9800A828C7 /* TagLayoutView */,
+				FF7D0D2027CFFE1200A828C7 /* SwiftUIX */,
 			);
 			productName = Meetra;
 			productReference = FF7DA04027CD55CA00CA4338 /* Meetra.app */;
@@ -387,6 +393,7 @@
 			mainGroup = FF7DA03727CD55CA00CA4338;
 			packageReferences = (
 				FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
+				FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
 			projectDirPath = "";
@@ -538,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
 				FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
 				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
@@ -901,6 +909,14 @@
 				kind = branch;
 			};
 		};
+		FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -908,6 +924,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */;
 			productName = TagLayoutView;
+		};
+		FF7D0D2027CFFE1200A828C7 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

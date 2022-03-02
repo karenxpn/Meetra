@@ -12,12 +12,12 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     @Published var phoneNumber: String = ""
     @Published var country: String = "RU"
     @Published var code: String = "7"
-    
+        
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     
-    @Published var navigateToCheckVerification: Bool = false
+    @Published var navigate: Bool = false
     
     private var cancellableSet: Set<AnyCancellable> = []
 
@@ -36,7 +36,21 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
-                    self.navigateToCheckVerification = true
+                    self.navigate = true
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func checkVerificationCode(phone: String, code: String) {
+        loading = true
+        dataManager.checkVerificationCode(phoneNumber: phone, code: code)
+            .sink { response in
+                self.loading = false
+                self.loading = false
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    // navigate
                 }
             }.store(in: &cancellableSet)
     }
