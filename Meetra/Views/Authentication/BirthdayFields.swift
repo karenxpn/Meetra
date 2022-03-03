@@ -18,6 +18,7 @@ struct BirthdayFields: View {
             .foregroundColor(.black)
             .font(.custom("Inter-SemiBold", size: 18))
             .multilineTextAlignment(.center)
+            .keyboardType(.numberPad)
             .padding(.vertical)
             .frame(width: width)
             .background(.white)
