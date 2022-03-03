@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct AuthGenderPicker: View {
-    let phone: String
-    let name: String
-    let birthday: String
+    @State var model: RegistrationRequest
     
     let genders = ["Женщина", "Мужчина", "Небинарная персона "]
     @State private var selected_gender = ""
@@ -69,6 +67,10 @@ struct AuthGenderPicker: View {
             
             Button {
                 navigate.toggle()
+                model.gender = selected_gender
+                model.private_gender = private_gender
+                
+                print(model)
             } label: {
                 HStack {
                     Spacer()
@@ -104,6 +106,6 @@ struct AuthGenderPicker: View {
 
 struct AuthGenderPicker_Previews: PreviewProvider {
     static var previews: some View {
-        AuthGenderPicker(phone: "", name: "", birthday: "")
+        AuthGenderPicker(model: RegistrationRequest(phone: "098234", name: "Karen", birthday: "26/07/1999", gender: "", private_gender: false))
     }
 }

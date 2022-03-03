@@ -13,8 +13,7 @@ struct Authentication: View {
     
     @ObservedObject var authVM = AuthViewModel()
     @State private var showPicker: Bool = false
-    
-    
+    @State private var model = RegistrationRequest()
     
     var body: some View {
         
@@ -63,6 +62,7 @@ struct Authentication: View {
             Spacer()
             
             Button {
+                model.phone = "+\(authVM.code)\(authVM.phoneNumber)"
                 authVM.sendVerificationCode()
             } label: {
                 
@@ -83,7 +83,7 @@ struct Authentication: View {
             }.padding(.bottom, 30)
                 .disabled(authVM.loading)
                 .background(
-                    NavigationLink(destination: VerifyPhoneNumber(phone: "+\(authVM.code)\(authVM.phoneNumber)"), isActive: $authVM.navigate, label: {
+                    NavigationLink(destination: VerifyPhoneNumber(model: model), isActive: $authVM.navigate, label: {
                         EmptyView()
                     }).hidden()
                 )

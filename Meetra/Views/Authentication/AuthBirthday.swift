@@ -14,13 +14,11 @@ enum BirthdayForm: Hashable {
     }
 
 struct AuthBirthday: View {
-    let phone: String
-    let name: String
+    @State var model: RegistrationRequest
     
     @State private var day: String = ""
     @State private var month: String = ""
     @State private var year: String = ""
-    @State private var birthday: String = ""
     @FocusState private var focusedField: BirthdayForm?
     @State private var navigate: Bool = false
 
@@ -56,7 +54,7 @@ struct AuthBirthday: View {
             
             
             Button {
-                birthday = "\(day)/\(month)/\(year)"
+                model.birthday = "\(day)/\(month)/\(year)"
                 navigate.toggle()
             } label: {
                 HStack {
@@ -73,7 +71,7 @@ struct AuthBirthday: View {
                     .cornerRadius(30)
             }.disabled(( day.count < 2 || month.count < 2 || year.count < 4 ))
                 .background(
-                    NavigationLink(destination: AuthGenderPicker(phone: phone, name: name, birthday: birthday), isActive: $navigate, label: {
+                    NavigationLink(destination: AuthGenderPicker(model: model), isActive: $navigate, label: {
                         EmptyView()
                     }).hidden()
                 )            
@@ -105,6 +103,6 @@ struct AuthBirthday: View {
 
 struct AuthBirthday_Previews: PreviewProvider {
     static var previews: some View {
-        AuthBirthday(phone: "", name: "")
+        AuthBirthday(model: RegistrationRequest(phone: "023902384", name: "Karen", birthday: "", gender: "", private_gender: false))
     }
 }

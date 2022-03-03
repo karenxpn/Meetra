@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct AuthNameInput: View {
-    let phone: String
+    @State var model: RegistrationRequest
     @State private var name: String = ""
+    @State private var navigate: Bool = false
     
     var body: some View {
         VStack( alignment: .leading, spacing: 30) {
@@ -39,7 +40,10 @@ struct AuthNameInput: View {
             
             Spacer()
             
-            NavigationLink(destination: AuthBirthday(phone: phone, name: name),label: {
+            Button {
+                model.name = name
+                navigate.toggle()
+            } label: {
                 HStack {
                     Spacer()
                     
@@ -52,8 +56,13 @@ struct AuthNameInput: View {
                 }.background(AppColors.proceedButtonColor)
                     .opacity(name.count < 3 ? 0.5 : 1)
                     .cornerRadius(30)
-            }).disabled(name.count < 3)
-            
+            }.disabled(name.count < 3)
+                .background(
+                    NavigationLink(destination: AuthBirthday(model: model), isActive: $navigate, label: {
+                        EmptyView()
+                    }).hidden()
+                )
+
             
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
@@ -69,6 +78,6 @@ struct AuthNameInput: View {
 
 struct AuthNameInput_Previews: PreviewProvider {
     static var previews: some View {
-        AuthNameInput(phone: "+37493936313")
+        AuthNameInput(model: RegistrationRequest(phone: "+79094215513", name: "Karen", birthday: "", gender: "", private_gender: false))
     }
 }
