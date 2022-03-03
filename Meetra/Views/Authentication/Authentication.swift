@@ -81,7 +81,7 @@ struct Authentication: View {
                     .cornerRadius(30)
                 
             }.padding(.bottom, 30)
-                .disabled(authVM.loading)
+                .disabled((authVM.loading || authVM.phoneNumber.isEmpty))
                 .background(
                     NavigationLink(destination: VerifyPhoneNumber(model: model), isActive: $authVM.navigate, label: {
                         EmptyView()
