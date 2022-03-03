@@ -17,22 +17,19 @@ struct AuthProgress: View {
                 Spacer()
                 ForEach( 0...6, id: \.self ) { index in
                     
-                    if index == 0{
+                    if index == 0 || index == 6{
                         Rectangle()
                             .fill(AppColors.accentColor.opacity(index <= page ? 1 : 0.5))
-                            .cornerRadius([.topLeft, .bottomLeft], 20)
-                    } else if index == 6 {
-                        Rectangle()
-                            .fill(AppColors.accentColor.opacity(index <= page ? 1 : 0.5))
-                            .cornerRadius([.topRight, .bottomRight], 20)
-                    }else {
+                            .cornerRadius(index == 0 ? [.topLeft, .bottomLeft] : [.topRight, .bottomRight], 20)
+                    } else {
                         Rectangle()
                             .fill(AppColors.accentColor.opacity(index <= page ? 1 : 0.5))
                     }
                 }
                 
                 Spacer()
-            }.frame( height: 6)            
+            }.frame( height: 6)
+                .padding(.horizontal)
         }
     }
 }
