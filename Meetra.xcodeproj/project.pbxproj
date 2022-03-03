@@ -15,6 +15,8 @@
 		FF07F23427D0D8B6009B46B7 /* AuthBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23327D0D8B6009B46B7 /* AuthBirthday.swift */; };
 		FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23527D0DCD0009B46B7 /* AuthGenderPicker.swift */; };
 		FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23727D0E171009B46B7 /* BirthdayFields.swift */; };
+		FF07F23C27D0ED1F009B46B7 /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23B27D0ED1F009B46B7 /* MockAuthService.swift */; };
+		FF07F23E27D0EEAD009B46B7 /* AuthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -80,6 +82,8 @@
 		FF07F23327D0D8B6009B46B7 /* AuthBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBirthday.swift; sourceTree = "<group>"; };
 		FF07F23527D0DCD0009B46B7 /* AuthGenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGenderPicker.swift; sourceTree = "<group>"; };
 		FF07F23727D0E171009B46B7 /* BirthdayFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayFields.swift; sourceTree = "<group>"; };
+		FF07F23B27D0ED1F009B46B7 /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
+		FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelTests.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -167,6 +171,22 @@
 				19D249EFD529D5705C3320C3 /* Pods_MeetraTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF07F23927D0ED08009B46B7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				FF07F23B27D0ED1F009B46B7 /* MockAuthService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		FF07F23A27D0ED0F009B46B7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		FF7D0CEF27CE6DEE00A828C7 /* Utils */ = {
@@ -298,6 +318,8 @@
 		FF7DA05327CD55CC00CA4338 /* MeetraTests */ = {
 			isa = PBXGroup;
 			children = (
+				FF07F23A27D0ED0F009B46B7 /* ViewModel */,
+				FF07F23927D0ED08009B46B7 /* Service */,
 				FF7DA05427CD55CC00CA4338 /* MeetraTests.swift */,
 			);
 			path = MeetraTests;
@@ -595,6 +617,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */,
+				FF07F23C27D0ED1F009B46B7 /* MockAuthService.swift in Sources */,
+				FF07F23E27D0EEAD009B46B7 /* AuthViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

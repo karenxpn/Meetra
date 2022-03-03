@@ -83,6 +83,7 @@ struct AuthGenderPicker: View {
                     .opacity(selected_gender.isEmpty ? 0.5 : 1)
                     .cornerRadius(30)
             }.disabled(selected_gender.isEmpty)
+            // need to pass phone, name, birthday, gender, private_gender
 //                .background(
 //                    NavigationLink(destination: AuthGenderPicker(phone: phone, name: name, birthday: birthday), isActive: $navigate, label: {
 //                        EmptyView()
