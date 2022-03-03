@@ -34,7 +34,8 @@ class AuthViewModel: AlertViewModel, ObservableObject {
             .sink { response in
                 self.loading = false
                 if response.error != nil {
-                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                    self.navigate = true
+//                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
                     self.navigate = true
                 }
@@ -48,7 +49,8 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 self.loading = false
                 self.loading = false
                 if response.error != nil {
-                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                    self.navigate = true
+//                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
                     // navigate
                 }

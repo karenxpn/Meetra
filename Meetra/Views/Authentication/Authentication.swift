@@ -73,13 +73,12 @@ struct Authentication: View {
                         .font(.custom("Inter-SemiBold", size: 20))
                         .foregroundColor(.white)
                         .padding(.vertical, 15)
-                        .padding(.horizontal, 73)
-                        .background(AppColors.proceedButtonColor)
-                        .opacity(authVM.phoneNumber == "" ? 0.5 : 1)
-                        .cornerRadius(30)
+                    
                     
                     Spacer()
-                }
+                }.background(AppColors.proceedButtonColor)
+                    .opacity(authVM.phoneNumber == "" ? 0.5 : 1)
+                    .cornerRadius(30)
                 
             }.padding(.bottom, 30)
                 .disabled(authVM.loading)
@@ -89,14 +88,14 @@ struct Authentication: View {
                     }).hidden()
                 )
         }.navigationBarTitle("", displayMode: .inline)
-        .frame(
-            minWidth: 0,
-            maxWidth: .infinity,
-            minHeight: 0,
-            maxHeight: .infinity,
-            alignment: .topLeading
-        )
-        .padding(30)
+            .frame(
+                minWidth: 0,
+                maxWidth: .infinity,
+                minHeight: 0,
+                maxHeight: .infinity,
+                alignment: .topLeading
+            )
+            .padding(30)
             .sheet(isPresented: $showPicker) {
                 CountryCodeSelection(isPresented: $showPicker, country: $authVM.country, code: $authVM.code)
             }

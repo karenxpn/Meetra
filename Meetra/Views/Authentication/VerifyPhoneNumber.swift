@@ -61,18 +61,16 @@ struct VerifyPhoneNumber: View {
                         .font(.custom("Inter-SemiBold", size: 20))
                         .foregroundColor(.white)
                         .padding(.vertical, 15)
-                        .padding(.horizontal, 73)
-                        .background(AppColors.proceedButtonColor)
-                        .cornerRadius(30)
                     
                     Spacer()
-                }
+                }.background(AppColors.proceedButtonColor)
+                    .cornerRadius(30)
                 
             }.disabled(authVM.loading)
                 .background(
-//                    NavigationLink(destination: AuthName, isActive: $authVM.navigate, label: {
-//                        EmptyView()
-//                    }).hidden()
+                    NavigationLink(destination: AuthNameInput(phone: phone), isActive: $authVM.navigate, label: {
+                        EmptyView()
+                    }).hidden()
                 )
             
             

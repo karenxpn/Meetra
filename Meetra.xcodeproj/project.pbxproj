@@ -11,6 +11,9 @@
 		CEA4657C4A230B4159F48F3E /* Pods_Meetra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB6E29C616E4FC4E7C6BFDFC /* Pods_Meetra.framework */; };
 		FA4A9A9AF2818E300423F90E /* Pods_Meetra_MeetraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43DAAD7C28834988A9EE2783 /* Pods_Meetra_MeetraUITests.framework */; };
 		FF07F23027D0210A009B46B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */; };
+		FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23127D0D59A009B46B7 /* AuthNameInput.swift */; };
+		FF07F23427D0D8B6009B46B7 /* AuthBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23327D0D8B6009B46B7 /* AuthBirthday.swift */; };
+		FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23527D0DCD0009B46B7 /* AuthGenderPicker.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -72,6 +75,9 @@
 		FB6E29C616E4FC4E7C6BFDFC /* Pods_Meetra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meetra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC008B374886975E547AC195 /* Pods-Meetra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.release.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.release.xcconfig"; sourceTree = "<group>"; };
 		FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF07F23127D0D59A009B46B7 /* AuthNameInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNameInput.swift; sourceTree = "<group>"; };
+		FF07F23327D0D8B6009B46B7 /* AuthBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBirthday.swift; sourceTree = "<group>"; };
+		FF07F23527D0DCD0009B46B7 /* AuthGenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGenderPicker.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -215,6 +221,9 @@
 				FF7D0D1327CFDD2200A828C7 /* CountryCodeSelection.swift */,
 				FF7D0D1B27CFE53E00A828C7 /* VerifyPhoneNumber.swift */,
 				FF7D0D1D27CFFDA100A828C7 /* OTPTextFieldView.swift */,
+				FF07F23127D0D59A009B46B7 /* AuthNameInput.swift */,
+				FF07F23327D0D8B6009B46B7 /* AuthBirthday.swift */,
+				FF07F23527D0DCD0009B46B7 /* AuthGenderPicker.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -553,8 +562,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
+				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
 				FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
+				FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */,
 				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
 				FF7D0CFA27CE7C5400A828C7 /* Introduction.swift in Sources */,
@@ -571,6 +582,7 @@
 				FF7D0D1827CFE2E300A828C7 /* AuthResponse.swift in Sources */,
 				FF7D0D1C27CFE53E00A828C7 /* VerifyPhoneNumber.swift in Sources */,
 				FF7D0D0427CE7D2A00A828C7 /* Authentication.swift in Sources */,
+				FF07F23427D0D8B6009B46B7 /* AuthBirthday.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
