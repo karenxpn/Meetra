@@ -39,41 +39,15 @@ struct AuthBirthday: View {
                 .font(.custom("Inter-Regular", size: 16))
             
             HStack {
-            
-                TextField("ДД", text: $day)
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-SemiBold", size: 18))
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
-                    .frame(width: 61)
-                    .background(.white)
-                    .cornerRadius(10)
-                    .shadow(radius: 3, x: 0, y: 3)
+                BirthdayFields(placeholder: "ДД", width: 61, date: $day)
                     .focused($focusedField, equals: .day)
                 
-                TextField("ММ", text: $month)
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-SemiBold", size: 18))
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
-                    .frame(width: 61)
-                    .background(.white)
-                    .cornerRadius(10)
-                    .shadow(radius: 3, x: 0, y: 3)
+                BirthdayFields(placeholder: "ММ", width: 61, date: $month)
                     .focused($focusedField, equals: .month)
 
                 
-                TextField("ГГГГ", text: $year)
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-SemiBold", size: 18))
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
-                    .frame(width: 72)
-                    .background(.white)
-                    .cornerRadius(10)
-                    .shadow(radius: 3, x: 0, y: 3)
+                BirthdayFields(placeholder: "ГГГГ", width: 72, date: $year)
                     .focused($focusedField, equals: .year)
-
             }
             
             
@@ -102,10 +76,7 @@ struct AuthBirthday: View {
                     NavigationLink(destination: AuthGenderPicker(phone: phone, name: name, birthday: birthday), isActive: $navigate, label: {
                         EmptyView()
                     }).hidden()
-                )
-
-           
-            
+                )            
             
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
@@ -119,17 +90,14 @@ struct AuthBirthday: View {
             .onChange(of: day) { value in
                 if value.count == 2 {
                     focusedField = .month
-                    print("need to move to the next view")
                 }
             }.onChange(of: month) { value in
                 if value.count == 2 {
                     focusedField = .year
-                    print("need to move to the next view")
                 }
             }.onChange(of: year) { value in
                 if value.count == 4 {
                     focusedField = nil
-                    print("need to move to the next view")
                 }
             }
     }
