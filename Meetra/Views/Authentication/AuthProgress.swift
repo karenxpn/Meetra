@@ -19,11 +19,11 @@ struct AuthProgress: View {
                     
                     if index == 0 || index == 6{
                         Rectangle()
-                            .fill(AppColors.accentColor.opacity(index <= page ? 1 : 0.5))
+                            .fill(index <= page ? AppColors.accentColor : AppColors.addProfileImageBG)
                             .cornerRadius(index == 0 ? [.topLeft, .bottomLeft] : [.topRight, .bottomRight], 20)
                     } else {
                         Rectangle()
-                            .fill(AppColors.accentColor.opacity(index <= page ? 1 : 0.5))
+                            .fill(index <= page ? AppColors.accentColor : AppColors.addProfileImageBG)
                     }
                 }
                 

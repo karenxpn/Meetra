@@ -18,6 +18,8 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     @Published var alertMessage: String = ""
     
     @Published var navigate: Bool = false
+    @Published var interests = [InterestModel]()
+    @Published var selected_interests = [String]()
     
     private var cancellableSet: Set<AnyCancellable> = []
 
@@ -47,7 +49,6 @@ class AuthViewModel: AlertViewModel, ObservableObject {
         dataManager.checkVerificationCode(phoneNumber: phone, code: code)
             .sink { response in
                 self.loading = false
-                self.loading = false
                 if response.error != nil {
                     self.navigate = true
 //                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
@@ -60,6 +61,22 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     func resendVerificationCode(phone: String) {
         dataManager.resendVerificationCode(phoneNumber: phone)
             .sink { _ in
+            }.store(in: &cancellableSet)
+    }
+    
+    func getInterests() {
+        loading = true
+        dataManager.fetchInterests()
+            .sink { response in
+                self.loading = false
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                    self.interests = [InterestModel(id: 1, name: "Tusovki"), InterestModel(id: 2, name: "Travel"), InterestModel(id: 3, name: "Smoking"), InterestModel(id: 4, name: "Dance")]
+
+                } else {
+//                    self.interests = response.value!
+                    self.interests = [InterestModel(id: 1, name: "Tusovki"), InterestModel(id: 2, name: "Travel"), InterestModel(id: 3, name: "Smoking"), InterestModel(id: 4, name: "Dance")]
+                }
             }.store(in: &cancellableSet)
     }
 }

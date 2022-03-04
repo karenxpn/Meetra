@@ -55,6 +55,7 @@
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
 		FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468527D269E10022EF60 /* AuthBio.swift */; };
 		FFF6468827D26D690022EF60 /* AuthInterestes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468727D26D690022EF60 /* AuthInterestes.swift */; };
+		FFF6468A27D28F6A0022EF60 /* InterestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468927D28F6A0022EF60 /* InterestModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,7 @@
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
 		FFF6468527D269E10022EF60 /* AuthBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBio.swift; sourceTree = "<group>"; };
 		FFF6468727D26D690022EF60 /* AuthInterestes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterestes.swift; sourceTree = "<group>"; };
+		FFF6468927D28F6A0022EF60 /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 				FF7D0D1727CFE2E300A828C7 /* AuthResponse.swift */,
 				FF7D0D2227D006E900A828C7 /* GlobalResponse.swift */,
 				FF07F23F27D0FF9C009B46B7 /* RegistrationRequest.swift */,
+				FFF6468927D28F6A0022EF60 /* InterestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */,
 				FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */,
 				FFF6468827D26D690022EF60 /* AuthInterestes.swift in Sources */,
+				FFF6468A27D28F6A0022EF60 /* InterestModel.swift in Sources */,
 				FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */,
 				FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */,
 				FF7D0D2327D006E900A828C7 /* GlobalResponse.swift in Sources */,

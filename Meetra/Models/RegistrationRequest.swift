@@ -14,5 +14,5 @@ struct RegistrationRequest: Codable {
     var private_gender: Bool = false
      var images: [String] = []
      var bio: String = ""
-    // var interests: [Int] = []
+     var interests: [String] = []
 }

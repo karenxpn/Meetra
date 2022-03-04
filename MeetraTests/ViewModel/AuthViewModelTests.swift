@@ -52,4 +52,19 @@ class AuthViewModelTests: XCTestCase {
     }
     
     
+    func testGetInterestsWithError() {
+        service.fetchInterestsError = true
+        viewModel.getInterests()
+        
+        XCTAssertTrue(viewModel.showAlert)
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testGetInterestsWithSuccess() {
+        service.fetchInterestsError = false
+        viewModel.getInterests()
+        
+        XCTAssertFalse(viewModel.interests.isEmpty)
+    }
+    
 }
