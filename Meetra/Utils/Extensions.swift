@@ -100,3 +100,19 @@ private extension UIEdgeInsets {
         EdgeInsets(top: top, leading: left, bottom: bottom, trailing: right)
     }
 }
+
+
+extension Image {
+    init?(base64String: String) {
+        guard let data = Data(base64Encoded: base64String) else { return nil }
+#if os(macOS)
+        guard let image = NSImage(data: data) else { return nil }
+        self.init(nsImage: image)
+#elseif os(iOS)
+        guard let image = UIImage(data: data) else { return nil }
+        self.init(uiImage: image)
+#else
+        return nil
+#endif
+    }
+}

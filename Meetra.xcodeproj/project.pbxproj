@@ -50,6 +50,8 @@
 		FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05427CD55CC00CA4338 /* MeetraTests.swift */; };
 		FF7DA05F27CD55CC00CA4338 /* MeetraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */; };
 		FF7DA06127CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */; };
+		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
+		FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* AuthGallery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +124,8 @@
 		FF7DA05A27CD55CC00CA4338 /* MeetraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITests.swift; sourceTree = "<group>"; };
 		FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
+		FFF6468127D2582F0022EF60 /* AuthGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGallery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,7 +256,9 @@
 				FF07F23327D0D8B6009B46B7 /* AuthBirthday.swift */,
 				FF07F23727D0E171009B46B7 /* BirthdayFields.swift */,
 				FF07F23527D0DCD0009B46B7 /* AuthGenderPicker.swift */,
+				FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */,
 				FF07F24127D10763009B46B7 /* AuthProgress.swift */,
+				FFF6468127D2582F0022EF60 /* AuthGallery.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF07F24027D0FF9C009B46B7 /* RegistrationRequest.swift in Sources */,
+				FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */,
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
 				FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */,
@@ -615,6 +622,7 @@
 				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,
 				FF7D0D1827CFE2E300A828C7 /* AuthResponse.swift in Sources */,
 				FF7D0D1C27CFE53E00A828C7 /* VerifyPhoneNumber.swift in Sources */,
+				FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */,
 				FF7D0D0427CE7D2A00A828C7 /* Authentication.swift in Sources */,
 				FF07F23427D0D8B6009B46B7 /* AuthBirthday.swift in Sources */,
 			);
