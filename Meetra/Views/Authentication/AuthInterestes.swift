@@ -11,6 +11,7 @@ import TagLayoutView
 struct AuthInterestes: View {
     @ObservedObject var authVM = AuthViewModel()
     @State var model: RegistrationRequest
+    @State private var navigate: Bool = false
     
     var body: some View {
         ZStack {
@@ -34,7 +35,7 @@ struct AuthInterestes: View {
                         
                         ScrollView {
                             TagLayoutView(
-                                ["ulslazyxgq", "vaellgqhdd", "kzhvnmngzy", "zfhkfqbhwx", "yosgqcjqgw", "poygwoynpt", "brtxadpiay"], tagFont: UIFont(name: "Inter-SemiBold", size: 12)!,
+                                authVM.interests.map({$0.name}), tagFont: UIFont(name: "Inter-SemiBold", size: 12)!,
                                 padding: 20,
                                 parentWidth: geometry.size.width * 0.7) { tag in
                                     
@@ -73,6 +74,7 @@ struct AuthInterestes: View {
                 
                 Button {
                     model.interests = authVM.selected_interests
+                    navigate.toggle()
                 } label: {
                     HStack {
                         Spacer()
@@ -107,7 +109,14 @@ struct AuthInterestes: View {
             authVM.getInterests()
         }.alert(isPresented: $authVM.showAlert) {
             Alert(title: Text( "Error" ), message: Text( authVM.alertMessage ), dismissButton: .default(Text( "OK" )))
-        }
+        }.navigationBarTitle("", displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+                navigate.toggle()
+            }, label: {
+                Text( "Пропустить")
+                    .foregroundColor(AppColors.proceedButtonColor)
+                    .font(.custom("Inter-SemiBold", size: 18))
+            }))
     }
 }
 
