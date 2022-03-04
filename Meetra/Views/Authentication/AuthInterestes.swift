@@ -48,9 +48,8 @@ struct AuthInterestes: View {
                                         
                                     } label: {
                                         Text(tag)
-                                        //                                            .font(.custom("Inter-SemiBold", size: 12))
                                             .fixedSize()
-                                            .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
+                                            .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
                                             .foregroundColor( authVM.selected_interests.contains(where: {$0 == tag}) ?  AppColors.accentColor : .white)
                                             .background(RoundedRectangle(cornerRadius: 30)
                                                             .strokeBorder(AppColors.accentColor, lineWidth: 1.5)
