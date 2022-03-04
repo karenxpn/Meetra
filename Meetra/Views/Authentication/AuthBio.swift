@@ -38,9 +38,10 @@ struct AuthBio: View {
                             Text("Расскажите вкратце о себе")
                                 .font(.custom("Inter-Regular", size: 16))
                                 .foregroundColor(Color.gray)
-                                .padding(.leading, 8)
+                                .padding(.top, 8)
+                                .padding(.leading, 4)
                             Spacer()
-                        }.frame(height: 120)
+                        }.frame(height: 150)
                     }
                 }
                 
