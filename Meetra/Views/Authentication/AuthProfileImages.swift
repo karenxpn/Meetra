@@ -32,63 +32,22 @@ struct AuthProfileImages: View {
                     
                     HStack(spacing: 30) {
                         ForEach(0...1, id: \.self) { index in
-                            ZStack {
-                                
-                                Button {
-                                    showPicker.toggle()
-                                } label: {
-                                    Group {
-                                        if model.images.count > index {
-                                            Image(base64String: model.images[index])?
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: UIScreen.main.bounds.size.width * 0.38,
-                                                       height: UIScreen.main.bounds.size.height * 0.22)
-                                                .clipped()
-                                        } else {
-                                            Image("add_icon")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .frame(width: 35, height: 35)
-                                        }
-                                    }
-                                }
-                                
-                            }.frame(width: UIScreen.main.bounds.size.width * 0.38, height: UIScreen.main.bounds.size.height * 0.22)
-                                .background(AppColors.addProfileImageBG)
-                                .cornerRadius(10)
+                            
+                            ProfileImageBox(model: $model, showPicker: $showPicker,
+                                            height: UIScreen.main.bounds.size.height * 0.22,
+                                            width:  UIScreen.main.bounds.size.width * 0.38,
+                                            index: index)
                             
                         }
                     }
                     
                     HStack(spacing: 30) {
                         ForEach(2...4, id: \.self) { index in
-                            ZStack {
-                                
-                                Button {
-                                    showPicker.toggle()
-                                } label: {
-                                    Group {
-                                        if model.images.count > index {
-                                            Image(base64String: model.images[index])?
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: UIScreen.main.bounds.size.width * 0.38,
-                                                       height: UIScreen.main.bounds.size.height * 0.22)
-                                                .clipped()
-                                        } else {
-                                            Image("add_icon")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .frame(width: 21, height: 21)
-                                        }
-                                    }
-                                }
-                                
-                            }.frame(width: UIScreen.main.bounds.size.width * 0.23, height: UIScreen.main.bounds.size.height * 0.14)
-                                .background(AppColors.addProfileImageBG)
-                                .cornerRadius(10)
                             
+                            ProfileImageBox(model: $model, showPicker: $showPicker,
+                                            height: UIScreen.main.bounds.size.height * 0.14,
+                                            width:  UIScreen.main.bounds.size.width * 0.23,
+                                            index: index)
                         }
                     }
                     
@@ -129,7 +88,7 @@ struct AuthProfileImages: View {
                     .padding(30)
             }.padding(.top, 1)
             
-            AuthProgress(page: 2)
+            AuthProgress(page: 3)
         }.navigationBarTitle("", displayMode: .inline)
             .sheet(isPresented: $showPicker) {
                 AuthGallery(model: $model)
