@@ -74,8 +74,14 @@ struct AuthProfileImages: View {
                             
                             Spacer()
                         }.background(AppColors.proceedButtonColor)
+                            .opacity(model.images.count < 2 ? 0.5 : 1)
                             .cornerRadius(30)
-                    }
+                    }.disabled(model.images.count < 2)
+                        .background(
+                            NavigationLink(destination: AuthBio(model: model), isActive: $navigate, label: {
+                                EmptyView()
+                            }).hidden()
+                        )
                     
                     
                 }.frame(

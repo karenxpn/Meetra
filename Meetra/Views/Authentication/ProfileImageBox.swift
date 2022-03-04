@@ -32,7 +32,7 @@ struct ProfileImageBox: View {
                                 .frame(width: width,
                                        height: height)
                                 .clipped()
-                                .cornerRadius(30)
+                                .cornerRadius(10)
                             
                             HStack {
                                 Spacer()
