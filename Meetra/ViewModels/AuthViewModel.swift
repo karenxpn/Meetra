@@ -7,8 +7,11 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class AuthViewModel: AlertViewModel, ObservableObject {
+    @AppStorage("token") private var token: String = ""
+    
     @Published var phoneNumber: String = ""
     @Published var country: String = "RU"
     @Published var code: String = "7"
@@ -36,8 +39,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
             .sink { response in
                 self.loading = false
                 if response.error != nil {
-                    self.navigate = true
-//                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
                     self.navigate = true
                 }
@@ -50,9 +52,9 @@ class AuthViewModel: AlertViewModel, ObservableObject {
             .sink { response in
                 self.loading = false
                 if response.error != nil {
-                    self.navigate = true
-//                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
+                    self.navigate = true
                     // navigate
                 }
             }.store(in: &cancellableSet)
@@ -71,12 +73,22 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 self.loading = false
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
-                    self.interests = [InterestModel(id: 1, name: "Tusovki"), InterestModel(id: 2, name: "Travel"), InterestModel(id: 3, name: "Smoking"), InterestModel(id: 4, name: "Dance")]
-
                 } else {
-//                    self.interests = response.value!
-                    self.interests = [InterestModel(id: 1, name: "Tusovki"), InterestModel(id: 2, name: "Travel"), InterestModel(id: 3, name: "Smoking"), InterestModel(id: 4, name: "Dance")]
+                    self.interests = response.value!
                 }
             }.store(in: &cancellableSet)
+    }
+    
+    func confirmSignUp(model: RegistrationRequest) {
+        loading = true
+        dataManager.signUpConfirm(model: model)
+            .sink { response in
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.token = response.value!.token
+                }
+            }.store(in: &cancellableSet)
+        
     }
 }

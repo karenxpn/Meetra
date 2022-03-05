@@ -67,4 +67,20 @@ class AuthViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.interests.isEmpty)
     }
     
+    func testSignUpConfirmWithError() {
+        service.signUpConfirmError = true
+        viewModel.confirmSignUp(model: RegistrationRequest())
+        
+        XCTAssertTrue(viewModel.showAlert)
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testSignUpConfirmWithSuccess() {
+        service.signUpConfirmError = false
+        viewModel.confirmSignUp(model: RegistrationRequest())
+        
+        XCTAssertFalse(viewModel.showAlert)
+        XCTAssertTrue(viewModel.alertMessage.isEmpty)
+    }
+    
 }

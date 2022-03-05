@@ -74,7 +74,7 @@ struct AuthInterestes: View {
                 
                 Button {
                     model.interests = authVM.selected_interests
-                    navigate.toggle()
+                    authVM.confirmSignUp(model: model)
                 } label: {
                     HStack {
                         Spacer()
@@ -89,11 +89,6 @@ struct AuthInterestes: View {
                         .opacity(authVM.selected_interests.count < 3 ? 0.5 : 1)
                         .cornerRadius(30)
                 }.disabled(authVM.selected_interests.count < 3)
-                //                    .background(
-                //                        NavigationLink(destination: AuthInterestes(model: model), isActive: $navigate, label: {
-                //                            EmptyView()
-                //                        }).hidden()
-                //                    )
                 
             }.frame(
                 minWidth: 0,
@@ -111,7 +106,7 @@ struct AuthInterestes: View {
             Alert(title: Text( "Error" ), message: Text( authVM.alertMessage ), dismissButton: .default(Text( "OK" )))
         }.navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
-                navigate.toggle()
+                authVM.confirmSignUp(model: model)
             }, label: {
                 Text( "Пропустить")
                     .foregroundColor(AppColors.proceedButtonColor)
