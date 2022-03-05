@@ -11,7 +11,7 @@ import ActionSheetPicker_3_0
 
 struct Authentication: View {
     
-    @ObservedObject var authVM = AuthViewModel()
+    @StateObject var authVM = AuthViewModel()
     @State private var showPicker: Bool = false
     @State private var model = RegistrationRequest()
     
@@ -62,7 +62,6 @@ struct Authentication: View {
             Spacer()
             
             Button {
-                model.phone = "+\(authVM.code)\(authVM.phoneNumber)"
                 authVM.sendVerificationCode()
             } label: {
                 
@@ -77,13 +76,14 @@ struct Authentication: View {
                     
                     Spacer()
                 }.background(AppColors.proceedButtonColor)
-                    .opacity(authVM.phoneNumber == "" ? 0.5 : 1)
+                    .opacity((authVM.phoneNumber == "" || authVM.loading) ? 0.5 : 1)
                     .cornerRadius(30)
                 
             }.padding(.bottom, 30)
                 .disabled((authVM.loading || authVM.phoneNumber.isEmpty))
                 .background(
-                    NavigationLink(destination: VerifyPhoneNumber(model: model), isActive: $authVM.navigate, label: {
+                    NavigationLink(destination: VerifyPhoneNumber(model: model, phone: "+\(authVM.code) \(authVM.phoneNumber)")
+                                    .environmentObject(authVM), isActive: $authVM.navigate, label: {
                         EmptyView()
                     }).hidden()
                 )

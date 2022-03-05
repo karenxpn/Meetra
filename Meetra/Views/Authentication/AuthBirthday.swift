@@ -106,6 +106,6 @@ struct AuthBirthday: View {
 
 struct AuthBirthday_Previews: PreviewProvider {
     static var previews: some View {
-        AuthBirthday(model: RegistrationRequest(phone: "023902384", name: "Karen", birthday: "", gender: "", private_gender: false))
+        AuthBirthday(model: RegistrationRequest())
     }
 }

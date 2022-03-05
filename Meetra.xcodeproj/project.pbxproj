@@ -54,7 +54,7 @@
 		FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* AuthGallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
 		FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468527D269E10022EF60 /* AuthBio.swift */; };
-		FFF6468827D26D690022EF60 /* AuthInterestes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468727D26D690022EF60 /* AuthInterestes.swift */; };
+		FFF6468827D26D690022EF60 /* AuthInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468727D26D690022EF60 /* AuthInterests.swift */; };
 		FFF6468A27D28F6A0022EF60 /* InterestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468927D28F6A0022EF60 /* InterestModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -132,7 +132,7 @@
 		FFF6468127D2582F0022EF60 /* AuthGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
 		FFF6468527D269E10022EF60 /* AuthBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBio.swift; sourceTree = "<group>"; };
-		FFF6468727D26D690022EF60 /* AuthInterestes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterestes.swift; sourceTree = "<group>"; };
+		FFF6468727D26D690022EF60 /* AuthInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterests.swift; sourceTree = "<group>"; };
 		FFF6468927D28F6A0022EF60 /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -270,7 +270,7 @@
 				FF07F24127D10763009B46B7 /* AuthProgress.swift */,
 				FFF6468127D2582F0022EF60 /* AuthGallery.swift */,
 				FFF6468527D269E10022EF60 /* AuthBio.swift */,
-				FFF6468727D26D690022EF60 /* AuthInterestes.swift */,
+				FFF6468727D26D690022EF60 /* AuthInterests.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -625,7 +625,7 @@
 				FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */,
 				FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */,
 				FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */,
-				FFF6468827D26D690022EF60 /* AuthInterestes.swift in Sources */,
+				FFF6468827D26D690022EF60 /* AuthInterests.swift in Sources */,
 				FFF6468A27D28F6A0022EF60 /* InterestModel.swift in Sources */,
 				FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */,
 				FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */,

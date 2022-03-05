@@ -81,6 +81,6 @@ struct AuthNameInput: View {
 
 struct AuthNameInput_Previews: PreviewProvider {
     static var previews: some View {
-        AuthNameInput(model: RegistrationRequest(phone: "+79094215513", name: "Karen", birthday: "", gender: "", private_gender: false))
+        AuthNameInput(model: RegistrationRequest())
     }
 }

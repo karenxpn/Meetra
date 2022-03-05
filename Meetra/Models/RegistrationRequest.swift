@@ -7,12 +7,11 @@
 
 import Foundation
 struct RegistrationRequest: Codable {
-    var phone: String = ""
     var name: String = ""
     var birthday: String = ""
     var gender: String = ""
-    var private_gender: Bool = false
-     var images: [String] = []
-     var bio: String = ""
-     var interests: [String] = []
+    var showGender: Bool = true
+    var images: [String] = []
+    var bio: String = ""
+    var interests: [String] = []
 }

@@ -66,11 +66,11 @@ struct AuthBio: View {
                         
                         Spacer()
                     }.background(AppColors.proceedButtonColor)
-                        .opacity(model.bio.isEmpty ? 0.5 : 1)
+                        .opacity(bio.isEmpty ? 0.5 : 1)
                         .cornerRadius(30)
-                }.disabled(model.images.count < 2)
+                }.disabled(bio.isEmpty)
                     .background(
-                        NavigationLink(destination: AuthInterestes(model: model), isActive: $navigate, label: {
+                        NavigationLink(destination: AuthInterests(model: model), isActive: $navigate, label: {
                             EmptyView()
                         }).hidden()
                     )
@@ -99,6 +99,6 @@ struct AuthBio: View {
 
 struct AuthBio_Previews: PreviewProvider {
     static var previews: some View {
-        AuthBio(model: RegistrationRequest())
+        AuthBio(model: RegistrationRequest(bio: "12"))
     }
 }

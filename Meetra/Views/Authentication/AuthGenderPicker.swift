@@ -10,10 +10,10 @@ import SwiftUI
 struct AuthGenderPicker: View {
     @State var model: RegistrationRequest
     
-    let genders = ["Женщина", "Мужчина", "Небинарная персона "]
+    let genders = ["Женщина", "Мужчина", "Небинарная персона"]
     @State private var selected_gender = ""
     @State private var navigate: Bool = false
-    @State private var private_gender: Bool = false
+    @State private var showGender: Bool = true
     
     
     var body: some View {
@@ -48,11 +48,11 @@ struct AuthGenderPicker: View {
                 
                 HStack {
                     Button {
-                        private_gender.toggle()
+                        showGender.toggle()
                     } label: {
                         ZStack {
                             Image("checkbox")
-                            if private_gender {
+                            if !showGender {
                                 Image(systemName: "checkmark")
                                     .foregroundColor(.gray)
                                     .font(Font.system(size: 15, weight: .semibold))
@@ -69,9 +69,8 @@ struct AuthGenderPicker: View {
                 Button {
                     navigate.toggle()
                     model.gender = selected_gender
-                    model.private_gender = private_gender
+                    model.showGender = showGender
                     
-                    print(model)
                 } label: {
                     HStack {
                         Spacer()
@@ -109,6 +108,6 @@ struct AuthGenderPicker: View {
 
 struct AuthGenderPicker_Previews: PreviewProvider {
     static var previews: some View {
-        AuthGenderPicker(model: RegistrationRequest(phone: "098234", name: "Karen", birthday: "26/07/1999", gender: "", private_gender: false))
+        AuthGenderPicker(model: RegistrationRequest())
     }
 }

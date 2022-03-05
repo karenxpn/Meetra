@@ -8,7 +8,7 @@
 import SwiftUI
 import TagLayoutView
 
-struct AuthInterestes: View {
+struct AuthInterests: View {
     @ObservedObject var authVM = AuthViewModel()
     @State var model: RegistrationRequest
     @State private var navigate: Bool = false
@@ -29,13 +29,17 @@ struct AuthInterestes: View {
                     .fixedSize(horizontal: false, vertical: true)
                 
                 if authVM.loading {
-                    ProgressView()
+                    HStack {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
+                    }
                 } else {
                     GeometryReader { geometry in
                         
                         ScrollView {
                             TagLayoutView(
-                                authVM.interests.map({$0.name}), tagFont: UIFont(name: "Inter-SemiBold", size: 12)!,
+                                authVM.interests, tagFont: UIFont(name: "Inter-SemiBold", size: 12)!,
                                 padding: 20,
                                 parentWidth: geometry.size.width * 0.7) { tag in
                                     
@@ -106,6 +110,7 @@ struct AuthInterestes: View {
             Alert(title: Text( "Error" ), message: Text( authVM.alertMessage ), dismissButton: .default(Text( "OK" )))
         }.navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
+                model.interests = []
                 authVM.confirmSignUp(model: model)
             }, label: {
                 Text( "Пропустить")
@@ -115,8 +120,8 @@ struct AuthInterestes: View {
     }
 }
 
-struct AuthInterestes_Previews: PreviewProvider {
+struct AuthInterests_Previews: PreviewProvider {
     static var previews: some View {
-        AuthInterestes(model: RegistrationRequest())
+        AuthInterests(model: RegistrationRequest())
     }
 }

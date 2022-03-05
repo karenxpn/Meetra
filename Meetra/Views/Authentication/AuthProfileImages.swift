@@ -104,6 +104,6 @@ struct AuthProfileImages: View {
 
 struct AuthProfileImages_Previews: PreviewProvider {
     static var previews: some View {
-        AuthProfileImages(model: RegistrationRequest(phone: "023902384", name: "Karen", birthday: "26/07/1999", gender: "Male", private_gender: false, images: []))
+        AuthProfileImages(model: RegistrationRequest())
     }
 }

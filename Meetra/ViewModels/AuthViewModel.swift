@@ -11,17 +11,21 @@ import SwiftUI
 
 class AuthViewModel: AlertViewModel, ObservableObject {
     @AppStorage("token") private var token: String = ""
+    @AppStorage( "initialToken" ) private var initialToken: String = ""
     
     @Published var phoneNumber: String = ""
     @Published var country: String = "RU"
     @Published var code: String = "7"
+    
+    @Published var login: Bool = false
         
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     
     @Published var navigate: Bool = false
-    @Published var interests = [InterestModel]()
+    @Published var proceedRegistration: Bool = false
+    @Published var interests = [String]()
     @Published var selected_interests = [String]()
     
     private var cancellableSet: Set<AnyCancellable> = []
@@ -41,27 +45,32 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
+                    self.initialToken = response.value!.accessToken
+                    self.login = response.value!.login!
                     self.navigate = true
                 }
             }.store(in: &cancellableSet)
     }
     
-    func checkVerificationCode(phone: String, code: String) {
+    func checkVerificationCode(code: String) {
         loading = true
-        dataManager.checkVerificationCode(phoneNumber: phone, code: code)
+        dataManager.checkVerificationCode(token: initialToken, code: code)
             .sink { response in
                 self.loading = false
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
-                    self.navigate = true
-                    // navigate
+                    if self.login {
+                        self.token = self.initialToken
+                    } else {
+                        self.proceedRegistration.toggle()
+                    }                    
                 }
             }.store(in: &cancellableSet)
     }
     
-    func resendVerificationCode(phone: String) {
-        dataManager.resendVerificationCode(phoneNumber: phone)
+    func resendVerificationCode() {
+        dataManager.resendVerificationCode(token: initialToken)
             .sink { _ in
             }.store(in: &cancellableSet)
     }
@@ -74,21 +83,23 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
-                    self.interests = response.value!
+                    self.interests = response.value!.interests
                 }
             }.store(in: &cancellableSet)
     }
     
     func confirmSignUp(model: RegistrationRequest) {
         loading = true
-        dataManager.signUpConfirm(model: model)
+        print(model.gender)
+        print(model.showGender)
+        
+        dataManager.signUpConfirm(model: model, token: initialToken)
             .sink { response in
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
-                    self.token = response.value!.token
+                    self.token = self.initialToken
                 }
             }.store(in: &cancellableSet)
-        
     }
 }

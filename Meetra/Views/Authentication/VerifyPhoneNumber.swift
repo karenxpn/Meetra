@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct VerifyPhoneNumber: View {
-    @ObservedObject var authVM = AuthViewModel()
+    @EnvironmentObject var authVM: AuthViewModel
     @State var model: RegistrationRequest
+    let phone: String
     
     var body: some View {
         VStack( alignment: .leading, spacing: 0) {
@@ -18,7 +19,7 @@ struct VerifyPhoneNumber: View {
                 .foregroundColor(.black)
                 .font(.custom("Inter-SemiBold", size: 30))
             
-            Text( "Отправили вам 4-значный код\n на номер \(model.phone)" )
+            Text( "Отправили вам 4-значный код\n на номер \(phone)" )
                 .foregroundColor(.black)
                 .font(.custom("Inter-Regular", size: 16))
                 .padding(.top, 20)
@@ -27,7 +28,7 @@ struct VerifyPhoneNumber: View {
             
             OTPTextFieldView { otp in
                 UIApplication.shared.endEditing()
-                authVM.checkVerificationCode(phone: model.phone, code: otp)
+                authVM.checkVerificationCode(code: otp)
             }
             
             HStack( spacing: 0) {
@@ -36,7 +37,7 @@ struct VerifyPhoneNumber: View {
                     .font(.custom("Inter-Regular", size: 12))
                 
                 Button(action: {
-                    authVM.resendVerificationCode(phone: model.phone)
+                    authVM.resendVerificationCode()
                 }) {
                     Text( " Отправить ещё раз" )
                         .foregroundColor(.black)
@@ -68,7 +69,7 @@ struct VerifyPhoneNumber: View {
                 
             }.disabled(authVM.loading)
                 .background(
-                    NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.navigate, label: {
+                    NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
                         EmptyView()
                     }).hidden()
                 )
@@ -91,6 +92,6 @@ struct VerifyPhoneNumber: View {
 
 struct VerifyPhoneNumber_Previews: PreviewProvider {
     static var previews: some View {
-        VerifyPhoneNumber(model: RegistrationRequest(phone: "+79094215513", name: "", birthday: "", gender: "", private_gender: false))
+        VerifyPhoneNumber(model: RegistrationRequest(), phone: "92837408237")
     }
 }

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-struct InterestModel: Codable, Identifiable {
-    var id: Int
-    var name: String
+struct InterestModel: Codable {
+    var interests: [String]
 }
