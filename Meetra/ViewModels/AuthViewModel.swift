@@ -90,9 +90,6 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     
     func confirmSignUp(model: RegistrationRequest) {
         loading = true
-        print(model.gender)
-        print(model.showGender)
-        
         dataManager.signUpConfirm(model: model, token: initialToken)
             .sink { response in
                 if response.error != nil {
