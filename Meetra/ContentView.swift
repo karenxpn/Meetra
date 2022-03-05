@@ -18,6 +18,8 @@ struct ContentView: View {
                 if currentTab == 0 {
 //                    Matches()
                     Text( "First" )
+                        .font(.custom("Inter-Regular", size: 20))
+
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if currentTab == 1 {
 //                    Reports()

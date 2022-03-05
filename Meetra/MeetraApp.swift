@@ -14,24 +14,23 @@ struct MeetraApp: App {
     @State private var currentTab: Int = 0
     
     init() {
-//        let newAppearance = UINavigationBarAppearance()
-//        newAppearance.setBackIndicatorImage(UIImage(named: "back")?.withTintColor(UIColor(AppColors.accentColor)), transitionMaskImage: UIImage(named: "back"))
-//        newAppearance.configureWithOpaqueBackground()
-//        newAppearance.backgroundColor = .none
-//        newAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white, .font: UIFont( name: "Gilroy-Regular", size: 20)!]
-//        UINavigationBar.appearance().standardAppearance = newAppearance
-//
-//        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(.white)
+        let newAppearance = UINavigationBarAppearance()
+        newAppearance.setBackIndicatorImage(UIImage(named: "back"), transitionMaskImage: UIImage(named: "back"))
+        newAppearance.configureWithOpaqueBackground()
+        newAppearance.backgroundColor = .none
+        newAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black, .font: UIFont( name: "Inter-Regular", size: 20)!]
+        UINavigationBar.appearance().standardAppearance = newAppearance
+
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(.black)
     }
     
     var body: some Scene {
         WindowGroup {
-//            if token == "" {
-//
-//            } else {
-//
-//            }
-            ContentView(currentTab: $currentTab)
+            if token == "" {
+                GlobalAuth()
+            } else {
+                ContentView(currentTab: $currentTab)
+            }
         }
     }
 }
