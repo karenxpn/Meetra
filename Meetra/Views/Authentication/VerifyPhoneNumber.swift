@@ -27,8 +27,7 @@ struct VerifyPhoneNumber: View {
             
             
             OTPTextFieldView { otp in
-                UIApplication.shared.endEditing()
-                authVM.checkVerificationCode(code: otp)
+                authVM.OTP = otp
             }
             
             HStack( spacing: 0) {
@@ -52,7 +51,7 @@ struct VerifyPhoneNumber: View {
             
             
             Button {
-                authVM.sendVerificationCode()
+                authVM.checkVerificationCode()
             } label: {
                 
                 HStack {
@@ -65,9 +64,10 @@ struct VerifyPhoneNumber: View {
                     
                     Spacer()
                 }.background(AppColors.proceedButtonColor)
+                    .opacity(authVM.OTP.count != 4 ? 0.5 : 1)
                     .cornerRadius(30)
                 
-            }.disabled(authVM.loading)
+            }.disabled(authVM.OTP.count != 4)
                 .background(
                     NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
                         EmptyView()

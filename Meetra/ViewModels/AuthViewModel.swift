@@ -17,6 +17,8 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     @Published var country: String = "RU"
     @Published var code: String = "7"
     
+    @Published var OTP: String = ""
+    
     @Published var login: Bool = false
         
     @Published var loading: Bool = false
@@ -52,9 +54,9 @@ class AuthViewModel: AlertViewModel, ObservableObject {
             }.store(in: &cancellableSet)
     }
     
-    func checkVerificationCode(code: String) {
+    func checkVerificationCode() {
         loading = true
-        dataManager.checkVerificationCode(token: initialToken, code: code)
+        dataManager.checkVerificationCode(token: initialToken, code: OTP)
             .sink { response in
                 self.loading = false
                 if response.error != nil {

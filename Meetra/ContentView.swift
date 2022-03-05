@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("token") private var token: String = ""
     @Binding var currentTab: Int
     
     var body: some View {
@@ -17,7 +18,11 @@ struct ContentView: View {
                 
                 if currentTab == 0 {
 //                    Matches()
-                    Text( "First" )
+                    Button{
+                        token = ""
+                    } label: {
+                        Text( "Sign out" )
+                    }
                         .font(.custom("Inter-Regular", size: 20))
 
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)

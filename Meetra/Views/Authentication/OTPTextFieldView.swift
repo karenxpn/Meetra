@@ -11,15 +11,19 @@ import SwiftUIX
 struct OTPTextFieldView: View {
     
     var maxDigits: Int = 4
-    
     @State var pin: String = ""
-    
+    @FocusState var focus: Int?
+
     var handler: (String) -> Void
     
     var body: some View {
         ZStack {
             pinDots
             backgroundField
+        }.onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                focus = 0
+            }
         }
     }
     
@@ -44,9 +48,11 @@ struct OTPTextFieldView: View {
         let boundPin = Binding<String>(get: { self.pin }, set: { newValue in
             self.pin = newValue
             self.submitPin()
+            
         })
         
-        return CocoaTextField("", text: boundPin, onCommit: submitPin)
+        return TextField("", text: boundPin)
+            .focused($focus, equals: pin.count)
             .keyboardType(.numberPad)
             .foregroundColor(.clear)
             .accentColor(.clear)
@@ -59,7 +65,6 @@ struct OTPTextFieldView: View {
         }
         
         if pin.count == maxDigits {
-            
             handler(pin)
         }
         
