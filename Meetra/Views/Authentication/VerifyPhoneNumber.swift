@@ -27,6 +27,7 @@ struct VerifyPhoneNumber: View {
             
             
             OTPTextFieldView { otp in
+                UIApplication.shared.endEditing()
                 authVM.OTP = otp
             }
             

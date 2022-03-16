@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct MeetraApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @AppStorage( "token" ) private var token = ""
     @State private var currentTab: Int = 0
     
