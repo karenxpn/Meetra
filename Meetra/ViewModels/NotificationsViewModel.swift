@@ -37,14 +37,16 @@ class NotificationsViewModel: NSObject, UNUserNotificationCenterDelegate, Observ
         
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
-                self.token = self.initialToken
                 
                 if let error = error {
-                    print(error)
                 } else if granted {
                     DispatchQueue.main.async {
                         UIApplication.shared.registerForRemoteNotifications()
                     }
+                }
+                
+                DispatchQueue.main.async {
+                    self.token = self.initialToken
                 }
             }
     }

@@ -15,6 +15,8 @@ struct AuthNotificationPermission: View {
 
     var body: some View {
         NotificationPermission(image: "notifications_icon", title: NSLocalizedString("authNotificationRequest", comment: ""), content: NSLocalizedString("authNotificationRequestContent", comment: ""))
+            .environmentObject(notificationsVM)
+            .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 token = initialToken
             }, label: {

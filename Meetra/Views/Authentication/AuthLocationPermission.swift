@@ -10,13 +10,14 @@ import CoreLocationUI
 
 struct AuthLocationPermission: View {
     @StateObject var locationManager = LocationManager()
-
+    
     var body: some View {
         
         LocationPermission(image: "location_icon", title: NSLocalizedString("authLocationRequest", comment: ""), content: NSLocalizedString("authLocationRequestContent", comment: ""))
             .environmentObject(locationManager)
+            .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
-                locationManager.navigate.toggle()
+                locationManager.navigate = true
             }, label: {
                 Text( "Пропустить")
                     .foregroundColor(AppColors.proceedButtonColor)
@@ -30,6 +31,8 @@ struct AuthLocationPermission_Previews: PreviewProvider {
         AuthLocationPermission()
     }
 }
+
+
 
 
 struct LocationPermission: View {
@@ -54,7 +57,7 @@ struct LocationPermission: View {
                 .foregroundColor(.black)
                 .font(.custom("Inter-SemiBold", size: 30))
                 .multilineTextAlignment(.center)
-
+            
             
             Text( content )
                 .foregroundColor(.black)
@@ -62,23 +65,28 @@ struct LocationPermission: View {
                 .multilineTextAlignment(.center)
             
             Spacer()
-            if let location = locationManager.location {
-                Text("Your location: \(location.latitude), \(location.longitude)")
-            }
             
-            LocationButton(.shareCurrentLocation) {
+            Button(action: {
                 locationManager.requestLocation()
-            }
-            .foregroundColor(.white)
-            .labelStyle(.titleAndIcon)
-            .cornerRadius(30)
-            .tint(AppColors.proceedButtonColor)
-            .background(
+            }) {
+                
+                HStack {
+                    Spacer()
+                    
+                    Text( "Включить" )
+                        .font(.custom("Inter-SemiBold", size: 20))
+                        .foregroundColor(.white)
+                        .padding(.vertical, 15)
+                    
+                    Spacer()
+                }.background(AppColors.proceedButtonColor)
+                    .cornerRadius(30)
+            }            .background(
                 NavigationLink(destination: AuthNotificationPermission(), isActive: $locationManager.navigate, label: {
                     EmptyView()
                 }).hidden()
             )
-
+            
             
         }.frame(
             minWidth: 0,

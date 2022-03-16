@@ -73,7 +73,6 @@ struct AuthInterests: View {
                     }.frame(width: UIScreen.main.bounds.size.width)
                 }
                 
-                Spacer()
                 
                 
                 Button {
