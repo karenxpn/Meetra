@@ -50,6 +50,10 @@
 		FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05427CD55CC00CA4338 /* MeetraTests.swift */; };
 		FF7DA05F27CD55CC00CA4338 /* MeetraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */; };
 		FF7DA06127CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */; };
+		FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */; };
+		FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371727E23A5E00F91AB6 /* LocationManager.swift */; };
+		FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD6371D27E23BE200F91AB6 /* Localizable.strings */; };
+		FFD6371F27E23FAA00F91AB6 /* AuthNotificationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371E27E23FAA00F91AB6 /* AuthNotificationPermission.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* AuthGallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -128,6 +132,10 @@
 		FF7DA05A27CD55CC00CA4338 /* MeetraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITests.swift; sourceTree = "<group>"; };
 		FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocationPermission.swift; sourceTree = "<group>"; };
+		FFD6371727E23A5E00F91AB6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		FFD6371C27E23BE200F91AB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FFD6371E27E23FAA00F91AB6 /* AuthNotificationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNotificationPermission.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* AuthGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -228,6 +236,7 @@
 			children = (
 				FF7D0CFF27CE7CB600A828C7 /* AuthViewModel.swift */,
 				FF7D0D1927CFE46700A828C7 /* AlertViewModel.swift */,
+				FFD6371727E23A5E00F91AB6 /* LocationManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -271,6 +280,8 @@
 				FFF6468127D2582F0022EF60 /* AuthGallery.swift */,
 				FFF6468527D269E10022EF60 /* AuthBio.swift */,
 				FFF6468727D26D690022EF60 /* AuthInterests.swift */,
+				FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */,
+				FFD6371E27E23FAA00F91AB6 /* AuthNotificationPermission.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -327,6 +338,7 @@
 				FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */,
 				FF7D0D1527CFDD3900A828C7 /* Credentials.swift */,
 				FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */,
+				FFD6371D27E23BE200F91AB6 /* Localizable.strings */,
 			);
 			path = Meetra;
 			sourceTree = "<group>";
@@ -479,6 +491,7 @@
 				FF07F23027D0210A009B46B7 /* LaunchScreen.storyboard in Resources */,
 				FF7D0D0E27CE82AB00A828C7 /* Inter-Black.ttf in Resources */,
 				FF7D0D0727CE7F2200A828C7 /* Inter-Regular.ttf in Resources */,
+				FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */,
 				FF7D0D0A27CE819500A828C7 /* Inter-Bold.ttf in Resources */,
 				FF7D0D0C27CE81E600A828C7 /* Inter-Medium.ttf in Resources */,
 				FF7DA04827CD55CC00CA4338 /* Assets.xcassets in Resources */,
@@ -610,6 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFD6371F27E23FAA00F91AB6 /* AuthNotificationPermission.swift in Sources */,
 				FF07F24027D0FF9C009B46B7 /* RegistrationRequest.swift in Sources */,
 				FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */,
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
@@ -621,8 +635,10 @@
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
 				FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */,
+				FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */,
 				FF7D0CFA27CE7C5400A828C7 /* Introduction.swift in Sources */,
 				FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */,
+				FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */,
 				FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */,
 				FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */,
 				FFF6468827D26D690022EF60 /* AuthInterests.swift in Sources */,
@@ -677,6 +693,17 @@
 			targetProxy = FF7DA05B27CD55CC00CA4338 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FFD6371D27E23BE200F91AB6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFD6371C27E23BE200F91AB6 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FF7DA06227CD55CC00CA4338 /* Debug */ = {

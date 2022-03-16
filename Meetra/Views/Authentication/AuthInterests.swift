@@ -93,6 +93,11 @@ struct AuthInterests: View {
                         .opacity(authVM.selected_interests.count < 3 ? 0.5 : 1)
                         .cornerRadius(30)
                 }.disabled(authVM.selected_interests.count < 3)
+                    .background(
+                        NavigationLink(destination: AuthLocationPermission(), isActive: $authVM.navigate, label: {
+                            EmptyView()
+                        }).hidden()
+                    )
                 
             }.frame(
                 minWidth: 0,

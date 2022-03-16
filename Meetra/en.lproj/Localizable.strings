@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Meetra
+
+  Created by Karen Mirakyan on 16.03.22.
+  
+*/
+"authLocationRequest" = "Включить ваши геоданные?";
+"authLocationRequestContent" = "Ваше местоположение будет использоваться для показа людей, которые рядом";
+"authNotificationRequest" = "Включить уведомления?";
+"authNotificationRequestContent" = "Будьте в курсе событий и узнавайте о новых сообщениях";
