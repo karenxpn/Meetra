@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct AuthNotificationPermission: View {
+    @AppStorage("token") private var token: String = ""
+    @AppStorage( "initialToken" ) private var initialToken: String = ""
+    
+    @StateObject var notificationsVM = NotificationsViewModel()
+
     var body: some View {
-        NotificationPermission(image: "location_icon", title: NSLocalizedString("authLocationRequest", comment: ""), content: NSLocalizedString("authLocationRequestContent", comment: ""))
+        NotificationPermission(image: "notifications_icon", title: NSLocalizedString("authNotificationRequest", comment: ""), content: NSLocalizedString("authNotificationRequestContent", comment: ""))
             .navigationBarItems(trailing: Button(action: {
-                
+                token = initialToken
             }, label: {
                 Text( "Пропустить")
                     .foregroundColor(AppColors.proceedButtonColor)
@@ -28,6 +33,7 @@ struct AuthNotificationPermission_Previews: PreviewProvider {
 
 
 struct NotificationPermission: View {
+    @EnvironmentObject var notificationsVM: NotificationsViewModel
     let image: String
     let title: String
     let content: String
@@ -58,7 +64,7 @@ struct NotificationPermission: View {
             Spacer()
             
             Button {
-                
+                notificationsVM.requestPermission()
             } label: {
                 HStack {
                     Spacer()
