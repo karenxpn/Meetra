@@ -17,13 +17,13 @@ struct ContentView: View {
             VStack {
                 
                 if currentTab == 0 {
-//                    Matches()
-                    Button{
-                        token = ""
-                    } label: {
-                        Text( "Sign out" )
-                    }
-                        .font(.custom("Inter-Regular", size: 20))
+                    Places()
+//                    Button{
+//                        token = ""
+//                    } label: {
+//                        Text( "Sign out" )
+//                    }
+//                        .font(.custom("Inter-Regular", size: 20))
 
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if currentTab == 1 {
