@@ -60,6 +60,8 @@
 		FFD6372C27E3535900F91AB6 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372B27E3535900F91AB6 /* Places.swift */; };
 		FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */; };
 		FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = FFD6373227E3D47600F91AB6 /* SocketIO */; };
+		FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373427E3D4D400F91AB6 /* PlacesService.swift */; };
+		FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* AuthGallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -147,6 +149,8 @@
 		FFD6372827E2419300F91AB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFD6372B27E3535900F91AB6 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
 		FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostLocationAlert.swift; sourceTree = "<group>"; };
+		FFD6373427E3D4D400F91AB6 /* PlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesService.swift; sourceTree = "<group>"; };
+		FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModel.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* AuthGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 				FF7D0D1927CFE46700A828C7 /* AlertViewModel.swift */,
 				FFD6371727E23A5E00F91AB6 /* LocationManager.swift */,
 				FFD6372427E2413400F91AB6 /* NotificationsViewModel.swift */,
+				FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 			children = (
 				FF7D0CFD27CE7CAE00A828C7 /* AuthService.swift */,
 				FFD6372627E2416E00F91AB6 /* DeviceTokenManager.swift */,
+				FFD6373427E3D4D400F91AB6 /* PlacesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -663,6 +669,7 @@
 				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
+				FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */,
 				FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */,
 				FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */,
 				FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */,
@@ -681,6 +688,7 @@
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
 				FFD6372C27E3535900F91AB6 /* Places.swift in Sources */,
+				FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */,
 				FF7D0D1627CFDD3900A828C7 /* Credentials.swift in Sources */,
 				FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */,
 				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,

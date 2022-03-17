@@ -11,6 +11,8 @@ import SwiftUIX
 struct Places: View {
     
     @ObservedObject var locationManager = LocationManager()
+    @StateObject var placesVM = PlacesViewModel()
+    
     init() {
         locationManager.initLocation()
     }
