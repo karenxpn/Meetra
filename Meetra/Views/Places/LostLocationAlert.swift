@@ -12,7 +12,9 @@ struct LostLocationAlert: View {
     var body: some View {
         VStack( spacing: 30 ){
             Spacer()
-            LocationPermission(image: "lost_location_icon", title: NSLocalizedString("lostLocationTitle", comment: ""), content: NSLocalizedString("lostLocationContent", comment: ""))
+            LocationPermission(image: locationManager.locationStatus == .notDetermined ? "icon_no_location" : "lost_location_icon",
+                               title: locationManager.locationStatus == .notDetermined ? NSLocalizedString("noLocationTitle", comment: "") : NSLocalizedString("lostLocationTitle", comment: ""),
+                               content: locationManager.locationStatus == .notDetermined ? NSLocalizedString("noLocationContent", comment: "") : NSLocalizedString("lostLocationContent", comment: ""))
             Spacer()
             
             Button(action: {
