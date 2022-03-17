@@ -11,7 +11,7 @@ import SocketIO
 import Combine
 
 protocol PlacesServiceProtocol {
-    func connect_and_join_socket(socket: SocketIOClient, token: String, completion: @escaping () -> ())
+    func connectAndJoinSocket(socket: SocketIOClient, token: String, completion: @escaping () -> ())
     func sendLocation(socket: SocketIOClient, token: String, lat: CGFloat, lng: CGFloat)
     func fetchLocationResponse(socket: SocketIOClient, token: String, completion: @escaping (Bool) -> ())
 }
@@ -38,25 +38,15 @@ extension PlacesService: PlacesServiceProtocol {
                                      "lng": lng])
     }
     
-    func connect_and_join_socket(socket: SocketIOClient, token: String, completion: @escaping () -> ()) {
-        let socketConnectionStatus = socket.status
-        
-        if socketConnectionStatus == SocketIOStatus.connected {
+    func connectAndJoinSocket(socket: SocketIOClient, token: String, completion: @escaping () -> ()) {
+        socket.on(clientEvent: .connect) { (data, ack) in
             socket.emit("join", ["token" : token]) {
                 DispatchQueue.main.async {
                     completion()
                 }
             }
-        } else {
-            socket.on(clientEvent: .connect) { (data, ack) in
-                socket.emit("join", ["token" : token]) {
-                    DispatchQueue.main.async {
-                        completion()
-                    }
-                }
-            }
-            
-            socket.connect()
         }
+        
+        socket.connect()
     }
 }

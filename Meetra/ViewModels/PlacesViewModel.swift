@@ -23,10 +23,11 @@ class PlacesViewModel: ObservableObject {
         self.dataManage = dataManage
         self.socket = manager.defaultSocket
         self.joinSocket()
+        print("init")
     }
     
     func joinSocket() {
-        dataManage.connect_and_join_socket(socket: socket, token: token) {
+        dataManage.connectAndJoinSocket(socket: socket, token: token) {
             // place functions of response
             self.getLocationResponse()
         }
@@ -36,6 +37,10 @@ class PlacesViewModel: ObservableObject {
         dataManage.fetchLocationResponse(socket: socket, token: token) { _ in
             // do smth
         }
+    }
+    
+    func sendLocation(lat: CGFloat, lng: CGFloat) {
+        dataManage.sendLocation(socket: socket, token: token, lat: lat, lng: lng)
     }
     
     

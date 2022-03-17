@@ -13,6 +13,10 @@ struct Places: View {
     @ObservedObject var locationManager = LocationManager()
     @StateObject var placesVM = PlacesViewModel()
     
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var seconds: Int = 0
+
+    
     init() {
         locationManager.initLocation()
     }
@@ -23,7 +27,21 @@ struct Places: View {
             VStack {
                 
                 if locationManager.status {
-                    Text( "OK" )
+                    VStack {
+                        Text( "OK\(seconds)" )
+
+                    }.onReceive(timer) { _ in
+                        seconds += 1
+                        if seconds % 10 == 0 {
+                            placesVM.sendLocation(lat: locationManager.location?.latitude ?? 0, lng: locationManager.location?.longitude ?? 0)
+                        }
+                        
+                    }.onAppear {
+                        self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    }.onDisappear {
+                        self.seconds = 0
+                        self.timer.upstream.connect().cancel()
+                    }
                 } else {
                     LostLocationAlert()
                         .environmentObject(locationManager)
