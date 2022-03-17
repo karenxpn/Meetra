@@ -9,10 +9,24 @@ import SwiftUI
 import SwiftUIX
 
 struct Places: View {
+    
+    @ObservedObject var locationManager = LocationManager()
+    init() {
+        locationManager.initLocation()
+    }
+    
     var body: some View {
         
         NavigationView {
             VStack {
+                
+                if locationManager.status {
+                    Text( "OK" )
+                } else {
+                    LostLocationAlert()
+                        .environmentObject(locationManager)
+                }
+                
                 
             }.navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: Text("Meetra")
@@ -34,6 +48,11 @@ struct Places: View {
                     }
                 })
         }.navigationViewStyle(StackNavigationViewStyle())
+            .onChange(of: locationManager.status) { value in
+                if value {
+                    locationManager.startUpdating()
+                }
+            }
     }
 }
 

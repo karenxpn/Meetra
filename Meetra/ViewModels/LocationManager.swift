@@ -14,16 +14,34 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     @Published var location: CLLocationCoordinate2D?
     @Published var navigate: Bool = false
+    @Published var locationStatus: CLAuthorizationStatus?
+
 
     override init() {
         super.init()
     }
     
-    func requestLocation() {
+    var status: Bool {
+        if locationStatus == .authorizedAlways || locationStatus == .authorizedWhenInUse {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func initLocation() {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
+    }
+    
+    func startUpdating() {
         manager.startUpdatingLocation()
+    }
+    
+    func requestLocation() {
+        initLocation()
+        manager.requestWhenInUseAuthorization()
+        startUpdating()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -35,6 +53,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        locationStatus = manager.authorizationStatus
         navigate = true
     }
 }
