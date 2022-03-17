@@ -59,6 +59,7 @@
 		FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372827E2419300F91AB6 /* AppDelegate.swift */; };
 		FFD6372C27E3535900F91AB6 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372B27E3535900F91AB6 /* Places.swift */; };
 		FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */; };
+		FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = FFD6373227E3D47600F91AB6 /* SocketIO */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* AuthGallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -160,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF7D0D2127CFFE1200A828C7 /* SwiftUIX in Frameworks */,
+				FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */,
 				FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */,
 				CEA4657C4A230B4159F48F3E /* Pods_Meetra.framework in Frameworks */,
 			);
@@ -414,6 +416,7 @@
 			packageProductDependencies = (
 				FF7D0CE927CE6A9800A828C7 /* TagLayoutView */,
 				FF7D0D2027CFFE1200A828C7 /* SwiftUIX */,
+				FFD6373227E3D47600F91AB6 /* SocketIO */,
 			);
 			productName = Meetra;
 			productReference = FF7DA04027CD55CA00CA4338 /* Meetra.app */;
@@ -493,6 +496,7 @@
 			packageReferences = (
 				FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
 				FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */,
 			);
 			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
 			projectDirPath = "";
@@ -1056,6 +1060,14 @@
 				minimumVersion = 0.1.1;
 			};
 		};
+		FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1068,6 +1080,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		FFD6373227E3D47600F91AB6 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
