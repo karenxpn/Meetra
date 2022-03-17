@@ -19,7 +19,7 @@ struct MeetraApp: App {
         newAppearance.setBackIndicatorImage(UIImage(named: "back"), transitionMaskImage: UIImage(named: "back"))
         newAppearance.configureWithOpaqueBackground()
         newAppearance.backgroundColor = .none
-        newAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black, .font: UIFont( name: "Inter-Regular", size: 20)!]
+        newAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black, .font: UIFont( name: "Inter-Black", size: 28)!]
         UINavigationBar.appearance().standardAppearance = newAppearance
 
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(.black)
