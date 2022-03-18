@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("token") private var token: String = ""
-    @Binding var currentTab: Int
-    
+    @State private var currentTab: Int = 0
+
     var body: some View {
         ZStack( alignment: .bottom) {
             
@@ -49,6 +49,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(currentTab: .constant(0))
+        ContentView()
     }
 }

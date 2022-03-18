@@ -11,8 +11,9 @@ import SwiftUI
 struct MeetraApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.scenePhase) private var phase
+    
     @AppStorage( "token" ) private var token = ""
-    @State private var currentTab: Int = 0
     
     init() {
         let newAppearance = UINavigationBarAppearance()
@@ -21,7 +22,7 @@ struct MeetraApp: App {
         newAppearance.backgroundColor = .none
         newAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black, .font: UIFont( name: "Inter-Black", size: 28)!]
         UINavigationBar.appearance().standardAppearance = newAppearance
-
+        
         UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(.black)
     }
     
@@ -30,7 +31,16 @@ struct MeetraApp: App {
             if token == "" {
                 GlobalAuth()
             } else {
-                ContentView(currentTab: $currentTab)
+                ContentView()
+            }
+        }.onChange(of: phase) { newScene in
+//            print(AppSocketManager.shared.socket.status)
+            
+            switch newScene {
+            case .active:
+                UIApplication.shared.applicationIconBadgeNumber = 0
+            default:
+                break
             }
         }
     }
