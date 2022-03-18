@@ -29,7 +29,7 @@ struct Places: View {
 
                     }.onReceive(timer) { _ in
                         seconds += 1
-                        if seconds % 2 == 0 {
+                        if seconds % 5 == 0 {
                             placesVM.sendLocation(lat: locationManager.location?.latitude ?? 0,
                                                   lng: locationManager.location?.longitude ?? 0)
                         }

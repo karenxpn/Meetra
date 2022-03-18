@@ -21,10 +21,8 @@ class AppSocketManager {
         socket = manager.defaultSocket
         
         socket.on(clientEvent: .connect) {data, ack in
-            print("socket connected")
         }
         
         socket.connect()
-        print(socket.status.description)
     }
 }
