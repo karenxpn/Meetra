@@ -21,16 +21,11 @@ class PlacesViewModel: ObservableObject {
     init(dataManage: PlacesServiceProtocol = PlacesService.shared) {
         self.dataManage = dataManage
         self.socket = AppSocketManager.shared.socket
-        self.joinSocket()
-        print("init")
+        self.socket.removeAllHandlers()
+        
+        self.getLocationResponse()
     }
-    
-    func joinSocket() {
-        dataManage.joinEvent(socket: socket) {
-            // place functions of response
-            self.getLocationResponse()
-        }
-    }
+
     
     func getLocationResponse() {
         dataManage.fetchLocationResponse(socket: socket) { _ in
@@ -40,10 +35,5 @@ class PlacesViewModel: ObservableObject {
     
     func sendLocation(lat: CGFloat, lng: CGFloat) {
         dataManage.sendLocation(socket: socket, lat: lat, lng: lng)
-    }
-    
-    
-    func removeSocket() {
-        socket.removeAllHandlers()
     }
 }

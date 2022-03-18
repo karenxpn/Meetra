@@ -11,7 +11,6 @@ import SocketIO
 import Combine
 
 protocol PlacesServiceProtocol {
-    func joinEvent(socket: SocketIOClient, completion: @escaping () -> ())
     func sendLocation(socket: SocketIOClient, lat: CGFloat, lng: CGFloat)
     func fetchLocationResponse(socket: SocketIOClient, completion: @escaping (Bool) -> ())
 }
@@ -25,25 +24,17 @@ class PlacesService {
 extension PlacesService: PlacesServiceProtocol {
     func fetchLocationResponse(socket: SocketIOClient,completion: @escaping (Bool) -> ()) {
         socket.on("location") { (data, ack) in
-            if let data = data[0] as? [String : Bool], let status = data["location"] {
-                DispatchQueue.main.async {
-                    completion(status)
-                }
-            }
+            print(data)
+//            if let data = data[0] as? [String : Bool], let status = data["location"] {
+//                DispatchQueue.main.async {
+//                    completion(status)
+//                }
+//            }
         }
     }
     
     func sendLocation(socket: SocketIOClient, lat: CGFloat, lng: CGFloat) {
-        socket.emit("sendLocation", ["lat" : lat,
-                                     "lng": lng])
-    }
-    
-    func joinEvent(socket: SocketIOClient, completion: @escaping () -> ()) {
-        
-        socket.emit("join" /* here should be some parameters */) {
-            DispatchQueue.main.async {
-                completion()
-            }
-        }
+        socket.emit("location", ["lat" : lat,
+                                 "lng": lng])
     }
 }

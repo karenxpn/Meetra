@@ -34,7 +34,6 @@ struct MeetraApp: App {
                 ContentView()
             }
         }.onChange(of: phase) { newScene in
-//            print(AppSocketManager.shared.socket.status)
             
             switch newScene {
             case .active:
