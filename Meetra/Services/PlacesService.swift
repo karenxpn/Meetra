@@ -11,9 +11,9 @@ import SocketIO
 import Combine
 
 protocol PlacesServiceProtocol {
-    func connectAndJoinSocket(socket: SocketIOClient, token: String, completion: @escaping () -> ())
-    func sendLocation(socket: SocketIOClient, token: String, lat: CGFloat, lng: CGFloat)
-    func fetchLocationResponse(socket: SocketIOClient, token: String, completion: @escaping (Bool) -> ())
+    func joinEvent(socket: SocketIOClient, completion: @escaping () -> ())
+    func sendLocation(socket: SocketIOClient, lat: CGFloat, lng: CGFloat)
+    func fetchLocationResponse(socket: SocketIOClient, completion: @escaping (Bool) -> ())
 }
 
 class PlacesService {
@@ -23,9 +23,9 @@ class PlacesService {
 }
 
 extension PlacesService: PlacesServiceProtocol {
-    func fetchLocationResponse(socket: SocketIOClient, token: String, completion: @escaping (Bool) -> ()) {
+    func fetchLocationResponse(socket: SocketIOClient,completion: @escaping (Bool) -> ()) {
         socket.on("location") { (data, ack) in
-            if let data = data[0] as? [String : Bool], let status = data["typing"] {
+            if let data = data[0] as? [String : Bool], let status = data["location"] {
                 DispatchQueue.main.async {
                     completion(status)
                 }
@@ -33,20 +33,17 @@ extension PlacesService: PlacesServiceProtocol {
         }
     }
     
-    func sendLocation(socket: SocketIOClient, token: String, lat: CGFloat, lng: CGFloat) {
+    func sendLocation(socket: SocketIOClient, lat: CGFloat, lng: CGFloat) {
         socket.emit("sendLocation", ["lat" : lat,
                                      "lng": lng])
     }
     
-    func connectAndJoinSocket(socket: SocketIOClient, token: String, completion: @escaping () -> ()) {
-        socket.on(clientEvent: .connect) { (data, ack) in
-            socket.emit("join", ["token" : token]) {
-                DispatchQueue.main.async {
-                    completion()
-                }
+    func joinEvent(socket: SocketIOClient, completion: @escaping () -> ()) {
+        
+        socket.emit("join" /* here should be some parameters */) {
+            DispatchQueue.main.async {
+                completion()
             }
         }
-        
-        socket.connect()
     }
 }

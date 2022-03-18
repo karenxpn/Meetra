@@ -27,6 +27,7 @@ struct Places: View {
             VStack {
                 
                 if locationManager.status {
+                    
                     VStack {
                         Text( "OK\(seconds)" )
 
@@ -42,6 +43,7 @@ struct Places: View {
                         self.seconds = 0
                         self.timer.upstream.connect().cancel()
                     }
+                    
                 } else {
                     LostLocationAlert()
                         .environmentObject(locationManager)
