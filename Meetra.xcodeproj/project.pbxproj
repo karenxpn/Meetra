@@ -59,6 +59,10 @@
 		FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372827E2419300F91AB6 /* AppDelegate.swift */; };
 		FFD6372C27E3535900F91AB6 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372B27E3535900F91AB6 /* Places.swift */; };
 		FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */; };
+		FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = FFD6373227E3D47600F91AB6 /* SocketIO */; };
+		FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373427E3D4D400F91AB6 /* PlacesService.swift */; };
+		FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */; };
+		FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* AuthGallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -146,6 +150,9 @@
 		FFD6372827E2419300F91AB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFD6372B27E3535900F91AB6 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
 		FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostLocationAlert.swift; sourceTree = "<group>"; };
+		FFD6373427E3D4D400F91AB6 /* PlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesService.swift; sourceTree = "<group>"; };
+		FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModel.swift; sourceTree = "<group>"; };
+		FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSocketManager.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* AuthGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -160,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF7D0D2127CFFE1200A828C7 /* SwiftUIX in Frameworks */,
+				FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */,
 				FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */,
 				CEA4657C4A230B4159F48F3E /* Pods_Meetra.framework in Frameworks */,
 			);
@@ -249,6 +257,7 @@
 				FF7D0D1927CFE46700A828C7 /* AlertViewModel.swift */,
 				FFD6371727E23A5E00F91AB6 /* LocationManager.swift */,
 				FFD6372427E2413400F91AB6 /* NotificationsViewModel.swift */,
+				FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -258,6 +267,7 @@
 			children = (
 				FF7D0CFD27CE7CAE00A828C7 /* AuthService.swift */,
 				FFD6372627E2416E00F91AB6 /* DeviceTokenManager.swift */,
+				FFD6373427E3D4D400F91AB6 /* PlacesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -353,6 +363,7 @@
 				FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */,
 				FFD6371D27E23BE200F91AB6 /* Localizable.strings */,
 				FFD6372827E2419300F91AB6 /* AppDelegate.swift */,
+				FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */,
 			);
 			path = Meetra;
 			sourceTree = "<group>";
@@ -414,6 +425,7 @@
 			packageProductDependencies = (
 				FF7D0CE927CE6A9800A828C7 /* TagLayoutView */,
 				FF7D0D2027CFFE1200A828C7 /* SwiftUIX */,
+				FFD6373227E3D47600F91AB6 /* SocketIO */,
 			);
 			productName = Meetra;
 			productReference = FF7DA04027CD55CA00CA4338 /* Meetra.app */;
@@ -493,6 +505,7 @@
 			packageReferences = (
 				FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
 				FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */,
 			);
 			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
 			projectDirPath = "";
@@ -659,8 +672,10 @@
 				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
+				FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */,
 				FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */,
 				FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */,
+				FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */,
 				FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */,
 				FF7D0CFA27CE7C5400A828C7 /* Introduction.swift in Sources */,
 				FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */,
@@ -677,6 +692,7 @@
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
 				FFD6372C27E3535900F91AB6 /* Places.swift in Sources */,
+				FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */,
 				FF7D0D1627CFDD3900A828C7 /* Credentials.swift in Sources */,
 				FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */,
 				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,
@@ -1056,6 +1072,14 @@
 				minimumVersion = 0.1.1;
 			};
 		};
+		FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1068,6 +1092,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		FFD6373227E3D47600F91AB6 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -10,10 +10,12 @@ import SwiftUIX
 
 struct Places: View {
     
-    @ObservedObject var locationManager = LocationManager()
-    init() {
-        locationManager.initLocation()
-    }
+    @StateObject private var locationManager = LocationManager()
+    @StateObject var placesVM = PlacesViewModel()
+    
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var seconds: Int = 0
+
     
     var body: some View {
         
@@ -21,7 +23,24 @@ struct Places: View {
             VStack {
                 
                 if locationManager.status {
-                    Text( "OK" )
+                    
+                    VStack {
+                        Text( "OK\(seconds)" )
+
+                    }.onReceive(timer) { _ in
+                        seconds += 1
+                        if seconds % 2 == 0 {
+                            placesVM.sendLocation(lat: locationManager.location?.latitude ?? 0,
+                                                  lng: locationManager.location?.longitude ?? 0)
+                        }
+                        
+                    }.onAppear {
+                        self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    }.onDisappear {
+                        self.seconds = 0
+                        self.timer.upstream.connect().cancel()
+                    }
+                    
                 } else {
                     LostLocationAlert()
                         .environmentObject(locationManager)
@@ -46,7 +65,9 @@ struct Places: View {
                         Image("icon_ring")
                             .foregroundColor(.black)
                     }
-                })
+                }).onAppear {
+                    locationManager.initLocation()
+                }
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
                 if value {
