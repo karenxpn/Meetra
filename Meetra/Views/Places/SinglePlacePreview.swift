@@ -11,39 +11,48 @@ import SDWebImageSwiftUI
 struct SinglePlacePreview: View {
     
     let user: UserPreviewModel
+    @State private var navigate: Bool = false
     
     var body: some View {
         
-        VStack {
-            
-            ZStack( alignment: .bottomTrailing) {
-                Image("Karen")
-                //            WebImage(url: URL(string: user.image)!)
-                //                .placeholder {
-                //                    ProgressView()
-                //                }
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
-                    .clipShape(Circle())
+        Button {
+            navigate.toggle()
+        } label: {
+            VStack {
                 
-                ZStack {
-                    Circle()
-                        .fill(.white)
-                        .frame(width: 15, height: 15)
-                        .offset(x: -10, y: -10)
+                ZStack( alignment: .bottomTrailing) {
+                    Image("Karen")
+                    //            WebImage(url: URL(string: user.image)!)
+                    //                .placeholder {
+                    //                    ProgressView()
+                    //                }
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
                     
-                    Circle()
-                        .fill(AppColors.onlineStatus)
-                        .frame(width: 10, height: 10)
-                        .offset(x: -10, y: -10)
+                    ZStack {
+                        Circle()
+                            .fill(.white)
+                            .frame(width: 15, height: 15)
+                            .offset(x: -10, y: -10)
+                        
+                        Circle()
+                            .fill(AppColors.onlineStatus)
+                            .frame(width: 10, height: 10)
+                            .offset(x: -10, y: -10)
+                    }
                 }
+                
+                Text( user.name)
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-Regular", size: 16))
             }
-            
-            Text( user.name)
-                .foregroundColor(.black)
-                .font(.custom("Inter-Regular", size: 16))
-        }
+        }.background(
+            NavigationLink(destination: Text("Detail"), isActive: $navigate, label: {
+                EmptyView()
+            }).hidden()
+        )
     }
 }
 

@@ -520,7 +520,7 @@
 			packageReferences = (
 				FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
 				FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
-				FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */,
 			);
 			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
 			projectDirPath = "";
@@ -1092,7 +1092,7 @@
 				minimumVersion = 0.1.1;
 			};
 		};
-		FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+		FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
 			requirement = {
@@ -1115,7 +1115,7 @@
 		};
 		FFD6373227E3D47600F91AB6 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			package = FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */;
 			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */

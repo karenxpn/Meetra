@@ -19,7 +19,7 @@ struct PlacesRoomView: View {
     
     var body: some View {
         ScrollView( showsIndicators: false) {
-            
+                        
             VStack( alignment: .leading) {
                 Text( "\(room.usersCount) человек ищут знакомства в \(room.place)" )
                     .foregroundColor(.black)
@@ -48,6 +48,7 @@ struct PlacesRoomView: View {
                     
                     if !users.isEmpty {
                         SinglePlacePreview(user: users[0][0])
+                            .offset(x: -10)
                     }
                     
                     Spacer()
