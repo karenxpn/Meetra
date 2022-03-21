@@ -23,6 +23,7 @@
 		FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */; };
 		FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */; };
 		FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */; };
+		FF37966F27E8B2C7007F28E7 /* PlacesRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -115,6 +116,7 @@
 		FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePlacePreview.swift; sourceTree = "<group>"; };
 		FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRoom.swift; sourceTree = "<group>"; };
 		FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRoomView.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				FFD6372B27E3535900F91AB6 /* Places.swift */,
 				FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */,
 				FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */,
+				FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				FFD6372527E2413400F91AB6 /* NotificationsViewModel.swift in Sources */,
 				FFD6371F27E23FAA00F91AB6 /* AuthNotificationPermission.swift in Sources */,
 				FF07F24027D0FF9C009B46B7 /* RegistrationRequest.swift in Sources */,
+				FF37966F27E8B2C7007F28E7 /* PlacesRoomView.swift in Sources */,
 				FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */,
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,

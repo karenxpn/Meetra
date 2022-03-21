@@ -27,11 +27,7 @@ struct Places: View {
                     VStack {
                         
                         if placesVM.placeRoom != nil {
-                            Text( "\(placesVM.placeRoom!.usersCount) человек ищут знакомства в Hunt Lounge bar ✨" )
-                                .foregroundColor(.black)
-                                .font(.custom("Inter-SemiBold", size: 18))
-                            
-                            
+                            PlacesRoomView(room: placesVM.placeRoom!)
                         }
 
                     }.onReceive(timer) { _ in
