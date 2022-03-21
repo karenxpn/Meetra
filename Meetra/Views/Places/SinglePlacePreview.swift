@@ -24,19 +24,19 @@ struct SinglePlacePreview: View {
                 //                }
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 95, height: 95)
+                    .frame(width: 100, height: 100)
                     .clipShape(Circle())
                 
                 ZStack {
                     Circle()
                         .fill(.white)
                         .frame(width: 15, height: 15)
-                        .offset(x: -5, y: -5)
+                        .offset(x: -10, y: -10)
                     
                     Circle()
                         .fill(AppColors.onlineStatus)
                         .frame(width: 10, height: 10)
-                        .offset(x: -5, y: -5)
+                        .offset(x: -10, y: -10)
                 }
             }
             

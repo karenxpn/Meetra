@@ -10,14 +10,21 @@ import SwiftUI
 struct PlacesRoomView: View {
     
     let room: PlaceRoom
+    let users: [[UserPreviewModel]]
+    
+    init(room: PlaceRoom) {
+        self.room = room
+        self.users = room.users.custom_split()
+    }
     
     var body: some View {
         ScrollView {
             
-            LazyVStack {
-                Text( "\(room.usersCount) человек ищут знакомства в Hunt Lounge bar ✨" )
+            LazyVStack( alignment: .leading) {
+                Text( "\(room.usersCount) человек ищут знакомства в \(room.place)" )
                     .foregroundColor(.black)
                     .font(.custom("Inter-SemiBold", size: 18))
+                    .multilineTextAlignment(.center)
                 
                 HStack( alignment: .top) {
                     Button {
@@ -34,13 +41,13 @@ struct PlacesRoomView: View {
                             Text( "Общий чат")
                                 .foregroundColor(.black)
                                 .font(.custom("Inter-Regular", size: 16))
-                        }
+                        }.offset(y: -15)
                     }
                     
                     Spacer()
                     
-                    if !room.users.isEmpty {
-                        SinglePlacePreview(user: room.users[0])
+                    if !users.isEmpty {
+                        SinglePlacePreview(user: users[0][0])
                     }
                     
                     Spacer()
@@ -58,14 +65,30 @@ struct PlacesRoomView: View {
                             Text( "Локация")
                                 .foregroundColor(.black)
                                 .font(.custom("Inter-Regular", size: 16))
-                        }
+                        }.offset(y: -15)
                     }
                     
-                }
+                }.padding(.top, 20)
                 
                 
-                ForEach(1..<room.users.count, id: \.self ) { index in
-                    SinglePlacePreview(user: room.users[index])
+                ForEach(1..<users.count, id: \.self ) { index in
+                    
+                    HStack {
+                        
+                        ForEach(users[index], id: \.id) { user in
+                            HStack {
+                                
+                                if index % 2 != 0 && user.id == users[index].last?.id { Spacer() }
+                                
+                                SinglePlacePreview(user: user)
+                                    
+                                if index % 2 != 0 && user.id == users[index].first?.id { Spacer() }
+                                
+                            }.frame(width: .greedy)
+                        }
+                        
+                    }.frame(minWidth: 0, maxWidth: .infinity)
+                        .offset(y: CGFloat(-60 * index))
                 }
                 
             }.padding(30)
@@ -81,6 +104,6 @@ struct PlacesRoomView_Previews: PreviewProvider {
                                                UserPreviewModel(id: 4, image: "Karen", name: "Karen", online: true),
                                                UserPreviewModel(id: 5, image: "Karen", name: "Karen", online: true),
                                                UserPreviewModel(id: 6, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 7, image: "Karen", name: "Karen", online: true)], usersCount: 12))
+                                               UserPreviewModel(id: 7, image: "Karen", name: "Karen", online: true)], usersCount: 12, place: "EVN"))
     }
 }

@@ -9,4 +9,5 @@ import Foundation
 struct PlaceRoom: Codable {
     var users: [UserPreviewModel]
     var usersCount: Int
+    var place: String
 }

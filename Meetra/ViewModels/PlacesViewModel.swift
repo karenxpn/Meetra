@@ -30,7 +30,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         super.init()
         
         self.getLocationResponse()
-        self.getRoom()
+//        self.getRoom()
     }
 
     

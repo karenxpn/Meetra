@@ -116,3 +116,27 @@ extension Image {
 #endif
     }
 }
+
+extension Array {
+    
+    func custom_split() -> [[Element]] {
+        var response = [[Element]]()
+        var row = 0
+        var index = 0
+        
+        while index < self.count {
+            response.append([])
+            if index % 3 == 0 || index + 1 >= self.count {
+                response[row].append(self[index])
+                index += 1
+            } else if index + 1 < self.count {
+                response[row].append(contentsOf: [self[index], self[index+1]])
+                index += 2
+            }
+            row += 1
+        }
+        
+        return response
+    }
+    
+}
