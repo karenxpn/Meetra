@@ -27,7 +27,7 @@ struct Places: View {
                     VStack {
                         
                         if placesVM.placeRoom != nil {
-                            PlacesRoomView(room: placesVM.placeRoom!)
+                            PlacesRoomView(room: placesVM.placeRoom)
                         }
 
                     }.onReceive(timer) { _ in

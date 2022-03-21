@@ -18,9 +18,9 @@ struct PlacesRoomView: View {
     }
     
     var body: some View {
-        ScrollView {
+        ScrollView( showsIndicators: false) {
             
-            LazyVStack( alignment: .leading) {
+            VStack( alignment: .leading) {
                 Text( "\(room.usersCount) человек ищут знакомства в \(room.place)" )
                     .foregroundColor(.black)
                     .font(.custom("Inter-SemiBold", size: 18))
@@ -78,17 +78,20 @@ struct PlacesRoomView: View {
                         ForEach(users[index], id: \.id) { user in
                             HStack {
                                 
-                                if index % 2 != 0 && user.id == users[index].last?.id { Spacer() }
+                                if index % 2 != 0 &&
+                                    user.id == users[index].last?.id &&
+                                    users[index].first?.id != users[index].last?.id{ Spacer() }
                                 
                                 SinglePlacePreview(user: user)
                                     
-                                if index % 2 != 0 && user.id == users[index].first?.id { Spacer() }
+                                if index % 2 != 0 &&
+                                    user.id == users[index].first?.id{ Spacer() }
                                 
                             }.frame(width: .greedy)
+                                .offset(y: CGFloat(-60 * index))
                         }
                         
                     }.frame(minWidth: 0, maxWidth: .infinity)
-                        .offset(y: CGFloat(-60 * index))
                 }
                 
             }.padding(30)
@@ -104,6 +107,10 @@ struct PlacesRoomView_Previews: PreviewProvider {
                                                UserPreviewModel(id: 4, image: "Karen", name: "Karen", online: true),
                                                UserPreviewModel(id: 5, image: "Karen", name: "Karen", online: true),
                                                UserPreviewModel(id: 6, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 7, image: "Karen", name: "Karen", online: true)], usersCount: 12, place: "EVN"))
+                                               UserPreviewModel(id: 7, image: "Karen", name: "Karen", online: true),
+                                               UserPreviewModel(id: 8, image: "Karen", name: "Karen", online: true),
+                                               UserPreviewModel(id: 9, image: "Karen", name: "Karen", online: true),
+                                               UserPreviewModel(id: 10, image: "Karen", name: "Karen", online: true),
+                                               UserPreviewModel(id: 11, image: "Karen", name: "Karen", online: true)], usersCount: 12, place: "EVN"))
     }
 }
