@@ -55,6 +55,7 @@
 		FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05427CD55CC00CA4338 /* MeetraTests.swift */; };
 		FF7DA05F27CD55CC00CA4338 /* MeetraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */; };
 		FF7DA06127CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */; };
+		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
 		FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */; };
 		FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371727E23A5E00F91AB6 /* LocationManager.swift */; };
 		FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD6371D27E23BE200F91AB6 /* Localizable.strings */; };
@@ -176,6 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */,
 				FF7D0D2127CFFE1200A828C7 /* SwiftUIX in Frameworks */,
 				FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */,
 				FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */,
@@ -441,6 +443,7 @@
 				FF7D0CE927CE6A9800A828C7 /* TagLayoutView */,
 				FF7D0D2027CFFE1200A828C7 /* SwiftUIX */,
 				FFD6373227E3D47600F91AB6 /* SocketIO */,
+				FFB6D24127E93ACA004FD5D3 /* Sliders */,
 			);
 			productName = Meetra;
 			productReference = FF7DA04027CD55CA00CA4338 /* Meetra.app */;
@@ -521,6 +524,7 @@
 				FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
 				FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 				FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */,
+				FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 			);
 			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
 			projectDirPath = "";
@@ -1092,6 +1096,14 @@
 				minimumVersion = 0.1.1;
 			};
 		};
+		FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
@@ -1112,6 +1124,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		FFB6D24127E93ACA004FD5D3 /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
 		};
 		FFD6373227E3D47600F91AB6 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
