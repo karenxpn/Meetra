@@ -10,8 +10,13 @@ import SwiftUI
 import Combine
 import SocketIO
 
-class PlacesViewModel: ObservableObject {
+class PlacesViewModel: AlertViewModel, ObservableObject {
     @AppStorage( "token" ) private var token: String = ""
+    @Published var placeRoom: PlaceRoom? = nil
+    
+    @Published var showAlert: Bool = false
+    @Published var alertMessage: String = ""
+    
     let socket: SocketIOClient
 
 
@@ -22,8 +27,10 @@ class PlacesViewModel: ObservableObject {
         self.dataManage = dataManage
         self.socket = AppSocketManager.shared.socket
         self.socket.removeAllHandlers()
+        super.init()
         
         self.getLocationResponse()
+        self.getRoom()
     }
 
     
@@ -35,5 +42,16 @@ class PlacesViewModel: ObservableObject {
     
     func sendLocation(lat: CGFloat, lng: CGFloat) {
         dataManage.sendLocation(socket: socket, lat: lat, lng: lng)
+    }
+    
+    func getRoom() {
+        dataManage.fetchPlaceRoom(token: token)
+            .sink { response in
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.placeRoom = response.value!
+                }
+            }.store(in: &cancellableSet)
     }
 }

@@ -25,7 +25,14 @@ struct Places: View {
                 if locationManager.status {
                     
                     VStack {
-                        Text( "OK\(seconds)" )
+                        
+                        if placesVM.placeRoom != nil {
+                            Text( "\(placesVM.placeRoom!.usersCount) человек ищут знакомства в Hunt Lounge bar ✨" )
+                                .foregroundColor(.black)
+                                .font(.custom("Inter-SemiBold", size: 18))
+                            
+                            
+                        }
 
                     }.onReceive(timer) { _ in
                         seconds += 1

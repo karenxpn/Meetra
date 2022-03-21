@@ -19,6 +19,10 @@
 		FF07F23E27D0EEAD009B46B7 /* AuthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */; };
 		FF07F24027D0FF9C009B46B7 /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23F27D0FF9C009B46B7 /* RegistrationRequest.swift */; };
 		FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F24127D10763009B46B7 /* AuthProgress.swift */; };
+		FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */; };
+		FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */; };
+		FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */; };
+		FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -107,6 +111,10 @@
 		FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelTests.swift; sourceTree = "<group>"; };
 		FF07F23F27D0FF9C009B46B7 /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
 		FF07F24127D10763009B46B7 /* AuthProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProgress.swift; sourceTree = "<group>"; };
+		FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreviewModel.swift; sourceTree = "<group>"; };
+		FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePlacePreview.swift; sourceTree = "<group>"; };
+		FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRoom.swift; sourceTree = "<group>"; };
+		FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -246,6 +254,7 @@
 			children = (
 				FFD6372A27E3534800F91AB6 /* Places */,
 				FF7D0CF827CE7C3900A828C7 /* Authentication */,
+				FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -280,6 +289,8 @@
 				FF7D0D2227D006E900A828C7 /* GlobalResponse.swift */,
 				FF07F23F27D0FF9C009B46B7 /* RegistrationRequest.swift */,
 				FFF6468927D28F6A0022EF60 /* InterestModel.swift */,
+				FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */,
+				FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -400,6 +411,7 @@
 			children = (
 				FFD6372B27E3535900F91AB6 /* Places.swift */,
 				FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */,
+				FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -667,6 +679,7 @@
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
 				FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */,
 				FFD6372727E2416E00F91AB6 /* DeviceTokenManager.swift in Sources */,
+				FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
 				FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */,
 				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
@@ -682,6 +695,7 @@
 				FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */,
 				FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */,
 				FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */,
+				FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */,
 				FFF6468827D26D690022EF60 /* AuthInterests.swift in Sources */,
 				FFF6468A27D28F6A0022EF60 /* InterestModel.swift in Sources */,
 				FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */,
@@ -694,6 +708,8 @@
 				FFD6372C27E3535900F91AB6 /* Places.swift in Sources */,
 				FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */,
 				FF7D0D1627CFDD3900A828C7 /* Credentials.swift in Sources */,
+				FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */,
+				FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */,
 				FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */,
 				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,
 				FF7D0D1827CFE2E300A828C7 /* AuthResponse.swift in Sources */,
