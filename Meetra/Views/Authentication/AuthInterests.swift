@@ -95,7 +95,7 @@ struct AuthInterests: View {
                     }.background(AppColors.proceedButtonColor)
                         .opacity(authVM.selected_interests.count < 3 ? 0.5 : 1)
                         .cornerRadius(30)
-                }.disabled(authVM.selected_interests.count < 3)
+                }.disabled((authVM.selected_interests.count < 3 || authVM.loading))
                     .background(
                         NavigationLink(destination: AuthLocationPermission(), isActive: $authVM.navigate, label: {
                             EmptyView()
