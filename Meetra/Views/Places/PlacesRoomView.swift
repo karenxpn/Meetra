@@ -29,7 +29,7 @@ struct PlacesRoomView: View {
                 .foregroundColor(.black)
                 .font(.custom("Inter-SemiBold", size: 18))
                 .multilineTextAlignment(.center)
-                .padding(.top, 0)
+                .padding(.top, 15)
             
             WaterfallGrid((0..<room.users.count), id: \.self) { index in
                 Group {

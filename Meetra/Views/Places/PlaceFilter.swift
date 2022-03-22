@@ -26,8 +26,6 @@ struct PlaceFilter: View {
             AgeFilter().environmentObject(placeVM)
             
             CustomSegmentPicker(selection: $placeVM.status, variants: status, header: "Показывать пользователей:")
-
-            
             
             
             Button {
@@ -41,10 +39,10 @@ struct PlaceFilter: View {
             }.padding(.top, 30)
             
         }.padding(20)
-            .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: UIScreen.main.bounds.size.height * 0.7)
+            .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 400)
             .background(.white)
             .cornerRadius(35)
-            .shadow(radius: 5)
+            .shadow(radius: 5, x: 0, y: 10)
     }
 }
 
