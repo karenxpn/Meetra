@@ -94,11 +94,11 @@ class AuthViewModel: AlertViewModel, ObservableObject {
         loading = true
         dataManager.signUpConfirm(model: model, token: initialToken)
             .sink { response in
+                self.loading = false
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
                     self.navigate = true
-//                    self.token = self.initialToken
                 }
             }.store(in: &cancellableSet)
     }

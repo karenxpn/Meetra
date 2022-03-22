@@ -71,6 +71,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                                      maxAge: ageUppwerBound,
                                      gender: preferredGender,
                                      status: usersStatus)
+        
         dataManage.fetchPlaceRoom(token: token, model: model)
             .sink { response in
                 self.loading = false
