@@ -99,7 +99,6 @@ struct Places: View {
                     }.onChange(of: showFilter) { value in
                         if !value {
                             placesVM.storeFilterValues()
-                            placesVM.getRoom()
                         }
                     }
         }.navigationViewStyle(StackNavigationViewStyle())

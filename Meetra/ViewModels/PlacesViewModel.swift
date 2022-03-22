@@ -59,10 +59,22 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     }
     
     func storeFilterValues() {
+        var mark = false
+        if ageLowerBound != ageRange.lowerBound ||
+            ageUppwerBound != ageRange.upperBound ||
+            preferredGender != gender ||
+            usersStatus != status {
+            mark = true
+        }
+        
         ageLowerBound = ageRange.lowerBound
         ageUppwerBound = ageRange.upperBound
         preferredGender = gender
         usersStatus = status
+        
+        if mark {
+            getRoom()
+        }
     }
     
     func getRoom() {
