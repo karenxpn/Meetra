@@ -69,7 +69,10 @@ struct Places: View {
                             }
                         }))
                 
-            }.navigationBarTitle("", displayMode: .inline)
+            }.alert(isPresented: $placesVM.showAlert, content: {
+                Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
+            })
+            .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: Text("Meetra")
                     .foregroundColor(.black)
                     .font(.custom("Inter-Black", size: 28))

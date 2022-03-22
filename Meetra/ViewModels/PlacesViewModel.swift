@@ -56,7 +56,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         self.status = self.usersStatus
         
         self.getLocationResponse()
-//        self.getRoom()
+        self.getRoom()
     }
 
     
