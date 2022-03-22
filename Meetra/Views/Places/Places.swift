@@ -27,24 +27,28 @@ struct Places: View {
                 
                 if locationManager.status {
                     
-                    VStack {
-                        
-                        if placesVM.placeRoom != nil {
-                            PlacesRoomView(room: placesVM.placeRoom)
+                    if placesVM.loading {
+                        Loading()
+                    } else {
+                        VStack {
+                            
+                            if placesVM.placeRoom != nil {
+                                PlacesRoomView(room: placesVM.placeRoom!)
+                            }
+                            
+                        }.onReceive(timer) { _ in
+                            seconds += 1
+                            if seconds % 5 == 0 {
+                                placesVM.sendLocation(lat: locationManager.location?.latitude ?? 0,
+                                                      lng: locationManager.location?.longitude ?? 0)
+                            }
+                            
+                        }.onAppear {
+                            self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                        }.onDisappear {
+                            self.seconds = 0
+                            self.timer.upstream.connect().cancel()
                         }
-                        
-                    }.onReceive(timer) { _ in
-                        seconds += 1
-                        if seconds % 5 == 0 {
-                            placesVM.sendLocation(lat: locationManager.location?.latitude ?? 0,
-                                                  lng: locationManager.location?.longitude ?? 0)
-                        }
-                        
-                    }.onAppear {
-                        self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                    }.onDisappear {
-                        self.seconds = 0
-                        self.timer.upstream.connect().cancel()
                     }
                     
                 } else {

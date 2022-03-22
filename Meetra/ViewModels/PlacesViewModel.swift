@@ -14,30 +14,18 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     @AppStorage( "token" ) private var token: String = ""
     @AppStorage( "ageLowerBound" ) var ageLowerBound: Int = 18
     @AppStorage( "ageUpperBound" ) var ageUppwerBound: Int = 51
-    @AppStorage( "preferredGender" ) var preferredGender: String = "Мужчина"
+    @AppStorage( "preferredGender" ) var preferredGender: String = "Всех"
     @AppStorage( "usersStatus" ) var usersStatus: String = "Всех"
 
-    @Published var placeRoom: PlaceRoom = PlaceRoom(users: [UserPreviewModel(id: 1, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 2, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 3, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 4, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 5, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 6, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 7, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 8, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 9, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 10, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 11, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 12, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 13, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 14, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 15, image: "Karen", name: "Karen", online: true)], usersCount: 12, place: "EVN")
+    @Published var placeRoom: PlaceRoom? = nil
     
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
-    @Published var ageRange: ClosedRange<Int> = 18...61
+    @Published var ageRange: ClosedRange<Int> = 18...51
     @Published var gender: String = ""
     @Published var status: String = ""
+    
+    @Published var loading: Bool = false
         
     let socket: SocketIOClient
 
@@ -71,8 +59,10 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     }
     
     func getRoom() {
+        loading = true
         dataManage.fetchPlaceRoom(token: token)
             .sink { response in
+                self.loading = false
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {

@@ -29,11 +29,7 @@ struct AuthInterests: View {
                     .fixedSize(horizontal: false, vertical: true)
                 
                 if authVM.loading {
-                    HStack {
-                        Spacer()
-                        ProgressView()
-                        Spacer()
-                    }
+                    Loading()
                 } else {
                     GeometryReader { geometry in
                         
