@@ -11,7 +11,6 @@ import WaterfallGrid
 struct PlacesRoomView: View {
     
     var room: PlaceRoom
-    let users: [[UserPreviewModel]]
     
     init(room: PlaceRoom) {
         self.room = room
@@ -19,7 +18,6 @@ struct PlacesRoomView: View {
             self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Общий чат", online: false), at: 0)
             self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Локация", online: false), at: 2)
         }
-        self.users = room.users.custom_split()
     }
     
     var body: some View {
