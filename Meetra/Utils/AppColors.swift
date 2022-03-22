@@ -13,4 +13,5 @@ struct AppColors {
     static let proceedButtonColor = Color(UIColor(red: 98/255, green: 45/255, blue: 196/255, alpha: 1))
     static let addProfileImageBG = Color(UIColor(red: 246/255, green: 241/255, blue: 255/255, alpha: 1))
     static let onlineStatus = Color(UIColor(red: 110/255, green: 219/255, blue: 154/255, alpha: 1))
+    static let filterGray = Color(UIColor(red: 87/255, green: 87/255, blue: 87/255, alpha: 1))
 }

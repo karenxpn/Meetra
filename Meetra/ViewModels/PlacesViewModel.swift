@@ -12,6 +12,11 @@ import SocketIO
 
 class PlacesViewModel: AlertViewModel, ObservableObject {
     @AppStorage( "token" ) private var token: String = ""
+    @AppStorage( "ageLowerBound" ) var ageLowerBound: Int = 18
+    @AppStorage( "ageUpperBound" ) var ageUppwerBound: Int = 51
+    @AppStorage( "preferredGender" ) var preferredGender: String = "Мужчина"
+    @AppStorage( "usersStatus" ) var usersStatus: String = "Всех"
+
     @Published var placeRoom: PlaceRoom = PlaceRoom(users: [UserPreviewModel(id: 1, image: "Karen", name: "Karen", online: true),
                                                             UserPreviewModel(id: 2, image: "Karen", name: "Karen", online: true),
                                                             UserPreviewModel(id: 3, image: "Karen", name: "Karen", online: true),
@@ -30,7 +35,10 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
-    
+    @Published var ageRange: ClosedRange<Int> = 18...61
+    @Published var gender: String = ""
+    @Published var status: String = ""
+        
     let socket: SocketIOClient
 
 
@@ -42,6 +50,10 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         self.socket = AppSocketManager.shared.socket
         self.socket.removeAllHandlers()
         super.init()
+        
+        self.ageRange = self.ageLowerBound...self.ageUppwerBound
+        self.gender = self.preferredGender
+        self.status = self.usersStatus
         
         self.getLocationResponse()
 //        self.getRoom()

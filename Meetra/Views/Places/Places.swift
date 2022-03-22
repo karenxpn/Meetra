@@ -15,40 +15,62 @@ struct Places: View {
     
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var seconds: Int = 0
+    
+    @State private var showFilter: Bool = false
+    @State private var offsetOnDrag: CGFloat = 0
 
     
     var body: some View {
         
         NavigationView {
-            VStack {
-                
-                if locationManager.status {
+            ZStack {
+                VStack {
                     
-                    VStack {
+                    if locationManager.status {
                         
-                        if placesVM.placeRoom != nil {
-                            PlacesRoomView(room: placesVM.placeRoom)
-                        }
+                        VStack {
+                            
+                            if placesVM.placeRoom != nil {
+                                PlacesRoomView(room: placesVM.placeRoom)
+                            }
 
-                    }.onReceive(timer) { _ in
-                        seconds += 1
-                        if seconds % 5 == 0 {
-                            placesVM.sendLocation(lat: locationManager.location?.latitude ?? 0,
-                                                  lng: locationManager.location?.longitude ?? 0)
+                        }.onReceive(timer) { _ in
+                            seconds += 1
+                            if seconds % 5 == 0 {
+                                placesVM.sendLocation(lat: locationManager.location?.latitude ?? 0,
+                                                      lng: locationManager.location?.longitude ?? 0)
+                            }
+                            
+                        }.onAppear {
+                            self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                        }.onDisappear {
+                            self.seconds = 0
+                            self.timer.upstream.connect().cancel()
                         }
                         
-                    }.onAppear {
-                        self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                    }.onDisappear {
-                        self.seconds = 0
-                        self.timer.upstream.connect().cancel()
+                    } else {
+                        LostLocationAlert()
+                            .environmentObject(locationManager)
                     }
-                    
-                } else {
-                    LostLocationAlert()
-                        .environmentObject(locationManager)
                 }
                 
+                PlaceFilter(present: $showFilter)
+                    .offset(y: showFilter ?  -UIScreen.main.bounds.size.height/4: -UIScreen.main.bounds.size.height)
+                    .animation(.interpolatingSpring(mass: 1.0, stiffness: 100.0, damping: 50, initialVelocity: 0))
+                    .environmentObject(placesVM)
+                    .offset(y: offsetOnDrag)
+                    .gesture(DragGesture()
+                                .onChanged({ (value) in
+                                    if value.translation.height < 0 {
+                                        self.offsetOnDrag = value.translation.height
+                                    }
+                                })
+                                .onEnded({ (value) in
+                                    if value.translation.height < 0 {
+                                        self.showFilter = false
+                                        self.offsetOnDrag = 0
+                                    }
+                                }))
                 
             }.navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: Text("Meetra")
@@ -56,10 +78,10 @@ struct Places: View {
                                         .font(.custom("Inter-Black", size: 28))
                                         .padding(), trailing: HStack( spacing: 20) {
                     Button {
-                        
+                        showFilter.toggle()
                     } label: {
                         Image("icon_filter")
-                            .foregroundColor(.black)
+                            .foregroundColor(showFilter ? AppColors.accentColor : .black)
                     }
                     
                     Button {
@@ -70,7 +92,7 @@ struct Places: View {
                     }
                 }).onAppear {
                     locationManager.initLocation()
-                }
+            }
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
                 if value {
