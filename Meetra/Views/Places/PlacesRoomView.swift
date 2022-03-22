@@ -6,96 +6,73 @@
 //
 
 import SwiftUI
+import WaterfallGrid
 
 struct PlacesRoomView: View {
     
-    let room: PlaceRoom
+    var room: PlaceRoom
     let users: [[UserPreviewModel]]
     
     init(room: PlaceRoom) {
         self.room = room
+        if !self.room.users.isEmpty{
+            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Общий чат", online: false), at: 0)
+            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Локация", online: false), at: 2)
+        }
         self.users = room.users.custom_split()
     }
     
     var body: some View {
         ScrollView( showsIndicators: false) {
-                        
-            VStack( alignment: .leading) {
-                Text( "\(room.usersCount) человек ищут знакомства в \(room.place)" )
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-SemiBold", size: 18))
-                    .multilineTextAlignment(.center)
-                
-                HStack( alignment: .top) {
-                    Button {
-                        
-                    } label: {
-                        
-                        VStack {
-                            Image("places_chat")
-                                .frame(width: 50, height: 50)
-                                .background(.white)
-                                .clipShape(Circle())
-                                .shadow(radius: 5)
+            
+            Text( "\(room.usersCount) человек ищут знакомства в \(room.place)" )
+                .foregroundColor(.black)
+                .font(.custom("Inter-SemiBold", size: 18))
+                .multilineTextAlignment(.center)
+                .padding(.top, 0)
+            
+            WaterfallGrid((0..<room.users.count), id: \.self) { index in
+                Group {
+                    if index == 0  {
+                        Button {
                             
-                            Text( "Общий чат")
-                                .foregroundColor(.black)
-                                .font(.custom("Inter-Regular", size: 16))
-                        }.offset(y: -15)
-                    }
-                    
-                    Spacer()
-                    
-                    if !users.isEmpty {
-                        SinglePlacePreview(user: users[0][0])
-                            .offset(x: -10)
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
-                        
-                    } label: {
-                        VStack {
-                            Image("places_location")
-                                .frame(width: 50, height: 50)
-                                .background(.white)
-                                .clipShape(Circle())
-                                .shadow(radius: 5)
+                        } label: {
                             
-                            Text( "Локация")
-                                .foregroundColor(.black)
-                                .font(.custom("Inter-Regular", size: 16))
-                        }.offset(y: -15)
-                    }
-                    
-                }.padding(.top, 20)
-                
-                
-                ForEach(1..<users.count, id: \.self ) { index in
-                    
-                    HStack {
-                        
-                        ForEach(users[index], id: \.id) { user in
-                            HStack {
+                            VStack {
+                                Image("places_chat")
+                                    .frame(width: 50, height: 50)
+                                    .background(.white)
+                                    .clipShape(Circle())
+                                    .shadow(radius: 5)
                                 
-                                if index % 2 != 0 &&
-                                    user.id == users[index].last?.id &&
-                                    users[index].first?.id != users[index].last?.id{ Spacer() }
-                                
-                                SinglePlacePreview(user: user)
-                                    
-                                if index % 2 != 0 &&
-                                    user.id == users[index].first?.id{ Spacer() }
-                                
-                            }.frame(width: .greedy)
-                                .offset(y: CGFloat(-60 * index))
+                                Text( "Общий чат")
+                                    .foregroundColor(.black)
+                                    .font(.custom("Inter-Regular", size: 16))
+                            }.padding(.top, 20)
                         }
-                        
-                    }.frame(minWidth: 0, maxWidth: .infinity)
+                    } else if index == 2 {
+                        Button {
+                            
+                        } label: {
+                            VStack {
+                                Image("places_location")
+                                    .frame(width: 50, height: 50)
+                                    .background(.white)
+                                    .clipShape(Circle())
+                                    .shadow(radius: 5)
+                                
+                                Text( "Локация")
+                                    .foregroundColor(.black)
+                                    .font(.custom("Inter-Regular", size: 16))
+                            }.padding(.top, 20)
+                        }
+                    } else {
+                        SinglePlacePreview(user: room.users[index], id: index)
+                            .padding(.top, index == 1 ? 40 : 0)
+                    }
                 }
-                
-            }.padding(30)
+            }.gridStyle(columns: 3, spacing: 20)
+                .padding(EdgeInsets(top: 0, leading: 20, bottom: 100, trailing: 20))
         }.padding(.top, 1)
     }
 }

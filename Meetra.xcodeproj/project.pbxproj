@@ -56,6 +56,7 @@
 		FF7DA05F27CD55CC00CA4338 /* MeetraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */; };
 		FF7DA06127CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */; };
 		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
+		FFB6D24527EA044E004FD5D3 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24427EA044E004FD5D3 /* WaterfallGrid */; };
 		FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */; };
 		FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371727E23A5E00F91AB6 /* LocationManager.swift */; };
 		FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD6371D27E23BE200F91AB6 /* Localizable.strings */; };
@@ -180,6 +181,7 @@
 				FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */,
 				FF7D0D2127CFFE1200A828C7 /* SwiftUIX in Frameworks */,
 				FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */,
+				FFB6D24527EA044E004FD5D3 /* WaterfallGrid in Frameworks */,
 				FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */,
 				D4A6F0E1386DF6DD344E0938 /* Pods_Meetra.framework in Frameworks */,
 			);
@@ -444,6 +446,7 @@
 				FF7D0D2027CFFE1200A828C7 /* SwiftUIX */,
 				FFD6373227E3D47600F91AB6 /* SocketIO */,
 				FFB6D24127E93ACA004FD5D3 /* Sliders */,
+				FFB6D24427EA044E004FD5D3 /* WaterfallGrid */,
 			);
 			productName = Meetra;
 			productReference = FF7DA04027CD55CA00CA4338 /* Meetra.app */;
@@ -525,6 +528,7 @@
 				FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 				FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */,
 				FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
+				FFB6D24327EA044E004FD5D3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
 			);
 			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
 			projectDirPath = "";
@@ -1104,6 +1108,14 @@
 				kind = branch;
 			};
 		};
+		FFB6D24327EA044E004FD5D3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
@@ -1129,6 +1141,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
 			productName = Sliders;
+		};
+		FFB6D24427EA044E004FD5D3 /* WaterfallGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFB6D24327EA044E004FD5D3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
+			productName = WaterfallGrid;
 		};
 		FFD6373227E3D47600F91AB6 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 struct SinglePlacePreview: View {
     
     let user: UserPreviewModel
+    let id: Int
     @State private var navigate: Bool = false
     
     var body: some View {
@@ -44,7 +45,7 @@ struct SinglePlacePreview: View {
                     }
                 }
                 
-                Text( user.name)
+                Text( "\(user.name) \(id)")
                     .foregroundColor(.black)
                     .font(.custom("Inter-Regular", size: 16))
             }
@@ -58,6 +59,6 @@ struct SinglePlacePreview: View {
 
 struct SinglePlacePreview_Previews: PreviewProvider {
     static var previews: some View {
-        SinglePlacePreview(user: UserPreviewModel(id: 1, image: "", name: "Karen", online: true))
+        SinglePlacePreview(user: UserPreviewModel(id: 1, image: "", name: "Karen", online: true), id: 12)
     }
 }

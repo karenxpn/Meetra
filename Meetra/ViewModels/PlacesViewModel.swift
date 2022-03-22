@@ -22,7 +22,11 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                                                             UserPreviewModel(id: 8, image: "Karen", name: "Karen", online: true),
                                                             UserPreviewModel(id: 9, image: "Karen", name: "Karen", online: true),
                                                             UserPreviewModel(id: 10, image: "Karen", name: "Karen", online: true),
-                                                            UserPreviewModel(id: 11, image: "Karen", name: "Karen", online: true)], usersCount: 12, place: "EVN")
+                                                            UserPreviewModel(id: 11, image: "Karen", name: "Karen", online: true),
+                                                            UserPreviewModel(id: 12, image: "Karen", name: "Karen", online: true),
+                                                            UserPreviewModel(id: 13, image: "Karen", name: "Karen", online: true),
+                                                            UserPreviewModel(id: 14, image: "Karen", name: "Karen", online: true),
+                                                            UserPreviewModel(id: 15, image: "Karen", name: "Karen", online: true)], usersCount: 12, place: "EVN")
     
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
