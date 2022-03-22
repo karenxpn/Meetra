@@ -28,8 +28,9 @@ struct CustomSegmentPicker: View {
                     } label: {
                         Text( tmp )
                             .foregroundColor(tmp == selection ? .white : .black)
+                            .font(.custom("Inter-Regular", size: 12))
                             .padding(.vertical, 8)
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, 25)
                             .background(tmp == selection ? AppColors.accentColor : .clear)
                             .cornerRadius(30)
                         

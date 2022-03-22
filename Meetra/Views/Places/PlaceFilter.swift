@@ -38,10 +38,10 @@ struct PlaceFilter: View {
                     Image("filter-rectangle")
                     Spacer()
                 }
-            }.padding(.top, 50)
+            }.padding(.top, 30)
             
-        }.padding()
-            .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: UIScreen.main.bounds.size.height * 0.6)
+        }.padding(20)
+            .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: UIScreen.main.bounds.size.height * 0.7)
             .background(.white)
             .cornerRadius(35)
             .shadow(radius: 5)
