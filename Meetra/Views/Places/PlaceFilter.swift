@@ -22,7 +22,6 @@ struct PlaceFilter: View {
             
             CustomSegmentPicker(selection: $placeVM.gender, variants: genders, header: "Показывать анкеты:")
             
-
             AgeFilter().environmentObject(placeVM)
             
             CustomSegmentPicker(selection: $placeVM.status, variants: status, header: "Показывать пользователей:")

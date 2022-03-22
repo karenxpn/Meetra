@@ -61,6 +61,7 @@
 		FFB6D24927EA10DC004FD5D3 /* AgeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */; };
 		FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */; };
 		FFB6D24D27EA34F5004FD5D3 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24C27EA34F5004FD5D3 /* Loading.swift */; };
+		FFB6D24F27EA38AE004FD5D3 /* PlaceRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24E27EA38AE004FD5D3 /* PlaceRoomRequest.swift */; };
 		FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */; };
 		FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371727E23A5E00F91AB6 /* LocationManager.swift */; };
 		FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD6371D27E23BE200F91AB6 /* Localizable.strings */; };
@@ -161,6 +162,7 @@
 		FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeFilter.swift; sourceTree = "<group>"; };
 		FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
 		FFB6D24C27EA34F5004FD5D3 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		FFB6D24E27EA38AE004FD5D3 /* PlaceRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRoomRequest.swift; sourceTree = "<group>"; };
 		FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocationPermission.swift; sourceTree = "<group>"; };
 		FFD6371727E23A5E00F91AB6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FFD6371C27E23BE200F91AB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				FFF6468927D28F6A0022EF60 /* InterestModel.swift */,
 				FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */,
 				FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */,
+				FFB6D24E27EA38AE004FD5D3 /* PlaceRoomRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				FFB6D24D27EA34F5004FD5D3 /* Loading.swift in Sources */,
 				FFD6371F27E23FAA00F91AB6 /* AuthNotificationPermission.swift in Sources */,
 				FF07F24027D0FF9C009B46B7 /* RegistrationRequest.swift in Sources */,
+				FFB6D24F27EA38AE004FD5D3 /* PlaceRoomRequest.swift in Sources */,
 				FF37966F27E8B2C7007F28E7 /* PlacesRoomView.swift in Sources */,
 				FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */,
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,

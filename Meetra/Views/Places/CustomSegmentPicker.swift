@@ -12,6 +12,7 @@ struct CustomSegmentPicker: View {
     @Binding var selection: String
     let variants: [String]
     let header: String
+    
     var body: some View {
         
         VStack( alignment: .leading) {

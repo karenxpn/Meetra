@@ -42,7 +42,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         self.ageRange = self.ageLowerBound...self.ageUppwerBound
         self.gender = self.preferredGender
         self.status = self.usersStatus
-        
+                
         self.getLocationResponse()
         self.getRoom()
     }
@@ -58,9 +58,20 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         dataManage.sendLocation(socket: socket, lat: lat, lng: lng)
     }
     
+    func storeFilterValues() {
+        ageLowerBound = ageRange.lowerBound
+        ageUppwerBound = ageRange.upperBound
+        preferredGender = gender
+        usersStatus = status
+    }
+    
     func getRoom() {
         loading = true
-        dataManage.fetchPlaceRoom(token: token)
+        let model = PlaceRoomRequest(minAge: ageLowerBound,
+                                     maxAge: ageUppwerBound,
+                                     gender: preferredGender,
+                                     status: usersStatus)
+        dataManage.fetchPlaceRoom(token: token, model: model)
             .sink { response in
                 self.loading = false
                 if response.error != nil {

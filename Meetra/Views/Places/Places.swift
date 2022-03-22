@@ -96,6 +96,11 @@ struct Places: View {
                         }
                     }).onAppear {
                         locationManager.initLocation()
+                    }.onChange(of: showFilter) { value in
+                        if !value {
+                            placesVM.storeFilterValues()
+                            placesVM.getRoom()
+                        }
                     }
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in

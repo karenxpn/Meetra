@@ -13,7 +13,7 @@ import Combine
 protocol PlacesServiceProtocol {
     func sendLocation(socket: SocketIOClient, lat: CGFloat, lng: CGFloat)
     func fetchLocationResponse(socket: SocketIOClient, completion: @escaping (Bool) -> ())
-    func fetchPlaceRoom( token: String ) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never>
+    func fetchPlaceRoom( token: String, model: PlaceRoomRequest ) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never>
 }
 
 class PlacesService {
@@ -23,12 +23,14 @@ class PlacesService {
 }
 
 extension PlacesService: PlacesServiceProtocol {
-    func fetchPlaceRoom(token: String) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never> {
+    func fetchPlaceRoom(token: String, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)place")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AF.request(url,
-                          method: .get,
+                          method: .post,
+                          parameters: model,
+                          encoder: JSONParameterEncoder.default,
                           headers: headers)
             .validate()
             .publishDecodable(type: PlaceRoom.self)
