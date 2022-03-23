@@ -30,11 +30,11 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     let socket: SocketIOClient
 
 
-    var dataManage: PlacesServiceProtocol
+    var dataManager: PlacesServiceProtocol
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init(dataManage: PlacesServiceProtocol = PlacesService.shared) {
-        self.dataManage = dataManage
+    init(dataManager: PlacesServiceProtocol = PlacesService.shared) {
+        self.dataManager = dataManager
         self.socket = AppSocketManager.shared.socket
         self.socket.removeAllHandlers()
         super.init()
@@ -49,13 +49,20 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
 
     
     func getLocationResponse() {
-        dataManage.fetchLocationResponse(socket: socket) { _ in
+        dataManager.fetchLocationResponse(socket: socket) { response in
             // do smth
+            NotificationCenter.default.post(name: Notification.Name("location_lost"), object: nil)
+
+//            if response {
+//                NotificationCenter.default.post(name: Notification.Name("location_lost"), object: nil)
+//            } else {
+//
+//            }
         }
     }
     
     func sendLocation(lat: CGFloat, lng: CGFloat) {
-        dataManage.sendLocation(socket: socket, lat: lat, lng: lng)
+        dataManager.sendLocation(socket: socket, lat: lat, lng: lng)
     }
     
     func storeFilterValues() {
@@ -84,7 +91,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                                      gender: preferredGender,
                                      status: usersStatus)
         
-        dataManage.fetchPlaceRoom(token: token, model: model)
+        dataManager.fetchPlaceRoom(token: token, model: model)
             .sink { response in
                 self.loading = false
                 if response.error != nil {

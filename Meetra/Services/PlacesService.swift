@@ -47,6 +47,7 @@ extension PlacesService: PlacesServiceProtocol {
     func fetchLocationResponse(socket: SocketIOClient,completion: @escaping (Bool) -> ()) {
         socket.on("location") { (data, ack) in
             print(data)
+            completion(false)
 //            if let data = data[0] as? [String : Bool], let status = data["location"] {
 //                DispatchQueue.main.async {
 //                    completion(status)
