@@ -62,6 +62,8 @@
 		FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */; };
 		FFB6D24D27EA34F5004FD5D3 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24C27EA34F5004FD5D3 /* Loading.swift */; };
 		FFB6D24F27EA38AE004FD5D3 /* PlaceRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24E27EA38AE004FD5D3 /* PlaceRoomRequest.swift */; };
+		FFB6D25127EB975C004FD5D3 /* MockPlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D25027EB975C004FD5D3 /* MockPlacesService.swift */; };
+		FFB6D25327EB984D004FD5D3 /* PlacesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */; };
 		FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */; };
 		FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371727E23A5E00F91AB6 /* LocationManager.swift */; };
 		FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD6371D27E23BE200F91AB6 /* Localizable.strings */; };
@@ -163,6 +165,8 @@
 		FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
 		FFB6D24C27EA34F5004FD5D3 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		FFB6D24E27EA38AE004FD5D3 /* PlaceRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRoomRequest.swift; sourceTree = "<group>"; };
+		FFB6D25027EB975C004FD5D3 /* MockPlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlacesService.swift; sourceTree = "<group>"; };
+		FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModelTests.swift; sourceTree = "<group>"; };
 		FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocationPermission.swift; sourceTree = "<group>"; };
 		FFD6371727E23A5E00F91AB6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FFD6371C27E23BE200F91AB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				FF07F23B27D0ED1F009B46B7 /* MockAuthService.swift */,
+				FFB6D25027EB975C004FD5D3 /* MockPlacesService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */,
+				FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -757,8 +763,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */,
+				FFB6D25327EB984D004FD5D3 /* PlacesViewModelTests.swift in Sources */,
 				FF07F23C27D0ED1F009B46B7 /* MockAuthService.swift in Sources */,
 				FF07F23E27D0EEAD009B46B7 /* AuthViewModelTests.swift in Sources */,
+				FFB6D25127EB975C004FD5D3 /* MockPlacesService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

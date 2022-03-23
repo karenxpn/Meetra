@@ -37,7 +37,7 @@ class AuthViewModelTests: XCTestCase {
     
     func testCheckVerificationCodeWithError() {
         service.checkVerificationCodeError = true
-        viewModel.checkVerificationCode(code: "")
+        viewModel.checkVerificationCode()
         
         XCTAssertTrue(viewModel.showAlert)
         XCTAssertFalse(viewModel.alertMessage.isEmpty)
@@ -45,7 +45,7 @@ class AuthViewModelTests: XCTestCase {
     
     func testCheckVerificationCodeWithSuccess() {
         service.checkVerificationCodeError = false
-        viewModel.checkVerificationCode(code: "")
+        viewModel.checkVerificationCode()
         
         XCTAssertTrue(viewModel.alertMessage.isEmpty)
         XCTAssertFalse(viewModel.showAlert)
