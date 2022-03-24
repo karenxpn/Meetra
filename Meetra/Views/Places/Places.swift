@@ -25,7 +25,7 @@ struct Places: View {
         NavigationView {
             ZStack {
                 
-                if locationManager.status == "true" {
+                if locationManager.status == "true" && !locationManager.lost_location_socket {
                     
                     if placesVM.loading {
                         Loading()

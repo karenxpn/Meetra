@@ -37,13 +37,11 @@ extension AppSocketManager: AppSocketManagerProtocol {
     func fetchLocationResponse(completion: @escaping (Bool) -> ()) {
         self.socket.off("location")
         self.socket.on("location") { (data, ack) in
-            print(data)
-            completion(false)
-//            if let data = data[0] as? [String : Bool], let status = data["location"] {
-//                DispatchQueue.main.async {
-//                    completion(status)
-//                }
-//            }
+            if let data = data[0] as? [String : Bool], let status = data["inside"] {
+                DispatchQueue.main.async {
+                    completion(status)
+                }
+            }
         }
     }
     

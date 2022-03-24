@@ -17,6 +17,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var navigate: Bool = false
     @Published var locationStatus: CLAuthorizationStatus?
     
+    @Published var lost_location_socket: Bool = false
+    
     var socketManager: AppSocketManagerProtocol
     
     init(socketManager: AppSocketManagerProtocol = AppSocketManager.shared) {
@@ -71,9 +73,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func getLocationResponse() {
-        
         socketManager.fetchLocationResponse { response in
-
+            self.lost_location_socket = !response
         }
     }
     

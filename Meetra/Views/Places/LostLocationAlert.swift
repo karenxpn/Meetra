@@ -12,9 +12,9 @@ struct LostLocationAlert: View {
     var body: some View {
         VStack( spacing: 30 ){
             Spacer()
-            LocationPermission(image: locationManager.status == "request" ? "icon_no_location" : "lost_location_icon",
-                               title: locationManager.status == "request" ? NSLocalizedString("noLocationTitle", comment: "") : NSLocalizedString("lostLocationTitle", comment: ""),
-                               content: locationManager.locationStatus == .notDetermined ? NSLocalizedString("noLocationContent", comment: "") : NSLocalizedString("lostLocationContent", comment: ""))
+            LocationPermission(image: (locationManager.status == "request" && !locationManager.lost_location_socket ) ? "icon_no_location" : "lost_location_icon",
+                               title: (locationManager.status == "request" && !locationManager.lost_location_socket ) ? NSLocalizedString("noLocationTitle", comment: "") : NSLocalizedString("lostLocationTitle", comment: ""),
+                               content: (locationManager.locationStatus == .notDetermined && !locationManager.lost_location_socket) ? NSLocalizedString("noLocationContent", comment: "") : NSLocalizedString("lostLocationContent", comment: ""))
             Spacer()
             
             Button(action: {
