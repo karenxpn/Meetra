@@ -79,30 +79,30 @@ struct Places: View {
                 Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
             })
             .navigationBarTitle("", displayMode: .inline)
-                .navigationBarItems(leading: Text("Meetra")
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-Black", size: 28))
-                    .padding(), trailing: HStack( spacing: 20) {
-                        Button {
-                            showFilter.toggle()
-                        } label: {
-                            Image("icon_filter")
-                                .foregroundColor(showFilter ? AppColors.accentColor : .black)
-                        }
-                        
-                        Button {
-                            
-                        } label: {
-                            Image("icon_ring")
-                                .foregroundColor(.black)
-                        }
-                    }).onAppear {
-                        locationManager.initLocation()
-                    }.onChange(of: showFilter) { value in
-                        if !value {
-                            placesVM.storeFilterValues()
-                        }
+            .navigationBarItems(leading: Text("Meetra")
+                .foregroundColor(.black)
+                .font(.custom("Inter-Black", size: 28))
+                .padding(), trailing: HStack( spacing: 20) {
+                    Button {
+                        showFilter.toggle()
+                    } label: {
+                        Image("icon_filter")
+                            .foregroundColor(showFilter ? AppColors.accentColor : .black)
                     }
+                    
+                    Button {
+                        
+                    } label: {
+                        Image("icon_ring")
+                            .foregroundColor(.black)
+                    }
+                }).onAppear {
+                    locationManager.initLocation()
+                }.onChange(of: showFilter) { value in
+                    if !value {
+                        placesVM.storeFilterValues()
+                    }
+                }
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
                 if value {
@@ -111,8 +111,11 @@ struct Places: View {
                 } else {
                     lost_location = true
                 }
-            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "location_lost"))) { _ in
-                lost_location = true
+            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "location_lost"))) { obj in
+                if let userInfo = obj.userInfo, let info = userInfo["info"] as? Bool {
+                    print(info)
+                    lost_location = info
+                }
             }
     }
 }

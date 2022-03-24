@@ -51,13 +51,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     func getLocationResponse() {
         dataManager.fetchLocationResponse(socket: socket) { response in
             // do smth
-            NotificationCenter.default.post(name: Notification.Name("location_lost"), object: nil)
-
-//            if response {
-//                NotificationCenter.default.post(name: Notification.Name("location_lost"), object: nil)
-//            } else {
-//
-//            }
+            NotificationCenter.default.post(name: Notification.Name("location_lost"), object: nil, userInfo: ["info": response])
         }
     }
     
