@@ -27,16 +27,14 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     
     @Published var loading: Bool = false
         
-    let socket: SocketIOClient
-
-
     var dataManager: PlacesServiceProtocol
+    var socketManager: AppSocketManagerProtocol
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init(dataManager: PlacesServiceProtocol = PlacesService.shared) {
+    init(dataManager: PlacesServiceProtocol = PlacesService.shared,
+         socketManager: AppSocketManagerProtocol = AppSocketManager.shared) {
         self.dataManager = dataManager
-        self.socket = AppSocketManager.shared.socket
-        self.socket.removeAllHandlers()
+        self.socketManager = socketManager
         super.init()
         
         self.ageRange = self.ageLowerBound...self.ageUppwerBound
@@ -49,14 +47,15 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
 
     
     func getLocationResponse() {
-        dataManager.fetchLocationResponse(socket: socket) { response in
-            // do smth
+        
+        socketManager.fetchLocationResponse { response in
             NotificationCenter.default.post(name: Notification.Name("location_lost"), object: nil, userInfo: ["info": response])
+
         }
     }
     
     func sendLocation(lat: CGFloat, lng: CGFloat) {
-        dataManager.sendLocation(socket: socket, lat: lat, lng: lng)
+        socketManager.sendLocation(lat: lat, lng: lng)
     }
     
     func storeFilterValues() {

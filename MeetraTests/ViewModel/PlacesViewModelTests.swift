@@ -15,7 +15,7 @@ class PlacesViewModelTests: XCTestCase {
 
     override func setUp() {
         self.service = MockPlacesService()
-        self.viewModel = PlacesViewModel(dataManage: self.service)
+        self.viewModel = PlacesViewModel(dataManager: self.service)
     }
     
     func testGetPlaceRoomWithError() {

@@ -9,8 +9,13 @@ import Foundation
 import SocketIO
 import SwiftUI
 
+protocol AppSocketManagerProtocol {
+    func sendLocation( lat: CGFloat, lng: CGFloat)
+    func fetchLocationResponse(completion: @escaping (Bool) -> ())
+}
+
 class AppSocketManager {
-    static let shared = AppSocketManager()
+    static let shared: AppSocketManagerProtocol = AppSocketManager()
     let manager: SocketManager
     let socket: SocketIOClient
     
@@ -24,5 +29,26 @@ class AppSocketManager {
         }
         
         socket.connect()
+    }
+}
+
+extension AppSocketManager: AppSocketManagerProtocol {
+    
+    func fetchLocationResponse(completion: @escaping (Bool) -> ()) {
+        self.socket.off("location")
+        self.socket.on("location") { (data, ack) in
+            print(data)
+            completion(false)
+//            if let data = data[0] as? [String : Bool], let status = data["location"] {
+//                DispatchQueue.main.async {
+//                    completion(status)
+//                }
+//            }
+        }
+    }
+    
+    func sendLocation( lat: CGFloat, lng: CGFloat) {
+        self.socket.emit("location", ["lat" : lat,
+                                      "lng": lng])
     }
 }

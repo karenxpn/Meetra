@@ -18,15 +18,7 @@ class MockPlacesService: PlacesServiceProtocol {
     
     let networkError = NetworkError(initialError: AFError.explicitlyCancelled, backendError: nil)
     let placeRoom = PlaceRoom(users: [UserPreviewModel(id: 1, image: "", name: "Karen", online: true)], usersCount: 1, place: "EVN")
-    
-    func sendLocation(socket: SocketIOClient, lat: CGFloat, lng: CGFloat) {
-        
-    }
-    
-    func fetchLocationResponse(socket: SocketIOClient, completion: @escaping (Bool) -> ()) {
-        
-    }
-    
+
     func fetchPlaceRoom(token: String, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never> {
         var result: Result<PlaceRoom, NetworkError>
         

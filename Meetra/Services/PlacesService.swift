@@ -11,8 +11,6 @@ import SocketIO
 import Combine
 
 protocol PlacesServiceProtocol {
-    func sendLocation(socket: SocketIOClient, lat: CGFloat, lng: CGFloat)
-    func fetchLocationResponse(socket: SocketIOClient, completion: @escaping (Bool) -> ())
     func fetchPlaceRoom( token: String, model: PlaceRoomRequest ) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never>
 }
 
@@ -42,22 +40,5 @@ extension PlacesService: PlacesServiceProtocol {
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-    }
-    
-    func fetchLocationResponse(socket: SocketIOClient,completion: @escaping (Bool) -> ()) {
-        socket.on("location") { (data, ack) in
-            print(data)
-            completion(false)
-//            if let data = data[0] as? [String : Bool], let status = data["location"] {
-//                DispatchQueue.main.async {
-//                    completion(status)
-//                }
-//            }
-        }
-    }
-    
-    func sendLocation(socket: SocketIOClient, lat: CGFloat, lng: CGFloat) {
-        socket.emit("location", ["lat" : lat,
-                                 "lng": lng])
     }
 }
