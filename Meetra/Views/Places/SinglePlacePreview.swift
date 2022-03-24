@@ -22,11 +22,10 @@ struct SinglePlacePreview: View {
             VStack {
                 
                 ZStack( alignment: .bottomTrailing) {
-                    Image("Karen")
-                    //            WebImage(url: URL(string: user.image)!)
-                    //                .placeholder {
-                    //                    ProgressView()
-                    //                }
+                    WebImage(url: URL(string: user.image)!)
+                        .placeholder {
+                            ProgressView()
+                        }
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 100)
@@ -45,7 +44,7 @@ struct SinglePlacePreview: View {
                     }
                 }
                 
-                Text( "\(user.name) \(id)")
+                Text( user.name )
                     .foregroundColor(.black)
                     .font(.custom("Inter-Regular", size: 16))
             }
