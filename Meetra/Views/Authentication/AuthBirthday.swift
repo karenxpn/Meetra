@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 enum BirthdayForm: Hashable {
     case day
@@ -16,14 +17,9 @@ enum BirthdayForm: Hashable {
 struct AuthBirthday: View {
     @State var model: RegistrationRequest
     
-    @State private var day: String = ""
-    @State private var month: String = ""
-    @State private var year: String = ""
+    @ObservedObject var birthdayFormFields = BirthdayFormFields()
     @FocusState private var focusedField: BirthdayForm?
     @State private var navigate: Bool = false
-    let cur_year = Calendar.current.component(.year, from: Date())
-
-    
     
     var body: some View {
         ZStack {
@@ -39,14 +35,14 @@ struct AuthBirthday: View {
                     .font(.custom("Inter-Regular", size: 16))
                 
                 HStack {
-                    BirthdayFields(placeholder: "ДД", width: 61, date: $day)
+                    BirthdayFields(placeholder: "ДД", width: 61, date: $birthdayFormFields.day)
                         .focused($focusedField, equals: .day)
                     
-                    BirthdayFields(placeholder: "ММ", width: 61, date: $month)
+                    BirthdayFields(placeholder: "ММ", width: 61, date: $birthdayFormFields.month)
                         .focused($focusedField, equals: .month)
                     
                     
-                    BirthdayFields(placeholder: "ГГГГ", width: 72, date: $year)
+                    BirthdayFields(placeholder: "ГГГГ", width: 72, date: $birthdayFormFields.year)
                         .focused($focusedField, equals: .year)
                 }
                 
@@ -56,7 +52,7 @@ struct AuthBirthday: View {
                 
                 
                 Button {
-                    model.birthday = "\(day)/\(month)/\(year)"
+                    model.birthday = "\(birthdayFormFields.day)/\(birthdayFormFields.month)/\(birthdayFormFields.year)"
                     navigate.toggle()
                 } label: {
                     HStack {
@@ -69,19 +65,9 @@ struct AuthBirthday: View {
                         
                         Spacer()
                     }.background(AppColors.proceedButtonColor)
-                        .opacity(( day.count < 2 ||
-                                   month.count < 2 ||
-                                   year.count < 4 ||
-                                 Int(day) ?? 0 > 31 ||
-                                 Int(month) ?? 0 > 12 ||
-                                 Int(year) ?? 0 > cur_year - 18) ? 0.5 : 1)
+                        .opacity(!birthdayFormFields.isProceedButtonClickable ? 0.5 : 1)
                         .cornerRadius(30)
-                }.disabled(( day.count < 2 ||
-                             month.count < 2 ||
-                             year.count < 4 ||
-                           Int(day) ?? 0 > 31 ||
-                           Int(month) ?? 0 > 12 ||
-                           Int(year) ?? 0 > cur_year - 18))
+                }.disabled(birthdayFormFields.isProceedButtonClickable)
                     .background(
                         NavigationLink(destination: AuthGenderPicker(model: model), isActive: $navigate, label: {
                             EmptyView()
@@ -99,24 +85,70 @@ struct AuthBirthday: View {
             
             AuthProgress(page: 1)
         }.navigationBarTitle("", displayMode: .inline)
-            .onChange(of: day) { value in
+            .onChange(of: birthdayFormFields.day) { value in
                 if value.count == 2 {
                     focusedField = .month
                 }
-            }.onChange(of: month) { value in
+            }.onChange(of: birthdayFormFields.month) { value in
                 if value.count == 2 {
                     focusedField = .year
                 }
-            }.onChange(of: year) { value in
+            }.onChange(of: birthdayFormFields.year) { value in
                 if value.count == 4 {
                     focusedField = nil
                 }
             }
     }
+
 }
 
 struct AuthBirthday_Previews: PreviewProvider {
     static var previews: some View {
         AuthBirthday(model: RegistrationRequest())
+    }
+}
+
+
+class BirthdayFormFields: ObservableObject {
+    let cur_year = Calendar.current.component(.year, from: Date())
+
+    @Published var day: String = ""
+    @Published var month: String = ""
+    @Published var year: String = ""
+    
+    private var cancellableSet: Set<AnyCancellable> = []
+    @Published var isProceedButtonClickable: Bool = false
+    
+    init() {
+        allPublishersValid
+            .receive(on: RunLoop.main)
+            .assign(to: \.isProceedButtonClickable, on: self)
+            .store(in: &cancellableSet)
+    }
+    
+    
+    private var isDayPublisherValid: AnyPublisher<Bool, Never> {
+        $day
+            .map { $0.count == 2 && Int($0) ?? 0 < 32}
+            .eraseToAnyPublisher()
+    }
+    
+    private var isMonthPublisherValid: AnyPublisher<Bool, Never> {
+        $month
+            .map { $0.count == 2 && Int($0) ?? 0 < 13}
+            .eraseToAnyPublisher()
+    }
+    
+    private var isYearPublisherValid: AnyPublisher<Bool, Never> {
+        $year
+            .map { $0.count == 4 && Int($0) ?? 0 <= self.cur_year - 18}
+            .eraseToAnyPublisher()
+    }
+    
+    private var allPublishersValid: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest3(isDayPublisherValid, isMonthPublisherValid, isYearPublisherValid)
+            .map{ a, b, c in
+                return a && b && c
+            }.eraseToAnyPublisher()
     }
 }
