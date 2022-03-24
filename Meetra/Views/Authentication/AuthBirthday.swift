@@ -21,7 +21,8 @@ struct AuthBirthday: View {
     @State private var year: String = ""
     @FocusState private var focusedField: BirthdayForm?
     @State private var navigate: Bool = false
-    
+    let cur_year = Calendar.current.component(.year, from: Date())
+
     
     
     var body: some View {
@@ -68,9 +69,19 @@ struct AuthBirthday: View {
                         
                         Spacer()
                     }.background(AppColors.proceedButtonColor)
-                        .opacity(( day.count < 2 || month.count < 2 || year.count < 4 ) ? 0.5 : 1)
+                        .opacity(( day.count < 2 ||
+                                   month.count < 2 ||
+                                   year.count < 4 ||
+                                 Int(day) ?? 0 > 31 ||
+                                 Int(month) ?? 0 > 12 ||
+                                 Int(year) ?? 0 > cur_year - 18) ? 0.5 : 1)
                         .cornerRadius(30)
-                }.disabled(( day.count < 2 || month.count < 2 || year.count < 4 ))
+                }.disabled(( day.count < 2 ||
+                             month.count < 2 ||
+                             year.count < 4 ||
+                           Int(day) ?? 0 > 31 ||
+                           Int(month) ?? 0 > 12 ||
+                           Int(year) ?? 0 > cur_year - 18))
                     .background(
                         NavigationLink(destination: AuthGenderPicker(model: model), isActive: $navigate, label: {
                             EmptyView()
