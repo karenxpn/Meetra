@@ -82,12 +82,14 @@ struct LocationPermission: View {
                 .foregroundColor(.black)
                 .font(.custom("Inter-SemiBold", size: 30))
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
             
             
             Text( content )
                 .foregroundColor(.black)
                 .font(.custom("Inter-Regular", size: 16))
-                .multilineTextAlignment(.center)            
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }

@@ -17,7 +17,7 @@ class MockPlacesService: PlacesServiceProtocol {
     var fetchPlaceRoomError: Bool = false
     
     let networkError = NetworkError(initialError: AFError.explicitlyCancelled, backendError: nil)
-    let placeRoom = PlaceRoom(users: [UserPreviewModel(id: 1, image: "", name: "Karen", online: true)], usersCount: 1, place: "EVN")
+    let placeRoom = PlaceRoom(users: [UserPreviewModel(id: 1, image: "", name: "Karen", online: true)], count: 1, place: "EVN")
 
     func fetchPlaceRoom(token: String, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never> {
         var result: Result<PlaceRoom, NetworkError>

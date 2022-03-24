@@ -19,15 +19,13 @@ struct Places: View {
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
     
-    @State private var lost_location: Bool = false
-    
     
     var body: some View {
         
         NavigationView {
             ZStack {
                 
-                if !lost_location {
+                if locationManager.status == "true" {
                     
                     if placesVM.loading {
                         Loading()
@@ -38,18 +36,6 @@ struct Places: View {
                                 PlacesRoomView(room: placesVM.placeRoom!)
                             }
                             
-                        }.onReceive(timer) { _ in
-                            seconds += 1
-                            if seconds % 5 == 0 {
-                                placesVM.sendLocation(lat: locationManager.location?.latitude ?? 0,
-                                                      lng: locationManager.location?.longitude ?? 0)
-                            }
-                            
-                        }.onAppear {
-                            self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                        }.onDisappear {
-                            self.seconds = 0
-                            self.timer.upstream.connect().cancel()
                         }
                     }
                     
@@ -98,23 +84,31 @@ struct Places: View {
                     }
                 }).onAppear {
                     locationManager.initLocation()
+                    locationManager.getLocationResponse()
                 }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues()
                     }
+                }.onReceive(timer) { _ in
+                    seconds += 1
+                    if seconds % 5 == 0 {
+                        if locationManager.status == "true" {
+                            locationManager.sendLocation()
+                        }
+                    }
+                    
+                }.onAppear {
+                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                }.onDisappear {
+                    self.seconds = 0
+                    self.timer.upstream.connect().cancel()
                 }
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
-                if value {
-                    lost_location = false
+                if value == "true" {
                     locationManager.startUpdating()
                 } else {
-                    lost_location = true
-                }
-            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "location_lost"))) { obj in
-                if let userInfo = obj.userInfo, let info = userInfo["info"] as? Bool {
-                    print(info)
-                    lost_location = info
+                    locationManager.stopUpdating()
                 }
             }
     }

@@ -12,8 +12,8 @@ struct LostLocationAlert: View {
     var body: some View {
         VStack( spacing: 30 ){
             Spacer()
-            LocationPermission(image: locationManager.locationStatus == .notDetermined ? "icon_no_location" : "lost_location_icon",
-                               title: locationManager.locationStatus == .notDetermined ? NSLocalizedString("noLocationTitle", comment: "") : NSLocalizedString("lostLocationTitle", comment: ""),
+            LocationPermission(image: locationManager.status == "request" ? "icon_no_location" : "lost_location_icon",
+                               title: locationManager.status == "request" ? NSLocalizedString("noLocationTitle", comment: "") : NSLocalizedString("lostLocationTitle", comment: ""),
                                content: locationManager.locationStatus == .notDetermined ? NSLocalizedString("noLocationContent", comment: "") : NSLocalizedString("lostLocationContent", comment: ""))
             Spacer()
             
@@ -29,7 +29,7 @@ struct LostLocationAlert: View {
                 HStack {
                     Spacer()
                     
-                    Text( locationManager.locationStatus == .notDetermined ? "Включить" : "Проверить" )
+                    Text( locationManager.status == "request" ? "Включить" : "Проверить" )
                         .font(.custom("Inter-SemiBold", size: 20))
                         .foregroundColor(.white)
                         .padding(.vertical, 15)

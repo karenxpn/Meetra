@@ -67,7 +67,7 @@ struct AuthBirthday: View {
                     }.background(AppColors.proceedButtonColor)
                         .opacity(!birthdayFormFields.isProceedButtonClickable ? 0.5 : 1)
                         .cornerRadius(30)
-                }.disabled(birthdayFormFields.isProceedButtonClickable)
+                }.disabled(!birthdayFormFields.isProceedButtonClickable)
                     .background(
                         NavigationLink(destination: AuthGenderPicker(model: model), isActive: $navigate, label: {
                             EmptyView()

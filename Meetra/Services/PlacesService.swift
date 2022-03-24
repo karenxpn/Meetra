@@ -22,7 +22,7 @@ class PlacesService {
 
 extension PlacesService: PlacesServiceProtocol {
     func fetchPlaceRoom(token: String, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)place")!
+        let url = URL(string: "\(Credentials.BASE_URL)users/place")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AF.request(url,

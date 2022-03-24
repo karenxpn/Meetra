@@ -23,7 +23,7 @@ struct PlacesRoomView: View {
     var body: some View {
         ScrollView( showsIndicators: false) {
             
-            Text( "\(room.usersCount) человек ищут знакомства в \(room.place)" )
+            Text( "\(room.count) человек ищут знакомства в \(room.place)" )
                 .foregroundColor(.black)
                 .font(.custom("Inter-SemiBold", size: 18))
                 .multilineTextAlignment(.center)
@@ -87,6 +87,6 @@ struct PlacesRoomView_Previews: PreviewProvider {
                                                UserPreviewModel(id: 8, image: "Karen", name: "Karen", online: true),
                                                UserPreviewModel(id: 9, image: "Karen", name: "Karen", online: true),
                                                UserPreviewModel(id: 10, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 11, image: "Karen", name: "Karen", online: true)], usersCount: 12, place: "EVN"))
+                                               UserPreviewModel(id: 11, image: "Karen", name: "Karen", online: true)], count: 12, place: "EVN"))
     }
 }

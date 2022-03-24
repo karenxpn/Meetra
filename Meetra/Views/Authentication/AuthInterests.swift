@@ -93,7 +93,7 @@ struct AuthInterests: View {
                         
                         Spacer()
                     }.background(AppColors.proceedButtonColor)
-                        .opacity(authVM.selected_interests.count < 3 ? 0.5 : 1)
+                        .opacity((authVM.selected_interests.count < 3 || authVM.loading) ? 0.5 : 1)
                         .cornerRadius(30)
                 }.disabled((authVM.selected_interests.count < 3 || authVM.loading))
                     .background(

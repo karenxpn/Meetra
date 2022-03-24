@@ -185,6 +185,7 @@
 		FFF6468527D269E10022EF60 /* AuthBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBio.swift; sourceTree = "<group>"; };
 		FFF6468727D26D690022EF60 /* AuthInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterests.swift; sourceTree = "<group>"; };
 		FFF6468927D28F6A0022EF60 /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
+		FFF9BF7B27ECE1AA005906E1 /* Meetra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Meetra.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +383,7 @@
 		FF7DA04227CD55CA00CA4338 /* Meetra */ = {
 			isa = PBXGroup;
 			children = (
+				FFF9BF7B27ECE1AA005906E1 /* Meetra.entitlements */,
 				FF7D0D0827CE7FFE00A828C7 /* Info.plist */,
 				FF7D0CF727CE7C0D00A828C7 /* Models */,
 				FF7D0CF627CE7C0100A828C7 /* Services */,
@@ -928,6 +930,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Meetra/Meetra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
@@ -962,6 +965,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Meetra/Meetra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
