@@ -29,11 +29,15 @@ struct AuthInterests: View {
                     .fixedSize(horizontal: false, vertical: true)
                 
                 if authVM.loading {
-                    HStack {
-                        Spacer()
-                        ProgressView()
-                        Spacer()
-                    }
+                    Loading()
+                        .frame(
+                            minWidth: 0,
+                            maxWidth: .infinity,
+                            minHeight: 0,
+                            maxHeight: .infinity,
+                            alignment: .center
+                        )
+                    
                 } else {
                     GeometryReader { geometry in
                         
@@ -89,9 +93,9 @@ struct AuthInterests: View {
                         
                         Spacer()
                     }.background(AppColors.proceedButtonColor)
-                        .opacity(authVM.selected_interests.count < 3 ? 0.5 : 1)
+                        .opacity((authVM.selected_interests.count < 3 || authVM.loading) ? 0.5 : 1)
                         .cornerRadius(30)
-                }.disabled(authVM.selected_interests.count < 3)
+                }.disabled((authVM.selected_interests.count < 3 || authVM.loading))
                     .background(
                         NavigationLink(destination: AuthLocationPermission(), isActive: $authVM.navigate, label: {
                             EmptyView()

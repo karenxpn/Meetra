@@ -9,21 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("token") private var token: String = ""
-    @Binding var currentTab: Int
-    
+    @State private var currentTab: Int = 0
+
     var body: some View {
         ZStack( alignment: .bottom) {
             
             VStack {
                 
                 if currentTab == 0 {
-//                    Matches()
-                    Button{
-                        token = ""
-                    } label: {
-                        Text( "Sign out" )
-                    }
-                        .font(.custom("Inter-Regular", size: 20))
+                    Places()
+//                    Button{
+//                        token = ""
+//                    } label: {
+//                        Text( "Sign out" )
+//                    }
+//                        .font(.custom("Inter-Regular", size: 20))
 
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if currentTab == 1 {
@@ -49,6 +49,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(currentTab: .constant(0))
+        ContentView()
     }
 }

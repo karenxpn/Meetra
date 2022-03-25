@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A09865424D3A77BA9558C26 /* Pods_MeetraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19D249EFD529D5705C3320C3 /* Pods_MeetraTests.framework */; };
-		CEA4657C4A230B4159F48F3E /* Pods_Meetra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB6E29C616E4FC4E7C6BFDFC /* Pods_Meetra.framework */; };
-		FA4A9A9AF2818E300423F90E /* Pods_Meetra_MeetraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43DAAD7C28834988A9EE2783 /* Pods_Meetra_MeetraUITests.framework */; };
+		5D732567F96ADB8EECB593F0 /* Pods_MeetraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0956F8F30954631EC23C4DE /* Pods_MeetraTests.framework */; };
+		D4A6F0E1386DF6DD344E0938 /* Pods_Meetra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5B5DAB5FF3DEAADBDB32A4 /* Pods_Meetra.framework */; };
+		D97014C72D56A8045035052E /* Pods_Meetra_MeetraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86E4C8E597F5CFDB923716C6 /* Pods_Meetra_MeetraUITests.framework */; };
 		FF07F23027D0210A009B46B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */; };
 		FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23127D0D59A009B46B7 /* AuthNameInput.swift */; };
 		FF07F23427D0D8B6009B46B7 /* AuthBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23327D0D8B6009B46B7 /* AuthBirthday.swift */; };
@@ -19,6 +19,11 @@
 		FF07F23E27D0EEAD009B46B7 /* AuthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */; };
 		FF07F24027D0FF9C009B46B7 /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23F27D0FF9C009B46B7 /* RegistrationRequest.swift */; };
 		FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F24127D10763009B46B7 /* AuthProgress.swift */; };
+		FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */; };
+		FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */; };
+		FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */; };
+		FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */; };
+		FF37966F27E8B2C7007F28E7 /* PlacesRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -50,6 +55,15 @@
 		FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05427CD55CC00CA4338 /* MeetraTests.swift */; };
 		FF7DA05F27CD55CC00CA4338 /* MeetraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */; };
 		FF7DA06127CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */; };
+		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
+		FFB6D24527EA044E004FD5D3 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24427EA044E004FD5D3 /* WaterfallGrid */; };
+		FFB6D24727EA0E73004FD5D3 /* PlaceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24627EA0E73004FD5D3 /* PlaceFilter.swift */; };
+		FFB6D24927EA10DC004FD5D3 /* AgeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */; };
+		FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */; };
+		FFB6D24D27EA34F5004FD5D3 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24C27EA34F5004FD5D3 /* Loading.swift */; };
+		FFB6D24F27EA38AE004FD5D3 /* PlaceRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24E27EA38AE004FD5D3 /* PlaceRoomRequest.swift */; };
+		FFB6D25127EB975C004FD5D3 /* MockPlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D25027EB975C004FD5D3 /* MockPlacesService.swift */; };
+		FFB6D25327EB984D004FD5D3 /* PlacesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */; };
 		FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */; };
 		FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371727E23A5E00F91AB6 /* LocationManager.swift */; };
 		FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD6371D27E23BE200F91AB6 /* Localizable.strings */; };
@@ -57,6 +71,12 @@
 		FFD6372527E2413400F91AB6 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372427E2413400F91AB6 /* NotificationsViewModel.swift */; };
 		FFD6372727E2416E00F91AB6 /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372627E2416E00F91AB6 /* DeviceTokenManager.swift */; };
 		FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372827E2419300F91AB6 /* AppDelegate.swift */; };
+		FFD6372C27E3535900F91AB6 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372B27E3535900F91AB6 /* Places.swift */; };
+		FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */; };
+		FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = FFD6373227E3D47600F91AB6 /* SocketIO */; };
+		FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373427E3D4D400F91AB6 /* PlacesService.swift */; };
+		FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */; };
+		FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* AuthGallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -83,15 +103,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		12E2B52BDE11D44610D0EE57 /* Pods-MeetraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetraTests.release.xcconfig"; path = "Target Support Files/Pods-MeetraTests/Pods-MeetraTests.release.xcconfig"; sourceTree = "<group>"; };
-		19D249EFD529D5705C3320C3 /* Pods_MeetraTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetraTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2038DF53497ACED885BE6691 /* Pods-MeetraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetraTests.debug.xcconfig"; path = "Target Support Files/Pods-MeetraTests/Pods-MeetraTests.debug.xcconfig"; sourceTree = "<group>"; };
-		39DE3EECDF2E2F19C6B3300A /* Pods-Meetra-MeetraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra-MeetraUITests.release.xcconfig"; path = "Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3F782C9F05F0D833CDE96F74 /* Pods-Meetra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.debug.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.debug.xcconfig"; sourceTree = "<group>"; };
-		43DAAD7C28834988A9EE2783 /* Pods_Meetra_MeetraUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meetra_MeetraUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAB107F17947F51791C61B6F /* Pods-Meetra-MeetraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra-MeetraUITests.debug.xcconfig"; path = "Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		FB6E29C616E4FC4E7C6BFDFC /* Pods_Meetra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meetra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC008B374886975E547AC195 /* Pods-Meetra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.release.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.release.xcconfig"; sourceTree = "<group>"; };
+		13E35C40DA7448A0725C5785 /* Pods-Meetra-MeetraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra-MeetraUITests.debug.xcconfig"; path = "Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		417573E39D38C09A5021E1D5 /* Pods-Meetra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.release.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.release.xcconfig"; sourceTree = "<group>"; };
+		86E4C8E597F5CFDB923716C6 /* Pods_Meetra_MeetraUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meetra_MeetraUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0956F8F30954631EC23C4DE /* Pods_MeetraTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetraTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA5B5DAB5FF3DEAADBDB32A4 /* Pods_Meetra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meetra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCC70571220477E031B9F2D2 /* Pods-MeetraTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetraTests.release.xcconfig"; path = "Target Support Files/Pods-MeetraTests/Pods-MeetraTests.release.xcconfig"; sourceTree = "<group>"; };
+		E4E8AB7C7D3E9BE34EE68389 /* Pods-Meetra-MeetraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra-MeetraUITests.release.xcconfig"; path = "Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F1D0C9BBBE8AA00332E0662E /* Pods-MeetraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetraTests.debug.xcconfig"; path = "Target Support Files/Pods-MeetraTests/Pods-MeetraTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F790A92BD40CA2A4FF865EE6 /* Pods-Meetra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.debug.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.debug.xcconfig"; sourceTree = "<group>"; };
 		FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF07F23127D0D59A009B46B7 /* AuthNameInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNameInput.swift; sourceTree = "<group>"; };
 		FF07F23327D0D8B6009B46B7 /* AuthBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBirthday.swift; sourceTree = "<group>"; };
@@ -101,6 +121,11 @@
 		FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelTests.swift; sourceTree = "<group>"; };
 		FF07F23F27D0FF9C009B46B7 /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
 		FF07F24127D10763009B46B7 /* AuthProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProgress.swift; sourceTree = "<group>"; };
+		FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreviewModel.swift; sourceTree = "<group>"; };
+		FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePlacePreview.swift; sourceTree = "<group>"; };
+		FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRoom.swift; sourceTree = "<group>"; };
+		FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRoomView.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -135,6 +160,13 @@
 		FF7DA05A27CD55CC00CA4338 /* MeetraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITests.swift; sourceTree = "<group>"; };
 		FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FFB6D24627EA0E73004FD5D3 /* PlaceFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFilter.swift; sourceTree = "<group>"; };
+		FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeFilter.swift; sourceTree = "<group>"; };
+		FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
+		FFB6D24C27EA34F5004FD5D3 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		FFB6D24E27EA38AE004FD5D3 /* PlaceRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRoomRequest.swift; sourceTree = "<group>"; };
+		FFB6D25027EB975C004FD5D3 /* MockPlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlacesService.swift; sourceTree = "<group>"; };
+		FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModelTests.swift; sourceTree = "<group>"; };
 		FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocationPermission.swift; sourceTree = "<group>"; };
 		FFD6371727E23A5E00F91AB6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FFD6371C27E23BE200F91AB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -142,12 +174,18 @@
 		FFD6372427E2413400F91AB6 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		FFD6372627E2416E00F91AB6 /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
 		FFD6372827E2419300F91AB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FFD6372B27E3535900F91AB6 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
+		FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostLocationAlert.swift; sourceTree = "<group>"; };
+		FFD6373427E3D4D400F91AB6 /* PlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesService.swift; sourceTree = "<group>"; };
+		FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModel.swift; sourceTree = "<group>"; };
+		FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSocketManager.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* AuthGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
 		FFF6468527D269E10022EF60 /* AuthBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBio.swift; sourceTree = "<group>"; };
 		FFF6468727D26D690022EF60 /* AuthInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterests.swift; sourceTree = "<group>"; };
 		FFF6468927D28F6A0022EF60 /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
+		FFF9BF7B27ECE1AA005906E1 /* Meetra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Meetra.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,9 +193,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */,
 				FF7D0D2127CFFE1200A828C7 /* SwiftUIX in Frameworks */,
+				FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */,
+				FFB6D24527EA044E004FD5D3 /* WaterfallGrid in Frameworks */,
 				FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */,
-				CEA4657C4A230B4159F48F3E /* Pods_Meetra.framework in Frameworks */,
+				D4A6F0E1386DF6DD344E0938 /* Pods_Meetra.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A09865424D3A77BA9558C26 /* Pods_MeetraTests.framework in Frameworks */,
+				5D732567F96ADB8EECB593F0 /* Pods_MeetraTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA4A9A9AF2818E300423F90E /* Pods_Meetra_MeetraUITests.framework in Frameworks */,
+				D97014C72D56A8045035052E /* Pods_Meetra_MeetraUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,22 +224,22 @@
 		491E653C2C54BA66A011BCBC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3F782C9F05F0D833CDE96F74 /* Pods-Meetra.debug.xcconfig */,
-				FC008B374886975E547AC195 /* Pods-Meetra.release.xcconfig */,
-				AAB107F17947F51791C61B6F /* Pods-Meetra-MeetraUITests.debug.xcconfig */,
-				39DE3EECDF2E2F19C6B3300A /* Pods-Meetra-MeetraUITests.release.xcconfig */,
-				2038DF53497ACED885BE6691 /* Pods-MeetraTests.debug.xcconfig */,
-				12E2B52BDE11D44610D0EE57 /* Pods-MeetraTests.release.xcconfig */,
+				F790A92BD40CA2A4FF865EE6 /* Pods-Meetra.debug.xcconfig */,
+				417573E39D38C09A5021E1D5 /* Pods-Meetra.release.xcconfig */,
+				13E35C40DA7448A0725C5785 /* Pods-Meetra-MeetraUITests.debug.xcconfig */,
+				E4E8AB7C7D3E9BE34EE68389 /* Pods-Meetra-MeetraUITests.release.xcconfig */,
+				F1D0C9BBBE8AA00332E0662E /* Pods-MeetraTests.debug.xcconfig */,
+				DCC70571220477E031B9F2D2 /* Pods-MeetraTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		8F27AEF8D424207B4FD84ABE /* Frameworks */ = {
+		4DFC2A48A9D687D03C771961 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FB6E29C616E4FC4E7C6BFDFC /* Pods_Meetra.framework */,
-				43DAAD7C28834988A9EE2783 /* Pods_Meetra_MeetraUITests.framework */,
-				19D249EFD529D5705C3320C3 /* Pods_MeetraTests.framework */,
+				BA5B5DAB5FF3DEAADBDB32A4 /* Pods_Meetra.framework */,
+				86E4C8E597F5CFDB923716C6 /* Pods_Meetra_MeetraUITests.framework */,
+				A0956F8F30954631EC23C4DE /* Pods_MeetraTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -207,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				FF07F23B27D0ED1F009B46B7 /* MockAuthService.swift */,
+				FFB6D25027EB975C004FD5D3 /* MockPlacesService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -215,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */,
+				FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -232,7 +275,10 @@
 		FF7D0CF427CE7BF000A828C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FFD6372A27E3534800F91AB6 /* Places */,
 				FF7D0CF827CE7C3900A828C7 /* Authentication */,
+				FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */,
+				FFB6D24C27EA34F5004FD5D3 /* Loading.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,6 +290,7 @@
 				FF7D0D1927CFE46700A828C7 /* AlertViewModel.swift */,
 				FFD6371727E23A5E00F91AB6 /* LocationManager.swift */,
 				FFD6372427E2413400F91AB6 /* NotificationsViewModel.swift */,
+				FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -253,6 +300,7 @@
 			children = (
 				FF7D0CFD27CE7CAE00A828C7 /* AuthService.swift */,
 				FFD6372627E2416E00F91AB6 /* DeviceTokenManager.swift */,
+				FFD6373427E3D4D400F91AB6 /* PlacesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -265,6 +313,9 @@
 				FF7D0D2227D006E900A828C7 /* GlobalResponse.swift */,
 				FF07F23F27D0FF9C009B46B7 /* RegistrationRequest.swift */,
 				FFF6468927D28F6A0022EF60 /* InterestModel.swift */,
+				FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */,
+				FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */,
+				FFB6D24E27EA38AE004FD5D3 /* PlaceRoomRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -315,7 +366,7 @@
 				FF7DA05D27CD55CC00CA4338 /* MeetraUITests */,
 				FF7DA04127CD55CA00CA4338 /* Products */,
 				491E653C2C54BA66A011BCBC /* Pods */,
-				8F27AEF8D424207B4FD84ABE /* Frameworks */,
+				4DFC2A48A9D687D03C771961 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -332,6 +383,7 @@
 		FF7DA04227CD55CA00CA4338 /* Meetra */ = {
 			isa = PBXGroup;
 			children = (
+				FFF9BF7B27ECE1AA005906E1 /* Meetra.entitlements */,
 				FF7D0D0827CE7FFE00A828C7 /* Info.plist */,
 				FF7D0CF727CE7C0D00A828C7 /* Models */,
 				FF7D0CF627CE7C0100A828C7 /* Services */,
@@ -348,6 +400,7 @@
 				FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */,
 				FFD6371D27E23BE200F91AB6 /* Localizable.strings */,
 				FFD6372827E2419300F91AB6 /* AppDelegate.swift */,
+				FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */,
 			);
 			path = Meetra;
 			sourceTree = "<group>";
@@ -379,6 +432,20 @@
 			path = MeetraUITests;
 			sourceTree = "<group>";
 		};
+		FFD6372A27E3534800F91AB6 /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				FFD6372B27E3535900F91AB6 /* Places.swift */,
+				FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */,
+				FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */,
+				FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */,
+				FFB6D24627EA0E73004FD5D3 /* PlaceFilter.swift */,
+				FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */,
+				FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */,
+			);
+			path = Places;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -386,11 +453,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF7DA06427CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "Meetra" */;
 			buildPhases = (
-				349E839F1D633E322898C595 /* [CP] Check Pods Manifest.lock */,
+				7080E7D3F5D1BFFF08DCF15F /* [CP] Check Pods Manifest.lock */,
 				FF7DA03C27CD55CA00CA4338 /* Sources */,
 				FF7DA03D27CD55CA00CA4338 /* Frameworks */,
 				FF7DA03E27CD55CA00CA4338 /* Resources */,
-				13DD10C621AEB116A60F92B9 /* [CP] Embed Pods Frameworks */,
+				C9B411A2E0AEE60BDE50E73E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -400,6 +467,9 @@
 			packageProductDependencies = (
 				FF7D0CE927CE6A9800A828C7 /* TagLayoutView */,
 				FF7D0D2027CFFE1200A828C7 /* SwiftUIX */,
+				FFD6373227E3D47600F91AB6 /* SocketIO */,
+				FFB6D24127E93ACA004FD5D3 /* Sliders */,
+				FFB6D24427EA044E004FD5D3 /* WaterfallGrid */,
 			);
 			productName = Meetra;
 			productReference = FF7DA04027CD55CA00CA4338 /* Meetra.app */;
@@ -409,7 +479,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF7DA06727CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "MeetraTests" */;
 			buildPhases = (
-				C4F7296B7F9D6A990F5AE177 /* [CP] Check Pods Manifest.lock */,
+				ADED7144F3F53ACB3B0682E7 /* [CP] Check Pods Manifest.lock */,
 				FF7DA04C27CD55CC00CA4338 /* Sources */,
 				FF7DA04D27CD55CC00CA4338 /* Frameworks */,
 				FF7DA04E27CD55CC00CA4338 /* Resources */,
@@ -428,11 +498,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FF7DA06A27CD55CC00CA4338 /* Build configuration list for PBXNativeTarget "MeetraUITests" */;
 			buildPhases = (
-				18FF276BCE358378C99DFA9B /* [CP] Check Pods Manifest.lock */,
+				45307FA2D080575D79F130AB /* [CP] Check Pods Manifest.lock */,
 				FF7DA05627CD55CC00CA4338 /* Sources */,
 				FF7DA05727CD55CC00CA4338 /* Frameworks */,
 				FF7DA05827CD55CC00CA4338 /* Resources */,
-				2634F8F6208B847D598851C5 /* [CP] Embed Pods Frameworks */,
+				8C45B4D2294F2D3F369113CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -479,6 +549,9 @@
 			packageReferences = (
 				FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
 				FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */,
+				FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
+				FFB6D24327EA044E004FD5D3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
 			);
 			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
 			projectDirPath = "";
@@ -525,24 +598,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		13DD10C621AEB116A60F92B9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Meetra/Pods-Meetra-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Meetra/Pods-Meetra-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Meetra/Pods-Meetra-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		18FF276BCE358378C99DFA9B /* [CP] Check Pods Manifest.lock */ = {
+		45307FA2D080575D79F130AB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -564,24 +620,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2634F8F6208B847D598851C5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		349E839F1D633E322898C595 /* [CP] Check Pods Manifest.lock */ = {
+		7080E7D3F5D1BFFF08DCF15F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -603,7 +642,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C4F7296B7F9D6A990F5AE177 /* [CP] Check Pods Manifest.lock */ = {
+		8C45B4D2294F2D3F369113CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADED7144F3F53ACB3B0682E7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -625,6 +681,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C9B411A2E0AEE60BDE50E73E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Meetra/Pods-Meetra-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Meetra/Pods-Meetra-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Meetra/Pods-Meetra-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -633,26 +706,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFD6372527E2413400F91AB6 /* NotificationsViewModel.swift in Sources */,
+				FFB6D24D27EA34F5004FD5D3 /* Loading.swift in Sources */,
 				FFD6371F27E23FAA00F91AB6 /* AuthNotificationPermission.swift in Sources */,
 				FF07F24027D0FF9C009B46B7 /* RegistrationRequest.swift in Sources */,
+				FFB6D24F27EA38AE004FD5D3 /* PlaceRoomRequest.swift in Sources */,
+				FF37966F27E8B2C7007F28E7 /* PlacesRoomView.swift in Sources */,
 				FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */,
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
+				FFB6D24727EA0E73004FD5D3 /* PlaceFilter.swift in Sources */,
 				FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */,
 				FFD6372727E2416E00F91AB6 /* DeviceTokenManager.swift in Sources */,
+				FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
 				FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */,
 				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
+				FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */,
 				FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */,
 				FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */,
+				FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */,
 				FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */,
 				FF7D0CFA27CE7C5400A828C7 /* Introduction.swift in Sources */,
 				FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */,
 				FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */,
 				FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */,
 				FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */,
+				FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */,
 				FFF6468827D26D690022EF60 /* AuthInterests.swift in Sources */,
 				FFF6468A27D28F6A0022EF60 /* InterestModel.swift in Sources */,
 				FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */,
@@ -661,12 +742,19 @@
 				FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */,
 				FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */,
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
+				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
+				FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */,
+				FFD6372C27E3535900F91AB6 /* Places.swift in Sources */,
+				FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */,
 				FF7D0D1627CFDD3900A828C7 /* Credentials.swift in Sources */,
+				FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */,
+				FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */,
 				FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */,
 				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,
 				FF7D0D1827CFE2E300A828C7 /* AuthResponse.swift in Sources */,
 				FF7D0D1C27CFE53E00A828C7 /* VerifyPhoneNumber.swift in Sources */,
 				FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */,
+				FFB6D24927EA10DC004FD5D3 /* AgeFilter.swift in Sources */,
 				FF7D0D0427CE7D2A00A828C7 /* Authentication.swift in Sources */,
 				FF07F23427D0D8B6009B46B7 /* AuthBirthday.swift in Sources */,
 			);
@@ -677,8 +765,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */,
+				FFB6D25327EB984D004FD5D3 /* PlacesViewModelTests.swift in Sources */,
 				FF07F23C27D0ED1F009B46B7 /* MockAuthService.swift in Sources */,
 				FF07F23E27D0EEAD009B46B7 /* AuthViewModelTests.swift in Sources */,
+				FFB6D25127EB975C004FD5D3 /* MockPlacesService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,10 +926,11 @@
 		};
 		FF7DA06527CD55CC00CA4338 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F782C9F05F0D833CDE96F74 /* Pods-Meetra.debug.xcconfig */;
+			baseConfigurationReference = F790A92BD40CA2A4FF865EE6 /* Pods-Meetra.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Meetra/Meetra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
@@ -870,10 +961,11 @@
 		};
 		FF7DA06627CD55CC00CA4338 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC008B374886975E547AC195 /* Pods-Meetra.release.xcconfig */;
+			baseConfigurationReference = 417573E39D38C09A5021E1D5 /* Pods-Meetra.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Meetra/Meetra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
@@ -904,7 +996,7 @@
 		};
 		FF7DA06827CD55CC00CA4338 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2038DF53497ACED885BE6691 /* Pods-MeetraTests.debug.xcconfig */;
+			baseConfigurationReference = F1D0C9BBBE8AA00332E0662E /* Pods-MeetraTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -925,7 +1017,7 @@
 		};
 		FF7DA06927CD55CC00CA4338 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12E2B52BDE11D44610D0EE57 /* Pods-MeetraTests.release.xcconfig */;
+			baseConfigurationReference = DCC70571220477E031B9F2D2 /* Pods-MeetraTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -946,7 +1038,7 @@
 		};
 		FF7DA06B27CD55CC00CA4338 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAB107F17947F51791C61B6F /* Pods-Meetra-MeetraUITests.debug.xcconfig */;
+			baseConfigurationReference = 13E35C40DA7448A0725C5785 /* Pods-Meetra-MeetraUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -965,7 +1057,7 @@
 		};
 		FF7DA06C27CD55CC00CA4338 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39DE3EECDF2E2F19C6B3300A /* Pods-Meetra-MeetraUITests.release.xcconfig */;
+			baseConfigurationReference = E4E8AB7C7D3E9BE34EE68389 /* Pods-Meetra-MeetraUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1040,6 +1132,30 @@
 				minimumVersion = 0.1.1;
 			};
 		};
+		FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spacenation/swiftui-sliders";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		FFB6D24327EA044E004FD5D3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1052,6 +1168,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		FFB6D24127E93ACA004FD5D3 /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
+		};
+		FFB6D24427EA044E004FD5D3 /* WaterfallGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFB6D24327EA044E004FD5D3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
+			productName = WaterfallGrid;
+		};
+		FFD6373227E3D47600F91AB6 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

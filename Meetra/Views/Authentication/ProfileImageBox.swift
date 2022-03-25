@@ -15,13 +15,15 @@ struct ProfileImageBox: View {
     let index: Int
     
     var body: some View {
-        ZStack {
-            AppColors.addProfileImageBG
-                .cornerRadius(10)
+        
+        Button {
+            showPicker.toggle()
+        } label: {
             
-            Button {
-                showPicker.toggle()
-            } label: {
+            ZStack {
+                AppColors.addProfileImageBG
+                    .cornerRadius(10)
+                
                 Group {
                     if model.images.count > index {
                         ZStack {
@@ -58,8 +60,9 @@ struct ProfileImageBox: View {
                             .frame(width: 21, height: 21)
                     }
                 }
-            }
+            }.frame(width: width, height: height)
             
-        }.frame(width: width, height: height)
+        }
+        
     }
 }

@@ -12,6 +12,8 @@ target 'Meetra' do
 	pod 'ActivityIndicatorView'
 	pod 'PusherSwift', '~> 10.0'
 	pod 'ActionSheetPicker-3.0'
+	pod 'ExyteGrid'
+
 
 
 
