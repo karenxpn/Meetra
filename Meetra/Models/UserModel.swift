@@ -15,6 +15,7 @@ struct UserModel: Codable, Identifiable {
     var school: String
     var location: String
     var bio: String
-    var interests: [String]
+    var sameInterests: [String]
+    var userInterests: [String]
     var images: [String]
 }

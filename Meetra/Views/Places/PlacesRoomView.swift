@@ -65,7 +65,7 @@ struct PlacesRoomView: View {
                             }.padding(.top, 20)
                         }
                     } else {
-                        SinglePlacePreview(user: room.users[index], id: index)
+                        SinglePlacePreview(user: room.users[index])
                             .padding(.top, index == 1 ? 40 : 0)
                     }
                 }
