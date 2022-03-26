@@ -19,6 +19,8 @@
 		FF07F23E27D0EEAD009B46B7 /* AuthViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */; };
 		FF07F24027D0FF9C009B46B7 /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23F27D0FF9C009B46B7 /* RegistrationRequest.swift */; };
 		FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F24127D10763009B46B7 /* AuthProgress.swift */; };
+		FF363FFF27EFD77D0057D605 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF363FFE27EFD77D0057D605 /* UserView.swift */; };
+		FF36400127EFD7D80057D605 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF36400027EFD7D80057D605 /* UserModel.swift */; };
 		FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */; };
 		FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */; };
 		FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */; };
@@ -121,6 +123,8 @@
 		FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModelTests.swift; sourceTree = "<group>"; };
 		FF07F23F27D0FF9C009B46B7 /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
 		FF07F24127D10763009B46B7 /* AuthProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProgress.swift; sourceTree = "<group>"; };
+		FF363FFE27EFD77D0057D605 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		FF36400027EFD7D80057D605 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreviewModel.swift; sourceTree = "<group>"; };
 		FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePlacePreview.swift; sourceTree = "<group>"; };
 		FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRoom.swift; sourceTree = "<group>"; };
@@ -262,6 +266,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		FF363FFD27EFD76F0057D605 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FF363FFE27EFD77D0057D605 /* UserView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		FF7D0CEF27CE6DEE00A828C7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +287,7 @@
 		FF7D0CF427CE7BF000A828C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FF363FFD27EFD76F0057D605 /* Profile */,
 				FFD6372A27E3534800F91AB6 /* Places */,
 				FF7D0CF827CE7C3900A828C7 /* Authentication */,
 				FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */,
@@ -316,6 +329,7 @@
 				FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */,
 				FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */,
 				FFB6D24E27EA38AE004FD5D3 /* PlaceRoomRequest.swift */,
+				FF36400027EFD7D80057D605 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -721,6 +735,7 @@
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
 				FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */,
 				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
+				FF36400127EFD7D80057D605 /* UserModel.swift in Sources */,
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
 				FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */,
@@ -739,6 +754,7 @@
 				FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */,
 				FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */,
 				FF7D0D2327D006E900A828C7 /* GlobalResponse.swift in Sources */,
+				FF363FFF27EFD77D0057D605 /* UserView.swift in Sources */,
 				FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */,
 				FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */,
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
