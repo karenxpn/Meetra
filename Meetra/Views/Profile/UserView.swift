@@ -12,11 +12,10 @@ struct UserView: View {
     
     init(userID: Int) {
         self.userVM.getUser(userID: userID)
-        // get user with userID
     }
     
     var body: some View {
-        VStack {
+        Group {
             
             if userVM.loading {
                 Loading()

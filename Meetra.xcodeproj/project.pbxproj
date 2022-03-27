@@ -23,6 +23,8 @@
 		FF36400127EFD7D80057D605 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF36400027EFD7D80057D605 /* UserModel.swift */; };
 		FF36400327EFD8EB0057D605 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF36400227EFD8EB0057D605 /* UserViewModel.swift */; };
 		FF36400527EFDA780057D605 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF36400427EFDA780057D605 /* UserService.swift */; };
+		FF36400727F0B4070057D605 /* UserInnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF36400627F0B4070057D605 /* UserInnerView.swift */; };
+		FF36400927F0BA170057D605 /* AppPreviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF36400827F0BA170057D605 /* AppPreviewModels.swift */; };
 		FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */; };
 		FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */; };
 		FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */; };
@@ -129,6 +131,8 @@
 		FF36400027EFD7D80057D605 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FF36400227EFD8EB0057D605 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		FF36400427EFDA780057D605 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		FF36400627F0B4070057D605 /* UserInnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInnerView.swift; sourceTree = "<group>"; };
+		FF36400827F0BA170057D605 /* AppPreviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreviewModels.swift; sourceTree = "<group>"; };
 		FF37966627E8AA27007F28E7 /* UserPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreviewModel.swift; sourceTree = "<group>"; };
 		FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePlacePreview.swift; sourceTree = "<group>"; };
 		FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRoom.swift; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				FF363FFE27EFD77D0057D605 /* UserView.swift */,
+				FF36400627F0B4070057D605 /* UserInnerView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */,
 				FF7D0CF227CE71E400A828C7 /* Extensions.swift */,
 				FF7D0D1127CE889D00A828C7 /* GetTapLocation.swift */,
+				FF36400827F0BA170057D605 /* AppPreviewModels.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -727,6 +733,7 @@
 			files = (
 				FFD6372527E2413400F91AB6 /* NotificationsViewModel.swift in Sources */,
 				FFB6D24D27EA34F5004FD5D3 /* Loading.swift in Sources */,
+				FF36400727F0B4070057D605 /* UserInnerView.swift in Sources */,
 				FFD6371F27E23FAA00F91AB6 /* AuthNotificationPermission.swift in Sources */,
 				FF07F24027D0FF9C009B46B7 /* RegistrationRequest.swift in Sources */,
 				FFB6D24F27EA38AE004FD5D3 /* PlaceRoomRequest.swift in Sources */,
@@ -772,6 +779,7 @@
 				FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */,
 				FF7D0D1627CFDD3900A828C7 /* Credentials.swift in Sources */,
 				FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */,
+				FF36400927F0BA170057D605 /* AppPreviewModels.swift in Sources */,
 				FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */,
 				FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */,
 				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,
