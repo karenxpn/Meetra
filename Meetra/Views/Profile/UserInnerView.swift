@@ -18,10 +18,10 @@ struct UserInnerView: View {
 //                .placeholder(content: {
 //                    ProgressView()
 //                })
-            Image("user_profile_image_demo")
+            Image("user_image_demo")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: .greedy, height: UIScreen.main.bounds.size.height * 0.5)
+                .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.55)
 
             VStack( alignment: .leading, spacing: 8) {
                 
@@ -82,12 +82,22 @@ struct UserInnerView: View {
                     }
                 }
                 
+                Text(NSLocalizedString("about", comment: ""))
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-SemiBold", size: 18))
+                    .padding(.top)
+                
+                Text( userModel.bio)
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-Regular", size: 12))
+                    .fixedSize(horizontal: false, vertical: true)
+                
                 
             }
             .padding(25)
             .background(.white)
             .cornerRadius([.topLeft, .topRight], 34)
-            .offset(y: -UIScreen.main.bounds.size.height * 0.05)
+            .offset(y: -40)
         }.edgesIgnoringSafeArea(.top)
     }
 }

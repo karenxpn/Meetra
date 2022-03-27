@@ -7,7 +7,7 @@
 
 import Foundation
 struct AppPreviewModels {
-    static let userModel = UserModel(id: 1, name: "Karen", age: 22, online: true, starred: false, school: "RAU", location: "Yerevan, Armenia", bio: "IOS Developer", sameInterests: ["Travel"], userInterests: ["Bar", "Dancing"], images: ["https://sln-storage.s3.us-east-2.amazonaws.com/img/icon/day/150/png/111.png"])
+    static let userModel = UserModel(id: 1, name: "Karen", age: 22, online: true, starred: false, school: "RAU", location: "Yerevan, Armenia", bio: "Люблю плёночные фотики, котиков и фалафель", sameInterests: ["Travel"], userInterests: ["Bar", "Dancing"], images: ["https://sln-storage.s3.us-east-2.amazonaws.com/img/icon/day/150/png/111.png"])
     static let placeRoom =  PlaceRoom(users: [UserPreviewModel(id: 1, image: "Karen", name: "Karen", online: true),
                                               UserPreviewModel(id: 2, image: "Karen", name: "Karen", online: true),
                                               UserPreviewModel(id: 3, image: "Karen", name: "Karen", online: true),
