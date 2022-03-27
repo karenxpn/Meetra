@@ -30,16 +30,19 @@ struct SinglePlacePreview: View {
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
                     
-                    ZStack {
-                        Circle()
-                            .fill(.white)
-                            .frame(width: 15, height: 15)
-                            .offset(x: -10, y: -10)
-                        
-                        Circle()
-                            .fill(AppColors.onlineStatus)
-                            .frame(width: 10, height: 10)
-                            .offset(x: -10, y: -10)
+                    
+                    if user.online {
+                        ZStack {
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 15, height: 15)
+                                .offset(x: -10, y: -10)
+                            
+                            Circle()
+                                .fill(AppColors.onlineStatus)
+                                .frame(width: 10, height: 10)
+                                .offset(x: -10, y: -10)
+                        }
                     }
                 }
                 
