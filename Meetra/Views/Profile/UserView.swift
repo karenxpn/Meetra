@@ -9,19 +9,19 @@ import SwiftUI
 
 struct UserView: View {
     @ObservedObject var userVM = UserViewModel()
-    
-    init(userID: Int) {
-        self.userVM.getUser(userID: userID)
-    }
+    let userID: Int
     
     var body: some View {
-        Group {
+        ZStack {
             
             if userVM.loading {
                 Loading()
             } else if userVM.user != nil {
-                Text( "User" )
+                UserInnerView(userModel: self.userVM.user!)
             }
+        }.task {
+            print( "Appeared" )
+            userVM.getUser(userID: userID)
         }.alert(isPresented: $userVM.showAlert, content: {
             Alert(title: Text("Error"), message: Text(userVM.alertMessage), dismissButton: .default(Text("Got it!")))
         })

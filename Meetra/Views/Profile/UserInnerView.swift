@@ -13,14 +13,15 @@ struct UserInnerView: View {
     @State var userModel: ModelUserViewModel
     
     var body: some View {
-        ScrollView {
+        ScrollView( showsIndicators: false ) {
             
-            AsyncImage(url: URL(string: "https://example.com/icon.png")) { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                ProgressView()
-            }.frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.55)
+            WebImage(url: URL(string: userModel.images[0]))
+                .placeholder(content: {
+                    ProgressView()
+                })
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.55)
             
             VStack( alignment: .leading, spacing: 8) {
                 
@@ -41,7 +42,7 @@ struct UserInnerView: View {
                     Button {
                         userModel.starred.toggle()
                     } label: {
-                        Image( userModel.starred ? "star" : "star.fill")
+                        Image( userModel.starred ? "star.fill" : "star")
                             .resizable()
                             .foregroundColor(AppColors.starColor)
                             .frame(width: 18, height: 18)
