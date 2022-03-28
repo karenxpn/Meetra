@@ -16,7 +16,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     
-    @Published var user: UserModel? = nil
+    @Published var user: ModelUserViewModel? = nil
     
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: UserServiceProtocol
@@ -33,7 +33,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
-                    self.user = response.value!
+                    self.user = ModelUserViewModel.init(user: response.value!)
                 }
             }.store(in: &cancellableSet)
     }
