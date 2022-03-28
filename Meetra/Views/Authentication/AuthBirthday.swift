@@ -141,7 +141,9 @@ class BirthdayFormFields: ObservableObject {
     
     private var isYearPublisherValid: AnyPublisher<Bool, Never> {
         $year
-            .map { $0.count == 4 && Int($0) ?? 0 <= self.cur_year - 18}
+            .map { $0.count == 4 &&
+                Int($0) ?? 0 <= self.cur_year - 18 &&
+                Int($0) ?? 0 >= self.cur_year - 90}
             .eraseToAnyPublisher()
     }
     

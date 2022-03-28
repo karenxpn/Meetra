@@ -15,14 +15,12 @@ struct UserInnerView: View {
     var body: some View {
         ScrollView {
             
-            //            WebImage(url: URL(string: userModel.images[0]))
-            //                .placeholder(content: {
-            //                    ProgressView()
-            //                })
-            Image("user_image_demo")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.55)
+            AsyncImage(url: URL(string: "https://example.com/icon.png")) { image in
+                image.resizable()
+                    .aspectRatio(contentMode: .fill)
+            } placeholder: {
+                ProgressView()
+            }.frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.55)
             
             VStack( alignment: .leading, spacing: 8) {
                 
@@ -100,19 +98,19 @@ struct UserInnerView: View {
                     .padding(.top)
                 
                 TagLayoutView(
-                    userModel.allInterests, tagFont: UIFont(name: "Inter-SemiBold", size: 12)!,
+                    userModel.interests.map{$0.name}, tagFont: UIFont(name: "Inter-SemiBold", size: 12)!,
                     padding: 20,
                     parentWidth: UIScreen.main.bounds.size.width * 0.75) { tag in
                         
                         Text(tag)
                             .fixedSize()
                             .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
-                            .foregroundColor( userModel.sameInterests.contains(where: {$0 == tag}) ?  .white : AppColors.accentColor)
+                            .foregroundColor( userModel.interests.contains(where: {$0.name == tag && $0.same == true}) ?  .white : AppColors.accentColor)
                             .background(RoundedRectangle(cornerRadius: 30)
                                 .strokeBorder(AppColors.accentColor, lineWidth: 1.5)
                                 .background(
                                     RoundedRectangle(cornerRadius: 30)
-                                        .fill(userModel.sameInterests.contains(where: {$0 == tag}) ? AppColors.accentColor : .white)
+                                        .fill(userModel.interests.contains(where: {$0.name == tag && $0.same == true}) ? AppColors.accentColor : .white)
                                 )
                             )
                         
