@@ -31,7 +31,6 @@ struct ModelUserViewModel: Identifiable {
     var name: String            { self.user.name }
     var age: Int                { self.user.age }
     var online: Bool            { self.user.online }
-    var starred: Bool           { self.user.starred }
     var school: String          { self.user.school }
     var location: String        { self.user.location }
     var bio: String             { self.user.bio }
@@ -39,4 +38,9 @@ struct ModelUserViewModel: Identifiable {
     var userInterests: [String] { self.user.userInterests }
     var allInterests: [String]  { self.user.sameInterests + self.user.userInterests }
     var images: [String]        { self.user.images }
+    
+    var starred: Bool           {
+        get { self.user.starred }
+        set { self.user.starred = newValue }
+    }
 }

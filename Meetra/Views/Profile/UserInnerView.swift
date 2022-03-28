@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 import TagLayoutView
 
 struct UserInnerView: View {
-    let userModel: ModelUserViewModel
+    @State var userModel: ModelUserViewModel
     
     var body: some View {
         ScrollView {
@@ -41,7 +41,7 @@ struct UserInnerView: View {
                     Spacer()
                     
                     Button {
-                        
+                        userModel.starred.toggle()
                     } label: {
                         Image( userModel.starred ? "star" : "star.fill")
                             .resizable()
