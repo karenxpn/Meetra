@@ -17,6 +17,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     @Published var alertMessage: String = ""
     
     @Published var user: ModelUserViewModel? = nil
+    @Published var friendRequestSent: Bool = false
     
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: UserServiceProtocol
@@ -41,7 +42,8 @@ class UserViewModel: AlertViewModel, ObservableObject {
     func sendFriendRequest() {
         dataManager.sendFriendRequest(token: token, id: user!.id)
             .sink { response in
-                if response.error == nil {
+                if response.error != nil {
+                    self.friendRequestSent.toggle()
                     // do smth
                 }
             }.store(in: &cancellableSet)

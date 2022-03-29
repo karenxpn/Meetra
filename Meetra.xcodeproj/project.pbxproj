@@ -85,6 +85,7 @@
 		FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */; };
 		FFDE785F27F32F890036B098 /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE785E27F32F890036B098 /* MockUserService.swift */; };
 		FFDE786127F330F30036B098 /* UserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE786027F330F30036B098 /* UserViewModelTests.swift */; };
+		FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE786227F35E450036B098 /* FriendRequestSentNotification.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* AuthGallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -195,6 +196,7 @@
 		FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSocketManager.swift; sourceTree = "<group>"; };
 		FFDE785E27F32F890036B098 /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
 		FFDE786027F330F30036B098 /* UserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelTests.swift; sourceTree = "<group>"; };
+		FFDE786227F35E450036B098 /* FriendRequestSentNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestSentNotification.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* AuthGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			children = (
 				FF363FFE27EFD77D0057D605 /* UserView.swift */,
 				FF36400627F0B4070057D605 /* UserInnerView.swift */,
+				FFDE786227F35E450036B098 /* FriendRequestSentNotification.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */,
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
+				FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */,
 				FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */,
 				FFD6372C27E3535900F91AB6 /* Places.swift in Sources */,
 				FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */,
