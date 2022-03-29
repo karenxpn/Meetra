@@ -17,7 +17,8 @@ struct UserView: View {
             if userVM.loading {
                 Loading()
             } else if userVM.user != nil {
-                UserInnerView(userModel: self.userVM.user!)
+                UserInnerView()
+                    .environmentObject(userVM)
             }
         }.task {
             print( "Appeared" )

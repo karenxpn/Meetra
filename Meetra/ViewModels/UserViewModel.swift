@@ -37,4 +37,22 @@ class UserViewModel: AlertViewModel, ObservableObject {
                 }
             }.store(in: &cancellableSet)
     }
+    
+    func sendFriendRequest() {
+        dataManager.sendFriendRequest(token: token, id: user!.id)
+            .sink { response in
+                if response.error == nil {
+                    // do smth
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func starUser() {
+        dataManager.starUser(token: token, id: user!.id, starred: !user!.starred)
+            .sink { response in
+                if response.error != nil {
+                    self.user!.starred.toggle()
+                }
+            }.store(in: &cancellableSet)
+    }
 }

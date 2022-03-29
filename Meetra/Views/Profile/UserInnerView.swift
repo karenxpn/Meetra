@@ -10,12 +10,12 @@ import SDWebImageSwiftUI
 import TagLayoutView
 
 struct UserInnerView: View {
-    @State var userModel: ModelUserViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
     var body: some View {
         ScrollView( showsIndicators: false ) {
             
-            WebImage(url: URL(string: userModel.images[0]))
+            WebImage(url: URL(string: userVM.user!.images[0]))
                 .placeholder(content: {
                     ProgressView()
                 })
@@ -27,11 +27,11 @@ struct UserInnerView: View {
                 
                 HStack() {
                     
-                    Text( "\(userModel.name), \(userModel.age)" )
+                    Text( "\(userVM.user!.name), \(userVM.user!.age)" )
                         .foregroundColor(.black)
                         .font(.custom("Inter-SemiBold", size: 30))
                     
-                    if userModel.online {
+                    if userVM.user!.online {
                         Circle()
                             .fill(AppColors.onlineStatus)
                             .frame(width: 10, height: 10)
@@ -40,9 +40,9 @@ struct UserInnerView: View {
                     Spacer()
                     
                     Button {
-                        userModel.starred.toggle()
+                        userVM.starUser()
                     } label: {
-                        Image( userModel.starred ? "star.fill" : "star")
+                        Image( userVM.user!.starred ? "star.fill" : "star")
                             .resizable()
                             .foregroundColor(AppColors.starColor)
                             .frame(width: 18, height: 18)
@@ -53,7 +53,7 @@ struct UserInnerView: View {
                     }
                     
                     Button(action: {
-                        
+                        userVM.sendFriendRequest()
                     }, label: {
                         Image("user_send_request")
                             .resizable()
@@ -67,16 +67,16 @@ struct UserInnerView: View {
                 
                 HStack {
                     
-                    if !userModel.school.isEmpty {
+                    if !userVM.user!.school.isEmpty {
                         Image("user_school_icon")
-                        Text( userModel.school )
+                        Text( userVM.user!.school )
                             .foregroundColor(.black)
                             .font(.custom("Inter-Regular", size: 12))
                     }
                     
-                    if !userModel.location.isEmpty {
+                    if !userVM.user!.location.isEmpty {
                         Image("user_location_icon")
-                        Text( userModel.location )
+                        Text( userVM.user!.location )
                             .foregroundColor(.black)
                             .font(.custom("Inter-Regular", size: 12))
                     }
@@ -87,7 +87,7 @@ struct UserInnerView: View {
                     .font(.custom("Inter-SemiBold", size: 18))
                     .padding(.top)
                 
-                Text( userModel.bio)
+                Text( userVM.user!.bio)
                     .foregroundColor(.black)
                     .font(.custom("Inter-Regular", size: 12))
                     .fixedSize(horizontal: false, vertical: true)
@@ -99,19 +99,19 @@ struct UserInnerView: View {
                     .padding(.top)
                 
                 TagLayoutView(
-                    userModel.interests.map{$0.name}, tagFont: UIFont(name: "Inter-SemiBold", size: 12)!,
+                    userVM.user!.interests.map{$0.name}, tagFont: UIFont(name: "Inter-SemiBold", size: 12)!,
                     padding: 20,
                     parentWidth: UIScreen.main.bounds.size.width * 0.75) { tag in
                         
                         Text(tag)
                             .fixedSize()
                             .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
-                            .foregroundColor( userModel.interests.contains(where: {$0.name == tag && $0.same == true}) ?  .white : AppColors.accentColor)
+                            .foregroundColor( userVM.user!.interests.contains(where: {$0.name == tag && $0.same == true}) ?  .white : AppColors.accentColor)
                             .background(RoundedRectangle(cornerRadius: 30)
                                 .strokeBorder(AppColors.accentColor, lineWidth: 1.5)
                                 .background(
                                     RoundedRectangle(cornerRadius: 30)
-                                        .fill(userModel.interests.contains(where: {$0.name == tag && $0.same == true}) ? AppColors.accentColor : .white)
+                                        .fill(userVM.user!.interests.contains(where: {$0.name == tag && $0.same == true}) ? AppColors.accentColor : .white)
                                 )
                             )
                         
@@ -127,6 +127,6 @@ struct UserInnerView: View {
 
 struct UserInnerView_Previews: PreviewProvider {
     static var previews: some View {
-        UserInnerView(userModel: AppPreviewModels.userViewModel)
+        UserInnerView()
     }
 }
