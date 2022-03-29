@@ -12,7 +12,7 @@ import Combine
 protocol UserServiceProtocol {
     func fetchUser( token: String, id: Int ) -> AnyPublisher<DataResponse<UserModel, NetworkError>, Never>
     func sendFriendRequest( token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
-    func starUser( token: String, id: Int, starred: Bool ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func starUser( token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
 }
 
 class UserService {
@@ -40,13 +40,13 @@ extension UserService: UserServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func starUser(token: String, id: Int, starred: Bool) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)users/\(id)/star")!
+    func starUser(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)starred-user")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AF.request(url,
                           method: .post,
-                          parameters: ["starred" : starred],
+                          parameters: ["userId" : id],
                           encoder: JSONParameterEncoder.default,
                           headers: headers)
             .validate()
