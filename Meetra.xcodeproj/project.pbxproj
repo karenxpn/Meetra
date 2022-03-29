@@ -83,6 +83,8 @@
 		FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373427E3D4D400F91AB6 /* PlacesService.swift */; };
 		FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */; };
 		FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */; };
+		FFDE785F27F32F890036B098 /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE785E27F32F890036B098 /* MockUserService.swift */; };
+		FFDE786127F330F30036B098 /* UserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE786027F330F30036B098 /* UserViewModelTests.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* AuthGallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -191,6 +193,8 @@
 		FFD6373427E3D4D400F91AB6 /* PlacesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesService.swift; sourceTree = "<group>"; };
 		FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModel.swift; sourceTree = "<group>"; };
 		FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSocketManager.swift; sourceTree = "<group>"; };
+		FFDE785E27F32F890036B098 /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
+		FFDE786027F330F30036B098 /* UserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelTests.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* AuthGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 			children = (
 				FF07F23B27D0ED1F009B46B7 /* MockAuthService.swift */,
 				FFB6D25027EB975C004FD5D3 /* MockPlacesService.swift */,
+				FFDE785E27F32F890036B098 /* MockUserService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 			children = (
 				FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */,
 				FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */,
+				FFDE786027F330F30036B098 /* UserViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -796,8 +802,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFDE785F27F32F890036B098 /* MockUserService.swift in Sources */,
 				FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */,
 				FFB6D25327EB984D004FD5D3 /* PlacesViewModelTests.swift in Sources */,
+				FFDE786127F330F30036B098 /* UserViewModelTests.swift in Sources */,
 				FF07F23C27D0ED1F009B46B7 /* MockAuthService.swift in Sources */,
 				FF07F23E27D0EEAD009B46B7 /* AuthViewModelTests.swift in Sources */,
 				FFB6D25127EB975C004FD5D3 /* MockPlacesService.swift in Sources */,

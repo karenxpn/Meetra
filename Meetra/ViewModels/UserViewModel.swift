@@ -50,7 +50,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     func starUser() {
         dataManager.starUser(token: token, id: user!.id, starred: !user!.starred)
             .sink { response in
-                if response.error != nil {
+                if response.error == nil {
                     self.user!.starred.toggle()
                 }
             }.store(in: &cancellableSet)
