@@ -17,7 +17,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     @Published var alertMessage: String = ""
     
     @Published var user: ModelUserViewModel? = nil
-    @Published var friendRequestSent: Bool = false
+    @Published var friendRequestSentOffset: CGFloat = -UIScreen.main.bounds.height
     
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: UserServiceProtocol
@@ -43,8 +43,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
         dataManager.sendFriendRequest(token: token, id: user!.id)
             .sink { response in
                 if response.error != nil {
-                    self.friendRequestSent.toggle()
-                    // do smth
+                    self.friendRequestSentOffset = -UIScreen.main.bounds.height / 3
                 }
             }.store(in: &cancellableSet)
     }
