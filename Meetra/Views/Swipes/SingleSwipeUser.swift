@@ -40,20 +40,43 @@ struct SingleSwipeUser: View {
                     
                     VStack( alignment: .leading, spacing: 8) {
                         
-                        HStack {
-                            if user.online {
-                                HStack {
-                                    Circle()
-                                        .fill(AppColors.onlineStatus)
-                                        .frame(width: 6, height: 6)
-                                    
-                                    Text( NSLocalizedString("online", comment: ""))
-                                        .foregroundColor(.white)
-                                        .font(.custom("Inter-Regular", size: 8))
-                                }.padding(.horizontal, 12)
-                                    .padding(.vertical, 7)
-                                    .background(.white.opacity(0.3))
-                                    .cornerRadius(10)
+                        HStack( alignment: .top) {
+                            
+                            VStack( alignment: .leading) {
+                            
+                                
+                                if user.verified {
+                                    HStack {
+                                        Image("verified_icon")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 12, height: 12)
+                                        
+                                        Text( NSLocalizedString("verified", comment: ""))
+                                            .foregroundColor(.white)
+                                            .font(.custom("Inter-Regular", size: 8))
+                                    }.padding(.horizontal, 9)
+                                        .frame(height: 21)
+                                        .background(.white.opacity(0.3))
+                                        .cornerRadius(20)
+                                }
+                                
+                                
+                                if user.online {
+                                    HStack {
+                                        Circle()
+                                            .fill(AppColors.onlineStatus)
+                                            .frame(width: 6, height: 6)
+                                        
+                                        Text( NSLocalizedString("online", comment: ""))
+                                            .foregroundColor(.white)
+                                            .font(.custom("Inter-Regular", size: 8))
+                                    }.padding(.horizontal, 9)
+                                        .frame(height: 21)
+                                        .background(.white.opacity(0.3))
+                                        .cornerRadius(20)
+                                }
+                                
                             }
                             
                             Spacer()
@@ -77,7 +100,9 @@ struct SingleSwipeUser: View {
                             
                             TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 8)!,
                                            parentWidth: UIScreen.main.bounds.size.width * 0.5,
-                                           interests: Array(user.interests.prefix(6)))
+                                           interests: user.interests.count <= 6 ?
+                                           user.interests : Array(user.interests.prefix(5)) +
+                                           [UserInterestModel(same: false, name: "+ \(NSLocalizedString("more", comment: "")) \(user.interests.count - 5)")])
                             
                             Button {
                                 
@@ -129,7 +154,7 @@ struct SingleSwipeUser: View {
         }).padding(16)
             .background(goodSwipe ? AppColors.onlineStatus : AppColors.addProfileImageBG)
             .cornerRadius(30)
-            .shadow(radius: 3)
+            .shadow(radius: 1)
             .offset(x: user.x)
             .rotationEffect(.init(degrees: user.degree))
             .gesture(

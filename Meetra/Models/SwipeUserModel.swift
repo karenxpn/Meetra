@@ -16,6 +16,7 @@ struct SwipeUserModel: Identifiable, Codable {
     var age: Int
     var interests: [UserInterestModel]
     var online: Bool
+    var isVerified: Bool
 }
 
 struct SwipeUserViewModel: Identifiable {
@@ -25,12 +26,13 @@ struct SwipeUserViewModel: Identifiable {
         self.user = user
     }
     
-    var id: Int                 { self.user.id }
-    var image: String           { self.user.image }
-    var name: String            { self.user.name }
-    var age: Int                { self.user.age }
-    var online: Bool            { self.user.online }
+    var id: Int                         { self.user.id }
+    var image: String                   { self.user.image }
+    var name: String                    { self.user.name }
+    var age: Int                        { self.user.age }
+    var online: Bool                    { self.user.online }
     var interests: [UserInterestModel]  { self.user.interests }
+    var verified: Bool                  { self.user.isVerified }
 
     
     
