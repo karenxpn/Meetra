@@ -13,6 +13,14 @@ struct SingleSwipeUser: View {
     
     @EnvironmentObject var placesVM: PlacesViewModel
     @State var user: SwipeUserViewModel
+    @State private var goodSwipe: Bool = false
+    
+    let animation = Animation
+        .interpolatingSpring(mass: 1.0,
+                             stiffness: 50,
+                             damping: 8,
+                             initialVelocity: 0)
+        .speed(0.8)
     
     var body: some View {
         
@@ -21,7 +29,6 @@ struct SingleSwipeUser: View {
             VStack( spacing: 20) {
                 
                 ZStack( alignment: .leading) {
-                    
                     
                     WebImage(url: URL(string: user.image)!)
                         .placeholder {
@@ -44,8 +51,8 @@ struct SingleSwipeUser: View {
                                     .font(.custom("Inter-Regular", size: 8))
                             }.padding(.horizontal, 12)
                                 .padding(.vertical, 7)
-                            .background(.white.opacity(0.3))
-                            .cornerRadius(10)
+                                .background(.white.opacity(0.3))
+                                .cornerRadius(10)
                         }
                         
                         Spacer()
@@ -59,7 +66,8 @@ struct SingleSwipeUser: View {
                             
                             TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 8)!,
                                            parentWidth: UIScreen.main.bounds.size.width * 0.5,
-                                           interests: Array(user.interests.prefix(6)))                            
+                                           interests: Array(user.interests.prefix(6)))
+                            
                             Button {
                                 
                             } label: {
@@ -67,11 +75,7 @@ struct SingleSwipeUser: View {
                                     .foregroundColor(.white)
                                     .font(.title)
                             }
-
-                            
-                            
                         }
-                        
                         
                     }.padding()
                     
@@ -81,31 +85,38 @@ struct SingleSwipeUser: View {
                 HStack( spacing: 15) {
                     
                     SwipeButtonHelper(icon: "left_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
-                        withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
+                        withAnimation(animation) {
                             user.x = -500; user.degree = -20
                         }
                     }
                     
                     SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
+                        goodSwipe = true
+                        // make request
+                        withAnimation(animation) {
+                            user.x = 500; user.degree = 20
+                        }
                         print( "star" )
                     }
                     
                     SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
+                        goodSwipe = true
+                        // make request
+                        withAnimation(animation) {
+                            user.x = 500; user.degree = 20
+                        }
                         print( "send request" )
                     }
+                    
                     SwipeButtonHelper(icon: "right_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
-                        withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
+                        withAnimation(animation) {
                             user.x = 500; user.degree = 20
                         }
                     }
                 }
             }
-            
-            
-            
-            
         }).padding(16)
-            .background(AppColors.addProfileImageBG)
+            .background(goodSwipe ? AppColors.onlineStatus : AppColors.addProfileImageBG)
             .cornerRadius(30)
             .shadow(radius: 3)
             .offset(x: user.x)
