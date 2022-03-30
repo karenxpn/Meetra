@@ -16,8 +16,11 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     @AppStorage( "ageUpperBound" ) var ageUppwerBound: Int = 51
     @AppStorage( "preferredGender" ) var preferredGender: String = "Всех"
     @AppStorage( "usersStatus" ) var usersStatus: String = "Всех"
-
+    
     @Published var placeRoom: PlaceRoom? = nil
+    
+    @Published var users = [SwipeUserViewModel]()
+    @Published var swipePage: Int = 1
     
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
@@ -26,7 +29,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     @Published var status: String = ""
     
     @Published var loading: Bool = false
-        
+    
     var dataManager: PlacesServiceProtocol
     private var cancellableSet: Set<AnyCancellable> = []
     
@@ -37,8 +40,6 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         self.ageRange = self.ageLowerBound...self.ageUppwerBound
         self.gender = self.preferredGender
         self.status = self.usersStatus
-                
-        self.getRoom()
     }
     
     func storeFilterValues() {
@@ -76,5 +77,28 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                     self.placeRoom = response.value!
                 }
             }.store(in: &cancellableSet)
+    }
+    
+    func getSwipes() {
+        loading = true
+        let model = PlaceRoomRequest(minAge: ageLowerBound,
+                                     maxAge: ageUppwerBound,
+                                     gender: preferredGender,
+                                     status: usersStatus)
+        
+        dataManager.fetchSwipes(token: token,
+                                page: swipePage,
+                                model: model)
+        .sink { response in
+            self.loading = false
+            if response.error != nil {
+                self.users.removeAll(keepingCapacity: false)
+                self.makeAlert(with: response.error!,
+                               message: &self.alertMessage,
+                               alert: &self.showAlert)
+            } else {
+                self.users = response.value!.map{ SwipeUserViewModel(user: $0 )}
+            }
+        }.store(in: &cancellableSet)
     }
 }

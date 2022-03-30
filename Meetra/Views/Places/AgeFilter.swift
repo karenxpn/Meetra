@@ -9,8 +9,8 @@ import SwiftUI
 import Sliders
 
 struct AgeFilter: View {
-    
-    @EnvironmentObject var placeVM: PlacesViewModel
+        
+    @Binding var range: ClosedRange<Int>
     
     var body: some View {
         VStack( alignment: .leading, spacing: 10 ) {
@@ -22,14 +22,14 @@ struct AgeFilter: View {
                 
                 HStack {
                     Spacer()
-                    Text("\(placeVM.ageRange.lowerBound) - \(placeVM.ageRange.upperBound)")
+                    Text("\(range.lowerBound) - \(range.upperBound)")
                         .foregroundColor(AppColors.filterGray)
                         .font(.custom("Inter-Regular", size: 12))
                 }
             }
             
             
-            RangeSlider(range: $placeVM.ageRange,
+            RangeSlider(range: $range,
                         in: 18...51)
                 .rangeSliderStyle(
                         HorizontalRangeSliderStyle(
@@ -62,7 +62,6 @@ struct AgeFilter: View {
 
 struct AgeFilter_Previews: PreviewProvider {
     static var previews: some View {
-        AgeFilter()
-            .environmentObject(PlacesViewModel())
+        AgeFilter(range: .constant(1...51))
     }
 }

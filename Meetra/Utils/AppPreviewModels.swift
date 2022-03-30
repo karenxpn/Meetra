@@ -20,4 +20,7 @@ struct AppPreviewModels {
                                               UserPreviewModel(id: 9, image: "Karen", name: "Karen", online: true),
                                               UserPreviewModel(id: 10, image: "Karen", name: "Karen", online: true),
                                               UserPreviewModel(id: 11, image: "Karen", name: "Karen", online: true)], count: 12, place: "EVN")
+    
+    static let swipeUser = SwipeUserModel(id: 1, image: "https://sln-storage.s3.us-east-2.amazonaws.com/img/icon/day/150/png/111.png")
+    static let swipeUserViewModel = SwipeUserViewModel(user: swipeUser)
 }

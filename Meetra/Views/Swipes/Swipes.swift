@@ -1,14 +1,13 @@
 //
-//  Places.swift
+//  Swipes.swift
 //  Meetra
 //
-//  Created by Karen Mirakyan on 17.03.22.
+//  Created by Karen Mirakyan on 30.03.22.
 //
 
 import SwiftUI
-import SwiftUIX
 
-struct Places: View {
+struct Swipes: View {
     
     @StateObject private var locationManager = LocationManager()
     @ObservedObject var placesVM = PlacesViewModel()
@@ -20,27 +19,27 @@ struct Places: View {
     @State private var offsetOnDrag: CGFloat = 0
     
     init() {
-        placesVM.getRoom()
+        placesVM.getSwipes()
+        print("get swipes here")
     }
     
-    
     var body: some View {
-        
         NavigationView {
             ZStack {
+                
                 
                 if locationManager.status == "true" && !locationManager.lost_location_socket {
                     
                     if placesVM.loading {
                         Loading()
                     } else {
-                        VStack {
-                            
-                            if placesVM.placeRoom != nil {
-                                PlacesRoomView(room: placesVM.placeRoom!)
-                            }
-                            
-                        }
+//                        VStack {
+//
+//                            if placesVM.placeRoom != nil {
+//                                PlacesRoomView(room: placesVM.placeRoom!)
+//                            }
+//
+//                        }
                     }
                     
                 } else {
@@ -90,7 +89,7 @@ struct Places: View {
                     locationManager.getLocationResponse()
                 }.onChange(of: showFilter) { value in
                     if !value {
-                        placesVM.storeFilterValues()
+//                        placesVM.storeFilterValues()
                     }
                 }.onReceive(timer) { _ in
                     seconds += 1
@@ -117,8 +116,8 @@ struct Places: View {
     }
 }
 
-struct Places_Previews: PreviewProvider {
+struct Swipes_Previews: PreviewProvider {
     static var previews: some View {
-        Places()
+        Swipes()
     }
 }

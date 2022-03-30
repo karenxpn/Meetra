@@ -30,6 +30,9 @@
 		FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */; };
 		FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */; };
 		FF37966F27E8B2C7007F28E7 /* PlacesRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */; };
+		FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */; };
+		FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */; };
+		FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -63,7 +66,7 @@
 		FF7DA06127CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */; };
 		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
 		FFB6D24527EA044E004FD5D3 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24427EA044E004FD5D3 /* WaterfallGrid */; };
-		FFB6D24727EA0E73004FD5D3 /* PlaceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24627EA0E73004FD5D3 /* PlaceFilter.swift */; };
+		FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */; };
 		FFB6D24927EA10DC004FD5D3 /* AgeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */; };
 		FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */; };
 		FFB6D24D27EA34F5004FD5D3 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24C27EA34F5004FD5D3 /* Loading.swift */; };
@@ -141,6 +144,9 @@
 		FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRoom.swift; sourceTree = "<group>"; };
 		FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRoomView.swift; sourceTree = "<group>"; };
+		FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUserModel.swift; sourceTree = "<group>"; };
+		FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipes.swift; sourceTree = "<group>"; };
+		FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSwipeUser.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -175,7 +181,7 @@
 		FF7DA05A27CD55CC00CA4338 /* MeetraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7DA05E27CD55CC00CA4338 /* MeetraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITests.swift; sourceTree = "<group>"; };
 		FF7DA06027CD55CC00CA4338 /* MeetraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetraUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FFB6D24627EA0E73004FD5D3 /* PlaceFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFilter.swift; sourceTree = "<group>"; };
+		FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUsers.swift; sourceTree = "<group>"; };
 		FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeFilter.swift; sourceTree = "<group>"; };
 		FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
 		FFB6D24C27EA34F5004FD5D3 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
@@ -292,6 +298,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		FF61D3FA27F4ADA300FB9A23 /* Swipes */ = {
+			isa = PBXGroup;
+			children = (
+				FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */,
+				FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */,
+			);
+			path = Swipes;
+			sourceTree = "<group>";
+		};
 		FF7D0CEF27CE6DEE00A828C7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +321,7 @@
 		FF7D0CF427CE7BF000A828C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FF61D3FA27F4ADA300FB9A23 /* Swipes */,
 				FF363FFD27EFD76F0057D605 /* Profile */,
 				FFD6372A27E3534800F91AB6 /* Places */,
 				FF7D0CF827CE7C3900A828C7 /* Authentication */,
@@ -351,6 +367,7 @@
 				FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */,
 				FFB6D24E27EA38AE004FD5D3 /* PlaceRoomRequest.swift */,
 				FF36400027EFD7D80057D605 /* UserModel.swift */,
+				FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -474,7 +491,7 @@
 				FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */,
 				FF37966827E8AA9E007F28E7 /* SinglePlacePreview.swift */,
 				FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */,
-				FFB6D24627EA0E73004FD5D3 /* PlaceFilter.swift */,
+				FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */,
 				FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */,
 				FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */,
 			);
@@ -750,13 +767,16 @@
 				FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */,
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
-				FFB6D24727EA0E73004FD5D3 /* PlaceFilter.swift in Sources */,
+				FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */,
 				FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */,
 				FFD6372727E2416E00F91AB6 /* DeviceTokenManager.swift in Sources */,
+				FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */,
 				FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
+				FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */,
 				FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */,
 				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
+				FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */,
 				FF36400127EFD7D80057D605 /* UserModel.swift in Sources */,
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
