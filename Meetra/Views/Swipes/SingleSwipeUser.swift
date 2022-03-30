@@ -40,19 +40,30 @@ struct SingleSwipeUser: View {
                     
                     VStack( alignment: .leading, spacing: 8) {
                         
-                        if user.online {
-                            HStack {
-                                Circle()
-                                    .fill(AppColors.onlineStatus)
-                                    .frame(width: 6, height: 6)
+                        HStack {
+                            if user.online {
+                                HStack {
+                                    Circle()
+                                        .fill(AppColors.onlineStatus)
+                                        .frame(width: 6, height: 6)
+                                    
+                                    Text( NSLocalizedString("online", comment: ""))
+                                        .foregroundColor(.white)
+                                        .font(.custom("Inter-Regular", size: 8))
+                                }.padding(.horizontal, 12)
+                                    .padding(.vertical, 7)
+                                    .background(.white.opacity(0.3))
+                                    .cornerRadius(10)
+                            }
+                            
+                            Spacer()
+                            
+                            Button {
                                 
-                                Text( NSLocalizedString("online", comment: ""))
-                                    .foregroundColor(.white)
-                                    .font(.custom("Inter-Regular", size: 8))
-                            }.padding(.horizontal, 12)
-                                .padding(.vertical, 7)
-                                .background(.white.opacity(0.3))
-                                .cornerRadius(10)
+                            } label: {
+                                Image("dots")
+                            }
+                            
                         }
                         
                         Spacer()
