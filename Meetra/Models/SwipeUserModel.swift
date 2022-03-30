@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+struct SwipeUserListModel: Codable {
+    var users: [SwipeUserModel]
+}
+
 
 struct SwipeUserModel: Identifiable, Codable {
     var id: Int

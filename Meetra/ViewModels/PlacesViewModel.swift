@@ -103,7 +103,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                                message: &self.alertMessage,
                                alert: &self.showAlert)
             } else {
-                self.users = response.value!.map{ SwipeUserViewModel(user: $0 )}
+                self.users = response.value!.users.map{ SwipeUserViewModel(user: $0 )}
             }
         }.store(in: &cancellableSet)
     }

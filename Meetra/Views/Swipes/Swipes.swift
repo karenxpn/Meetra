@@ -18,24 +18,45 @@ struct Swipes: View {
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
     
+    let sections = ["Анкеты", "Заявки", "Избранное"]
+    @State private var selection: String = "Анкеты"
+    
     init() {
         placesVM.getSwipes()
-        print("get swipes here")
     }
     
     var body: some View {
         NavigationView {
             ZStack {
                 
-                
                 if locationManager.status == "true" && !locationManager.lost_location_socket {
                     
                     if placesVM.loading {
                         Loading()
                     } else {
-                        ForEach(placesVM.users) { user in
-                            SingleSwipeUser(user: user)
-                                .environmentObject(placesVM)
+                        
+                        VStack( alignment: .leading, spacing: 20 ) {
+                            
+                            HStack( spacing: 20 ) {
+                                ForEach(sections, id: \.self) { section in
+                                    Button {
+                                        selection = section
+                                    } label: {
+                                        Text( section )
+                                            .foregroundColor(selection == section ? .black : .gray)
+                                            .font(.custom(selection == section ? "Inter-SemiBold" :"Inter-Regular", size: 16))
+                                    }
+                                }
+                            }.padding(.top)
+                            
+                            ZStack {
+                                ForEach(placesVM.users) { user in
+                                    SingleSwipeUser(user: user)
+                                        .environmentObject(placesVM)
+                                }
+                            }
+                            
+                            Spacer()
                         }
                     }
                     

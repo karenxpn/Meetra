@@ -14,6 +14,7 @@ struct SingleSwipeUser: View {
     @EnvironmentObject var placesVM: PlacesViewModel
     @State var user: SwipeUserViewModel
     @State private var goodSwipe: Bool = false
+    @State private var navigate: Bool = false
     
     let animation = Animation
         .interpolatingSpring(mass: 1.0,
@@ -24,131 +25,132 @@ struct SingleSwipeUser: View {
     
     var body: some View {
         
-        ZStack ( alignment: .bottom, content: {
+        VStack( spacing: 20) {
             
-            VStack( spacing: 20) {
+            ZStack( alignment: .leading) {
                 
-                ZStack( alignment: .leading) {
+                ImageHelper(image: user.image, contentMode: .fill)
+                    .frame(width: UIScreen.main.bounds.width * 0.8,
+                           height: UIScreen.main.bounds.height * 0.55)
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                
+                VStack( alignment: .leading, spacing: 8) {
                     
-                    ImageHelper(image: user.image, contentMode: .fill)
-                        .frame(width: UIScreen.main.bounds.width * 0.8,
-                               height: UIScreen.main.bounds.height * 0.6)
-                        .clipShape(RoundedRectangle(cornerRadius: 30))
-                    
-                    VStack( alignment: .leading, spacing: 8) {
+                    HStack( alignment: .top) {
                         
-                        HStack( alignment: .top) {
+                        VStack( alignment: .leading) {
                             
-                            VStack( alignment: .leading) {
                             
-                                
-                                if user.verified {
-                                    HStack {
-                                        Image("verified_icon")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 12, height: 12)
-                                        
-                                        Text( NSLocalizedString("verified", comment: ""))
-                                            .foregroundColor(.white)
-                                            .font(.custom("Inter-Regular", size: 8))
-                                    }.padding(.horizontal, 9)
-                                        .frame(height: 21)
-                                        .background(.white.opacity(0.3))
-                                        .cornerRadius(20)
-                                }
-                                
-                                
-                                if user.online {
-                                    HStack {
-                                        Circle()
-                                            .fill(AppColors.onlineStatus)
-                                            .frame(width: 6, height: 6)
-                                        
-                                        Text( NSLocalizedString("online", comment: ""))
-                                            .foregroundColor(.white)
-                                            .font(.custom("Inter-Regular", size: 8))
-                                    }.padding(.horizontal, 9)
-                                        .frame(height: 21)
-                                        .background(.white.opacity(0.3))
-                                        .cornerRadius(20)
-                                }
-                                
+                            if user.verified {
+                                HStack {
+                                    Image("verified_icon")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 12, height: 12)
+                                    
+                                    Text( NSLocalizedString("verified", comment: ""))
+                                        .foregroundColor(.white)
+                                        .font(.custom("Inter-Regular", size: 8))
+                                }.padding(.horizontal, 9)
+                                    .frame(height: 21)
+                                    .background(.white.opacity(0.3))
+                                    .cornerRadius(20)
                             }
                             
-                            Spacer()
                             
-                            Button {
-                                
-                            } label: {
-                                Image("dots")
+                            if user.online {
+                                HStack {
+                                    Circle()
+                                        .fill(AppColors.onlineStatus)
+                                        .frame(width: 6, height: 6)
+                                    
+                                    Text( NSLocalizedString("online", comment: ""))
+                                        .foregroundColor(.white)
+                                        .font(.custom("Inter-Regular", size: 8))
+                                }.padding(.horizontal, 9)
+                                    .frame(height: 21)
+                                    .background(.white.opacity(0.3))
+                                    .cornerRadius(20)
                             }
                             
                         }
                         
                         Spacer()
                         
-                        Text( "\(user.name), \(user.age)")
-                            .foregroundColor(.white)
-                            .font(.custom("Inter-SemiBold", size: 30))
-                        
-                        
-                        HStack {
+                        Button {
                             
-                            TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 8)!,
-                                           parentWidth: UIScreen.main.bounds.size.width * 0.5,
-                                           interests: user.interests.count <= 6 ?
-                                           user.interests : Array(user.interests.prefix(5)) +
-                                           [UserInterestModel(same: false, name: "+ \(NSLocalizedString("more", comment: "")) \(user.interests.count - 5)")])
-                            
-                            Button {
-                                
-                            } label: {
-                                Image(systemName: "info.circle")
-                                    .foregroundColor(.white)
-                                    .font(.title)
-                            }
+                        } label: {
+                            Image("dots")
                         }
                         
-                    }.padding()
+                    }
                     
-                }.frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.6)
+                    Spacer()
+                    
+                    Text( "\(user.name), \(user.age)")
+                        .foregroundColor(.white)
+                        .font(.custom("Inter-SemiBold", size: 30))
+                    
+                    
+                    HStack {
+                        
+                        TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
+                                       parentWidth: UIScreen.main.bounds.size.width * 0.55,
+                                       interests: user.interests.count <= 6 ?
+                                       user.interests : Array(user.interests.prefix(5)) +
+                                       [UserInterestModel(same: false, name: "+ \(NSLocalizedString("more", comment: "")) \(user.interests.count - 5)")])
+                        
+                        Button {
+                            navigate.toggle()
+                        } label: {
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.white)
+                                .font(.title)
+                        }.background(
+                            NavigationLink(destination: UserView(userID: user.id), isActive: $navigate, label: {
+                                EmptyView()
+                            }).hidden()
+                        )
+                    }
+                    
+                }.padding()
                 
+            }.frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.55)
+            
+            
+            HStack( spacing: 15) {
                 
-                HStack( spacing: 15) {
-                    
-                    SwipeButtonHelper(icon: "left_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
-                        withAnimation(animation) {
-                            user.x = -500; user.degree = -20
-                        }
+                SwipeButtonHelper(icon: "left_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
+                    withAnimation(animation) {
+                        user.x = -500; user.degree = -20
                     }
-                    
-                    SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
-                        goodSwipe = true
-                        // make request
-                        withAnimation(animation) {
-                            user.x = 500; user.degree = 20
-                        }
-                        print( "star" )
+                }
+                
+                SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
+                    goodSwipe = true
+                    // make request
+                    withAnimation(animation) {
+                        user.x = 500; user.degree = 20
                     }
-                    
-                    SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
-                        goodSwipe = true
-                        // make request
-                        withAnimation(animation) {
-                            user.x = 500; user.degree = 20
-                        }
-                        print( "send request" )
+                    print( "star" )
+                }
+                
+                SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
+                    goodSwipe = true
+                    // make request
+                    withAnimation(animation) {
+                        user.x = 500; user.degree = 20
                     }
-                    
-                    SwipeButtonHelper(icon: "right_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
-                        withAnimation(animation) {
-                            user.x = 500; user.degree = 20
-                        }
+                    print( "send request" )
+                }
+                
+                SwipeButtonHelper(icon: "right_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
+                    withAnimation(animation) {
+                        user.x = 500; user.degree = 20
                     }
                 }
             }
-        }).padding(16)
+        }.padding(16)
             .background(goodSwipe ? AppColors.onlineStatus : AppColors.addProfileImageBG)
             .cornerRadius(30)
             .shadow(radius: 1)

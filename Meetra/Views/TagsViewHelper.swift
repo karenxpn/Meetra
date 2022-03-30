@@ -21,9 +21,10 @@ struct TagsViewHelper: View {
             parentWidth: parentWidth) { tag in
                 
                 Text(tag)
+                    .font(Font(font))
                     .fixedSize()
                     .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
-                    .foregroundColor( interests.contains(where: {$0.name == tag && $0.same == true}) ?  .white : AppColors.accentColor)
+                    .foregroundColor( interests.contains(where: {$0.name == tag && $0.same == true}) ?  .white : .black)
                     .background(RoundedRectangle(cornerRadius: 30)
                         .strokeBorder(AppColors.accentColor, lineWidth: 1.5)
                         .background(

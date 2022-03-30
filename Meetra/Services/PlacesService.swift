@@ -12,7 +12,7 @@ import Combine
 
 protocol PlacesServiceProtocol {
     func fetchPlaceRoom( token: String, model: PlaceRoomRequest ) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never>
-    func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<[SwipeUserModel], NetworkError>, Never>
+    func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<SwipeUserListModel, NetworkError>, Never>
 }
 
 class PlacesService {
@@ -22,7 +22,7 @@ class PlacesService {
 }
 
 extension PlacesService: PlacesServiceProtocol {
-    func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<[SwipeUserModel], NetworkError>, Never> {
+    func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<SwipeUserListModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/swipes/\(page)")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
@@ -32,7 +32,7 @@ extension PlacesService: PlacesServiceProtocol {
                           encoder: JSONParameterEncoder.default,
                           headers: headers)
             .validate()
-            .publishDecodable(type: [SwipeUserModel].self)
+            .publishDecodable(type: SwipeUserListModel.self)
             .map { response in
                 response.mapError { error in
                     let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
