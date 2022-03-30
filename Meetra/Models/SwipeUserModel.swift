@@ -16,11 +16,13 @@ struct SwipeUserModel: Identifiable, Codable {
 
 struct SwipeUserViewModel: Identifiable {
     var user: SwipeUserModel
+    
     init( user: SwipeUserModel ) {
         self.user = user
     }
     
-    var id: Int { self.user.id }
+    var id: Int                 { self.user.id }
+    var image: String           { self.user.image }
     
     
     // Card x position

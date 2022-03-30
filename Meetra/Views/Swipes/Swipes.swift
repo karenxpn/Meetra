@@ -33,13 +33,10 @@ struct Swipes: View {
                     if placesVM.loading {
                         Loading()
                     } else {
-//                        VStack {
-//
-//                            if placesVM.placeRoom != nil {
-//                                PlacesRoomView(room: placesVM.placeRoom!)
-//                            }
-//
-//                        }
+                        ForEach(placesVM.users) { user in
+                            SingleSwipeUser(user: user)
+                                .environmentObject(placesVM)
+                        }
                     }
                     
                 } else {
@@ -89,7 +86,7 @@ struct Swipes: View {
                     locationManager.getLocationResponse()
                 }.onChange(of: showFilter) { value in
                     if !value {
-//                        placesVM.storeFilterValues()
+                        placesVM.storeFilterValues(location: "swipe")
                     }
                 }.onReceive(timer) { _ in
                     seconds += 1

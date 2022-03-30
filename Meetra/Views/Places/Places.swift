@@ -90,7 +90,7 @@ struct Places: View {
                     locationManager.getLocationResponse()
                 }.onChange(of: showFilter) { value in
                     if !value {
-                        placesVM.storeFilterValues()
+                        placesVM.storeFilterValues(location: "place")
                     }
                 }.onReceive(timer) { _ in
                     seconds += 1
