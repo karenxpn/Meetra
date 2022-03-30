@@ -98,24 +98,10 @@ struct UserInnerView: View {
                     .font(.custom("Inter-SemiBold", size: 18))
                     .padding(.top)
                 
-                TagLayoutView(
-                    userVM.user!.interests.map{$0.name}, tagFont: UIFont(name: "Inter-SemiBold", size: 12)!,
-                    padding: 20,
-                    parentWidth: UIScreen.main.bounds.size.width * 0.75) { tag in
-                        
-                        Text(tag)
-                            .fixedSize()
-                            .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
-                            .foregroundColor( userVM.user!.interests.contains(where: {$0.name == tag && $0.same == true}) ?  .white : AppColors.accentColor)
-                            .background(RoundedRectangle(cornerRadius: 30)
-                                .strokeBorder(AppColors.accentColor, lineWidth: 1.5)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .fill(userVM.user!.interests.contains(where: {$0.name == tag && $0.same == true}) ? AppColors.accentColor : .white)
-                                )
-                            )
-                        
-                    }.padding([.top], 16)
+                TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
+                               parentWidth: UIScreen.main.bounds.size.width * 0.75,
+                               interests: userVM.user!.interests)
+                .padding([.top], 16)
             }
             .padding(25)
             .background(.white)

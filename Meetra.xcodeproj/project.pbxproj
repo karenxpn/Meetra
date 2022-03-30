@@ -34,6 +34,7 @@
 		FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */; };
 		FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */; };
 		FF61D40227F4C02900FB9A23 /* SwipeButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40127F4C02900FB9A23 /* SwipeButtonHelper.swift */; };
+		FF61D40427F4CAD200FB9A23 /* TagsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40327F4CAD200FB9A23 /* TagsViewHelper.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -149,6 +150,7 @@
 		FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipes.swift; sourceTree = "<group>"; };
 		FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSwipeUser.swift; sourceTree = "<group>"; };
 		FF61D40127F4C02900FB9A23 /* SwipeButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeButtonHelper.swift; sourceTree = "<group>"; };
+		FF61D40327F4CAD200FB9A23 /* TagsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsViewHelper.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				FF7D0CF827CE7C3900A828C7 /* Authentication */,
 				FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */,
 				FFB6D24C27EA34F5004FD5D3 /* Loading.swift */,
+				FF61D40327F4CAD200FB9A23 /* TagsViewHelper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -817,6 +820,7 @@
 				FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */,
 				FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */,
 				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,
+				FF61D40427F4CAD200FB9A23 /* TagsViewHelper.swift in Sources */,
 				FF7D0D1827CFE2E300A828C7 /* AuthResponse.swift in Sources */,
 				FF7D0D1C27CFE53E00A828C7 /* VerifyPhoneNumber.swift in Sources */,
 				FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */,

@@ -31,8 +31,10 @@ struct SwipeButtonHelper: View {
     }
 }
 
-//struct SwipeButtonHelper_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SwipeButtonHelper()
-//    }
-//}
+struct SwipeButtonHelper_Previews: PreviewProvider {
+    static var previews: some View {
+        SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15, action: {
+            print("alskdjf")
+        })
+    }
+}
