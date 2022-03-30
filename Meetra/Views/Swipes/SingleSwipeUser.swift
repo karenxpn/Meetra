@@ -30,12 +30,9 @@ struct SingleSwipeUser: View {
                 
                 ZStack( alignment: .leading) {
                     
-                    WebImage(url: URL(string: user.image)!)
-                        .placeholder {
-                            ProgressView()
-                        }.resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.6)
+                    ImageHelper(image: user.image, contentMode: .fill)
+                        .frame(width: UIScreen.main.bounds.width * 0.8,
+                               height: UIScreen.main.bounds.height * 0.6)
                         .clipShape(RoundedRectangle(cornerRadius: 30))
                     
                     VStack( alignment: .leading, spacing: 8) {

@@ -31,6 +31,10 @@ struct UserInnerView: View {
                         .foregroundColor(.black)
                         .font(.custom("Inter-SemiBold", size: 30))
                     
+                    if userVM.user!.verified {
+                        Image("verified_icon")
+                    }
+                    
                     if userVM.user!.online {
                         Circle()
                             .fill(AppColors.onlineStatus)
