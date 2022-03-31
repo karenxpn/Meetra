@@ -44,7 +44,7 @@ struct UserInnerView: View {
                     Spacer()
                     
                     Button {
-                        userVM.starUser()
+                        userVM.starUser(userID: userVM.user!.id)
                     } label: {
                         Image( userVM.user!.starred ? "star.fill" : "star")
                             .resizable()
@@ -57,7 +57,7 @@ struct UserInnerView: View {
                     }
                     
                     Button(action: {
-                        userVM.sendFriendRequest()
+                        userVM.sendFriendRequest(userID: userVM.user!.id)
                     }, label: {
                         Image("user_send_request")
                             .resizable()

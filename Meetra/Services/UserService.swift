@@ -78,5 +78,5 @@ extension UserService: UserServiceProtocol {
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-    }    
+    }
 }

@@ -16,6 +16,7 @@ enum CardAction {
 struct SingleSwipeUser: View {
     
     @EnvironmentObject var placesVM: PlacesViewModel
+    @ObservedObject var userVM = UserViewModel()
     @State var user: SwipeUserViewModel
     @State private var navigate: Bool = false
     @State private var showDialog: Bool = false
@@ -158,6 +159,7 @@ struct SingleSwipeUser: View {
                 
                 SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
                     cardAction = .star
+                    userVM.starUser(userID: user.id)
                     // make request
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20
@@ -167,6 +169,7 @@ struct SingleSwipeUser: View {
                 
                 SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
                     cardAction = .request
+                    userVM.sendFriendRequest(userID: user.id)
                     // make request
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20

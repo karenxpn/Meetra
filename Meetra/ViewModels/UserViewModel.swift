@@ -39,8 +39,8 @@ class UserViewModel: AlertViewModel, ObservableObject {
             }.store(in: &cancellableSet)
     }
     
-    func sendFriendRequest() {
-        dataManager.sendFriendRequest(token: token, id: user!.id)
+    func sendFriendRequest(userID: Int) {
+        dataManager.sendFriendRequest(token: token, id: userID)
             .sink { response in
                 if response.error == nil {
                     self.friendRequestSentOffset = -UIScreen.main.bounds.height / 3
@@ -48,8 +48,8 @@ class UserViewModel: AlertViewModel, ObservableObject {
             }.store(in: &cancellableSet)
     }
     
-    func starUser() {
-        dataManager.starUser(token: token, id: user!.id)
+    func starUser(userID: Int) {
+        dataManager.starUser(token: token, id: userID)
             .sink { response in
                 if response.error == nil {
                     self.user!.starred.toggle()
