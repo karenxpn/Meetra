@@ -56,6 +56,9 @@ class UserViewModel: AlertViewModel, ObservableObject {
             .sink { response in
                 if response.error == nil {
                     self.user!.starred.toggle()
+                    if !self.users.isEmpty {
+                        self.users.removeAll(where: {$0.id == userID})
+                    }
                 }
             }.store(in: &cancellableSet)
     }
