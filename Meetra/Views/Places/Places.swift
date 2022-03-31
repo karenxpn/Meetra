@@ -60,8 +60,6 @@ struct Places: View {
                             }
                         }))
                 
-            }.onAppear {
-                placesVM.getRoom()
             }
             .alert(isPresented: $placesVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
@@ -87,6 +85,8 @@ struct Places: View {
                 }).onAppear {
                     locationManager.initLocation()
                     locationManager.getLocationResponse()
+                    placesVM.getRoom()
+
                 }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "place")

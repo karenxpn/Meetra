@@ -39,6 +39,7 @@
 		FF61D40827F5DBDC00FB9A23 /* FavouritesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40727F5DBDC00FB9A23 /* FavouritesList.swift */; };
 		FF61D40A27F5DCDB00FB9A23 /* FavouritesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40927F5DCDB00FB9A23 /* FavouritesListModel.swift */; };
 		FF61D40C27F5E3A300FB9A23 /* FavouritesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40B27F5E3A300FB9A23 /* FavouritesListCell.swift */; };
+		FF61D40E27F64D8800FB9A23 /* SwipeCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40D27F64D8800FB9A23 /* SwipeCards.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -159,6 +160,7 @@
 		FF61D40727F5DBDC00FB9A23 /* FavouritesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesList.swift; sourceTree = "<group>"; };
 		FF61D40927F5DCDB00FB9A23 /* FavouritesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListModel.swift; sourceTree = "<group>"; };
 		FF61D40B27F5E3A300FB9A23 /* FavouritesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListCell.swift; sourceTree = "<group>"; };
+		FF61D40D27F64D8800FB9A23 /* SwipeCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCards.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */,
+				FF61D40D27F64D8800FB9A23 /* SwipeCards.swift */,
 				FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */,
 				FF61D40127F4C02900FB9A23 /* SwipeButtonHelper.swift */,
 				FF61D40727F5DBDC00FB9A23 /* FavouritesList.swift */,
@@ -833,6 +836,7 @@
 				FF61D40C27F5E3A300FB9A23 /* FavouritesListCell.swift in Sources */,
 				FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */,
 				FF36400927F0BA170057D605 /* AppPreviewModels.swift in Sources */,
+				FF61D40E27F64D8800FB9A23 /* SwipeCards.swift in Sources */,
 				FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */,
 				FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */,
 				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,

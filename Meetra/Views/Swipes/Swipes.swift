@@ -50,13 +50,8 @@ struct Swipes: View {
                             
                             
                             if selection == "Анкеты" {
-                                ZStack( alignment: .top) {
-                                    ForEach(placesVM.users) { user in
-                                        SingleSwipeUser(user: user)
-                                            .environmentObject(placesVM)
-                                    }
-                                }.frame(minWidth: 0,
-                                        maxWidth: .infinity)
+                                SwipeCards()
+                                    .environmentObject(placesVM)
                             } else if selection == "Заявки" {
                                 
                             } else {
@@ -88,9 +83,7 @@ struct Swipes: View {
                             }
                         }))
                 
-            }.onAppear(perform: {
-                placesVM.getSwipes()
-            })
+            }
             .alert(isPresented: $placesVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
             })
@@ -115,6 +108,7 @@ struct Swipes: View {
                 }).onAppear {
                     locationManager.initLocation()
                     locationManager.getLocationResponse()
+                    placesVM.getSwipes()
                 }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "swipe")
