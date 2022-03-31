@@ -15,13 +15,18 @@ struct UserInnerView: View {
     var body: some View {
         ScrollView( showsIndicators: false ) {
             
-            WebImage(url: URL(string: userVM.user!.images[0]))
-                .placeholder(content: {
-                    ProgressView()
-                })
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.55)
+            ImageCarousel(numberOfImages: userVM.user!.images.count) {
+                ForEach(userVM.user!.images, id: \.self) { image in
+                    WebImage(url: URL(string: image))
+                        .placeholder(content: {
+                            ProgressView()
+                        })
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.55)
+                        .clipped()
+                }
+            }
             
             VStack( alignment: .leading, spacing: 8) {
                 
