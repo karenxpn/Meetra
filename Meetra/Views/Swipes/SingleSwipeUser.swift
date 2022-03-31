@@ -9,12 +9,18 @@ import SwiftUI
 import SDWebImageSwiftUI
 import TagLayoutView
 
+enum CardAction {
+    case swipe, report, star, request
+}
+
 struct SingleSwipeUser: View {
     
     @EnvironmentObject var placesVM: PlacesViewModel
     @State var user: SwipeUserViewModel
-    @State private var goodSwipe: Bool = false
     @State private var navigate: Bool = false
+    @State private var showDialog: Bool = false
+    
+    @State private var cardAction: CardAction? = .none
     
     let animation = Animation
         .interpolatingSpring(mass: 1.0,
@@ -78,9 +84,32 @@ struct SingleSwipeUser: View {
                         Spacer()
                         
                         Button {
-                            
+                            showDialog.toggle()
                         } label: {
                             Image("dots")
+                        }
+                        .confirmationDialog("", isPresented: $showDialog) {
+                            Button(role: .destructive) {
+                                cardAction = .report
+                                withAnimation(animation) {
+                                    user.x = -500; user.degree = -20
+                                }
+                            } label: {
+                                Text(NSLocalizedString("report", comment: ""))
+                            }
+                            
+                            Button(role: .destructive) {
+                                cardAction = .report
+                                withAnimation(animation) {
+                                    user.x = -500; user.degree = -20
+                                }                            } label: {
+                                Text(NSLocalizedString("block", comment: ""))
+                            }
+                            
+                            Button(role: .cancel) {
+                            } label: {
+                                Text(NSLocalizedString("cancel", comment: ""))
+                            }
                         }
                         
                     }
@@ -121,13 +150,14 @@ struct SingleSwipeUser: View {
             HStack( spacing: 15) {
                 
                 SwipeButtonHelper(icon: "left_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
+                    cardAction = .swipe
                     withAnimation(animation) {
                         user.x = -500; user.degree = -20
                     }
                 }
                 
                 SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
-                    goodSwipe = true
+                    cardAction = .star
                     // make request
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20
@@ -136,7 +166,7 @@ struct SingleSwipeUser: View {
                 }
                 
                 SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
-                    goodSwipe = true
+                    cardAction = .request
                     // make request
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20
@@ -145,13 +175,29 @@ struct SingleSwipeUser: View {
                 }
                 
                 SwipeButtonHelper(icon: "right_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
+                    cardAction = .swipe
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20
                     }
                 }
             }
         }.padding(16)
-            .background(goodSwipe ? AppColors.onlineStatus : AppColors.addProfileImageBG)
+            .background(
+                Group {
+                    switch cardAction {
+                    case .request:
+                        AppColors.onlineStatus
+                    case .report:
+                        AppColors.reportColor
+                    case .star:
+                        AppColors.starColor
+                    case .swipe:
+                        AppColors.proceedButtonColor
+                    default:
+                        AppColors.addProfileImageBG
+                    }
+                }
+            )
             .cornerRadius(30)
             .shadow(radius: 1)
             .offset(x: user.x)
@@ -159,6 +205,7 @@ struct SingleSwipeUser: View {
             .gesture(
                 DragGesture()
                     .onChanged({ value in
+                        self.cardAction = .swipe
                         withAnimation(.default) {
                             user.x = value.translation.width
                             user.degree = 7 * (value.translation.width > 0 ? 1 : -1)
@@ -168,6 +215,7 @@ struct SingleSwipeUser: View {
                         withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
                             switch value.translation.width {
                             case 0...100:
+                                self.cardAction = .none
                                 user.x = 0
                                 user.degree = 0
                             case let x where x > 100:
@@ -177,6 +225,7 @@ struct SingleSwipeUser: View {
                                 }
                                 user.x = 500; user.degree = 20
                             case (-100)...(-1):
+                                self.cardAction = .none
                                 user.x = 0
                                 user.degree = 0
                             case let x where x < -100:
@@ -186,7 +235,9 @@ struct SingleSwipeUser: View {
                                 }
                                 user.x = -500; user.degree = -20
                             default:
+                                self.cardAction = .none
                                 user.x = 0;
+                                user.degree = 0
                             }
                         }
                     })
