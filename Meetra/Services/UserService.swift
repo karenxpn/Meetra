@@ -13,6 +13,7 @@ protocol UserServiceProtocol {
     func fetchUser( token: String, id: Int ) -> AnyPublisher<DataResponse<UserModel, NetworkError>, Never>
     func sendFriendRequest( token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     func starUser( token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func fetchStarredUsers( token: String, page: Int ) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never>
 }
 
 class UserService {
@@ -21,6 +22,25 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
+    func fetchStarredUsers(token: String, page: Int) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)users/favourites/\(page)")!
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
+        
+        return AF.request(url,
+                          method: .post,
+                          headers: headers)
+            .validate()
+            .publishDecodable(type: FavouritesListModel.self)
+            .map { response in
+                response.mapError { error in
+                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
+                    return NetworkError(initialError: error, backendError: backendError)
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
     func sendFriendRequest(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/\(id)/request")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]

@@ -41,6 +41,7 @@ struct Swipes: View {
                                 ForEach(sections, id: \.self) { section in
                                     Button {
                                         selection = section
+                                        
                                     } label: {
                                         Text( section )
                                             .foregroundColor(selection == section ? .black : .gray)
@@ -48,12 +49,21 @@ struct Swipes: View {
                                     }
                                 }
                             }.padding(.top)
+                                .padding(.leading, 25)
                             
-                            ZStack {
-                                ForEach(placesVM.users) { user in
-                                    SingleSwipeUser(user: user)
-                                        .environmentObject(placesVM)
-                                }
+                            
+                            if selection == "Анкеты" {
+                                ZStack( alignment: .top) {
+                                    ForEach(placesVM.users) { user in
+                                        SingleSwipeUser(user: user)
+                                            .environmentObject(placesVM)
+                                    }
+                                }.frame(minWidth: 0,
+                                        maxWidth: .infinity)
+                            } else if selection == "Заявки" {
+                                
+                            } else {
+                                FavouritesList()
                             }
                             
                             Spacer()

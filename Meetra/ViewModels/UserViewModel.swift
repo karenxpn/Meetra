@@ -16,6 +16,9 @@ class UserViewModel: AlertViewModel, ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     
+    @Published var page: Int = 1
+    @Published var users = [UserPreviewModel]()
+    
     @Published var user: ModelUserViewModel? = nil
     @Published var friendRequestSentOffset: CGFloat = -UIScreen.main.bounds.height
     
@@ -53,6 +56,20 @@ class UserViewModel: AlertViewModel, ObservableObject {
             .sink { response in
                 if response.error == nil {
                     self.user!.starred.toggle()
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func getStarredUsers() {
+        loading = true
+        dataManager.fetchStarredUsers(token: token, page: page)
+            .sink { response in
+                self.loading = false
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.users = response.value!.favourites
+                    self.page += 1
                 }
             }.store(in: &cancellableSet)
     }
