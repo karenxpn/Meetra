@@ -159,7 +159,7 @@ struct SingleSwipeUser: View {
                 
                 SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
                     cardAction = .star
-                    userVM.starUser(userID: user.id)
+                    userVM.starUser()
                     // make request
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20

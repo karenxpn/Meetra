@@ -10,7 +10,7 @@ import SwiftUI
 struct Swipes: View {
     
     @StateObject private var locationManager = LocationManager()
-    @ObservedObject var placesVM = PlacesViewModel()
+    @StateObject var placesVM = PlacesViewModel()
     
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var seconds: Int = 0
@@ -21,10 +21,7 @@ struct Swipes: View {
     let sections = ["Анкеты", "Заявки", "Избранное"]
     @State private var selection: String = "Анкеты"
     
-    init() {
-        placesVM.getSwipes()
-    }
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -91,7 +88,10 @@ struct Swipes: View {
                             }
                         }))
                 
-            }.alert(isPresented: $placesVM.showAlert, content: {
+            }.onAppear(perform: {
+                placesVM.getSwipes()
+            })
+            .alert(isPresented: $placesVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
             })
             .navigationBarTitle("", displayMode: .inline)

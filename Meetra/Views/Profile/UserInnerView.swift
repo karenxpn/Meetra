@@ -49,7 +49,7 @@ struct UserInnerView: View {
                     Spacer()
                     
                     Button {
-                        userVM.starUser(userID: userVM.user!.id)
+                        userVM.starUser()
                     } label: {
                         Image( userVM.user!.starred ? "star.fill" : "star")
                             .resizable()

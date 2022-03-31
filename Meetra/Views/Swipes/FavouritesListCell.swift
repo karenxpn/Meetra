@@ -33,7 +33,7 @@ struct FavouritesListCell: View {
                 Spacer()
                 VStack {
                     Button {
-                        userVM.starUser(userID: user.id)
+                        userVM.removeUserFromStars(userID: user.id)
                     } label: {
                         Image("delete_icon")
                             .padding(10)

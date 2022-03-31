@@ -11,7 +11,7 @@ import SwiftUIX
 struct Places: View {
     
     @StateObject private var locationManager = LocationManager()
-    @ObservedObject var placesVM = PlacesViewModel()
+    @StateObject var placesVM = PlacesViewModel()
     
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var seconds: Int = 0
@@ -19,11 +19,7 @@ struct Places: View {
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
     
-    init() {
-        placesVM.getRoom()
-    }
-    
-    
+
     var body: some View {
         
         NavigationView {
@@ -64,7 +60,10 @@ struct Places: View {
                             }
                         }))
                 
-            }.alert(isPresented: $placesVM.showAlert, content: {
+            }.onAppear {
+                placesVM.getRoom()
+            }
+            .alert(isPresented: $placesVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
             })
             .navigationBarTitle("", displayMode: .inline)
