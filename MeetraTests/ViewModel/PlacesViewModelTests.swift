@@ -33,5 +33,20 @@ class PlacesViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.showAlert)
         XCTAssertTrue(viewModel.alertMessage.isEmpty)
     }
+    
+    func testGetSwipesWithError() {
+        service.fetchSwipesError = true
+        viewModel.getSwipes()
+        
+        XCTAssertTrue(viewModel.showAlert)
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testGetSwipesWithSuccess() {
+        service.fetchSwipesError = false
+        viewModel.getSwipes()
+        
+        XCTAssertFalse(viewModel.users.isEmpty)
+    }
 
 }

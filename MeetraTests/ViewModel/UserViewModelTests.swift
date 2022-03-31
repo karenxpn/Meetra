@@ -40,7 +40,7 @@ class UserViewModelTests: XCTestCase {
         service.starUserError = true
         service.fetchUserError = false
         viewModel.getUser(userID: 1)
-        viewModel.starUser()
+        viewModel.starUser(userID: 1)
         XCTAssertEqual(viewModel.user!.starred, service.userModel.starred)
     }
     
@@ -49,7 +49,21 @@ class UserViewModelTests: XCTestCase {
         service.fetchUserError = false
         viewModel.getUser(userID: 1)
         
-        viewModel.starUser()
+        viewModel.starUser(userID: 1)
         XCTAssertNotEqual(viewModel.user!.starred, service.userModel.starred)
+    }
+    
+    func testGetStarredUsersWithError() {
+        service.fetchStarredUsersError = true
+        viewModel.getStarredUsers()
+        
+        XCTAssertTrue(viewModel.users.isEmpty)
+    }
+    
+    func testGetStarredUsersWithSuccess() {
+        service.fetchStarredUsersError = false
+        viewModel.getStarredUsers()
+        
+        XCTAssertFalse(viewModel.users.isEmpty)
     }
 }
