@@ -44,6 +44,7 @@
 		FF61D41227F6804100FB9A23 /* FriendRequestListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D41127F6804100FB9A23 /* FriendRequestListModel.swift */; };
 		FF61D41427F6819800FB9A23 /* FriendRequestListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D41327F6819800FB9A23 /* FriendRequestListCell.swift */; };
 		FF61D41627F7469B00FB9A23 /* FriendRequestResponseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D41527F7469B00FB9A23 /* FriendRequestResponseRequest.swift */; };
+		FF61D41827F7867600FB9A23 /* AlamofireAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D41727F7867600FB9A23 /* AlamofireAPIHelper.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -169,6 +170,7 @@
 		FF61D41127F6804100FB9A23 /* FriendRequestListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestListModel.swift; sourceTree = "<group>"; };
 		FF61D41327F6819800FB9A23 /* FriendRequestListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestListCell.swift; sourceTree = "<group>"; };
 		FF61D41527F7469B00FB9A23 /* FriendRequestResponseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestResponseRequest.swift; sourceTree = "<group>"; };
+		FF61D41727F7867600FB9A23 /* AlamofireAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireAPIHelper.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				FFD6372627E2416E00F91AB6 /* DeviceTokenManager.swift */,
 				FFD6373427E3D4D400F91AB6 /* PlacesService.swift */,
 				FF36400427EFDA780057D605 /* UserService.swift */,
+				FF61D41727F7867600FB9A23 /* AlamofireAPIHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				FFD6372727E2416E00F91AB6 /* DeviceTokenManager.swift in Sources */,
 				FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */,
 				FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */,
+				FF61D41827F7867600FB9A23 /* AlamofireAPIHelper.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
 				FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */,
 				FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */,

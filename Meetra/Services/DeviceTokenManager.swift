@@ -16,7 +16,7 @@ class DeviceTokenManager {
     func sendDeviceToken( token: String, deviceToken: String ) -> AnyPublisher<GlobalResponse, Error> {
         let url = URL(string: "\(Credentials.BASE_URL)users/add-device-token")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
-        
+                
         return AF.request(url,
                           method: .post,
                           parameters: ["device_token" : deviceToken],
