@@ -79,7 +79,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
-                    self.users = response.value!.favourites
+                    self.users.append(contentsOf: response.value!.favourites)
                     self.page += 1
                 }
             }.store(in: &cancellableSet)
@@ -93,7 +93,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
-                    self.requests = response.value!.requests
+                    self.requests.append(contentsOf: response.value!.requests)
                     self.page += 1
                 }
             }.store(in: &cancellableSet)

@@ -28,7 +28,7 @@ extension UserService: UserServiceProtocol {
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AF.request(url,
-                          method: .post,
+                          method: .get,
                           headers: headers)
             .validate()
             .publishDecodable(type: FriendRequestListModel.self)
@@ -47,7 +47,7 @@ extension UserService: UserServiceProtocol {
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AF.request(url,
-                          method: .post,
+                          method: .get,
                           headers: headers)
             .validate()
             .publishDecodable(type: FavouritesListModel.self)
