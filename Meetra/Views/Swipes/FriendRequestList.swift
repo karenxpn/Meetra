@@ -9,9 +9,30 @@ import SwiftUI
 
 struct FriendRequestList: View {
     
-    
+    @ObservedObject var userVM = UserViewModel()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            
+            if userVM.loading {
+                Loading()
+            } else {
+                LazyVStack {
+                    ForEach( userVM.requests, id: \.id ) { user in
+                        FriendRequestListCell(user: user)
+                            .environmentObject(userVM)
+                            .onAppear {
+                                if user.id == userVM.requests.last?.id && !userVM.loading {
+                                    userVM.getFriendRequests()
+                                }
+                            }
+                    }
+                }
+            }
+            
+        }.onAppear {
+            userVM.getFriendRequests()
+        }
     }
 }
 

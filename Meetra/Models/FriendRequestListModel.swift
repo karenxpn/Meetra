@@ -12,7 +12,7 @@ struct FriendRequestListModel: Codable {
 
 struct FriendRequestModel: Identifiable, Codable {
     var id: Int
-    var iamge: String
+    var image: String
     var name: String
     var age: Int
     var school: String

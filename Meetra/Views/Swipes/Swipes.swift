@@ -53,7 +53,7 @@ struct Swipes: View {
                                 SwipeCards()
                                     .environmentObject(placesVM)
                             } else if selection == "Заявки" {
-                                
+                                FriendRequestList()
                             } else {
                                 FavouritesList()
                             }

@@ -42,6 +42,7 @@
 		FF61D40E27F64D8800FB9A23 /* SwipeCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40D27F64D8800FB9A23 /* SwipeCards.swift */; };
 		FF61D41027F67FDA00FB9A23 /* FriendRequestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40F27F67FDA00FB9A23 /* FriendRequestList.swift */; };
 		FF61D41227F6804100FB9A23 /* FriendRequestListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D41127F6804100FB9A23 /* FriendRequestListModel.swift */; };
+		FF61D41427F6819800FB9A23 /* FriendRequestListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D41327F6819800FB9A23 /* FriendRequestListCell.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -165,6 +166,7 @@
 		FF61D40D27F64D8800FB9A23 /* SwipeCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCards.swift; sourceTree = "<group>"; };
 		FF61D40F27F67FDA00FB9A23 /* FriendRequestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestList.swift; sourceTree = "<group>"; };
 		FF61D41127F6804100FB9A23 /* FriendRequestListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestListModel.swift; sourceTree = "<group>"; };
+		FF61D41327F6819800FB9A23 /* FriendRequestListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestListCell.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				FF61D40727F5DBDC00FB9A23 /* FavouritesList.swift */,
 				FF61D40B27F5E3A300FB9A23 /* FavouritesListCell.swift */,
 				FF61D40F27F67FDA00FB9A23 /* FriendRequestList.swift */,
+				FF61D41327F6819800FB9A23 /* FriendRequestListCell.swift */,
 			);
 			path = Swipes;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */,
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
 				FF61D41227F6804100FB9A23 /* FriendRequestListModel.swift in Sources */,
+				FF61D41427F6819800FB9A23 /* FriendRequestListCell.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
 				FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */,
 				FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */,
