@@ -52,7 +52,7 @@ struct FriendRequestListCell: View {
             
             VStack {
                 Button {
-                    userVM.sendFriendRequest(userID: user.id)
+                    userVM.acceptFriendRequest(id: user.id)
                 } label: {
                     Image("user_send_request")
                         .resizable()
@@ -64,7 +64,7 @@ struct FriendRequestListCell: View {
                 }
                 
                 Button {
-                    
+                    userVM.rejectFriendRequest(id: user.id)
                 } label: {
                     Image("reject")
                         .resizable()

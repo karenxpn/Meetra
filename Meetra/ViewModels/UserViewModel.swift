@@ -71,9 +71,6 @@ class UserViewModel: AlertViewModel, ObservableObject {
     }
     
     func getStarredUsers() {
-        print(self.users)
-        print(self.page)
-
         loading = true
         dataManager.fetchStarredUsers(token: token, page: page)
             .sink { response in
@@ -97,6 +94,24 @@ class UserViewModel: AlertViewModel, ObservableObject {
                 } else {
                     self.requests.append(contentsOf: response.value!.requests)
                     self.page += 1
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func acceptFriendRequest( id: Int ) {
+        dataManager.acceptFriendRequest(token: token, id: id)
+            .sink { response in
+                if response.error == nil {
+                    self.requests.removeAll(where: { $0.id == id })
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func rejectFriendRequest( id: Int ) {
+        dataManager.rejectFriendRequest(token: token, id: id)
+            .sink { response in
+                if response.error == nil {
+                    self.requests.removeAll(where: { $0.id == id })
                 }
             }.store(in: &cancellableSet)
     }
