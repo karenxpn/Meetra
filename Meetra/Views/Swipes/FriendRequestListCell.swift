@@ -52,7 +52,7 @@ struct FriendRequestListCell: View {
             
             VStack {
                 Button {
-                    userVM.acceptFriendRequest(id: user.id)
+                    userVM.accept_rejectFriendRequest(id: user.id, status: "accept")
                 } label: {
                     Image("user_send_request")
                         .resizable()
@@ -64,7 +64,7 @@ struct FriendRequestListCell: View {
                 }
                 
                 Button {
-                    userVM.rejectFriendRequest(id: user.id)
+                    userVM.accept_rejectFriendRequest(id: user.id, status: "reject")
                 } label: {
                     Image("reject")
                         .resizable()
@@ -75,9 +75,6 @@ struct FriendRequestListCell: View {
                         .shadow(radius: 3, x: 0, y: 3)
                 }
             }
-            
-            
-            
             
         }.padding(20)
             .background(AppColors.addProfileImageBG)

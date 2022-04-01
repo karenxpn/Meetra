@@ -11,6 +11,27 @@ import Alamofire
 @testable import Meetra
 
 class MockUserService: UserServiceProtocol {
+    func fetchFriendRequests(token: String, page: Int) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never> {
+        var result: Result<FriendRequestListModel, NetworkError>
+        
+        if fetchFriendRequestsError     { result = Result<FriendRequestListModel, NetworkError>.failure(networkError)}
+        else                            { result = Result<FriendRequestListModel, NetworkError>.success(friendRequests)}
+        
+        let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
+        let publisher = CurrentValueSubject<DataResponse<FriendRequestListModel, NetworkError>, Never>(response)
+        return publisher.eraseToAnyPublisher()
+    }
+    
+    func accept_rejectFriendRequest(token: String, model: FriendRequestResponseRequest) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        var result: Result<GlobalResponse, NetworkError>
+        
+        if accept_rejectError       { result = Result<GlobalResponse, NetworkError>.failure(networkError)}
+        else                        { result = Result<GlobalResponse, NetworkError>.success(globalResponse)}
+        
+        let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
+        let publisher = CurrentValueSubject<DataResponse<GlobalResponse, NetworkError>, Never>(response)
+        return publisher.eraseToAnyPublisher()
+    }
     
     func fetchStarredUsers(token: String, page: Int) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never> {
         var result: Result<FavouritesListModel, NetworkError>
@@ -28,11 +49,14 @@ class MockUserService: UserServiceProtocol {
     var sendFriendRequestError = false
     var starUserError = false
     var fetchStarredUsersError = false
+    var fetchFriendRequestsError = false
+    var accept_rejectError = false
     
     let globalResponse = GlobalResponse(status: "success", message: "success")
     let networkError = NetworkError(initialError: AFError.explicitlyCancelled, backendError: nil)
     let userModel = AppPreviewModels.userModel
     let users = AppPreviewModels.favouritesListModel
+    let friendRequests = FriendRequestListModel(requests: [AppPreviewModels.friendRequestModel])
     
     func fetchUser(token: String, id: Int) -> AnyPublisher<DataResponse<UserModel, NetworkError>, Never> {
         var result: Result<UserModel, NetworkError>
@@ -65,5 +89,5 @@ class MockUserService: UserServiceProtocol {
         let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
         let publisher = CurrentValueSubject<DataResponse<GlobalResponse, NetworkError>, Never>(response)
         return publisher.eraseToAnyPublisher()
-    }    
+    }
 }

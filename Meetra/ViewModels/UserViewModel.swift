@@ -98,17 +98,10 @@ class UserViewModel: AlertViewModel, ObservableObject {
             }.store(in: &cancellableSet)
     }
     
-    func acceptFriendRequest( id: Int ) {
-        dataManager.acceptFriendRequest(token: token, id: id)
-            .sink { response in
-                if response.error == nil {
-                    self.requests.removeAll(where: { $0.id == id })
-                }
-            }.store(in: &cancellableSet)
-    }
-    
-    func rejectFriendRequest( id: Int ) {
-        dataManager.rejectFriendRequest(token: token, id: id)
+    func accept_rejectFriendRequest( id: Int, status: String ) {
+        let model = FriendRequestResponseRequest(id: id, status: status)
+        
+        dataManager.accept_rejectFriendRequest(token: token, model: model)
             .sink { response in
                 if response.error == nil {
                     self.requests.removeAll(where: { $0.id == id })

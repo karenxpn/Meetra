@@ -15,8 +15,7 @@ protocol UserServiceProtocol {
     func starUser( token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     func fetchStarredUsers( token: String, page: Int ) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never>
     func fetchFriendRequests( token: String, page: Int ) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never>
-    func acceptFriendRequest( token: String, id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
-    func rejectFriendRequest( token: String, id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func accept_rejectFriendRequest( token: String, model: FriendRequestResponseRequest ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
 }
 
 class UserService {
@@ -25,34 +24,13 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
-    func acceptFriendRequest(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func accept_rejectFriendRequest(token: String, model: FriendRequestResponseRequest ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/friend/response")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AF.request(url,
                           method: .post,
-                          parameters: ["id" : id],
-                          encoder: JSONParameterEncoder.default,
-                          headers: headers)
-            .validate()
-            .publishDecodable(type: GlobalResponse.self)
-            .map { response in
-                response.mapError { error in
-                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
-                    return NetworkError(initialError: error, backendError: backendError)
-                }
-            }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }
-    
-    func rejectFriendRequest(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)users/friend/response")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
-        
-        return AF.request(url,
-                          method: .delete,
-                          parameters: ["id" : id],
+                          parameters: model,
                           encoder: JSONParameterEncoder.default,
                           headers: headers)
             .validate()

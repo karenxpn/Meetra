@@ -40,7 +40,7 @@ class UserViewModelTests: XCTestCase {
         service.starUserError = true
         service.fetchUserError = false
         viewModel.getUser(userID: 1)
-        viewModel.starUser(userID: 1)
+        viewModel.starUser()
         XCTAssertEqual(viewModel.user!.starred, service.userModel.starred)
     }
     
@@ -49,7 +49,7 @@ class UserViewModelTests: XCTestCase {
         service.fetchUserError = false
         viewModel.getUser(userID: 1)
         
-        viewModel.starUser(userID: 1)
+        viewModel.starUser()
         XCTAssertNotEqual(viewModel.user!.starred, service.userModel.starred)
     }
     
@@ -65,5 +65,37 @@ class UserViewModelTests: XCTestCase {
         viewModel.getStarredUsers()
         
         XCTAssertFalse(viewModel.users.isEmpty)
+    }
+    
+    func testGetFriendRequestsWithError() {
+        service.fetchFriendRequestsError = true
+        viewModel.getFriendRequests()
+        
+        XCTAssertTrue(viewModel.requests.isEmpty)
+    }
+    
+    func testGetFriendRequestsWithSuccess() {
+        service.fetchFriendRequestsError = false
+        viewModel.getFriendRequests()
+        
+        XCTAssertFalse(viewModel.requests.isEmpty)
+    }
+    
+    func testAcceptOrRejectFriendRequestWithError() {
+        service.fetchFriendRequestsError = false
+        service.accept_rejectError = true
+        viewModel.getFriendRequests()
+        
+        viewModel.accept_rejectFriendRequest(id: 1, status: "reject")
+        XCTAssertTrue(viewModel.requests.contains(where: {$0.id == 1}))
+    }
+    
+    func testAcceptOrRejectFriendRequestWithSuccess() {
+        service.fetchFriendRequestsError = false
+        service.accept_rejectError = false
+        viewModel.getFriendRequests()
+        
+        viewModel.accept_rejectFriendRequest(id: 1, status: "reject")
+        XCTAssertFalse(viewModel.requests.contains(where: {$0.id == 1}))
     }
 }
