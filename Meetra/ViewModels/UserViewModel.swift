@@ -18,6 +18,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     
     @Published var page: Int = 1
     @Published var users = [UserPreviewModel]()
+    @Published var requests = [FriendRequestModel]()
     
     @Published var user: ModelUserViewModel? = nil
     @Published var friendRequestSentOffset: CGFloat = -UIScreen.main.bounds.height
@@ -78,6 +79,20 @@ class UserViewModel: AlertViewModel, ObservableObject {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
                     self.users = response.value!.favourites
+                    self.page += 1
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func getFriendRequests() {
+        loading = true
+        dataManager.fetchFriendRequests(token: token, page: page)
+            .sink { response in
+                self.loading = false
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.requests = response.value!.requests
                     self.page += 1
                 }
             }.store(in: &cancellableSet)

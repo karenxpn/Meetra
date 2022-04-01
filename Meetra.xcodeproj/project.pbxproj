@@ -40,6 +40,8 @@
 		FF61D40A27F5DCDB00FB9A23 /* FavouritesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40927F5DCDB00FB9A23 /* FavouritesListModel.swift */; };
 		FF61D40C27F5E3A300FB9A23 /* FavouritesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40B27F5E3A300FB9A23 /* FavouritesListCell.swift */; };
 		FF61D40E27F64D8800FB9A23 /* SwipeCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40D27F64D8800FB9A23 /* SwipeCards.swift */; };
+		FF61D41027F67FDA00FB9A23 /* FriendRequestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D40F27F67FDA00FB9A23 /* FriendRequestList.swift */; };
+		FF61D41227F6804100FB9A23 /* FriendRequestListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D41127F6804100FB9A23 /* FriendRequestListModel.swift */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -161,6 +163,8 @@
 		FF61D40927F5DCDB00FB9A23 /* FavouritesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListModel.swift; sourceTree = "<group>"; };
 		FF61D40B27F5E3A300FB9A23 /* FavouritesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListCell.swift; sourceTree = "<group>"; };
 		FF61D40D27F64D8800FB9A23 /* SwipeCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCards.swift; sourceTree = "<group>"; };
+		FF61D40F27F67FDA00FB9A23 /* FriendRequestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestList.swift; sourceTree = "<group>"; };
+		FF61D41127F6804100FB9A23 /* FriendRequestListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestListModel.swift; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 				FF61D40127F4C02900FB9A23 /* SwipeButtonHelper.swift */,
 				FF61D40727F5DBDC00FB9A23 /* FavouritesList.swift */,
 				FF61D40B27F5E3A300FB9A23 /* FavouritesListCell.swift */,
+				FF61D40F27F67FDA00FB9A23 /* FriendRequestList.swift */,
 			);
 			path = Swipes;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				FF36400027EFD7D80057D605 /* UserModel.swift */,
 				FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */,
 				FF61D40927F5DCDB00FB9A23 /* FavouritesListModel.swift */,
+				FF61D41127F6804100FB9A23 /* FriendRequestListModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -823,10 +829,12 @@
 				FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */,
 				FF7D0D2327D006E900A828C7 /* GlobalResponse.swift in Sources */,
 				FF61D40627F5D56000FB9A23 /* ImageCarousel.swift in Sources */,
+				FF61D41027F67FDA00FB9A23 /* FriendRequestList.swift in Sources */,
 				FF363FFF27EFD77D0057D605 /* UserView.swift in Sources */,
 				FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */,
 				FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */,
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
+				FF61D41227F6804100FB9A23 /* FriendRequestListModel.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
 				FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */,
 				FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */,
