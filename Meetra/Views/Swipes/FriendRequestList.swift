@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FriendRequestList: View {
     
-    @ObservedObject var userVM = UserViewModel()
+    @StateObject var userVM = UserViewModel()
     
     var body: some View {
         ZStack {

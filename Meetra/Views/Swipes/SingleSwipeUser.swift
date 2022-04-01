@@ -168,7 +168,6 @@ struct SingleSwipeUser: View {
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20
                     }
-                    print( "star" )
                 }
                 
                 SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
@@ -179,7 +178,6 @@ struct SingleSwipeUser: View {
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20
                     }
-                    print( "send request" )
                 }
                 
                 SwipeButtonHelper(icon: "right_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {

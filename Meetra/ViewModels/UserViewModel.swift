@@ -46,7 +46,6 @@ class UserViewModel: AlertViewModel, ObservableObject {
     func sendFriendRequest(userID: Int) {
         dataManager.sendFriendRequest(token: token, id: userID)
             .sink { response in
-                print(response)
                 if response.error == nil {
                     self.friendRequestSentOffset = -UIScreen.main.bounds.height / 3
                 }
@@ -72,6 +71,9 @@ class UserViewModel: AlertViewModel, ObservableObject {
     }
     
     func getStarredUsers() {
+        print(self.users)
+        print(self.page)
+
         loading = true
         dataManager.fetchStarredUsers(token: token, page: page)
             .sink { response in

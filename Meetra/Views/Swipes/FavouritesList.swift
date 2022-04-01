@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct FavouritesList: View {
-    @ObservedObject var userVM = UserViewModel()
+    @StateObject var userVM = UserViewModel()
     var body: some View {
         
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
         
         ZStack {
-            if userVM.loading && userVM.page == 1{
+            if userVM.loading && userVM.page == 1 {
                 Loading()
                     .frame(minWidth: 0,
                            maxWidth: .infinity,
@@ -40,7 +40,7 @@ struct FavouritesList: View {
                         .padding(.top)
                 }.padding(.top, 1)
             }
-        }.onAppear{
+        }.onAppear {
             userVM.getStarredUsers()
         }
     }
