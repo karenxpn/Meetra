@@ -62,11 +62,13 @@ extension UserService: UserServiceProtocol {
     }
     
     func sendFriendRequest(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)users/\(id)/request")!
+        let url = URL(string: "\(Credentials.BASE_URL)users/friend")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AF.request(url,
                           method: .post,
+                          parameters: ["id" : id],
+                          encoder: JSONParameterEncoder.default,
                           headers: headers)
             .validate()
             .publishDecodable(type: GlobalResponse.self)

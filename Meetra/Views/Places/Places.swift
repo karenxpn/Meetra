@@ -86,6 +86,7 @@ struct Places: View {
                     locationManager.initLocation()
                     locationManager.getLocationResponse()
                     placesVM.getRoom()
+                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
                 }.onChange(of: showFilter) { value in
                     if !value {
@@ -99,8 +100,6 @@ struct Places: View {
                         }
                     }
                     
-                }.onAppear {
-                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                 }.onDisappear {
                     self.seconds = 0
                     self.timer.upstream.connect().cancel()

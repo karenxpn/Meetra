@@ -46,6 +46,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     func sendFriendRequest(userID: Int) {
         dataManager.sendFriendRequest(token: token, id: userID)
             .sink { response in
+                print(response)
                 if response.error == nil {
                     self.friendRequestSentOffset = -UIScreen.main.bounds.height / 3
                 }

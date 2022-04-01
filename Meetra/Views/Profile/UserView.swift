@@ -27,7 +27,6 @@ struct UserView: View {
                 .animation(.interpolatingSpring(mass: 1.0, stiffness: 100.0, damping: 10, initialVelocity: 0), value: userVM.friendRequestSentOffset)
                 .gesture(DragGesture()
                     .onChanged({ gesture in
-                        print(gesture.translation.height)
 
                         if gesture.translation.height < 0 {
                             userVM.friendRequestSentOffset = gesture.translation.height - UIScreen.main.bounds.height / 3

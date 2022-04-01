@@ -15,8 +15,8 @@ struct PlacesRoomView: View {
     init(room: PlaceRoom) {
         self.room = room
         if !self.room.users.isEmpty{
-            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Общий чат", online: false), at: 0)
-            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Локация", online: false), at: 2)
+            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Общий чат", age: 0, online: false), at: 0)
+            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Локация", age: 0, online: false), at: 2)
         }
     }
     

@@ -151,6 +151,9 @@ struct SingleSwipeUser: View {
             HStack( spacing: 15) {
                 
                 SwipeButtonHelper(icon: "left_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
+                    
+                    checkLastAndRequestMore()
+                    
                     cardAction = .swipe
                     withAnimation(animation) {
                         user.x = -500; user.degree = -20
@@ -158,6 +161,7 @@ struct SingleSwipeUser: View {
                 }
                 
                 SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
+                    checkLastAndRequestMore()
                     cardAction = .star
                     userVM.starUser()
                     // make request
@@ -168,6 +172,7 @@ struct SingleSwipeUser: View {
                 }
                 
                 SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
+                    checkLastAndRequestMore()
                     cardAction = .request
                     userVM.sendFriendRequest(userID: user.id)
                     // make request
@@ -178,6 +183,7 @@ struct SingleSwipeUser: View {
                 }
                 
                 SwipeButtonHelper(icon: "right_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
+                    checkLastAndRequestMore()
                     cardAction = .swipe
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20
@@ -222,20 +228,14 @@ struct SingleSwipeUser: View {
                                 user.x = 0
                                 user.degree = 0
                             case let x where x > 100:
-                                if user.id == placesVM.users.first?.id {
-                                    placesVM.swipePage += 1
-                                    placesVM.getSwipes()
-                                }
+                                checkLastAndRequestMore()
                                 user.x = 500; user.degree = 20
                             case (-100)...(-1):
                                 self.cardAction = .none
                                 user.x = 0
                                 user.degree = 0
                             case let x where x < -100:
-                                if user.id == placesVM.users.first?.id {
-                                    placesVM.swipePage += 1
-                                    placesVM.getSwipes()
-                                }
+                                checkLastAndRequestMore()
                                 user.x = -500; user.degree = -20
                             default:
                                 self.cardAction = .none
@@ -245,6 +245,13 @@ struct SingleSwipeUser: View {
                         }
                     })
             )
+    }
+    
+    func checkLastAndRequestMore() {
+        if user.id == placesVM.users.first?.id {
+            placesVM.swipePage += 1
+            placesVM.getSwipes()
+        }
     }
 }
 

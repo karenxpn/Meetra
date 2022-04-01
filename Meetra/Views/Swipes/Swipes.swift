@@ -21,6 +21,7 @@ struct Swipes: View {
     let sections = ["Анкеты", "Заявки", "Избранное"]
     @State private var selection: String = "Анкеты"
     
+    @State private var firstAppearance: Bool = true
 
     var body: some View {
         NavigationView {
@@ -83,8 +84,7 @@ struct Swipes: View {
                             }
                         }))
                 
-            }
-            .alert(isPresented: $placesVM.showAlert, content: {
+            }.alert(isPresented: $placesVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
             })
             .navigationBarTitle("", displayMode: .inline)
@@ -108,7 +108,11 @@ struct Swipes: View {
                 }).onAppear {
                     locationManager.initLocation()
                     locationManager.getLocationResponse()
-                    placesVM.getSwipes()
+                    if firstAppearance {
+                        placesVM.getSwipes()
+                    }
+                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
                 }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "swipe")
@@ -121,9 +125,8 @@ struct Swipes: View {
                         }
                     }
                     
-                }.onAppear {
-                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                 }.onDisappear {
+                    self.firstAppearance = false
                     self.seconds = 0
                     self.timer.upstream.connect().cancel()
                 }

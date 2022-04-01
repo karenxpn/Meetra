@@ -14,11 +14,11 @@ struct FavouritesList: View {
         let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
         
         ZStack {
-            if userVM.loading {
+            if userVM.loading && userVM.page == 1{
                 Loading()
                     .frame(minWidth: 0,
                            maxWidth: .infinity,
-                    minHeight: 0,
+                           minHeight: 0,
                            maxHeight: .infinity)
             } else {
                 ScrollView( showsIndicators: false) {

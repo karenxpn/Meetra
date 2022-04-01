@@ -46,7 +46,7 @@ struct FavouritesListCell: View {
                 }
             }
             
-            Text( user.name )
+            Text( "\(user.name), \(user.age)" )
                 .foregroundColor(.white)
                 .font(.custom("Inter-SemiBold", size: 18))
                 .padding(.leading, 15)

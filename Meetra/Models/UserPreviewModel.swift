@@ -10,5 +10,6 @@ struct UserPreviewModel: Identifiable, Codable {
     var id: Int
     var image: String
     var name: String
+    var age: Int
     var online: Bool
 }
