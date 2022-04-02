@@ -61,6 +61,12 @@ class UserViewModel: AlertViewModel, ObservableObject {
             }.store(in: &cancellableSet)
     }
     
+    func starUserFromSwipes(userID: Int) {
+        dataManager.starUser(token: token, id: userID)
+            .sink { _ in
+            }.store(in: &cancellableSet)
+    }
+    
     func removeUserFromStars(userID: Int) {
         dataManager.starUser(token: token, id: userID)
             .sink { response in
