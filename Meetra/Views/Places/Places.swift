@@ -19,7 +19,7 @@ struct Places: View {
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
     
-    
+
     var body: some View {
         
         NavigationView {
@@ -44,10 +44,9 @@ struct Places: View {
                         .environmentObject(locationManager)
                 }
                 
-                PlaceFilter(present: $showFilter)
+                FilterUsers(present: $showFilter, gender: $placesVM.gender, status: $placesVM.status, range: $placesVM.ageRange)
                     .offset(y: showFilter ?  -UIScreen.main.bounds.size.height/4: -UIScreen.main.bounds.size.height)
                     .animation(.interpolatingSpring(mass: 1.0, stiffness: 100.0, damping: 50, initialVelocity: 0), value: showFilter)
-                    .environmentObject(placesVM)
                     .offset(y: offsetOnDrag)
                     .gesture(DragGesture()
                         .onChanged({ (value) in
@@ -61,7 +60,8 @@ struct Places: View {
                             }
                         }))
                 
-            }.alert(isPresented: $placesVM.showAlert, content: {
+            }
+            .alert(isPresented: $placesVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
             })
             .navigationBarTitle("", displayMode: .inline)
@@ -85,9 +85,12 @@ struct Places: View {
                 }).onAppear {
                     locationManager.initLocation()
                     locationManager.getLocationResponse()
+                    placesVM.getRoom()
+                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
                 }.onChange(of: showFilter) { value in
                     if !value {
-                        placesVM.storeFilterValues()
+                        placesVM.storeFilterValues(location: "place")
                     }
                 }.onReceive(timer) { _ in
                     seconds += 1
@@ -97,8 +100,6 @@ struct Places: View {
                         }
                     }
                     
-                }.onAppear {
-                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                 }.onDisappear {
                     self.seconds = 0
                     self.timer.upstream.connect().cancel()

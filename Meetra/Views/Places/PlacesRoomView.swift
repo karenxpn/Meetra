@@ -15,8 +15,8 @@ struct PlacesRoomView: View {
     init(room: PlaceRoom) {
         self.room = room
         if !self.room.users.isEmpty{
-            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Общий чат", online: false), at: 0)
-            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Локация", online: false), at: 2)
+            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Общий чат", age: 0, online: false), at: 0)
+            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Локация", age: 0, online: false), at: 2)
         }
     }
     
@@ -65,7 +65,7 @@ struct PlacesRoomView: View {
                             }.padding(.top, 20)
                         }
                     } else {
-                        SinglePlacePreview(user: room.users[index], id: index)
+                        SinglePlacePreview(user: room.users[index])
                             .padding(.top, index == 1 ? 40 : 0)
                     }
                 }
@@ -77,16 +77,6 @@ struct PlacesRoomView: View {
 
 struct PlacesRoomView_Previews: PreviewProvider {
     static var previews: some View {
-        PlacesRoomView(room: PlaceRoom(users: [UserPreviewModel(id: 1, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 2, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 3, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 4, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 5, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 6, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 7, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 8, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 9, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 10, image: "Karen", name: "Karen", online: true),
-                                               UserPreviewModel(id: 11, image: "Karen", name: "Karen", online: true)], count: 12, place: "EVN"))
+        PlacesRoomView(room: AppPreviewModels.placeRoom)
     }
 }

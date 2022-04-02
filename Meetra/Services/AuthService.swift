@@ -28,21 +28,8 @@ extension AuthService: AuthServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)auth/confirm")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AF.request(url,
-                          method: .post,
-                          parameters: model,
-                          encoder: JSONParameterEncoder.default,
-                          headers: headers)
-            .validate()
-            .publishDecodable(type: GlobalResponse.self)
-            .map { response in
-                response.mapError { error in
-                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
-                    return NetworkError(initialError: error, backendError: backendError)
-                }
-            }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.postRequest(params: model, url: url, headers: headers, responseType: GlobalResponse.self)
+
     }
     
     func fetchInterests() -> AnyPublisher<DataResponse<InterestModel, NetworkError>, Never> {
@@ -67,41 +54,14 @@ extension AuthService: AuthServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)auth/resend-code")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AF.request(url,
-                          method: .get,
-                          headers: headers)
-            .validate()
-            .publishDecodable(type: GlobalResponse.self)
-            .map { response in
-                response.mapError { error in
-                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
-                    return NetworkError(initialError: error, backendError: backendError)
-                }
-            }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.getRequest(url: url, headers: headers, responseType: GlobalResponse.self)
     }
     
     func checkVerificationCode(token: String, code: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)auth/check-code")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        
-        return AF.request(url,
-                          method: .post,
-                          parameters: ["otp": code],
-                          encoder: JSONParameterEncoder.default,
-                          headers: headers)
-            .validate()
-            .publishDecodable(type: AuthResponse.self)
-            .map { response in
-                response.mapError { error in
-                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
-                    return NetworkError(initialError: error, backendError: backendError)
-                }
-            }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.postRequest(params: ["otp" : code], url: url, headers: headers, responseType: AuthResponse.self)
     }
     
     func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {

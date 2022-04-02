@@ -21,8 +21,10 @@ class AppSocketManager {
     
     private init() {
         @AppStorage( "token" ) var token: String = ""
+        @AppStorage( "initialToken" ) var initialToken: String = ""
         
-        manager = SocketManager(socketURL: URL(string: Credentials.socket_url)!, config: [.compress, .connectParams(["token" : token])])
+        manager = SocketManager(socketURL: URL(string: Credentials.socket_url)!,
+                                config: [.compress, .connectParams(["token" : token.isEmpty ? initialToken : token])])
         socket = manager.defaultSocket
         
         socket.on(clientEvent: .connect) {data, ack in

@@ -29,7 +29,7 @@ struct OTPTextFieldView: View {
     
     private var pinDots: some View {
         HStack(spacing:14) {
-            ForEach(0..<maxDigits) { index in
+            ForEach(0..<maxDigits, id: \.self) { index in
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(.white)
