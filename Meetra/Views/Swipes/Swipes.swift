@@ -44,10 +44,10 @@ struct Swipes: View {
                                         Text( section )
                                             .foregroundColor(selection == section ? .black : .gray)
                                             .font(.custom(selection == section ? "Inter-SemiBold" :"Inter-Regular", size: 16))
+                                            .padding(.top)
                                     }
                                 }
-                            }.padding(.top)
-                                .padding(.leading, 25)
+                            }.padding(.leading, 25)
                             
                             
                             if selection == "Анкеты" {

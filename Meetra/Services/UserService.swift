@@ -25,7 +25,7 @@ class UserService {
 
 extension UserService: UserServiceProtocol {
     func accept_rejectFriendRequest(token: String, model: FriendRequestResponseRequest ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)users/friend/response")!
+        let url = URL(string: "\(Credentials.BASE_URL)users/respond-request")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AlamofireAPIHelper.shared.postRequest(params: model, url: url, headers: headers, responseType: GlobalResponse.self)

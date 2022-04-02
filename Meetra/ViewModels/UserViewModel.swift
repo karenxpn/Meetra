@@ -103,6 +103,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
         
         dataManager.accept_rejectFriendRequest(token: token, model: model)
             .sink { response in
+                print(response)
                 if response.error == nil {
                     self.requests.removeAll(where: { $0.id == id })
                 }
