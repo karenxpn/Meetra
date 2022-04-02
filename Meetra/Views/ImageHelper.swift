@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ImageHelper: View {
+    let image: String
+    let contentMode: ContentMode
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct ImageHelper_Previews: PreviewProvider {
-    static var previews: some View {
-        ImageHelper()
+        WebImage(url: URL(string: image))
+            .placeholder(content: {
+                ProgressView()
+            })
+            .resizable()
+            .aspectRatio(contentMode: contentMode)
     }
 }

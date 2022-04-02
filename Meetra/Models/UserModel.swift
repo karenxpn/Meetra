@@ -17,6 +17,7 @@ struct UserModel: Codable, Identifiable {
     var bio: String
     var interests: [UserInterestModel]
     var images: [String]
+    var isVerified: Bool
 }
 
 struct UserInterestModel: Codable {
@@ -40,6 +41,7 @@ struct ModelUserViewModel: Identifiable {
     var bio: String                     { self.user.bio }
     var interests: [UserInterestModel]  { self.user.interests }
     var images: [String]                { self.user.images }
+    var verified: Bool                  { self.user.isVerified }
     
     var starred: Bool           {
         get { self.user.starred }

@@ -15,5 +15,6 @@ struct AppColors {
     static let onlineStatus = Color(UIColor(red: 110/255, green: 219/255, blue: 154/255, alpha: 1))
     static let filterGray = Color(UIColor(red: 87/255, green: 87/255, blue: 87/255, alpha: 1))
     static let starColor = Color(UIColor(red: 110/255, green: 141/255, blue: 219/255, alpha: 1))
+    static let reportColor = Color(UIColor(red: 235/255, green: 80/255, blue: 80/255, alpha: 1))
 
 }

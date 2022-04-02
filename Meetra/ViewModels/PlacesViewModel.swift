@@ -42,7 +42,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         self.status = self.usersStatus
     }
     
-    func storeFilterValues() {
+    func storeFilterValues(location: String) {
         var mark = false
         if ageLowerBound != ageRange.lowerBound ||
             ageUppwerBound != ageRange.upperBound ||
@@ -57,7 +57,13 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         usersStatus = status
         
         if mark {
-            getRoom()
+            if location == "place" {
+                getRoom()
+            } else {
+                swipePage = 1
+                self.users.removeAll(keepingCapacity: false)
+                getSwipes()
+            }
         }
     }
     
@@ -97,7 +103,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                                message: &self.alertMessage,
                                alert: &self.showAlert)
             } else {
-                self.users = response.value!.map{ SwipeUserViewModel(user: $0 )}
+                self.users = response.value!.users.map{ SwipeUserViewModel(user: $0 )}
             }
         }.store(in: &cancellableSet)
     }

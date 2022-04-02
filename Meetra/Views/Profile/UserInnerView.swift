@@ -15,13 +15,18 @@ struct UserInnerView: View {
     var body: some View {
         ScrollView( showsIndicators: false ) {
             
-            WebImage(url: URL(string: userVM.user!.images[0]))
-                .placeholder(content: {
-                    ProgressView()
-                })
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.55)
+            ImageCarousel(numberOfImages: userVM.user!.images.count) {
+                ForEach(userVM.user!.images, id: \.self) { image in
+                    WebImage(url: URL(string: image))
+                        .placeholder(content: {
+                            ProgressView()
+                        })
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.55)
+                        .clipped()
+                }
+            }
             
             VStack( alignment: .leading, spacing: 8) {
                 
@@ -30,6 +35,10 @@ struct UserInnerView: View {
                     Text( "\(userVM.user!.name), \(userVM.user!.age)" )
                         .foregroundColor(.black)
                         .font(.custom("Inter-SemiBold", size: 30))
+                    
+                    if userVM.user!.verified {
+                        Image("verified_icon")
+                    }
                     
                     if userVM.user!.online {
                         Circle()
@@ -53,7 +62,7 @@ struct UserInnerView: View {
                     }
                     
                     Button(action: {
-                        userVM.sendFriendRequest()
+                        userVM.sendFriendRequest(userID: userVM.user!.id)
                     }, label: {
                         Image("user_send_request")
                             .resizable()
@@ -98,24 +107,10 @@ struct UserInnerView: View {
                     .font(.custom("Inter-SemiBold", size: 18))
                     .padding(.top)
                 
-                TagLayoutView(
-                    userVM.user!.interests.map{$0.name}, tagFont: UIFont(name: "Inter-SemiBold", size: 12)!,
-                    padding: 20,
-                    parentWidth: UIScreen.main.bounds.size.width * 0.75) { tag in
-                        
-                        Text(tag)
-                            .fixedSize()
-                            .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
-                            .foregroundColor( userVM.user!.interests.contains(where: {$0.name == tag && $0.same == true}) ?  .white : AppColors.accentColor)
-                            .background(RoundedRectangle(cornerRadius: 30)
-                                .strokeBorder(AppColors.accentColor, lineWidth: 1.5)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 30)
-                                        .fill(userVM.user!.interests.contains(where: {$0.name == tag && $0.same == true}) ? AppColors.accentColor : .white)
-                                )
-                            )
-                        
-                    }.padding([.top], 16)
+                TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
+                               parentWidth: UIScreen.main.bounds.size.width * 0.75,
+                               interests: userVM.user!.interests)
+                .padding([.top], 16)
             }
             .padding(25)
             .background(.white)

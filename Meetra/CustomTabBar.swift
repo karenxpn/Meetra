@@ -25,7 +25,7 @@ struct CustomTabBar: View {
 
                     HStack {
                         
-                        ForEach ( 0..<icons.count ) { id in
+                        ForEach ( 0..<icons.count, id: \.self ) { id in
                             
                             Spacer()
                             Image(icons[id])

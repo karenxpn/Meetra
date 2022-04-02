@@ -60,6 +60,6 @@ struct SinglePlacePreview: View {
 
 struct SinglePlacePreview_Previews: PreviewProvider {
     static var previews: some View {
-        SinglePlacePreview(user: UserPreviewModel(id: 1, image: "", name: "Karen", online: true))
+        SinglePlacePreview(user: AppPreviewModels.placeRoom.users[0])
     }
 }

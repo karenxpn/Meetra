@@ -12,7 +12,7 @@ import Combine
 
 protocol PlacesServiceProtocol {
     func fetchPlaceRoom( token: String, model: PlaceRoomRequest ) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never>
-    func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<[SwipeUserModel], NetworkError>, Never>
+    func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<SwipeUserListModel, NetworkError>, Never>
 }
 
 class PlacesService {
@@ -22,45 +22,17 @@ class PlacesService {
 }
 
 extension PlacesService: PlacesServiceProtocol {
-    func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<[SwipeUserModel], NetworkError>, Never> {
+    func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<SwipeUserListModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/swipes/\(page)")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AF.request(url,
-                          method: .post,
-                          parameters: model,
-                          encoder: JSONParameterEncoder.default,
-                          headers: headers)
-            .validate()
-            .publishDecodable(type: [SwipeUserModel].self)
-            .map { response in
-                response.mapError { error in
-                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
-                    return NetworkError(initialError: error, backendError: backendError)
-                }
-            }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.postRequest(params: model, url: url, headers: headers, responseType: SwipeUserListModel.self)
     }
     
     func fetchPlaceRoom(token: String, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/place")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AF.request(url,
-                          method: .post,
-                          parameters: model,
-                          encoder: JSONParameterEncoder.default,
-                          headers: headers)
-            .validate()
-            .publishDecodable(type: PlaceRoom.self)
-            .map { response in
-                response.mapError { error in
-                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
-                    return NetworkError(initialError: error, backendError: backendError)
-                }
-            }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.postRequest(params: model, url: url, headers: headers, responseType: PlaceRoom.self)
     }
 }

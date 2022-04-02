@@ -10,7 +10,7 @@ import SwiftUI
 struct Swipes: View {
     
     @StateObject private var locationManager = LocationManager()
-    @ObservedObject var placesVM = PlacesViewModel()
+    @StateObject var placesVM = PlacesViewModel()
     
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var seconds: Int = 0
@@ -18,28 +18,49 @@ struct Swipes: View {
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
     
-    init() {
-        placesVM.getSwipes()
-        print("get swipes here")
-    }
+    let sections = ["Анкеты", "Заявки", "Избранное"]
+    @State private var selection: String = "Анкеты"
     
+    @State private var firstAppearance: Bool = true
+
     var body: some View {
         NavigationView {
             ZStack {
-                
                 
                 if locationManager.status == "true" && !locationManager.lost_location_socket {
                     
                     if placesVM.loading {
                         Loading()
                     } else {
-//                        VStack {
-//
-//                            if placesVM.placeRoom != nil {
-//                                PlacesRoomView(room: placesVM.placeRoom!)
-//                            }
-//
-//                        }
+                        
+                        VStack( alignment: .leading, spacing: 20 ) {
+                            
+                            HStack( spacing: 20 ) {
+                                ForEach(sections, id: \.self) { section in
+                                    Button {
+                                        selection = section
+                                        
+                                    } label: {
+                                        Text( section )
+                                            .foregroundColor(selection == section ? .black : .gray)
+                                            .font(.custom(selection == section ? "Inter-SemiBold" :"Inter-Regular", size: 16))
+                                            .padding(.top)
+                                    }
+                                }
+                            }.padding(.leading, 25)
+                            
+                            
+                            if selection == "Анкеты" {
+                                SwipeCards()
+                                    .environmentObject(placesVM)
+                            } else if selection == "Заявки" {
+                                FriendRequestList()
+                            } else {
+                                FavouritesList()
+                            }
+                            
+                            Spacer()
+                        }
                     }
                     
                 } else {
@@ -87,9 +108,14 @@ struct Swipes: View {
                 }).onAppear {
                     locationManager.initLocation()
                     locationManager.getLocationResponse()
+                    if firstAppearance {
+                        placesVM.getSwipes()
+                    }
+                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
                 }.onChange(of: showFilter) { value in
                     if !value {
-//                        placesVM.storeFilterValues()
+                        placesVM.storeFilterValues(location: "swipe")
                     }
                 }.onReceive(timer) { _ in
                     seconds += 1
@@ -99,9 +125,8 @@ struct Swipes: View {
                         }
                     }
                     
-                }.onAppear {
-                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                 }.onDisappear {
+                    self.firstAppearance = false
                     self.seconds = 0
                     self.timer.upstream.connect().cancel()
                 }
