@@ -95,16 +95,21 @@ struct SingleSwipeUser: View {
                                 withAnimation(animation) {
                                     user.x = -500; user.degree = -20
                                 }
+                                checkLastAndRequestMore()
                             } label: {
-                                Text(NSLocalizedString("report", comment: ""))
+                                Text("\(NSLocalizedString("report", comment: ""))                                                   .")
                             }
                             
                             Button(role: .destructive) {
                                 cardAction = .report
                                 withAnimation(animation) {
                                     user.x = -500; user.degree = -20
-                                }                            } label: {
-                                Text(NSLocalizedString("block", comment: ""))
+                                }
+                                checkLastAndRequestMore()
+
+                            } label: {
+                                Text("\(NSLocalizedString("block", comment: ""))                                                    .")
+                                    
                             }
                             
                             Button(role: .cancel) {
@@ -151,41 +156,39 @@ struct SingleSwipeUser: View {
             HStack( spacing: 15) {
                 
                 SwipeButtonHelper(icon: "left_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
-                    
-                    checkLastAndRequestMore()
-                    
                     cardAction = .swipe
                     withAnimation(animation) {
                         user.x = -500; user.degree = -20
                     }
+                    checkLastAndRequestMore()
                 }
                 
                 SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
-                    checkLastAndRequestMore()
                     cardAction = .star
                     userVM.starUserFromSwipes(userID: user.id)
                     // make request
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20
                     }
+                    checkLastAndRequestMore()
                 }
                 
                 SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
-                    checkLastAndRequestMore()
                     cardAction = .request
                     userVM.sendFriendRequest(userID: user.id)
                     // make request
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20
                     }
+                    checkLastAndRequestMore()
                 }
                 
                 SwipeButtonHelper(icon: "right_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
-                    checkLastAndRequestMore()
                     cardAction = .swipe
                     withAnimation(animation) {
                         user.x = 500; user.degree = 20
                     }
+                    checkLastAndRequestMore()
                 }
             }
         }.padding(16)
