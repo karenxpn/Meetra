@@ -19,10 +19,10 @@ struct Loading: View {
     
     var body: some View {
         Circle()
-            .trim(from: 0, to: 0.85)
-            .stroke(lineWidth: 8)
+            .trim(from: 0, to: 0.8)
+            .stroke(style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round))
             .fill(AppColors.accentColor)
-            .frame(width: 70, height: 70)
+            .frame(width: 80, height: 80)
             .rotationEffect(Angle.degrees(isRotated ? 360 : 0))
             .animation(animation, value: isRotated)
             .onAppear{
