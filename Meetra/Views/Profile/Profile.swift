@@ -10,7 +10,7 @@ import TagLayoutView
 
 struct Profile: View {
     
-    @ObservedObject var profileVM = ProfileViewModel()
+    @StateObject var profileVM = ProfileViewModel()
     @State private var showFillPopup: Bool = true
     
     var body: some View {
@@ -29,7 +29,7 @@ struct Profile: View {
                             if showFillPopup {
                                 ZStack( alignment: .topTrailing) {
                                     Text( NSLocalizedString("fill_to_verify", comment: ""))
-                                        .kerning(0.5)
+                                        .kerning(0.24)
                                         .foregroundColor(.black)
                                         .font(.custom("Inter-Regular", size: 12))
                                         .lineSpacing(2)

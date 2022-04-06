@@ -21,7 +21,7 @@ struct TagsViewHelper: View {
             parentWidth: parentWidth) { tag in
                 
                 Text(tag)
-                    .kerning(1)
+                    .kerning(0.24)
                     .font(Font(font))
                     .fixedSize()
                     .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
