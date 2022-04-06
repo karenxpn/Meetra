@@ -16,14 +16,3 @@ struct ProfileModel: Codable {
     var filled: Int
     var isVerified: Bool
 }
-
-//{
-//  "id": 0,
-//  "name": "string",
-//  "age": 0,
-//  "image": "string",
-//  "bio": "string",
-//  "interests": "string",
-//  "filled": 0,
-//  "isVerified": true
-//}
