@@ -82,6 +82,8 @@
 		FF97308C27FDAC2F00A7BF3F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97308B27FDAC2F00A7BF3F /* ProfileViewModel.swift */; };
 		FF97308E27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97308D27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift */; };
 		FF97309027FDC32900A7BF3F /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97308F27FDC32900A7BF3F /* EditProfile.swift */; };
+		FF97309227FDCA5900A7BF3F /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97309127FDCA5900A7BF3F /* ProfileViewModelTests.swift */; };
+		FF97309427FDCA6400A7BF3F /* MockProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97309327FDCA6400A7BF3F /* MockProfileService.swift */; };
 		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
 		FFB6D24527EA044E004FD5D3 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24427EA044E004FD5D3 /* WaterfallGrid */; };
 		FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */; };
@@ -217,6 +219,8 @@
 		FF97308B27FDAC2F00A7BF3F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		FF97308D27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTopViewCompleteness.swift; sourceTree = "<group>"; };
 		FF97308F27FDC32900A7BF3F /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
+		FF97309127FDCA5900A7BF3F /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
+		FF97309327FDCA6400A7BF3F /* MockProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProfileService.swift; sourceTree = "<group>"; };
 		FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUsers.swift; sourceTree = "<group>"; };
 		FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeFilter.swift; sourceTree = "<group>"; };
 		FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
@@ -310,6 +314,7 @@
 				FF07F23B27D0ED1F009B46B7 /* MockAuthService.swift */,
 				FFB6D25027EB975C004FD5D3 /* MockPlacesService.swift */,
 				FFDE785E27F32F890036B098 /* MockUserService.swift */,
+				FF97309327FDCA6400A7BF3F /* MockProfileService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				FF07F23D27D0EEAD009B46B7 /* AuthViewModelTests.swift */,
 				FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */,
 				FFDE786027F330F30036B098 /* UserViewModelTests.swift */,
+				FF97309127FDCA5900A7BF3F /* ProfileViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -910,8 +916,10 @@
 				FF7DA05527CD55CC00CA4338 /* MeetraTests.swift in Sources */,
 				FFB6D25327EB984D004FD5D3 /* PlacesViewModelTests.swift in Sources */,
 				FFDE786127F330F30036B098 /* UserViewModelTests.swift in Sources */,
+				FF97309427FDCA6400A7BF3F /* MockProfileService.swift in Sources */,
 				FF07F23C27D0ED1F009B46B7 /* MockAuthService.swift in Sources */,
 				FF07F23E27D0EEAD009B46B7 /* AuthViewModelTests.swift in Sources */,
+				FF97309227FDCA5900A7BF3F /* ProfileViewModelTests.swift in Sources */,
 				FFB6D25127EB975C004FD5D3 /* MockPlacesService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

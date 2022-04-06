@@ -48,4 +48,17 @@ class AlamofireAPIHelper {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+    
+    let networkError = NetworkError(initialError: AFError.explicitlyCancelled, backendError: nil)
+    func mockRequest<T>( error: Bool, response: T, responseType: T.Type) -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Codable {
+
+        var result: Result<T, NetworkError>
+        
+        if error    { result = Result<T, NetworkError>.failure(networkError)}
+        else        { result = Result<T, NetworkError>.success(response)}
+        
+        let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
+        let publisher = CurrentValueSubject<DataResponse<T, NetworkError>, Never>(response)
+        return publisher.eraseToAnyPublisher()
+    }
 }
