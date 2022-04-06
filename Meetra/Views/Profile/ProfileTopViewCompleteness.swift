@@ -46,11 +46,11 @@ struct ProfileTopViewCompleteness: View {
                 
                 NavigationLink(destination: EditProfile()) {
                     Image("edit_icon")
-                        .padding()
+                        .padding(12)
                         .background(.white)
                         .cornerRadius(100)
                         .shadow(radius: 2)
-                        .offset(x: 15, y: -15)
+                        .offset(x: 7, y: -7)
                 }
             }
             
