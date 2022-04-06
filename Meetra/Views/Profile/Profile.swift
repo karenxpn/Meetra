@@ -29,7 +29,7 @@ struct Profile: View {
                             if showFillPopup {
                                 ZStack( alignment: .topTrailing) {
                                     Text( NSLocalizedString("fill_to_verify", comment: ""))
-                                        .kerning(1)
+                                        .kerning(0.5)
                                         .foregroundColor(.black)
                                         .font(.custom("Inter-Regular", size: 12))
                                         .lineSpacing(2)
