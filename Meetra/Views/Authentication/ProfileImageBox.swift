@@ -26,7 +26,7 @@ struct ProfileImageBox: View {
                 
                 Group {
                     if model.images.count > index {
-                        ZStack {
+                        ZStack( alignment: .bottomLeading) {
                             
                             Image(base64String: model.images[index])?
                                 .resizable()
@@ -51,6 +51,17 @@ struct ProfileImageBox: View {
                                     
                                     Spacer()
                                 }
+                            }
+                            
+                            if index == 0 {
+                            Text( NSLocalizedString("profile_image", comment: ""))
+                                .foregroundColor(.white)
+                                .font(.custom("Inter-Regular", size: 8))
+                                .padding(.vertical, 6)
+                                .padding(.horizontal, 7.5)
+                                .background(Color.white.opacity(0.3))
+                                .cornerRadius(4)
+                                .padding(6)
                             }
                         }
                     } else {
