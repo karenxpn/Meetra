@@ -80,6 +80,7 @@
 		FF97308827FDAAD100A7BF3F /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97308727FDAAD100A7BF3F /* ProfileService.swift */; };
 		FF97308A27FDAAE500A7BF3F /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97308927FDAAE500A7BF3F /* ProfileModel.swift */; };
 		FF97308C27FDAC2F00A7BF3F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97308B27FDAC2F00A7BF3F /* ProfileViewModel.swift */; };
+		FF97308E27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97308D27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift */; };
 		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
 		FFB6D24527EA044E004FD5D3 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24427EA044E004FD5D3 /* WaterfallGrid */; };
 		FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */; };
@@ -213,6 +214,7 @@
 		FF97308727FDAAD100A7BF3F /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		FF97308927FDAAE500A7BF3F /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		FF97308B27FDAC2F00A7BF3F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		FF97308D27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTopViewCompleteness.swift; sourceTree = "<group>"; };
 		FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUsers.swift; sourceTree = "<group>"; };
 		FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeFilter.swift; sourceTree = "<group>"; };
 		FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 			isa = PBXGroup;
 			children = (
 				FF97308527FDAAB900A7BF3F /* Profile.swift */,
+				FF97308D27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				FF97308827FDAAD100A7BF3F /* ProfileService.swift in Sources */,
 				FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */,
 				FF36400527EFDA780057D605 /* UserService.swift in Sources */,
+				FF97308E27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift in Sources */,
 				FF97308C27FDAC2F00A7BF3F /* ProfileViewModel.swift in Sources */,
 				FF97308A27FDAAE500A7BF3F /* ProfileModel.swift in Sources */,
 				FF61D40827F5DBDC00FB9A23 /* FavouritesList.swift in Sources */,

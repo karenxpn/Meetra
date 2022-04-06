@@ -30,13 +30,6 @@ struct AuthInterests: View {
                 
                 if authVM.loading {
                     Loading()
-                        .frame(
-                            minWidth: 0,
-                            maxWidth: .infinity,
-                            minHeight: 0,
-                            maxHeight: .infinity,
-                            alignment: .center
-                        )
                     
                 } else {
                     GeometryReader { geometry in

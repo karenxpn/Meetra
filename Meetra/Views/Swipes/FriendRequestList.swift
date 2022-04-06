@@ -16,10 +16,6 @@ struct FriendRequestList: View {
             
             if userVM.loading && userVM.page == 1{
                 Loading()
-                    .frame(minWidth: 0,
-                           maxWidth: .infinity,
-                           minHeight: 0,
-                           maxHeight: .infinity)
             } else {
                 ScrollView( showsIndicators: false) {
                     LazyVStack( spacing: 0) {

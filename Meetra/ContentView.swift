@@ -27,8 +27,7 @@ struct ContentView: View {
                     Text( "Third" )
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if currentTab == 3 {
-//                    Chat()
-                    Text( "Fourth" )
+                    Profile()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 }
             }
