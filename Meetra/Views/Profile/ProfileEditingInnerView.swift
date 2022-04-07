@@ -63,6 +63,11 @@ struct ProfileEditingInnerView: View {
                             .font(.custom("Inter-Regular", size: 12))
                     }
                 }
+                
+                TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
+                               parentWidth: UIScreen.main.bounds.size.width * 0.8,
+                               interests: fields.interests.map{ UserInterestModel(same: true, name: $0 )})
+                
             }.frame(minWidth: 0,
                     maxWidth: .infinity,
                     minHeight: 0,
