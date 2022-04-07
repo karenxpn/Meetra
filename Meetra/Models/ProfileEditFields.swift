@@ -36,13 +36,22 @@ struct ProfileEditFieldsViewModel: Codable {
     
     var job: String {
         get { self.fields.occupation?.job ?? ""}
-        set { self.fields.occupation?.job = newValue }
+        set {
+            self.fields.occupation = OccupationModel(job: self.job.isEmpty ? "" : self.job,
+                                                     company: self.company.isEmpty ? "" : self.company)
+            self.fields.occupation?.job = newValue
+        }
     }
     
     var company: String {
         get { self.fields.occupation?.company ?? ""}
-        set { self.fields.occupation?.company = newValue }
+        set {
+            self.fields.occupation = OccupationModel(job: self.job.isEmpty ? "" : self.job,
+                                                     company: self.company.isEmpty ? "" : self.company)
+            self.fields.occupation?.company = newValue
+        }
     }
+    
     var school: String { self.fields.school ?? "" }
     var gender: String { self.fields.gender }
     var city: String   { self.fields.city ?? ""}

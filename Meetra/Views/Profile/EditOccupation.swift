@@ -58,6 +58,12 @@ struct EditOccupation: View {
                 alignment: .leading)
         .padding(30)
         .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
+        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarItems(leading: Text(NSLocalizedString("occupationType", comment: ""))
+            .foregroundColor(.black)
+            .font(.custom("Inter-Black", size: 28))
+            .padding(.bottom, 10))
+
     }
 }
 
