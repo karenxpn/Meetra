@@ -561,8 +561,8 @@
 				FF97308F27FDC32900A7BF3F /* EditProfile.swift */,
 				FF4C97FF27FF0711009CB60D /* ProfileEditing.swift */,
 				FF4C980527FF10B0009CB60D /* ProfileEditingInnerView.swift */,
-				FF4C980327FF0980009CB60D /* ProfilePreview.swift */,
 				FF4C980727FF124E009CB60D /* ProfileSpecs.swift */,
+				FF4C980327FF0980009CB60D /* ProfilePreview.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

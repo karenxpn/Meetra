@@ -17,7 +17,7 @@ class MockProfileService: ProfileServiceProtocol {
     var fetchEditFieldsError: Bool = false
     var updateProfileError: Bool = false
     let networkError = NetworkError(initialError: AFError.explicitlyCancelled, backendError: nil)
-    let fields = ProfileEditFields(bio: "Karen Mirakyan", job: "UpWork/ IOS Developer", gender: "Male", location: "Yerevan, Armenia", interests: ["Coffee"])
+    let fields = AppPreviewModels.fields
     let globalResponse = GlobalResponse(status: "", message: "")
     let profile = AppPreviewModels.profile
     

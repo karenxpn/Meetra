@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileEditingInnerView: View {
     @State var fields: ProfileEditFields
     let icons = ["user_occupation_icon", "user_school_icon", "user_gender_icon", "user_location_icon"]
+    let names = ["Род деятельности", "Образование", "Пол", "Город"]
     
     var body: some View {
         ScrollView {
@@ -21,8 +22,8 @@ struct ProfileEditingInnerView: View {
                 ZStack(alignment: .leading) {
                     
                     TextEditor(text: $fields.bio)
-                        .foregroundColor(Color.gray)
-                        .font(.custom("Inter-Regular", size: 16))
+                        .foregroundColor(Color.black)
+                        .font(.custom("Inter-Regular", size: 12))
                         .frame(height: 80)
                         .background(AppColors.addProfileImageBG)
                         .onAppear {
@@ -43,9 +44,27 @@ struct ProfileEditingInnerView: View {
                 }
                 
                 VStack( spacing: 5) {
-                    ForEach(fields.fields, id: \.id) { field in
-                        ProfileSpecs(icon: icons[field.id], label: field.name, value: field.value)
+                    ProfileSpecs(icon: icons[0], label: names[0], value: fields.occupation, destination: AnyView(Text( "Occupation" )))
+                    ProfileSpecs(icon: icons[1], label: names[1], value: fields.school, destination: AnyView(Text( "School" )))
+                    ProfileSpecs(icon: icons[2], label: names[2], value: fields.gender, destination: AnyView(Text( "Gender" )))
+                    ProfileSpecs(icon: icons[3], label: names[3], value: fields.location, destination: AnyView(Text( "Location" )))
+                }
+                
+                HStack {
+                    Text( NSLocalizedString("interests", comment: ""))
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-SemiBold", size: 18))
+                    
+                    Spacer()
+                    
+                    Button {
+                        
+                    } label: {
+                        Text( NSLocalizedString("change", comment: "") )
+                            .foregroundColor(AppColors.proceedButtonColor)
+                            .font(.custom("Inter-Regular", size: 12))
                     }
+
                 }
             }.frame(minWidth: 0,
                     maxWidth: .infinity,
