@@ -33,5 +33,22 @@ class ProfileViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.showAlert)
         XCTAssertNotNil(viewModel.profile)
     }
+    
+    func testGetUpdateFieldsWithError() {
+        service.fetchEditFieldsError = true
+        viewModel.getProfileUpdateFields()
+        
+        XCTAssertTrue(viewModel.showAlert)
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+        
+    }
+    
+    func testGetUpdateFieldsWithSuccess() {
+        service.fetchEditFieldsError = false
+        viewModel.getProfileUpdateFields()
+        
+        XCTAssertFalse(viewModel.showAlert)
+        XCTAssertTrue(viewModel.alertMessage.isEmpty)
+    }
 
 }
