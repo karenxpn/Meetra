@@ -10,9 +10,9 @@ struct ProfileEditFields: Codable {
     var name: String
     var bio: String
     var occupation: OccupationModel?
-    var school: String?
+    var school: String
     var gender: String
-    var city: String?
+    var city: String
     var showGender: Bool
     var interests: [String]
 }
@@ -52,9 +52,9 @@ struct ProfileEditFieldsViewModel: Codable {
         }
     }
     
-    var school: String { self.fields.school ?? "" }
-    var gender: String { self.fields.gender }
-    var city: String   { self.fields.city ?? ""}
-    var showGender: Bool { self.fields.showGender }
-    var interests: [String] { self.fields.interests }
+    var school: String          { self.fields.school }
+    var gender: String          { self.fields.gender }
+    var city: String            { self.fields.city }
+    var showGender: Bool        { self.fields.showGender }
+    var interests: [String]     { self.fields.interests }
 }

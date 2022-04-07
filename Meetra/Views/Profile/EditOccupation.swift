@@ -40,7 +40,7 @@ struct EditOccupation: View {
                 HStack {
                     Spacer()
                     
-                    Text( "Продолжить" )
+                    Text( NSLocalizedString("save", comment: "") )
                         .font(.custom("Inter-SemiBold", size: 20))
                         .foregroundColor(.white)
                         .padding(.vertical, 15)
