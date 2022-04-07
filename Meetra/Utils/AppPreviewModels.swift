@@ -25,5 +25,5 @@ struct AppPreviewModels {
     static let swipeUserViewModel = SwipeUserViewModel(user: swipeUser)
     static let favouritesListModel = FavouritesListModel(favourites: placeRoom.users)
     static let friendRequestModel = FriendRequestModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, school: "RAU", location: "Yerevan, Armenia", message: "Привет! Буду рада познакомиться")
-    static let profile = ProfileModel(id: 1, name: "Karen", age: 22, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", bio: "Ищу компанию на вечер", interests: "", filled: 50, isVerified: false)
+    static let profile = ProfileModel(id: 1, name: "Karen", age: 22, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", bio: "Ищу компанию на вечер", interests: ["Coffee"], filled: 50, isVerified: false)
 }

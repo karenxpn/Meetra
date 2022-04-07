@@ -49,7 +49,7 @@ struct Profile: View {
                                     .cornerRadius(10)
                             }
                             
-                            VStack( alignment: .leading) {
+                            VStack( alignment: .leading, spacing: 14) {
                                 Text( NSLocalizedString("about", comment: ""))
                                     .foregroundColor(.black)
                                     .font(.custom("Inter-SemiBold", size: 18))
@@ -70,8 +70,7 @@ struct Profile: View {
                                 
                                 TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
                                                parentWidth: UIScreen.main.bounds.size.width * 0.8,
-                                               interests: profileVM.profile!.interests.split(separator: ",")
-                                    .map{UserInterestModel(same: true, name: String($0))})
+                                               interests: profileVM.profile!.interests                             .map{UserInterestModel(same: true, name: String($0))})
                                 
                             }.padding(.horizontal, 30)
                             .frame(minWidth: 0,

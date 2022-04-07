@@ -12,7 +12,7 @@ struct ProfileModel: Codable {
     var age: Int
     var image: String
     var bio: String
-    var interests: String
+    var interests: [String]
     var filled: Int
     var isVerified: Bool
 }
