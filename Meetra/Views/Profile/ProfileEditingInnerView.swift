@@ -19,11 +19,12 @@ struct ProfileEditingInnerView: View {
                     .foregroundColor(.black)
                     .font(.custom("Inter-SemiBold", size: 18))
                 
-                ZStack(alignment: .leading) {
+                ZStack(alignment: .topLeading) {
                     
                     TextEditor(text: $fields.bio)
                         .foregroundColor(Color.black)
                         .font(.custom("Inter-Regular", size: 12))
+                        .padding(.leading, 5)
                         .frame(height: 80)
                         .background(AppColors.addProfileImageBG)
                         .onAppear {
@@ -31,15 +32,11 @@ struct ProfileEditingInnerView: View {
                         }.cornerRadius(10)
                     
                     if fields.bio.isEmpty {
-                        
-                        VStack {
-                            Text("Расскажите вкратце о себе")
-                                .kerning(0.24)
-                                .font(.custom("Inter-Regular", size: 12))
-                                .foregroundColor(Color.black)
-                                .padding([.top, .leading], 10)
-                            Spacer()
-                        }.frame(height: 80)
+                        Text("Расскажите вкратце о себе")
+                            .kerning(0.24)
+                            .font(.custom("Inter-Regular", size: 12))
+                            .foregroundColor(Color.black)
+                            .padding([.top, .leading], 10)
                     }
                 }
                 
@@ -57,14 +54,14 @@ struct ProfileEditingInnerView: View {
                     
                     Spacer()
                     
-                    Button {
-                        
+                    
+                    NavigationLink {
+                        EditInterests()
                     } label: {
                         Text( NSLocalizedString("change", comment: "") )
                             .foregroundColor(AppColors.proceedButtonColor)
                             .font(.custom("Inter-Regular", size: 12))
                     }
-
                 }
             }.frame(minWidth: 0,
                     maxWidth: .infinity,
