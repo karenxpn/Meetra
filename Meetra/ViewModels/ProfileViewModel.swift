@@ -17,7 +17,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     @Published var alertMessage: String = ""
     
     @Published var profile: ProfileModel? = nil
-    @Published var editFields: ProfileEditFields? = nil
+    @Published var editFields: ProfileEditFieldsViewModel? = nil
     
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ProfileServiceProtocol
@@ -47,12 +47,13 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
-                    self.editFields = response.value!
+                    self.editFields = ProfileEditFieldsViewModel(fields: response.value!)
                 }
             }.store(in: &cancellableSet)
     }
     
     func updateProfile(fields: ProfileEditFields) {
+        print(fields)
         dataManager.updateProfile(token: token, model: fields)
             .sink { response in
                 if response.error != nil {

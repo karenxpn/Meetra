@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileEditingInnerView: View {
-    @State var fields: ProfileEditFields
+    @State var fields: ProfileEditFieldsViewModel
     let icons = ["user_occupation_icon", "user_school_icon", "user_gender_icon", "user_location_icon"]
     let names = ["Род деятельности", "Образование", "Пол", "Город"]
     
@@ -41,7 +41,9 @@ struct ProfileEditingInnerView: View {
                 }
                 
                 VStack( spacing: 5) {
-                    ProfileSpecs(icon: icons[0], label: names[0], value: fields.occupation?.job, destination: AnyView(Text( "Occupation" )))
+                    ProfileSpecs(icon: icons[0], label: names[0], value: fields.job, destination: AnyView(
+                        EditOccupation(fields: fields)
+                    ))
                     ProfileSpecs(icon: icons[1], label: names[1], value: fields.school, destination: AnyView(Text( "School" )))
                     ProfileSpecs(icon: icons[2], label: names[2], value: fields.gender, destination: AnyView(Text( "Gender" )))
                     ProfileSpecs(icon: icons[3], label: names[3], value: fields.city, destination: AnyView(Text( "Location" )))
@@ -80,6 +82,6 @@ struct ProfileEditingInnerView: View {
 
 struct ProfileEditingInnerView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditingInnerView(fields: AppPreviewModels.fields)
+        ProfileEditingInnerView(fields: ProfileEditFieldsViewModel(fields: AppPreviewModels.fields))
     }
 }

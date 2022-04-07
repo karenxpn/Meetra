@@ -21,3 +21,31 @@ struct OccupationModel: Codable {
     var job: String
     var company: String
 }
+
+struct ProfileEditFieldsViewModel: Codable {
+    var fields: ProfileEditFields
+    init( fields: ProfileEditFields ) {
+        self.fields = fields
+    }
+    
+    var name: String { self.fields.name }
+    var bio: String  {
+        get { self.fields.bio }
+        set { self.fields.bio = newValue }
+    }
+    
+    var job: String {
+        get { self.fields.occupation?.job ?? ""}
+        set { self.fields.occupation?.job = newValue }
+    }
+    
+    var company: String {
+        get { self.fields.occupation?.company ?? ""}
+        set { self.fields.occupation?.company = newValue }
+    }
+    var school: String { self.fields.school ?? "" }
+    var gender: String { self.fields.gender }
+    var city: String   { self.fields.city ?? ""}
+    var showGender: Bool { self.fields.showGender }
+    var interests: [String] { self.fields.interests }
+}
