@@ -8,8 +8,13 @@
 import Foundation
 struct ProfileEditFields: Codable {
     var bio: String
-    var job: String
-    var gender: String
-    var location: String
+    var fields: [ProfileFields]
     var interests: [String]
+    
+}
+
+struct ProfileFields: Codable, Identifiable {
+    var id: Int
+    var name: String
+    var value: String
 }

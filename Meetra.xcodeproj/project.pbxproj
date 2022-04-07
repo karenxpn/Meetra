@@ -33,6 +33,8 @@
 		FF4C980027FF0711009CB60D /* ProfileEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C97FF27FF0711009CB60D /* ProfileEditing.swift */; };
 		FF4C980227FF07A4009CB60D /* ProfileEditFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980127FF07A4009CB60D /* ProfileEditFields.swift */; };
 		FF4C980427FF0980009CB60D /* ProfilePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980327FF0980009CB60D /* ProfilePreview.swift */; };
+		FF4C980627FF10B0009CB60D /* ProfileEditingInnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980527FF10B0009CB60D /* ProfileEditingInnerView.swift */; };
+		FF4C980827FF124E009CB60D /* ProfileSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980727FF124E009CB60D /* ProfileSpecs.swift */; };
 		FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */; };
 		FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */; };
 		FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */; };
@@ -170,6 +172,8 @@
 		FF4C97FF27FF0711009CB60D /* ProfileEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditing.swift; sourceTree = "<group>"; };
 		FF4C980127FF07A4009CB60D /* ProfileEditFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditFields.swift; sourceTree = "<group>"; };
 		FF4C980327FF0980009CB60D /* ProfilePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreview.swift; sourceTree = "<group>"; };
+		FF4C980527FF10B0009CB60D /* ProfileEditingInnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditingInnerView.swift; sourceTree = "<group>"; };
+		FF4C980727FF124E009CB60D /* ProfileSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSpecs.swift; sourceTree = "<group>"; };
 		FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUserModel.swift; sourceTree = "<group>"; };
 		FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipes.swift; sourceTree = "<group>"; };
 		FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSwipeUser.swift; sourceTree = "<group>"; };
@@ -556,7 +560,9 @@
 				FF97308D27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift */,
 				FF97308F27FDC32900A7BF3F /* EditProfile.swift */,
 				FF4C97FF27FF0711009CB60D /* ProfileEditing.swift */,
+				FF4C980527FF10B0009CB60D /* ProfileEditingInnerView.swift */,
 				FF4C980327FF0980009CB60D /* ProfilePreview.swift */,
+				FF4C980727FF124E009CB60D /* ProfileSpecs.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -845,6 +851,7 @@
 				FF37966F27E8B2C7007F28E7 /* PlacesRoomView.swift in Sources */,
 				FFF6468227D2582F0022EF60 /* AuthGallery.swift in Sources */,
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
+				FF4C980827FF124E009CB60D /* ProfileSpecs.swift in Sources */,
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
 				FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */,
 				FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */,
@@ -898,6 +905,7 @@
 				FF61D41427F6819800FB9A23 /* FriendRequestListCell.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
 				FF61D41627F7469B00FB9A23 /* FriendRequestResponseRequest.swift in Sources */,
+				FF4C980627FF10B0009CB60D /* ProfileEditingInnerView.swift in Sources */,
 				FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */,
 				FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */,
 				FFD6372C27E3535900F91AB6 /* Places.swift in Sources */,

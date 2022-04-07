@@ -36,8 +36,9 @@ struct EditProfile: View {
                         .padding([.vertical, .trailing])
                 }
                 
+                Spacer()
+                
             }.padding(.horizontal, 25)
-            
             
             
             if selection == 0 {
@@ -45,11 +46,9 @@ struct EditProfile: View {
             } else {
                 ProfilePreview()
             }
-        }.frame(minWidth: 0,
-                maxWidth: .infinity,
-                minHeight: 0,
-                maxHeight: .infinity,
-                alignment: .leading)
+            
+            Spacer()
+        }
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarItems(leading: Text(NSLocalizedString("profile", comment: ""))
             .foregroundColor(.black)

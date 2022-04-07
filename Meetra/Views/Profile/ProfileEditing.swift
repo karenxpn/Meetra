@@ -15,8 +15,8 @@ struct ProfileEditing: View {
             if profileVM.loading {
                 Loading()
             } else {
-                ScrollView {
-                    Text( "here should be edit fields" )
+                if profileVM.editFields != nil {
+                    ProfileEditingInnerView(fields: profileVM.editFields!)
                 }
             }
         }.onAppear {
