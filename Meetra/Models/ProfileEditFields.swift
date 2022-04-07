@@ -9,9 +9,15 @@ import Foundation
 struct ProfileEditFields: Codable {
     var name: String
     var bio: String
-    var occupation: String
-    var school: String
+    var occupation: OccupationModel?
+    var school: String?
     var gender: String
-    var location: String
+    var city: String?
+    var showGender: Bool
     var interests: [String]
+}
+
+struct OccupationModel: Codable {
+    var job: String
+    var company: String
 }

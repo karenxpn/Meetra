@@ -26,6 +26,6 @@ struct AppPreviewModels {
     static let favouritesListModel = FavouritesListModel(favourites: placeRoom.users)
     static let friendRequestModel = FriendRequestModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, school: "RAU", location: "Yerevan, Armenia", message: "Привет! Буду рада познакомиться")
     static let profile = ProfileModel(id: 1, name: "Karen", age: 22, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", bio: "Ищу компанию на вечер", interests: ["Coffee"], filled: 50, isVerified: false)
-    static let fields = ProfileEditFields(name: "KarenMirakyan", bio: "IOS Developer with over 2 years of experience", occupation: "Бариста", school: "", gender: "Мужчина", location: "", interests: ["Coffee"])
+    static let fields = ProfileEditFields(name: "KarenMirakyan", bio: "IOS Developer with over 2 years of experience", occupation: OccupationModel(job: "Barista", company: "CoffeeShop"), school: "", gender: "Мужчина", city: "Yerevan", showGender: true, interests: ["Coffee"])
 
 }

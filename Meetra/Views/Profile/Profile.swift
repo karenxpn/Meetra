@@ -111,7 +111,9 @@ struct Profile: View {
                     profileVM.getProfile()
                 }
         }.navigationViewStyle(StackNavigationViewStyle())
-        
+            .gesture(DragGesture().onChanged({ _ in
+                UIApplication.shared.endEditing()
+            }))
     }
 }
 

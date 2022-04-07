@@ -41,10 +41,10 @@ struct ProfileEditingInnerView: View {
                 }
                 
                 VStack( spacing: 5) {
-                    ProfileSpecs(icon: icons[0], label: names[0], value: fields.occupation, destination: AnyView(Text( "Occupation" )))
+                    ProfileSpecs(icon: icons[0], label: names[0], value: fields.occupation?.job, destination: AnyView(Text( "Occupation" )))
                     ProfileSpecs(icon: icons[1], label: names[1], value: fields.school, destination: AnyView(Text( "School" )))
                     ProfileSpecs(icon: icons[2], label: names[2], value: fields.gender, destination: AnyView(Text( "Gender" )))
-                    ProfileSpecs(icon: icons[3], label: names[3], value: fields.location, destination: AnyView(Text( "Location" )))
+                    ProfileSpecs(icon: icons[3], label: names[3], value: fields.city, destination: AnyView(Text( "Location" )))
                 }
                 
                 HStack {

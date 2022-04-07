@@ -11,7 +11,7 @@ struct ProfileSpecs: View {
     
     let icon: String
     let label: String
-    let value: String
+    let value: String?
     let destination: AnyView
     
     var body: some View {
@@ -25,7 +25,7 @@ struct ProfileSpecs: View {
                 
                 Spacer()
                 
-                Text( value.isEmpty ? "Указать" : value )
+                Text( value == nil ? "Указать" : value! )
                     .kerning(0.24)
                     .foregroundColor(.black)
                     .font(.custom("Inter-Regular", size: 12))
