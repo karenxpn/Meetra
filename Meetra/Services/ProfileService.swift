@@ -12,6 +12,7 @@ import Combine
 protocol ProfileServiceProtocol {
     func fetchProfile( token: String ) -> AnyPublisher<DataResponse<ProfileModel, NetworkError>, Never>
     func fetchProfileEditFields( token: String ) -> AnyPublisher<DataResponse<ProfileEditFields, NetworkError>, Never>
+    func fetchProfileImages( token: String ) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never>
     func updateProfile( token: String, model: ProfileEditFields ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
 }
 
@@ -21,6 +22,13 @@ class ProfileService {
 }
 
 extension ProfileService: ProfileServiceProtocol {
+    func fetchProfileImages(token: String) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)users/profile-images")!
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
+        
+        return AlamofireAPIHelper.shared.getRequest(url: url, headers: headers, responseType: ProfileImageList.self)
+    }
+    
     func fetchProfileEditFields(token: String) -> AnyPublisher<DataResponse<ProfileEditFields, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/profile")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]

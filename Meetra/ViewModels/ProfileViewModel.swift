@@ -19,6 +19,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     
     @Published var profile: ProfileModel? = nil
     @Published var editFields: ProfileEditFieldsViewModel? = nil
+    @Published var profileImages = [String]()
     
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ProfileServiceProtocol
@@ -45,15 +46,19 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     
     func getProfileUpdateFields() {
         loading = true
-        dataManager.fetchProfileEditFields(token: token)
-            .sink { response in
-                self.loading = false
-                if response.error != nil {
-                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
-                } else {
-                    self.editFields = ProfileEditFieldsViewModel(fields: response.value!)
-                }
-            }.store(in: &cancellableSet)
+        Publishers.Zip(dataManager.fetchProfileEditFields(token: token),
+                       dataManager.fetchProfileImages(token: token))
+        .sink { fields, images in
+            self.loading = false
+            if fields.error != nil {
+                self.makeAlert(with: fields.error!, message: &self.alertMessage, alert: &self.showAlert)
+            } else if images.error != nil {
+                self.makeAlert(with: images.error!, message: &self.alertMessage, alert: &self.showAlert)
+            } else {
+                self.editFields = ProfileEditFieldsViewModel(fields: fields.value!)
+                self.profileImages = images.value!.images
+            }
+        }.store(in: &cancellableSet)
     }
     
     func updateProfile(fields: ProfileEditFields) {

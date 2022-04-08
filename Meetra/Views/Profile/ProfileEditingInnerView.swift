@@ -11,6 +11,8 @@ struct ProfileEditingInnerView: View {
     @EnvironmentObject var profileVM: ProfileViewModel
     @State var fields: ProfileEditFieldsViewModel
     @FocusState private var isFocused: Bool
+    
+    @State private var showPicker: Bool = false
 
     let icons = ["user_occupation_icon", "user_school_icon", "user_gender_icon", "user_location_icon"]
     let names = ["Род деятельности", "Образование", "Пол", "Город"]
@@ -18,6 +20,26 @@ struct ProfileEditingInnerView: View {
     var body: some View {
         ScrollView {
             VStack( alignment: .leading, spacing: 20) {
+                
+                HStack(spacing: 30) {
+                    ForEach(0...1, id: \.self) { index in
+                        EditProfileImageBox(images: $profileVM.profileImages, showPicker: $showPicker,
+                                            height: UIScreen.main.bounds.size.height * 0.22,
+                                            width:  UIScreen.main.bounds.size.width * 0.38,
+                                            index: index)
+                    }
+                }
+                
+                HStack(spacing: 30) {
+                    ForEach(2...4, id: \.self) { index in
+                        
+                        EditProfileImageBox(images: $profileVM.profileImages, showPicker: $showPicker,
+                                        height: UIScreen.main.bounds.size.height * 0.14,
+                                        width:  UIScreen.main.bounds.size.width * 0.23,
+                                        index: index)
+                    }
+                }
+                
                 Text( NSLocalizedString("about", comment: ""))
                     .foregroundColor(.black)
                     .font(.custom("Inter-SemiBold", size: 18))
@@ -83,6 +105,11 @@ struct ProfileEditingInnerView: View {
                     maxHeight: .infinity,
                     alignment: .leading)
             .padding(.horizontal, 25)
+        }.sheet(isPresented: $showPicker) {
+            Gallery { images in
+                profileVM.profileImages.append(contentsOf: images)
+                // update images here
+            }
         }
     }
 }
@@ -90,5 +117,6 @@ struct ProfileEditingInnerView: View {
 struct ProfileEditingInnerView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileEditingInnerView(fields: ProfileEditFieldsViewModel(fields: AppPreviewModels.fields))
+            .environmentObject(ProfileViewModel())
     }
 }

@@ -83,7 +83,9 @@ struct AuthProfileImages: View {
             AuthProgress(page: 3)
         }.navigationBarTitle("", displayMode: .inline)
             .sheet(isPresented: $showPicker) {
-                AuthGallery(model: $model)
+                Gallery { images in
+                    self.model.images.append(contentsOf: images)
+                }
             }
     }
 }
