@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileEditingInnerView: View {
+    @EnvironmentObject var profileVM: ProfileViewModel
     @State var fields: ProfileEditFieldsViewModel
     let icons = ["user_occupation_icon", "user_school_icon", "user_gender_icon", "user_location_icon"]
     let names = ["Род деятельности", "Образование", "Пол", "Город"]
@@ -30,6 +31,9 @@ struct ProfileEditingInnerView: View {
                         .onAppear {
                             UITextView.appearance().backgroundColor = .clear
                         }.cornerRadius(10)
+                        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidHideNotification)) { _ in
+                            profileVM.updateProfile(fields: fields.fields)
+                        }
                     
                     if fields.bio.isEmpty {
                         Text("Расскажите вкратце о себе")
