@@ -22,7 +22,7 @@ struct EditEducation: View {
             
             ButtonHelper(disabled: fields.school == school,
                          label: NSLocalizedString("save", comment: "")) {
-                fields.school == school
+                fields.school = school
                 profileVM.updateProfile(fields: fields.fields)
             }
             
@@ -32,7 +32,7 @@ struct EditEducation: View {
                 maxHeight: .infinity,
                 alignment: .leading)
         .padding(30)
-        .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
+        .padding(.bottom, UIScreen.main.bounds.size.height * 0.05)
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarItems(leading: Text(NSLocalizedString("education", comment: ""))
             .foregroundColor(.black)

@@ -58,7 +58,7 @@ struct ProfileEditingInnerView: View {
                     
                     
                     NavigationLink {
-                        EditInterests()
+                        EditInterests(fields: fields)
                     } label: {
                         Text( NSLocalizedString("change", comment: "") )
                             .foregroundColor(AppColors.proceedButtonColor)

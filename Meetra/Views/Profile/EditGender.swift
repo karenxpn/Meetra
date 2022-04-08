@@ -71,7 +71,7 @@ struct EditGender: View {
             
         }
         .padding(30)
-        .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
+        .padding(.bottom, UIScreen.main.bounds.size.height * 0.05)
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarItems(leading: Text(NSLocalizedString("gender", comment: ""))
             .foregroundColor(.black)

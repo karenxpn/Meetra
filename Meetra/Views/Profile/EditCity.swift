@@ -32,7 +32,7 @@ struct EditCity: View {
                 maxHeight: .infinity,
                 alignment: .leading)
         .padding(30)
-        .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
+        .padding(.bottom, UIScreen.main.bounds.size.height * 0.05)
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarItems(leading: Text(NSLocalizedString("city", comment: ""))
             .foregroundColor(.black)
