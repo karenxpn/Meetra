@@ -17,66 +17,62 @@ struct EditGender: View {
     @State private var showGender: Bool = true
     
     var body: some View {
-        VStack( alignment: .leading, spacing: 30) {
+        
+        EditProfileFieldBuilder(title: NSLocalizedString("gender", comment: "")) {
             
-            ForEach( genders, id: \.self ) { gender in
+            VStack( alignment: .leading, spacing: 30) {
                 
-                Button {
-                    selected_gender = gender
-                } label: {
-                    HStack {
-                        Text( gender )
-                            .foregroundColor(gender == selected_gender ? .white : .black)
-                            .font(.custom("Inter-SemiBold", size: 18))
-                            .padding(.leading)
-                        
-                        Spacer()
-                    }.padding(.vertical, 14)
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .background(gender == selected_gender ? AppColors.accentColor : .white)
-                        .cornerRadius(10)
-                        .shadow(radius: 3, x: 0, y: 3)
-                }
-            }
-            
-            Spacer()
-            
-            HStack {
-                Button {
-                    showGender.toggle()
-                } label: {
-                    ZStack {
-                        Image("checkbox")
-                        if !showGender {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.gray)
-                                .font(Font.system(size: 15, weight: .semibold))
+                ForEach( genders, id: \.self ) { gender in
+                    
+                    Button {
+                        selected_gender = gender
+                    } label: {
+                        HStack {
+                            Text( gender )
+                                .foregroundColor(gender == selected_gender ? .white : .black)
+                                .font(.custom("Inter-SemiBold", size: 18))
+                                .padding(.leading)
                             
-                        }
+                            Spacer()
+                        }.padding(.vertical, 14)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .background(gender == selected_gender ? AppColors.accentColor : .white)
+                            .cornerRadius(10)
+                            .shadow(radius: 3, x: 0, y: 3)
                     }
                 }
                 
-                Text("Не показывать мой пол в профиле")
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-Regular", size: 12))
-            }
-            
-            ButtonHelper(disabled: selected_gender == fields.gender && showGender == fields.showGender,
-                         label: NSLocalizedString("save", comment: "")) {
+                Spacer()
                 
-                fields.gender = selected_gender
-                fields.showGender = showGender
-                profileVM.updateProfile(fields: fields.fields)
+                HStack {
+                    Button {
+                        showGender.toggle()
+                    } label: {
+                        ZStack {
+                            Image("checkbox")
+                            if !showGender {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.gray)
+                                    .font(Font.system(size: 15, weight: .semibold))
+                                
+                            }
+                        }
+                    }
+                    
+                    Text("Не показывать мой пол в профиле")
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-Regular", size: 12))
+                }
+                
+                ButtonHelper(disabled: selected_gender == fields.gender && showGender == fields.showGender,
+                             label: NSLocalizedString("save", comment: "")) {
+                    
+                    fields.gender = selected_gender
+                    fields.showGender = showGender
+                    profileVM.updateProfile(fields: fields.fields)
+                }
             }
-            
         }
-        .padding(30)
-        .padding(.bottom, UIScreen.main.bounds.size.height * 0.05)
-        .navigationBarTitle("", displayMode: .inline)
-        .navigationBarItems(leading: Text(NSLocalizedString("gender", comment: ""))
-            .foregroundColor(.black)
-            .font(.custom("Inter-Black", size: 28))
-            .padding(.bottom, 10))
         .onAppear {
             showGender = fields.showGender
             selected_gender = fields.gender

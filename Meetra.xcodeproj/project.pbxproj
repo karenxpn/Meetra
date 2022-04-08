@@ -105,6 +105,7 @@
 		FFB7989C28004BD90040A9E8 /* EditCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7989B28004BD90040A9E8 /* EditCity.swift */; };
 		FFB7989E28004C230040A9E8 /* ButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7989D28004C230040A9E8 /* ButtonHelper.swift */; };
 		FFB798A02800510C0040A9E8 /* EditGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7989F2800510C0040A9E8 /* EditGender.swift */; };
+		FFB798A228005FC00040A9E8 /* EditProfileFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB798A128005FC00040A9E8 /* EditProfileFieldBuilder.swift */; };
 		FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */; };
 		FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371727E23A5E00F91AB6 /* LocationManager.swift */; };
 		FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD6371D27E23BE200F91AB6 /* Localizable.strings */; };
@@ -252,6 +253,7 @@
 		FFB7989B28004BD90040A9E8 /* EditCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCity.swift; sourceTree = "<group>"; };
 		FFB7989D28004C230040A9E8 /* ButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonHelper.swift; sourceTree = "<group>"; };
 		FFB7989F2800510C0040A9E8 /* EditGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGender.swift; sourceTree = "<group>"; };
+		FFB798A128005FC00040A9E8 /* EditProfileFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileFieldBuilder.swift; sourceTree = "<group>"; };
 		FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocationPermission.swift; sourceTree = "<group>"; };
 		FFD6371727E23A5E00F91AB6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FFD6371C27E23BE200F91AB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 				FFB7989B28004BD90040A9E8 /* EditCity.swift */,
 				FFB7989F2800510C0040A9E8 /* EditGender.swift */,
 				FFB798972800493F0040A9E8 /* TextFieldHelper.swift */,
+				FFB798A128005FC00040A9E8 /* EditProfileFieldBuilder.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -940,6 +943,7 @@
 				FF61D40C27F5E3A300FB9A23 /* FavouritesListCell.swift in Sources */,
 				FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */,
 				FF36400927F0BA170057D605 /* AppPreviewModels.swift in Sources */,
+				FFB798A228005FC00040A9E8 /* EditProfileFieldBuilder.swift in Sources */,
 				FF61D40E27F64D8800FB9A23 /* SwipeCards.swift in Sources */,
 				FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */,
 				FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */,

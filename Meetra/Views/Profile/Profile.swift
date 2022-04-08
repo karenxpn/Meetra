@@ -76,6 +76,7 @@ struct Profile: View {
                             .frame(minWidth: 0,
                                     maxWidth: .infinity,
                                     alignment: .leading)
+                            .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
                             
                         }.padding(.top, 25)
                             .frame(minWidth: 0,
