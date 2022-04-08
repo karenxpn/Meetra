@@ -51,24 +51,11 @@ struct AuthBirthday: View {
                 Spacer()
                 
                 
-                Button {
+                ButtonHelper(disabled: !birthdayFormFields.isProceedButtonClickable,
+                             label: NSLocalizedString("proceed", comment: "")) {
                     model.birthday = "\(birthdayFormFields.day)/\(birthdayFormFields.month)/\(birthdayFormFields.year)"
                     navigate.toggle()
-                } label: {
-                    HStack {
-                        Spacer()
-                        
-                        Text( "Продолжить" )
-                            .font(.custom("Inter-SemiBold", size: 20))
-                            .foregroundColor(.white)
-                            .padding(.vertical, 15)
-                        
-                        Spacer()
-                    }.background(AppColors.proceedButtonColor)
-                        .opacity(!birthdayFormFields.isProceedButtonClickable ? 0.5 : 1)
-                        .cornerRadius(30)
-                }.disabled(!birthdayFormFields.isProceedButtonClickable)
-                    .background(
+                }.background(
                         NavigationLink(destination: AuthGenderPicker(model: model), isActive: $navigate, label: {
                             EmptyView()
                         }).hidden()

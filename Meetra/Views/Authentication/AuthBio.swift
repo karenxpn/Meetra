@@ -51,25 +51,11 @@ struct AuthBio: View {
                 
                 Spacer()
                 
-                Button {
+                ButtonHelper(disabled: bio.isEmpty,
+                             label: NSLocalizedString("proceed", comment: "")) {
                     model.bio = bio
                     navigate.toggle()
-                    
-                } label: {
-                    HStack {
-                        Spacer()
-                        
-                        Text( "Продолжить" )
-                            .font(.custom("Inter-SemiBold", size: 20))
-                            .foregroundColor(.white)
-                            .padding(.vertical, 15)
-                        
-                        Spacer()
-                    }.background(AppColors.proceedButtonColor)
-                        .opacity(bio.isEmpty ? 0.5 : 1)
-                        .cornerRadius(30)
-                }.disabled(bio.isEmpty)
-                    .background(
+                }.background(
                         NavigationLink(destination: AuthInterests(model: model), isActive: $navigate, label: {
                             EmptyView()
                         }).hidden()

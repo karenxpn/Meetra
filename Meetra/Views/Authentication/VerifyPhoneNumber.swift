@@ -51,25 +51,10 @@ struct VerifyPhoneNumber: View {
             Spacer()
             
             
-            Button {
+            ButtonHelper(disabled: authVM.OTP.count != 4,
+                         label: NSLocalizedString("proceed", comment: "")) {
                 authVM.checkVerificationCode()
-            } label: {
-                
-                HStack {
-                    Spacer()
-                    
-                    Text( "Продолжить" )
-                        .font(.custom("Inter-SemiBold", size: 20))
-                        .foregroundColor(.white)
-                        .padding(.vertical, 15)
-                    
-                    Spacer()
-                }.background(AppColors.proceedButtonColor)
-                    .opacity(authVM.OTP.count != 4 ? 0.5 : 1)
-                    .cornerRadius(30)
-                
-            }.disabled(authVM.OTP.count != 4)
-                .background(
+            }.background(
                     NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
                         EmptyView()
                     }).hidden()
