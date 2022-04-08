@@ -59,7 +59,6 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     func updateProfile(fields: ProfileEditFields) {
         dataManager.updateProfile(token: token, model: fields)
             .sink { response in
-                print(response)
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
