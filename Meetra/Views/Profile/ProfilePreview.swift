@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct ProfilePreview: View {
+    @StateObject var profileVM = ProfileViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            if profileVM.loading {
+                Loading()
+            } else if profileVM.editFields != nil {
+                ProfilePreviewInnerView(fields: profileVM.editFields!)
+            }
+        }.onAppear {
+            profileVM.getProfileUpdateFields()
+        }.alert(isPresented: $profileVM.showAlert, content: {
+            Alert(title: Text("Error"), message: Text(profileVM.alertMessage), dismissButton: .default(Text("Got it!")))
+        })
     }
 }
 
