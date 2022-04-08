@@ -50,10 +50,10 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
                        dataManager.fetchProfileImages(token: token))
         .sink { fields, images in
             self.loading = false
-            if fields.error != nil {
-                self.makeAlert(with: fields.error!, message: &self.alertMessage, alert: &self.showAlert)
-            } else if images.error != nil {
-                self.makeAlert(with: images.error!, message: &self.alertMessage, alert: &self.showAlert)
+            if fields.error != nil || images.error != nil {
+                self.makeAlert(with: fields.error == nil ? images.error! : fields.error!,
+                               message: &self.alertMessage,
+                               alert: &self.showAlert)
             } else {
                 self.editFields = ProfileEditFieldsViewModel(fields: fields.value!)
                 self.profileImages = images.value!.images
