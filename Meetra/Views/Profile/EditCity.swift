@@ -1,5 +1,5 @@
 //
-//  EditEducation.swift
+//  EditCity.swift
 //  Meetra
 //
 //  Created by Karen Mirakyan on 08.04.22.
@@ -7,19 +7,18 @@
 
 import SwiftUI
 
-struct EditEducation: View {
-    
+struct EditCity: View {
     @StateObject var profileVM = ProfileViewModel()
     @State var fields: ProfileEditFieldsViewModel
     
     var body: some View {
         VStack( spacing: 43) {
             
-            TextFieldHelper(placeholder: "Учебное заведение", text: $fields.school)
+            TextFieldHelper(placeholder: "Город проживания", text: $fields.city)
 
             Spacer()
             
-            ButtonHelper(disabled: fields.school.isEmpty,
+            ButtonHelper(disabled: fields.city.isEmpty,
                          label: NSLocalizedString("save", comment: "")) {
                 profileVM.updateProfile(fields: fields.fields)
             }
@@ -32,15 +31,15 @@ struct EditEducation: View {
         .padding(30)
         .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
         .navigationBarTitle("", displayMode: .inline)
-        .navigationBarItems(leading: Text(NSLocalizedString("education", comment: ""))
+        .navigationBarItems(leading: Text(NSLocalizedString("city", comment: ""))
             .foregroundColor(.black)
             .font(.custom("Inter-Black", size: 28))
             .padding(.bottom, 10))
     }
 }
 
-struct EditEducation_Previews: PreviewProvider {
+struct EditCity_Previews: PreviewProvider {
     static var previews: some View {
-        EditEducation(fields: ProfileEditFieldsViewModel(fields: AppPreviewModels.fields))
+        EditCity(fields: ProfileEditFieldsViewModel(fields: AppPreviewModels.fields))
     }
 }

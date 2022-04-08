@@ -102,6 +102,8 @@
 		FFB6D25327EB984D004FD5D3 /* PlacesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */; };
 		FFB798982800493F0040A9E8 /* TextFieldHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB798972800493F0040A9E8 /* TextFieldHelper.swift */; };
 		FFB7989A280049C00040A9E8 /* EditEducation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB79899280049C00040A9E8 /* EditEducation.swift */; };
+		FFB7989C28004BD90040A9E8 /* EditCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7989B28004BD90040A9E8 /* EditCity.swift */; };
+		FFB7989E28004C230040A9E8 /* ButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB7989D28004C230040A9E8 /* ButtonHelper.swift */; };
 		FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */; };
 		FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371727E23A5E00F91AB6 /* LocationManager.swift */; };
 		FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD6371D27E23BE200F91AB6 /* Localizable.strings */; };
@@ -246,6 +248,8 @@
 		FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModelTests.swift; sourceTree = "<group>"; };
 		FFB798972800493F0040A9E8 /* TextFieldHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldHelper.swift; sourceTree = "<group>"; };
 		FFB79899280049C00040A9E8 /* EditEducation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEducation.swift; sourceTree = "<group>"; };
+		FFB7989B28004BD90040A9E8 /* EditCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCity.swift; sourceTree = "<group>"; };
+		FFB7989D28004C230040A9E8 /* ButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonHelper.swift; sourceTree = "<group>"; };
 		FFD6371527E2393E00F91AB6 /* AuthLocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthLocationPermission.swift; sourceTree = "<group>"; };
 		FFD6371727E23A5E00F91AB6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		FFD6371C27E23BE200F91AB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 				FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */,
 				FFB6D24C27EA34F5004FD5D3 /* Loading.swift */,
 				FF61D40327F4CAD200FB9A23 /* TagsViewHelper.swift */,
+				FFB7989D28004C230040A9E8 /* ButtonHelper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -574,6 +579,7 @@
 				FF4C980327FF0980009CB60D /* ProfilePreview.swift */,
 				FF4C980D27FF4A10009CB60D /* EditOccupation.swift */,
 				FFB79899280049C00040A9E8 /* EditEducation.swift */,
+				FFB7989B28004BD90040A9E8 /* EditCity.swift */,
 				FFB798972800493F0040A9E8 /* TextFieldHelper.swift */,
 			);
 			path = Profile;
@@ -907,6 +913,7 @@
 				FF61D40A27F5DCDB00FB9A23 /* FavouritesListModel.swift in Sources */,
 				FF4C980427FF0980009CB60D /* ProfilePreview.swift in Sources */,
 				FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */,
+				FFB7989E28004C230040A9E8 /* ButtonHelper.swift in Sources */,
 				FF61D40227F4C02900FB9A23 /* SwipeButtonHelper.swift in Sources */,
 				FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */,
 				FF7D0D2327D006E900A828C7 /* GlobalResponse.swift in Sources */,
@@ -920,6 +927,7 @@
 				FF61D41427F6819800FB9A23 /* FriendRequestListCell.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
 				FF61D41627F7469B00FB9A23 /* FriendRequestResponseRequest.swift in Sources */,
+				FFB7989C28004BD90040A9E8 /* EditCity.swift in Sources */,
 				FF4C980627FF10B0009CB60D /* ProfileEditingInnerView.swift in Sources */,
 				FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */,
 				FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */,

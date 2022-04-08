@@ -20,22 +20,10 @@ struct EditOccupation: View {
 
             Spacer()
             
-            Button {
+            ButtonHelper(disabled: fields.job.isEmpty && fields.company.isEmpty,
+                         label: NSLocalizedString("save", comment: "")) {
                 profileVM.updateProfile(fields: fields.fields)
-            } label: {
-                HStack {
-                    Spacer()
-                    
-                    Text( NSLocalizedString("save", comment: "") )
-                        .font(.custom("Inter-SemiBold", size: 20))
-                        .foregroundColor(.white)
-                        .padding(.vertical, 15)
-                    
-                    Spacer()
-                }.background(AppColors.proceedButtonColor)
-                    .opacity(fields.job.isEmpty && fields.company.isEmpty ? 0.5 : 1)
-                    .cornerRadius(30)
-            }.disabled(fields.job.isEmpty && fields.company.isEmpty)
+            }
             
         }.frame(minWidth: 0,
                 maxWidth: .infinity,

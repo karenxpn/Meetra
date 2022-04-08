@@ -57,8 +57,24 @@ struct ProfileEditFieldsViewModel: Codable {
         set { self.fields.school = newValue }
         
     }
-    var gender: String          { self.fields.gender }
-    var city: String            { self.fields.city }
-    var showGender: Bool        { self.fields.showGender }
-    var interests: [String]     { self.fields.interests }
+    var gender: String {
+        get { self.fields.gender }
+        set { self.fields.gender = newValue }
+        
+    }
+    
+    var city: String {
+        get { self.fields.city }
+        set { self.fields.city = newValue }
+    }
+    
+    var showGender: Bool {
+        get { self.fields.showGender }
+        set { self.fields.showGender = newValue }
+    }
+    
+    var interests: [String] {
+        get { self.fields.interests }
+        set { self.fields.interests = newValue }
+    }
 }

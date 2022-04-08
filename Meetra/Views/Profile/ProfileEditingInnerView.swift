@@ -46,7 +46,7 @@ struct ProfileEditingInnerView: View {
                     ))
                     ProfileSpecs(icon: icons[1], label: names[1], value: fields.school, destination: AnyView(EditEducation(fields: fields)))
                     ProfileSpecs(icon: icons[2], label: names[2], value: fields.gender, destination: AnyView(Text( "Gender" )))
-                    ProfileSpecs(icon: icons[3], label: names[3], value: fields.city, destination: AnyView(Text( "Location" )))
+                    ProfileSpecs(icon: icons[3], label: names[3], value: fields.city, destination: AnyView(EditCity(fields: fields)))
                 }
                 
                 HStack {
