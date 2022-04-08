@@ -17,7 +17,10 @@ struct EditOccupation: View {
     
     var body: some View {
         
-        EditProfileFieldBuilder(title: NSLocalizedString("occupationType", comment: "")) {
+        EditProfileFieldBuilder(title: NSLocalizedString("occupationType", comment: ""),
+                                showAlert: $profileVM.showAlert,
+                                message: profileVM.alertMessage) {
+            
             VStack( spacing: 43) {
                 
                 TextFieldHelper(placeholder: "Ваше занятие", text: $job)

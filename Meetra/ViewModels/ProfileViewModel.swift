@@ -62,6 +62,8 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
                 print(response)
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    NotificationCenter.default.post(name: Notification.Name("updated"), object: nil)
                 }
             }.store(in: &cancellableSet)
     }

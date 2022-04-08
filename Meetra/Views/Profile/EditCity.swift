@@ -15,7 +15,9 @@ struct EditCity: View {
     
     var body: some View {
         
-        EditProfileFieldBuilder(title: NSLocalizedString("city", comment: "")) {
+        EditProfileFieldBuilder(title: NSLocalizedString("city", comment: ""),
+                                showAlert: $profileVM.showAlert,
+                                message: profileVM.alertMessage) {
             
             VStack( spacing: 43) {
                 

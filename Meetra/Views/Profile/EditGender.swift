@@ -18,7 +18,9 @@ struct EditGender: View {
     
     var body: some View {
         
-        EditProfileFieldBuilder(title: NSLocalizedString("gender", comment: "")) {
+        EditProfileFieldBuilder(title: NSLocalizedString("gender", comment: ""),
+                                showAlert: $profileVM.showAlert,
+                                message: profileVM.alertMessage) {
             
             VStack( alignment: .leading, spacing: 30) {
                 

@@ -17,7 +17,9 @@ struct EditInterests: View {
     
     var body: some View {
         
-        EditProfileFieldBuilder(title: NSLocalizedString("interests", comment: "")) {
+        EditProfileFieldBuilder(title: NSLocalizedString("interests", comment: ""),
+                                showAlert: $profileVM.showAlert,
+                                message: profileVM.alertMessage) {
             
             VStack(alignment: .leading) {
                 

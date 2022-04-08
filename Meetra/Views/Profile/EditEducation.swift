@@ -15,7 +15,10 @@ struct EditEducation: View {
     
     var body: some View {
         
-        EditProfileFieldBuilder(title: NSLocalizedString("education", comment: "")) {
+        EditProfileFieldBuilder(title: NSLocalizedString("education", comment: ""),
+                                showAlert: $profileVM.showAlert,
+                                message: profileVM.alertMessage) {
+            
             VStack( spacing: 43) {
                 
                 TextFieldHelper(placeholder: "Учебное заведение", text: $school)

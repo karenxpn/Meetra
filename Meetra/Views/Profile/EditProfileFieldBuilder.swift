@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct EditProfileFieldBuilder<Content: View>: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     let title: String
+    @Binding var showAlert: Bool
+    let message: String
     private var content: Content
     
-    init(title: String, @ViewBuilder content: () -> Content) {
+    init(title: String, showAlert: Binding<Bool>, message: String, @ViewBuilder content: () -> Content) {
         self.title = title
+        self._showAlert = showAlert
+        self.message = message
         self.content = content()
     }
     
@@ -30,5 +36,10 @@ struct EditProfileFieldBuilder<Content: View>: View {
                 .foregroundColor(.black)
                 .font(.custom("Inter-Black", size: 28))
                 .padding(.bottom, 10))
+            .alert(isPresented: $showAlert, content: {
+                Alert(title: Text( "Error" ), message: Text( message ), dismissButton: .default(Text( "Got It" )))
+            }).onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "updated"))) { _ in
+                presentationMode.wrappedValue.dismiss()
+            }
     }
 }
