@@ -52,7 +52,11 @@ struct ProfileEditFieldsViewModel: Codable {
         }
     }
     
-    var school: String          { self.fields.school }
+    var school: String {
+        get { self.fields.school }
+        set { self.fields.school = newValue }
+        
+    }
     var gender: String          { self.fields.gender }
     var city: String            { self.fields.city }
     var showGender: Bool        { self.fields.showGender }
