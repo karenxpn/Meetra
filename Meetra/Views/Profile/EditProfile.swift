@@ -51,6 +51,7 @@ struct EditProfile: View {
         }
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarItems(leading: Text(NSLocalizedString("profile", comment: ""))
+            .kerning(0.56)
             .foregroundColor(.black)
             .font(.custom("Inter-Black", size: 28))
             .padding(.bottom, 10), trailing: HStack( spacing: 20) {

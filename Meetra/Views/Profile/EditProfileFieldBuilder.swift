@@ -33,6 +33,7 @@ struct EditProfileFieldBuilder<Content: View>: View {
             .padding(.bottom, UIScreen.main.bounds.size.height * 0.07)
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading: Text(title)
+                .kerning(0.56)
                 .foregroundColor(.black)
                 .font(.custom("Inter-Black", size: 28))
                 .padding(.bottom, 10))
