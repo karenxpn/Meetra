@@ -14,24 +14,10 @@ struct EditOccupation: View {
     
     var body: some View {
         VStack( spacing: 43) {
-            TextField("Ваше занятие", text: $fields.job)
-                .foregroundColor(.black)
-                .font(.custom("Inter-SemiBold", size: 18))
-                .padding(.vertical, 15)
-                .padding(.horizontal, 10)
-                .background(.white)
-                .cornerRadius(10)
-                .shadow(radius: 3, x: 0, y: 3)
             
-            TextField("Компания", text: $fields.company)
-                .foregroundColor(.black)
-                .font(.custom("Inter-SemiBold", size: 18))
-                .padding(.vertical, 15)
-                .padding(.horizontal, 10)
-                .background(.white)
-                .cornerRadius(10)
-                .shadow(radius: 3, x: 0, y: 3)
-            
+            TextFieldHelper(placeholder: "Ваше занятие", text: $fields.job)
+            TextFieldHelper(placeholder: "Компания", text: $fields.company)
+
             Spacer()
             
             Button {
