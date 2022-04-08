@@ -11,16 +11,18 @@ struct EditEducation: View {
     
     @StateObject var profileVM = ProfileViewModel()
     @State var fields: ProfileEditFieldsViewModel
+    @State private var school: String = ""
     
     var body: some View {
         VStack( spacing: 43) {
             
-            TextFieldHelper(placeholder: "Учебное заведение", text: $fields.school)
+            TextFieldHelper(placeholder: "Учебное заведение", text: $school)
 
             Spacer()
             
-            ButtonHelper(disabled: fields.school.isEmpty,
+            ButtonHelper(disabled: fields.school == school,
                          label: NSLocalizedString("save", comment: "")) {
+                fields.school == school
                 profileVM.updateProfile(fields: fields.fields)
             }
             
@@ -36,6 +38,9 @@ struct EditEducation: View {
             .foregroundColor(.black)
             .font(.custom("Inter-Black", size: 28))
             .padding(.bottom, 10))
+        .onAppear {
+            school = fields.school
+        }
     }
 }
 

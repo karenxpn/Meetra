@@ -12,16 +12,21 @@ struct EditOccupation: View {
     @StateObject var profileVM = ProfileViewModel()
     @State var fields: ProfileEditFieldsViewModel
     
+    @State private var job: String = ""
+    @State private var company: String = ""
+    
     var body: some View {
         VStack( spacing: 43) {
             
-            TextFieldHelper(placeholder: "Ваше занятие", text: $fields.job)
-            TextFieldHelper(placeholder: "Компания", text: $fields.company)
+            TextFieldHelper(placeholder: "Ваше занятие", text: $job)
+            TextFieldHelper(placeholder: "Компания", text: $company)
 
             Spacer()
             
-            ButtonHelper(disabled: fields.job.isEmpty && fields.company.isEmpty,
+            ButtonHelper(disabled: fields.job == job && fields.company == company,
                          label: NSLocalizedString("save", comment: "")) {
+                fields.job = job
+                fields.company = company
                 profileVM.updateProfile(fields: fields.fields)
             }
             
@@ -37,6 +42,10 @@ struct EditOccupation: View {
             .foregroundColor(.black)
             .font(.custom("Inter-Black", size: 28))
             .padding(.bottom, 10))
+        .onAppear {
+            job = fields.job
+            company = fields.company
+        }
 
     }
 }

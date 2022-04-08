@@ -11,15 +11,18 @@ struct EditCity: View {
     @StateObject var profileVM = ProfileViewModel()
     @State var fields: ProfileEditFieldsViewModel
     
+    @State private var city: String = ""
+    
     var body: some View {
         VStack( spacing: 43) {
             
-            TextFieldHelper(placeholder: "Город проживания", text: $fields.city)
+            TextFieldHelper(placeholder: "Город проживания", text: $city)
 
             Spacer()
             
-            ButtonHelper(disabled: fields.city.isEmpty,
+            ButtonHelper(disabled: city == fields.city,
                          label: NSLocalizedString("save", comment: "")) {
+                fields.city = city
                 profileVM.updateProfile(fields: fields.fields)
             }
             
@@ -35,6 +38,9 @@ struct EditCity: View {
             .foregroundColor(.black)
             .font(.custom("Inter-Black", size: 28))
             .padding(.bottom, 10))
+        .onAppear {
+            city = fields.city
+        }
     }
 }
 
