@@ -12,14 +12,22 @@ import Combine
 @testable import Meetra
 
 class MockProfileService: ProfileServiceProtocol {
+    func fetchProfileImages(token: String) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: fetchProfileImagesError,
+                                                     response: profileImages,
+                                                     responseType: ProfileImageList.self)
+    }
+    
     
     var fetchProfileError: Bool = false
     var fetchEditFieldsError: Bool = false
+    var fetchProfileImagesError: Bool = false
     var updateProfileError: Bool = false
     let networkError = NetworkError(initialError: AFError.explicitlyCancelled, backendError: nil)
     let fields = AppPreviewModels.fields
     let globalResponse = GlobalResponse(status: "", message: "")
     let profile = AppPreviewModels.profile
+    let profileImages = ProfileImageList(images: [""])
     
     func fetchProfile(token: String) -> AnyPublisher<DataResponse<ProfileModel, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: fetchProfileError, response: profile, responseType: ProfileModel.self)
@@ -31,7 +39,6 @@ class MockProfileService: ProfileServiceProtocol {
     
     func updateProfile(token: String, model: ProfileEditFields) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: updateProfileError, response: globalResponse, responseType: GlobalResponse.self)
-
     }
     
 }
