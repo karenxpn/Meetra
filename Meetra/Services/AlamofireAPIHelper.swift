@@ -49,6 +49,27 @@ class AlamofireAPIHelper {
             .eraseToAnyPublisher()
     }
     
+    func deleteRequest<T, P>( params: P, url: URL, headers: HTTPHeaders, responseType: T.Type) -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Decodable, P : Encodable {
+
+        return AF.request(url,
+                          method: .delete,
+                          parameters: params,
+                          encoder: JSONParameterEncoder.default,
+                          headers: headers)
+            .validate()
+            .publishDecodable(type: T.self)
+            .map { response in
+                response.mapError { error in
+                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
+                    return NetworkError(initialError: error, backendError: backendError)
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    
+    
     func patchRequest<T, P>( params: P, url: URL, headers: HTTPHeaders, responseType: T.Type) -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Decodable, P : Encodable {
 
         return AF.request(url,

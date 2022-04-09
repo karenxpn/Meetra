@@ -19,7 +19,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     
     @Published var profile: ProfileModel? = nil
     @Published var editFields: ProfileEditFieldsViewModel? = nil
-    @Published var profileImages = [String]()
+    @Published var profileImages = [ProfileImageModel]()
     
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ProfileServiceProtocol
@@ -68,6 +68,26 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
                     NotificationCenter.default.post(name: Notification.Name("updated"), object: nil)
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func updateProfileImages( images: [String] ) {
+        dataManager.updateProfileImages(token: token, images: images)
+            .sink { response in
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.profileImages = response.value!.images
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func deleteProfileImage(id: Int) {
+        dataManager.deleteProfileImage(token: token, id: id)
+            .sink { response in
+                if response.error == nil {
+                    self.profileImages.removeAll(where: { $0.id == id })
                 }
             }.store(in: &cancellableSet)
     }

@@ -26,7 +26,9 @@ struct ProfileEditingInnerView: View {
                         EditProfileImageBox(images: $profileVM.profileImages, showPicker: $showPicker,
                                             height: UIScreen.main.bounds.size.height * 0.22,
                                             width:  UIScreen.main.bounds.size.width * 0.38,
-                                            index: index)
+                                            index: index, deleteAction: {
+                            profileVM.deleteProfileImage(id: profileVM.profileImages[index].id)
+                        })
                     }
                 }
                 
@@ -36,7 +38,9 @@ struct ProfileEditingInnerView: View {
                         EditProfileImageBox(images: $profileVM.profileImages, showPicker: $showPicker,
                                         height: UIScreen.main.bounds.size.height * 0.14,
                                         width:  UIScreen.main.bounds.size.width * 0.23,
-                                        index: index)
+                                            index: index) {
+                            profileVM.deleteProfileImage(id: profileVM.profileImages[index].id)
+                        }
                     }
                 }
                 
@@ -107,8 +111,17 @@ struct ProfileEditingInnerView: View {
             .padding(.horizontal, 25)
         }.sheet(isPresented: $showPicker) {
             Gallery { images in
-                profileVM.profileImages.append(contentsOf: images)
-                // update images here
+                profileVM.profileImages.append(contentsOf: images.map{ ProfileImageModel(id: UUID().hashValue,
+                                                                                         type: "",
+                                                                                         image: $0 )})
+                
+                let pref_five = profileVM.profileImages
+                    .prefix(5)
+                    .filter{ !$0.image.hasPrefix("https://")}
+                    .map{ $0.image }
+                
+                print( pref_five )
+                profileVM.updateProfileImages(images: pref_five)
             }
         }
     }

@@ -7,5 +7,11 @@
 
 import Foundation
 struct ProfileImageList: Codable {
-    var images: [String]
+    var images: [ProfileImageModel]
+}
+
+struct ProfileImageModel: Identifiable, Codable {
+    var id: Int
+    var type: String
+    var image: String
 }

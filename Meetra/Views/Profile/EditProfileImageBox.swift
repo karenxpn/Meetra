@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct EditProfileImageBox: View {
-    
-    @Binding var images: [String]
+    @Binding var images: [ProfileImageModel]
     @Binding var showPicker: Bool
     let height: CGFloat
     let width: CGFloat
     let index: Int
-    
+    let deleteAction: (() -> Void)
     
     var body: some View {
         if images.count > index {
@@ -22,14 +21,14 @@ struct EditProfileImageBox: View {
                 
                 ZStack( alignment: .topTrailing) {
                     
-                    if images[index].hasPrefix("https://") {
-                        ImageHelper(image: images[index], contentMode: .fill)
+                    if images[index].image.hasPrefix("https://") {
+                        ImageHelper(image: images[index].image, contentMode: .fill)
                             .frame(width: width,
                                    height: height)
                             .clipped()
                             .cornerRadius(10)
                     } else {
-                        Image(base64String: images[index])?
+                        Image(base64String: images[index].image)?
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: width,
@@ -40,8 +39,8 @@ struct EditProfileImageBox: View {
                     
                     
                     Button {
-                        if images[index].hasPrefix("https://") {
-                            // api call
+                        if images[index].image.hasPrefix("https://") {
+                            deleteAction()
                         } else {
                             images.remove(at: index)
                         }
@@ -78,11 +77,5 @@ struct EditProfileImageBox: View {
                     .cornerRadius(10)
             }
         }
-    }
-}
-
-struct EditProfileImageBox_Previews: PreviewProvider {
-    static var previews: some View {
-        EditProfileImageBox(images: .constant([""]), showPicker: .constant(false), height: 100, width: 100, index: 1)
     }
 }
