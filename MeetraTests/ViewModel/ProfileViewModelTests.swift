@@ -72,5 +72,55 @@ class ProfileViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.showAlert)
         XCTAssertTrue(viewModel.alertMessage.isEmpty)
     }
+    
+    func testDeleteProfileImageWithError() {
+        // get profile all fields
+        service.fetchEditFieldsError = false
+        service.fetchProfileImagesError = false
+        viewModel.getProfileUpdateFields()
+        
+        
+        service.deleteProfileImageError = true
+        viewModel.deleteProfileImage(id: 1)
+        
+        XCTAssertTrue(viewModel.profileImages.contains(where: {$0.id == 1 }))
+    }
+    
+    func testDeleteProfileImageWithSuccess() {
+        
+        service.fetchEditFieldsError = false
+        service.fetchProfileImagesError = false
+        viewModel.getProfileUpdateFields()
+        
+        
+        service.deleteProfileImageError = false
+        viewModel.deleteProfileImage(id: 1)
+        
+        XCTAssertFalse(viewModel.profileImages.contains(where: {$0.id == 1 }))
+    }
+    
+    func testUpdateProfileImagesWithError() {
+        service.fetchEditFieldsError = false
+        service.fetchProfileImagesError = false
+        viewModel.getProfileUpdateFields()
+        
+        service.updateProfileImagesError = true
+        viewModel.updateProfileImages(images: [""])
+        
+        XCTAssertTrue(viewModel.showAlert)
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testUpdateProfileImageWithSuccess() {
+        service.fetchEditFieldsError = false
+        service.fetchProfileImagesError = false
+        viewModel.getProfileUpdateFields()
+        
+        service.updateProfileImagesError = false
+        viewModel.updateProfileImages(images: [""])
+        
+        XCTAssertFalse(viewModel.showAlert)
+        XCTAssertTrue(viewModel.alertMessage.isEmpty)
+    }
 
 }
