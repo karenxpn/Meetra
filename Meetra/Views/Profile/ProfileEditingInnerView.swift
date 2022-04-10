@@ -18,7 +18,7 @@ struct ProfileEditingInnerView: View {
     let names = ["Род деятельности", "Образование", "Пол", "Город"]
     
     var body: some View {
-        ScrollView {
+        ScrollView( showsIndicators: false ) {
             VStack( alignment: .leading, spacing: 20) {
                 
                 HStack(spacing: 30) {
@@ -102,6 +102,7 @@ struct ProfileEditingInnerView: View {
                 TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
                                parentWidth: UIScreen.main.bounds.size.width * 0.8,
                                interests: fields.interests.map{ UserInterestModel(same: true, name: $0 )})
+                .padding(.bottom, UIScreen.main.bounds.size.height * 0.07)
                 
             }.frame(minWidth: 0,
                     maxWidth: .infinity,

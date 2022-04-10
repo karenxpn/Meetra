@@ -15,6 +15,8 @@ struct ProfileEditFields: Codable {
     var city: String
     var showGender: Bool
     var interests: [String]
+    var isVerified: Bool
+    var age: Int
 }
 
 struct OccupationModel: Codable {
@@ -28,7 +30,10 @@ struct ProfileEditFieldsViewModel: Codable {
         self.fields = fields
     }
     
-    var name: String { self.fields.name }
+    var name: String        { self.fields.name }
+    var age: Int            { self.fields.age }
+    var isVerified: Bool    { self.fields.isVerified }
+    
     var bio: String  {
         get { self.fields.bio }
         set { self.fields.bio = newValue }

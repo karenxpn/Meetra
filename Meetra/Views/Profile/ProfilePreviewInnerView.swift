@@ -28,13 +28,13 @@ struct ProfilePreviewInnerView: View {
                 
                 HStack() {
                     
-                    Text( "\(fields.name), " )
+                    Text( "\(fields.name), \(fields.age)" )
                         .foregroundColor(.black)
                         .font(.custom("Inter-SemiBold", size: 30))
                     
-                    //                    if fields.verified {
-                    Image("verified_icon")
-                    //                    }
+                    if fields.isVerified {
+                        Image("verified_icon")
+                    }
                     
                     Circle()
                         .fill(AppColors.onlineStatus)
