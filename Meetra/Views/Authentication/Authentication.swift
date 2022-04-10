@@ -61,31 +61,15 @@ struct Authentication: View {
             
             Spacer()
             
-            Button {
+            ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
+                         label: NSLocalizedString("proceed", comment: "")) {
                 authVM.sendVerificationCode()
-            } label: {
-                
-                HStack {
-                    Spacer()
-                    
-                    Text( "Продолжить" )
-                        .font(.custom("Inter-SemiBold", size: 20))
-                        .foregroundColor(.white)
-                        .padding(.vertical, 15)
-                    
-                    
-                    Spacer()
-                }.background(AppColors.proceedButtonColor)
-                    .opacity((authVM.phoneNumber == "" || authVM.loading) ? 0.5 : 1)
-                    .cornerRadius(30)
-                
             }.padding(.bottom, 30)
-                .disabled((authVM.loading || authVM.phoneNumber.isEmpty))
                 .background(
                     NavigationLink(destination: VerifyPhoneNumber(model: model, phone: "+\(authVM.code) \(authVM.phoneNumber)")
-                                    .environmentObject(authVM), isActive: $authVM.navigate, label: {
-                        EmptyView()
-                    }).hidden()
+                        .environmentObject(authVM), isActive: $authVM.navigate, label: {
+                            EmptyView()
+                        }).hidden()
                 )
         }.navigationBarTitle("", displayMode: .inline)
             .frame(

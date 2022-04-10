@@ -25,6 +25,11 @@ struct Loading: View {
             .frame(width: 80, height: 80)
             .rotationEffect(Angle.degrees(isRotated ? 360 : 0))
             .animation(animation, value: isRotated)
+            .frame(minWidth: 0,
+                   maxWidth: .infinity,
+                   minHeight: 0,
+                   maxHeight: .infinity,
+                   alignment: .center)
             .onAppear{
                 DispatchQueue.main.async {
                     self.isRotated.toggle()

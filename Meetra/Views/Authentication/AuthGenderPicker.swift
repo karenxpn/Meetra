@@ -66,26 +66,13 @@ struct AuthGenderPicker: View {
                         .font(.custom("Inter-Regular", size: 12))
                 }
                 
-                Button {
+                ButtonHelper(disabled: selected_gender.isEmpty,
+                             label: NSLocalizedString("proceed", comment: "")) {
+                    
                     navigate.toggle()
                     model.gender = selected_gender
                     model.showGender = showGender
-                    
-                } label: {
-                    HStack {
-                        Spacer()
-                        
-                        Text( "Продолжить" )
-                            .font(.custom("Inter-SemiBold", size: 20))
-                            .foregroundColor(.white)
-                            .padding(.vertical, 15)
-                        
-                        Spacer()
-                    }.background(AppColors.proceedButtonColor)
-                        .opacity(selected_gender.isEmpty ? 0.5 : 1)
-                        .cornerRadius(30)
-                }.disabled(selected_gender.isEmpty)                
-                    .background(
+                }.background(
                         NavigationLink(destination: AuthProfileImages(model: model), isActive: $navigate, label: {
                             EmptyView()
                         }).hidden()

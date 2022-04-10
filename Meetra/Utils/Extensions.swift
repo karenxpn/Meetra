@@ -102,6 +102,13 @@ private extension UIEdgeInsets {
 }
 
 
+extension Array where Element: Comparable {
+    func containsSameElements(as other: [Element]) -> Bool {
+        return self.count == other.count && self.sorted() == other.sorted()
+    }
+}
+
+
 extension Image {
     init?(base64String: String) {
         guard let data = Data(base64Encoded: base64String) else { return nil }

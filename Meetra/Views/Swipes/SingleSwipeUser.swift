@@ -131,9 +131,9 @@ struct SingleSwipeUser: View {
                         
                         TagsViewHelper(font: UIFont(name: "Inter-Regular", size: 12)!,
                                        parentWidth: UIScreen.main.bounds.size.width * 0.55,
-                                       interests: user.interests.count <= 6 ?
-                                       user.interests : Array(user.interests.prefix(5)) +
-                                       [UserInterestModel(same: false, name: "+ \(NSLocalizedString("more", comment: "")) \(user.interests.count - 5)")])
+                                       interests: user.interests.count <= 4 ?
+                                       user.interests : Array(user.interests.prefix(3)) +
+                                       [UserInterestModel(same: false, name: "+ \(NSLocalizedString("more", comment: "")) \(user.interests.count - 3)")])
                         
                         Button {
                             navigate.toggle()

@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 import PhotosUI
 
-struct AuthGallery: UIViewControllerRepresentable {
+struct Gallery: UIViewControllerRepresentable {
     
-    @Binding var model: RegistrationRequest
+    let action: (([String]) -> Void)
     
     func makeCoordinator() -> Coordinator {
-        return AuthGallery.Coordinator( parent: self)
+        return Gallery.Coordinator( parent: self)
     }
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
@@ -34,9 +34,10 @@ struct AuthGallery: UIViewControllerRepresentable {
     
     
     class Coordinator: NSObject, PHPickerViewControllerDelegate {
-        var parent: AuthGallery
+        var parent: Gallery
+        var images = [(Int, String)]()
         
-        init( parent: AuthGallery) {
+        init( parent: Gallery) {
             self.parent = parent
         }
         
@@ -44,10 +45,10 @@ struct AuthGallery: UIViewControllerRepresentable {
             
             if !results.isEmpty {
                 
-                for media in results {
+                for (index, media) in results.enumerated() {
                     
                     let itemProvider = media.itemProvider
-                    self.getPhoto(from: itemProvider, resultCount: results.count)
+                    self.getPhoto(from: itemProvider, resultCount: results.count, id: index)
 
 
                     DispatchQueue.main.async {
@@ -60,13 +61,17 @@ struct AuthGallery: UIViewControllerRepresentable {
             }
         }
         
-        private func getPhoto(from itemProvider: NSItemProvider, resultCount: Int) {
+        private func getPhoto(from itemProvider: NSItemProvider, resultCount: Int, id: Int) {
             if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { (img, error) in
                     if let uiimage = img as? UIImage {
                         if let imageData = uiimage.jpegData(compressionQuality: 0.4) {
                             DispatchQueue.main.async {
-                                self.parent.model.images.append(imageData.base64EncodedString())
+                                self.images.append((id, imageData.base64EncodedString()))
+                                if self.images.count == resultCount {
+                                    self.images.sort(by: {$0.0 < $1.0 })
+                                    self.parent.action(self.images.map{ $0.1 })
+                                }
                             }
                         }
                     }

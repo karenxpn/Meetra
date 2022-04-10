@@ -12,36 +12,15 @@ import Alamofire
 
 class MockUserService: UserServiceProtocol {
     func fetchFriendRequests(token: String, page: Int) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never> {
-        var result: Result<FriendRequestListModel, NetworkError>
-        
-        if fetchFriendRequestsError     { result = Result<FriendRequestListModel, NetworkError>.failure(networkError)}
-        else                            { result = Result<FriendRequestListModel, NetworkError>.success(friendRequests)}
-        
-        let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
-        let publisher = CurrentValueSubject<DataResponse<FriendRequestListModel, NetworkError>, Never>(response)
-        return publisher.eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.mockRequest(error: fetchFriendRequestsError, response: friendRequests, responseType: FriendRequestListModel.self)
     }
     
     func accept_rejectFriendRequest(token: String, model: FriendRequestResponseRequest) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        var result: Result<GlobalResponse, NetworkError>
-        
-        if accept_rejectError       { result = Result<GlobalResponse, NetworkError>.failure(networkError)}
-        else                        { result = Result<GlobalResponse, NetworkError>.success(globalResponse)}
-        
-        let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
-        let publisher = CurrentValueSubject<DataResponse<GlobalResponse, NetworkError>, Never>(response)
-        return publisher.eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.mockRequest(error: accept_rejectError, response: globalResponse, responseType: GlobalResponse.self)
     }
     
     func fetchStarredUsers(token: String, page: Int) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never> {
-        var result: Result<FavouritesListModel, NetworkError>
-        
-        if fetchStarredUsersError   { result = Result<FavouritesListModel, NetworkError>.failure(networkError)}
-        else                        { result = Result<FavouritesListModel, NetworkError>.success(users)}
-        
-        let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
-        let publisher = CurrentValueSubject<DataResponse<FavouritesListModel, NetworkError>, Never>(response)
-        return publisher.eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.mockRequest(error: fetchStarredUsersError, response: users, responseType: FavouritesListModel.self)
     }
     
     
@@ -53,41 +32,19 @@ class MockUserService: UserServiceProtocol {
     var accept_rejectError = false
     
     let globalResponse = GlobalResponse(status: "success", message: "success")
-    let networkError = NetworkError(initialError: AFError.explicitlyCancelled, backendError: nil)
     let userModel = AppPreviewModels.userModel
     let users = AppPreviewModels.favouritesListModel
     let friendRequests = FriendRequestListModel(requests: [AppPreviewModels.friendRequestModel])
     
     func fetchUser(token: String, id: Int) -> AnyPublisher<DataResponse<UserModel, NetworkError>, Never> {
-        var result: Result<UserModel, NetworkError>
-        
-        if fetchUserError   { result = Result<UserModel, NetworkError>.failure(networkError)}
-        else                { result = Result<UserModel, NetworkError>.success(userModel)}
-        
-        let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
-        let publisher = CurrentValueSubject<DataResponse<UserModel, NetworkError>, Never>(response)
-        return publisher.eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.mockRequest(error: fetchUserError, response: userModel, responseType: UserModel.self)
     }
     
     func sendFriendRequest(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        var result: Result<GlobalResponse, NetworkError>
-        
-        if sendFriendRequestError   { result = Result<GlobalResponse, NetworkError>.failure(networkError)}
-        else                        { result = Result<GlobalResponse, NetworkError>.success(globalResponse)}
-        
-        let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
-        let publisher = CurrentValueSubject<DataResponse<GlobalResponse, NetworkError>, Never>(response)
-        return publisher.eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.mockRequest(error: sendFriendRequestError, response: globalResponse, responseType: GlobalResponse.self)
     }
     
     func starUser(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        var result: Result<GlobalResponse, NetworkError>
-        
-        if starUserError   { result = Result<GlobalResponse, NetworkError>.failure(networkError)}
-        else               { result = Result<GlobalResponse, NetworkError>.success(globalResponse)}
-        
-        let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
-        let publisher = CurrentValueSubject<DataResponse<GlobalResponse, NetworkError>, Never>(response)
-        return publisher.eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.mockRequest(error: starUserError, response: globalResponse, responseType: GlobalResponse.self)
     }
 }
