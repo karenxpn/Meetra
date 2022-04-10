@@ -1,28 +1,28 @@
 //
-//  AuthGenderPicker.swift
+//  EditGender.swift
 //  Meetra
 //
-//  Created by Karen Mirakyan on 03.03.22.
+//  Created by Karen Mirakyan on 08.04.22.
 //
 
 import SwiftUI
 
-struct AuthGenderPicker: View {
-    @State var model: RegistrationRequest
+struct EditGender: View {
+    
+    @StateObject var profileVM = ProfileViewModel()
+    @State var fields: ProfileEditFieldsViewModel
     
     let genders = ["Женщина", "Мужчина", "Небинарная персона"]
     @State private var selected_gender = ""
-    @State private var navigate: Bool = false
     @State private var showGender: Bool = true
     
-    
     var body: some View {
-        ZStack {
+        
+        EditProfileFieldBuilder(title: NSLocalizedString("gender", comment: ""),
+                                showAlert: $profileVM.showAlert,
+                                message: profileVM.alertMessage) {
+            
             VStack( alignment: .leading, spacing: 30) {
-                
-                Text( "Вы:" )
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-SemiBold", size: 30))
                 
                 ForEach( genders, id: \.self ) { gender in
                     
@@ -66,35 +66,24 @@ struct AuthGenderPicker: View {
                         .font(.custom("Inter-Regular", size: 12))
                 }
                 
-                ButtonHelper(disabled: selected_gender.isEmpty,
-                             label: NSLocalizedString("proceed", comment: "")) {
+                ButtonHelper(disabled: selected_gender == fields.gender && showGender == fields.showGender,
+                             label: NSLocalizedString("save", comment: "")) {
                     
-                    navigate.toggle()
-                    model.gender = selected_gender
-                    model.showGender = showGender
-                }.background(
-                        NavigationLink(destination: AuthProfileImages(model: model), isActive: $navigate, label: {
-                            EmptyView()
-                        }).hidden()
-                    )
-                
+                    fields.gender = selected_gender
+                    fields.showGender = showGender
+                    profileVM.updateProfile(fields: fields.fields)
+                }
             }
-            .frame(
-                minWidth: 0,
-                maxWidth: .infinity,
-                minHeight: 0,
-                maxHeight: .infinity,
-                alignment: .topLeading
-            )
-            .padding(30)
-            
-            AuthProgress(page: 2)
-        }.navigationBarTitle("", displayMode: .inline)
+        }
+        .onAppear {
+            showGender = fields.showGender
+            selected_gender = fields.gender
+        }
     }
 }
 
-struct AuthGenderPicker_Previews: PreviewProvider {
+struct EditGender_Previews: PreviewProvider {
     static var previews: some View {
-        AuthGenderPicker(model: RegistrationRequest())
+        EditGender(fields: ProfileEditFieldsViewModel(fields: AppPreviewModels.fields))
     }
 }

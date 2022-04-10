@@ -41,24 +41,11 @@ struct AuthNameInput: View {
                 
                 Spacer()
                 
-                Button {
+                ButtonHelper(disabled: name.count < 3,
+                             label: NSLocalizedString("proceed", comment: "")) {
                     model.name = name
                     navigate.toggle()
-                } label: {
-                    HStack {
-                        Spacer()
-                        
-                        Text( "Продолжить" )
-                            .font(.custom("Inter-SemiBold", size: 20))
-                            .foregroundColor(.white)
-                            .padding(.vertical, 15)
-                        
-                        Spacer()
-                    }.background(AppColors.proceedButtonColor)
-                        .opacity(name.count < 3 ? 0.5 : 1)
-                        .cornerRadius(30)
-                }.disabled(name.count < 3)
-                    .background(
+                }.background(
                         NavigationLink(destination: AuthBirthday(model: model), isActive: $navigate, label: {
                             EmptyView()
                         }).hidden()

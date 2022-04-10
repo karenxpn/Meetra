@@ -60,24 +60,10 @@ struct AuthProfileImages: View {
                     
                     Spacer()
                     
-                    Button {
+                    ButtonHelper(disabled: model.images.count < 2,
+                                 label: NSLocalizedString("proceed", comment: "")) {
                         navigate.toggle()
-                        
-                    } label: {
-                        HStack {
-                            Spacer()
-                            
-                            Text( "Продолжить" )
-                                .font(.custom("Inter-SemiBold", size: 20))
-                                .foregroundColor(.white)
-                                .padding(.vertical, 15)
-                            
-                            Spacer()
-                        }.background(AppColors.proceedButtonColor)
-                            .opacity(model.images.count < 2 ? 0.5 : 1)
-                            .cornerRadius(30)
-                    }.disabled(model.images.count < 2)
-                        .background(
+                    }.background(
                             NavigationLink(destination: AuthBio(model: model), isActive: $navigate, label: {
                                 EmptyView()
                             }).hidden()
@@ -97,7 +83,9 @@ struct AuthProfileImages: View {
             AuthProgress(page: 3)
         }.navigationBarTitle("", displayMode: .inline)
             .sheet(isPresented: $showPicker) {
-                AuthGallery(model: $model)
+                Gallery { images in
+                    self.model.images.append(contentsOf: images)
+                }
             }
     }
 }

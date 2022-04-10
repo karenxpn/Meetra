@@ -10,11 +10,13 @@ struct ProfileEditFields: Codable {
     var name: String
     var bio: String
     var occupation: OccupationModel?
-    var school: String?
+    var school: String
     var gender: String
-    var city: String?
+    var city: String
     var showGender: Bool
     var interests: [String]
+    var isVerified: Bool
+    var age: Int
 }
 
 struct OccupationModel: Codable {
@@ -28,7 +30,10 @@ struct ProfileEditFieldsViewModel: Codable {
         self.fields = fields
     }
     
-    var name: String { self.fields.name }
+    var name: String        { self.fields.name }
+    var age: Int            { self.fields.age }
+    var isVerified: Bool    { self.fields.isVerified }
+    
     var bio: String  {
         get { self.fields.bio }
         set { self.fields.bio = newValue }
@@ -52,9 +57,29 @@ struct ProfileEditFieldsViewModel: Codable {
         }
     }
     
-    var school: String { self.fields.school ?? "" }
-    var gender: String { self.fields.gender }
-    var city: String   { self.fields.city ?? ""}
-    var showGender: Bool { self.fields.showGender }
-    var interests: [String] { self.fields.interests }
+    var school: String {
+        get { self.fields.school }
+        set { self.fields.school = newValue }
+        
+    }
+    var gender: String {
+        get { self.fields.gender }
+        set { self.fields.gender = newValue }
+        
+    }
+    
+    var city: String {
+        get { self.fields.city }
+        set { self.fields.city = newValue }
+    }
+    
+    var showGender: Bool {
+        get { self.fields.showGender }
+        set { self.fields.showGender = newValue }
+    }
+    
+    var interests: [String] {
+        get { self.fields.interests }
+        set { self.fields.interests = newValue }
+    }
 }

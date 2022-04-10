@@ -34,3 +34,9 @@
 "yourOccupation" = "Ваше занятие";
 "company" = "Компания";
 "occupationType" = "Род деятельности";
+"education" = "Образование";
+"gender" = "Пол";
+"city" = "Город";
+"save" = "Сохранить";
+"proceed" = "Продолжить";
+

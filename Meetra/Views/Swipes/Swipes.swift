@@ -89,9 +89,10 @@ struct Swipes: View {
             })
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading: Text("Meetra")
+                .kerning(0.56)
                 .foregroundColor(.black)
                 .font(.custom("Inter-Black", size: 28))
-                .padding(), trailing: HStack( spacing: 20) {
+                .padding(10), trailing: HStack( spacing: 20) {
                     Button {
                         showFilter.toggle()
                     } label: {

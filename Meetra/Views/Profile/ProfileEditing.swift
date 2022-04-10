@@ -17,6 +17,7 @@ struct ProfileEditing: View {
             } else {
                 if profileVM.editFields != nil {
                     ProfileEditingInnerView(fields: profileVM.editFields!)
+                        .environmentObject(profileVM)
                 }
             }
         }.onAppear {

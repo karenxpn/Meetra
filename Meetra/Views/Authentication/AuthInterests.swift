@@ -71,25 +71,12 @@ struct AuthInterests: View {
                 }
                 
                 
-                
-                Button {
+                ButtonHelper(disabled: (authVM.selected_interests.count < 3 || authVM.loading),
+                             label: NSLocalizedString("proceed", comment: "")) {
+                    
                     model.interests = authVM.selected_interests
                     authVM.confirmSignUp(model: model)
-                } label: {
-                    HStack {
-                        Spacer()
-                        
-                        Text( "Продолжить" )
-                            .font(.custom("Inter-SemiBold", size: 20))
-                            .foregroundColor(.white)
-                            .padding(.vertical, 15)
-                        
-                        Spacer()
-                    }.background(AppColors.proceedButtonColor)
-                        .opacity((authVM.selected_interests.count < 3 || authVM.loading) ? 0.5 : 1)
-                        .cornerRadius(30)
-                }.disabled((authVM.selected_interests.count < 3 || authVM.loading))
-                    .background(
+                }.background(
                         NavigationLink(destination: AuthLocationPermission(), isActive: $authVM.navigate, label: {
                             EmptyView()
                         }).hidden()

@@ -34,18 +34,90 @@ class ProfileViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModel.profile)
     }
     
-    func testGetUpdateFieldsWithError() {
-        service.fetchEditFieldsError = true
+    func testGetUpdateFieldsWithImagesError() {
+        service.fetchProfileImagesError = true
+        service.fetchEditFieldsError = false
+        
         viewModel.getProfileUpdateFields()
         
         XCTAssertTrue(viewModel.showAlert)
         XCTAssertFalse(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testGetUpdateFieldsWithFieldsError() {
+        service.fetchProfileImagesError = false
+        service.fetchEditFieldsError = true
         
+        viewModel.getProfileUpdateFields()
+        
+        XCTAssertTrue(viewModel.showAlert)
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testGetUpdateFieldsWithBothError() {
+        service.fetchEditFieldsError = true
+        service.fetchProfileImagesError = true
+        
+        viewModel.getProfileUpdateFields()
+        
+        XCTAssertTrue(viewModel.showAlert)
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
     }
     
     func testGetUpdateFieldsWithSuccess() {
         service.fetchEditFieldsError = false
+        service.fetchProfileImagesError = false
         viewModel.getProfileUpdateFields()
+        
+        XCTAssertFalse(viewModel.showAlert)
+        XCTAssertTrue(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testDeleteProfileImageWithError() {
+        // get profile all fields
+        service.fetchEditFieldsError = false
+        service.fetchProfileImagesError = false
+        viewModel.getProfileUpdateFields()
+        
+        
+        service.deleteProfileImageError = true
+        viewModel.deleteProfileImage(id: 1)
+        
+        XCTAssertTrue(viewModel.profileImages.contains(where: {$0.id == 1 }))
+    }
+    
+    func testDeleteProfileImageWithSuccess() {
+        
+        service.fetchEditFieldsError = false
+        service.fetchProfileImagesError = false
+        viewModel.getProfileUpdateFields()
+        
+        
+        service.deleteProfileImageError = false
+        viewModel.deleteProfileImage(id: 1)
+        
+        XCTAssertFalse(viewModel.profileImages.contains(where: {$0.id == 1 }))
+    }
+    
+    func testUpdateProfileImagesWithError() {
+        service.fetchEditFieldsError = false
+        service.fetchProfileImagesError = false
+        viewModel.getProfileUpdateFields()
+        
+        service.updateProfileImagesError = true
+        viewModel.updateProfileImages(images: [""])
+        
+        XCTAssertTrue(viewModel.showAlert)
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testUpdateProfileImageWithSuccess() {
+        service.fetchEditFieldsError = false
+        service.fetchProfileImagesError = false
+        viewModel.getProfileUpdateFields()
+        
+        service.updateProfileImagesError = false
+        viewModel.updateProfileImages(images: [""])
         
         XCTAssertFalse(viewModel.showAlert)
         XCTAssertTrue(viewModel.alertMessage.isEmpty)

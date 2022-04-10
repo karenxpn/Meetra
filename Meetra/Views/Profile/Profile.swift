@@ -76,6 +76,7 @@ struct Profile: View {
                             .frame(minWidth: 0,
                                     maxWidth: .infinity,
                                     alignment: .leading)
+                            .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
                             
                         }.padding(.top, 25)
                             .frame(minWidth: 0,
@@ -92,9 +93,10 @@ struct Profile: View {
             })
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading: Text(NSLocalizedString("profile", comment: ""))
+                .kerning(0.56)
                 .foregroundColor(.black)
                 .font(.custom("Inter-Black", size: 28))
-                .padding(), trailing: HStack( spacing: 20) {
+                .padding(10), trailing: HStack( spacing: 20) {
                     Button {
                         
                     } label: {
