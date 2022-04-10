@@ -78,7 +78,8 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
-                    self.profileImages = response.value!.images
+                    self.profileImages.removeAll(where: {!$0.image.hasPrefix("https:/")})
+                    self.profileImages.append(contentsOf: response.value!.images )
                 }
             }.store(in: &cancellableSet)
     }

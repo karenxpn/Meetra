@@ -15,7 +15,7 @@ struct ProfilePreview: View {
             if profileVM.loading {
                 Loading()
             } else if profileVM.editFields != nil {
-                ProfilePreviewInnerView(fields: profileVM.editFields!)
+                ProfilePreviewInnerView(images: profileVM.profileImages.map{ $0.image }, fields: profileVM.editFields!)
             }
         }.onAppear {
             profileVM.getProfileUpdateFields()

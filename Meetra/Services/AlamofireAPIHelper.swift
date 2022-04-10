@@ -14,9 +14,12 @@ class AlamofireAPIHelper {
     static let shared = AlamofireAPIHelper()
     private init() { }
     
-    func getRequest<T>(url: URL, headers: HTTPHeaders, responseType: T.Type) -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Decodable {
+    func get_deleteRequest<T>(url: URL,
+                              method: HTTPMethod = .get,
+                              headers: HTTPHeaders,
+                              responseType: T.Type) -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Decodable {
         return AF.request(url,
-                          method: .get,
+                          method: method,
                           headers: headers)
             .validate()
             .publishDecodable(type: T.self)
@@ -30,7 +33,11 @@ class AlamofireAPIHelper {
             .eraseToAnyPublisher()
     }
     
-    func request<T, P>( params: P, url: URL, method: HTTPMethod = .post, headers: HTTPHeaders, responseType: T.Type) -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Decodable, P : Encodable {
+    func post_patchRequest<T, P>( params: P,
+                                  url: URL,
+                                  method: HTTPMethod = .post,
+                                  headers: HTTPHeaders,
+                                  responseType: T.Type) -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Decodable, P : Encodable {
 
         return AF.request(url,
                           method: method,

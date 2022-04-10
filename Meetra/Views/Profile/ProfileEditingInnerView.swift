@@ -30,7 +30,7 @@ struct ProfileEditingInnerView: View {
                             profileVM.deleteProfileImage(id: profileVM.profileImages[index].id)
                         })
                     }
-                }
+                }.padding(.top)
                 
                 HStack(spacing: 30) {
                     ForEach(2...4, id: \.self) { index in
@@ -119,8 +119,7 @@ struct ProfileEditingInnerView: View {
                     .prefix(5)
                     .filter{ !$0.image.hasPrefix("https://")}
                     .map{ $0.image }
-                
-                print( pref_five )
+
                 profileVM.updateProfileImages(images: pref_five)
             }
         }

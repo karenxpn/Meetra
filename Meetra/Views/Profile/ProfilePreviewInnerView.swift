@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfilePreviewInnerView: View {
-    let images = ["https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg"]
+    let images: [String]
     @State var fields: ProfileEditFieldsViewModel
     
     var body: some View {
@@ -111,6 +111,6 @@ struct ProfilePreviewInnerView: View {
 
 struct ProfilePreviewInnerView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfilePreviewInnerView(fields: ProfileEditFieldsViewModel(fields: AppPreviewModels.fields))
+        ProfilePreviewInnerView(images: [""], fields: ProfileEditFieldsViewModel(fields: AppPreviewModels.fields))
     }
 }

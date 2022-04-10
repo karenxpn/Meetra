@@ -28,18 +28,17 @@ extension ProfileService: ProfileServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)users/image")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.request(params: ["images" : images],
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["images" : images],
                                                      url: url,
                                                      headers: headers,
                                                      responseType: ProfileImageList.self)
     }
     
     func deleteProfileImage(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)users/image")!
+        let url = URL(string: "\(Credentials.BASE_URL)users/image/\(id)")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.request(params: ["id" : id],
-                                                     url: url,
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url,
                                                      method: .delete,
                                                      headers: headers,
                                                      responseType: GlobalResponse.self)
@@ -49,21 +48,21 @@ extension ProfileService: ProfileServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)users/images")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.getRequest(url: url, headers: headers, responseType: ProfileImageList.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: ProfileImageList.self)
     }
     
     func fetchProfileEditFields(token: String) -> AnyPublisher<DataResponse<ProfileEditFields, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/profile")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.getRequest(url: url, headers: headers, responseType: ProfileEditFields.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: ProfileEditFields.self)
     }
     
     func updateProfile(token: String, model: ProfileEditFields) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/profile")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.request(params: model,
+        return AlamofireAPIHelper.shared.post_patchRequest(params: model,
                                                      url: url,
                                                      method: .patch,
                                                      headers: headers,
@@ -74,6 +73,6 @@ extension ProfileService: ProfileServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)users/me")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.getRequest(url: url, headers: headers, responseType: ProfileModel.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: ProfileModel.self)
     }
 }

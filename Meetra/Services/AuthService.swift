@@ -28,7 +28,7 @@ extension AuthService: AuthServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)auth/confirm")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.request(params: model, url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, headers: headers, responseType: GlobalResponse.self)
 
     }
     
@@ -54,14 +54,14 @@ extension AuthService: AuthServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)auth/resend-code")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.getRequest(url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: GlobalResponse.self)
     }
     
     func checkVerificationCode(token: String, code: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)auth/check-code")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.request(params: ["otp" : code], url: url, headers: headers, responseType: AuthResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["otp" : code], url: url, headers: headers, responseType: AuthResponse.self)
     }
     
     func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {
