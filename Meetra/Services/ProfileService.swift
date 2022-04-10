@@ -28,7 +28,7 @@ extension ProfileService: ProfileServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)users/image")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.postRequest(params: ["images" : images],
+        return AlamofireAPIHelper.shared.request(params: ["images" : images],
                                                      url: url,
                                                      headers: headers,
                                                      responseType: ProfileImageList.self)
@@ -38,8 +38,9 @@ extension ProfileService: ProfileServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)users/image")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.deleteRequest(params: ["id" : id],
+        return AlamofireAPIHelper.shared.request(params: ["id" : id],
                                                      url: url,
+                                                     method: .delete,
                                                      headers: headers,
                                                      responseType: GlobalResponse.self)
     }
@@ -62,7 +63,11 @@ extension ProfileService: ProfileServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)users/profile")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.patchRequest(params: model, url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.request(params: model,
+                                                     url: url,
+                                                     method: .patch,
+                                                     headers: headers,
+                                                     responseType: GlobalResponse.self)
     }
     
     func fetchProfile(token: String) -> AnyPublisher<DataResponse<ProfileModel, NetworkError>, Never> {

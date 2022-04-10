@@ -28,7 +28,7 @@ extension AuthService: AuthServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)auth/confirm")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.postRequest(params: model, url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.request(params: model, url: url, headers: headers, responseType: GlobalResponse.self)
 
     }
     
@@ -61,7 +61,7 @@ extension AuthService: AuthServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)auth/check-code")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.postRequest(params: ["otp" : code], url: url, headers: headers, responseType: AuthResponse.self)
+        return AlamofireAPIHelper.shared.request(params: ["otp" : code], url: url, headers: headers, responseType: AuthResponse.self)
     }
     
     func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {

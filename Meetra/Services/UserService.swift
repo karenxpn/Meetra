@@ -28,7 +28,7 @@ extension UserService: UserServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)users/respond-request")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.postRequest(params: model, url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.request(params: model, url: url, headers: headers, responseType: GlobalResponse.self)
     }
     
     func fetchFriendRequests(token: String, page: Int) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never> {
@@ -49,14 +49,14 @@ extension UserService: UserServiceProtocol {
         let url = URL(string: "\(Credentials.BASE_URL)users/friend")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.postRequest(params: ["id" : id], url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.request(params: ["id" : id], url: url, headers: headers, responseType: GlobalResponse.self)
     }
     
     func starUser(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)starred-user")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.postRequest(params: ["userId" : id], url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.request(params: ["userId" : id], url: url, headers: headers, responseType: GlobalResponse.self)
     }
     
     func fetchUser(token: String, id: Int) -> AnyPublisher<DataResponse<UserModel, NetworkError>, Never> {
