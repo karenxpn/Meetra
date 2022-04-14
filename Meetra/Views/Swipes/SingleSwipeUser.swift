@@ -90,37 +90,33 @@ struct SingleSwipeUser: View {
                         } label: {
                             Image("dots")
                         }.fullScreenCover(isPresented: $showDialog) {
-                            CustomActionSheet()
-                        }
-//                        .confirmationDialog("", isPresented: $showDialog) {
-//                            Button(role: .destructive) {
-//                                cardAction = .report
-//                                withAnimation(animation) {
-//                                    user.x = -500; user.degree = -20
-//                                    checkLastAndRequestMore()
-//                                }
-//                            } label: {
-//                                Text("\(NSLocalizedString("report", comment: ""))                                                   .")
-//                            }
-//
-//                            Button(role: .destructive) {
-//                                cardAction = .report
-//                                withAnimation(animation) {
-//                                    user.x = -500; user.degree = -20
-//                                    checkLastAndRequestMore()
-//                                }
-//
-//                            } label: {
-//                                Text("\(NSLocalizedString("block", comment: ""))                                                    .")
-//
-//                            }
-//
-//                            Button(role: .cancel) {
-//                            } label: {
-//                                Text(NSLocalizedString("cancel", comment: ""))
-//                            }
-//                        }
-                        
+                            CustomActionSheet {
+                                
+                                ActionSheetButtonHelper(icon: "report_icon",
+                                                        label: NSLocalizedString("report", comment: ""),
+                                                        role: .destructive) {
+                                    self.showDialog.toggle()
+                                    cardAction = .report
+                                    withAnimation(animation) {
+                                        user.x = -500; user.degree = -20
+                                        checkLastAndRequestMore()
+                                    }
+                                }
+                                
+                                Divider()
+                                
+                                ActionSheetButtonHelper(icon: "block_icon",
+                                                        label: NSLocalizedString("block", comment: ""),
+                                                        role: .destructive) {
+                                    self.showDialog.toggle()
+                                    cardAction = .report
+                                    withAnimation(animation) {
+                                        user.x = -500; user.degree = -20
+                                        checkLastAndRequestMore()
+                                    }
+                                }
+                            }
+                        }                        
                     }
                     
                     Spacer()
