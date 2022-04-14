@@ -34,8 +34,8 @@ struct OTPTextFieldView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(.white)
                         .frame(width: 47, height: 47)
-                        .shadow(radius: 3, x: 0, y: 3)
-                    
+                        .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
+
                     Text(self.getDigits(at: index))
                         .foregroundColor(.black)
                         .font(.custom("Inter-SemiBold", size: 18))

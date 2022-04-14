@@ -34,7 +34,7 @@ struct CustomActionSheet<Content: View>: View {
                     content
                 }.cornerRadius(17)
                     .padding(.horizontal)
-                    .shadow(color: Color.gray.opacity(0.2), radius: 3, x: 0, y: 3)
+                    .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
 
                 
                 Button {
@@ -47,7 +47,7 @@ struct CustomActionSheet<Content: View>: View {
                         .frame(width: .greedy, height: 55)
                         .background(.white)
                         .cornerRadius(17)
-                        .shadow(color: Color.gray.opacity(0.2), radius: 3, x: 0, y: 3)
+                        .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
                 }.padding(.horizontal)
                 
             }.padding(.bottom)

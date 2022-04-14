@@ -58,7 +58,7 @@ struct UserInnerView: View {
                             .padding()
                             .background(.white)
                             .cornerRadius(100)
-                            .shadow(radius: 3, x: 0, y: 3)
+                            .shadow(color: Color.gray.opacity(0.4), radius: 3, x: 0, y: 3)
                     }
                     
                     Button(action: {
@@ -70,7 +70,7 @@ struct UserInnerView: View {
                             .padding()
                             .background(.white)
                             .cornerRadius(100)
-                            .shadow(radius: 3, x: 0, y: 3)
+                            .shadow(color: Color.gray.opacity(0.4), radius: 3, x: 0, y: 3)
                     })
                 }
                 

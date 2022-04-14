@@ -32,8 +32,8 @@ struct AuthNameInput: View {
                     .padding(.horizontal, 10)
                     .background(.white)
                     .cornerRadius(10)
-                    .shadow(radius: 3, x: 0, y: 3)
-                
+                    .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
+
                 Text( "Имя нельзя будет изменить в настройках" )
                     .foregroundColor(.black)
                     .font(.custom("Inter-Regular", size: 12))

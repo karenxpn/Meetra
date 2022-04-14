@@ -50,8 +50,8 @@ struct ProfilePreviewInnerView: View {
                         .padding()
                         .background(.white)
                         .cornerRadius(100)
-                        .shadow(radius: 3, x: 0, y: 3)
-                    
+                        .shadow(color: Color.gray.opacity(0.4), radius: 3, x: 0, y: 3)
+
                     
                     Image("user_send_request")
                         .resizable()
@@ -59,7 +59,7 @@ struct ProfilePreviewInnerView: View {
                         .padding()
                         .background(.white)
                         .cornerRadius(100)
-                        .shadow(radius: 3, x: 0, y: 3)
+                        .shadow(color: Color.gray.opacity(0.4), radius: 3, x: 0, y: 3)
                 }
                 
                 HStack {
