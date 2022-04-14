@@ -8,6 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 import TagLayoutView
+import SwiftUIX
 
 enum CardAction {
     case swipe, report, star, request
@@ -88,35 +89,37 @@ struct SingleSwipeUser: View {
                             showDialog.toggle()
                         } label: {
                             Image("dots")
+                        }.fullScreenCover(isPresented: $showDialog) {
+                            CustomActionSheet()
                         }
-                        .confirmationDialog("", isPresented: $showDialog) {
-                            Button(role: .destructive) {
-                                cardAction = .report
-                                withAnimation(animation) {
-                                    user.x = -500; user.degree = -20
-                                    checkLastAndRequestMore()
-                                }
-                            } label: {
-                                Text("\(NSLocalizedString("report", comment: ""))                                                   .")
-                            }
-                            
-                            Button(role: .destructive) {
-                                cardAction = .report
-                                withAnimation(animation) {
-                                    user.x = -500; user.degree = -20
-                                    checkLastAndRequestMore()
-                                }
-
-                            } label: {
-                                Text("\(NSLocalizedString("block", comment: ""))                                                    .")
-                                    
-                            }
-                            
-                            Button(role: .cancel) {
-                            } label: {
-                                Text(NSLocalizedString("cancel", comment: ""))
-                            }
-                        }
+//                        .confirmationDialog("", isPresented: $showDialog) {
+//                            Button(role: .destructive) {
+//                                cardAction = .report
+//                                withAnimation(animation) {
+//                                    user.x = -500; user.degree = -20
+//                                    checkLastAndRequestMore()
+//                                }
+//                            } label: {
+//                                Text("\(NSLocalizedString("report", comment: ""))                                                   .")
+//                            }
+//
+//                            Button(role: .destructive) {
+//                                cardAction = .report
+//                                withAnimation(animation) {
+//                                    user.x = -500; user.degree = -20
+//                                    checkLastAndRequestMore()
+//                                }
+//
+//                            } label: {
+//                                Text("\(NSLocalizedString("block", comment: ""))                                                    .")
+//
+//                            }
+//
+//                            Button(role: .cancel) {
+//                            } label: {
+//                                Text(NSLocalizedString("cancel", comment: ""))
+//                            }
+//                        }
                         
                     }
                     
