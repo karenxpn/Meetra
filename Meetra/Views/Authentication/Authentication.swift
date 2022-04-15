@@ -45,7 +45,7 @@ struct Authentication: View {
                         .padding(.horizontal, 10)
                         .background(.white)
                         .cornerRadius(10)
-                        .shadow(radius: 3, x: 0, y: 3)
+                        .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
                 }
                 
                 TextField("(954)411-11-33", text: $authVM.phoneNumber)
@@ -55,7 +55,7 @@ struct Authentication: View {
                     .padding(.horizontal, 10)
                     .background(.white)
                     .cornerRadius(10)
-                    .shadow(radius: 3, x: 0, y: 3)
+                    .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
             }.padding(.top, 20)
             
             

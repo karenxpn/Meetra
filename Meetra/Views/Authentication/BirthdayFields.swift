@@ -23,6 +23,6 @@ struct BirthdayFields: View {
             .frame(width: width)
             .background(.white)
             .cornerRadius(10)
-            .shadow(radius: 3, x: 0, y: 3)
+            .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
     }
 }

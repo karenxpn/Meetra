@@ -91,6 +91,8 @@
 		FF97309027FDC32900A7BF3F /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97308F27FDC32900A7BF3F /* EditProfile.swift */; };
 		FF97309227FDCA5900A7BF3F /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97309127FDCA5900A7BF3F /* ProfileViewModelTests.swift */; };
 		FF97309427FDCA6400A7BF3F /* MockProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97309327FDCA6400A7BF3F /* MockProfileService.swift */; };
+		FF9B60112808B703007994EF /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B60102808B703007994EF /* CustomActionSheet.swift */; };
+		FF9B60132808C1EB007994EF /* ActionSheetButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */; };
 		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
 		FFB6D24527EA044E004FD5D3 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24427EA044E004FD5D3 /* WaterfallGrid */; };
 		FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */; };
@@ -244,6 +246,8 @@
 		FF97308F27FDC32900A7BF3F /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		FF97309127FDCA5900A7BF3F /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		FF97309327FDCA6400A7BF3F /* MockProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProfileService.swift; sourceTree = "<group>"; };
+		FF9B60102808B703007994EF /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
+		FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetButtonHelper.swift; sourceTree = "<group>"; };
 		FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUsers.swift; sourceTree = "<group>"; };
 		FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeFilter.swift; sourceTree = "<group>"; };
 		FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
@@ -411,6 +415,8 @@
 				FFB6D24C27EA34F5004FD5D3 /* Loading.swift */,
 				FF61D40327F4CAD200FB9A23 /* TagsViewHelper.swift */,
 				FFB7989D28004C230040A9E8 /* ButtonHelper.swift */,
+				FF9B60102808B703007994EF /* CustomActionSheet.swift */,
+				FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -914,6 +920,7 @@
 				FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */,
 				FF4C980027FF0711009CB60D /* ProfileEditing.swift in Sources */,
 				FF97308827FDAAD100A7BF3F /* ProfileService.swift in Sources */,
+				FF9B60132808C1EB007994EF /* ActionSheetButtonHelper.swift in Sources */,
 				FFD6371827E23A5E00F91AB6 /* LocationManager.swift in Sources */,
 				FF36400527EFDA780057D605 /* UserService.swift in Sources */,
 				FFB798982800493F0040A9E8 /* TextFieldHelper.swift in Sources */,
@@ -946,6 +953,7 @@
 				FF61D41627F7469B00FB9A23 /* FriendRequestResponseRequest.swift in Sources */,
 				FFB7989C28004BD90040A9E8 /* EditCity.swift in Sources */,
 				FF4C980627FF10B0009CB60D /* ProfileEditingInnerView.swift in Sources */,
+				FF9B60112808B703007994EF /* CustomActionSheet.swift in Sources */,
 				FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */,
 				FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */,
 				FFB798A62800F28E0040A9E8 /* ProfileImageList.swift in Sources */,
