@@ -49,6 +49,7 @@ struct CustomActionSheet<Content: View>: View {
                         .cornerRadius(17)
                         .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
                 }.padding(.horizontal)
+                    .buttonStyle(PlainButtonStyle())
                 
             }.padding(.bottom)
         }.onTapGesture {

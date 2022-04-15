@@ -34,7 +34,7 @@ struct ActionSheetButtonHelper: View {
                 .padding(.horizontal)
                 .background(.white)
             
-        }
+        }.buttonStyle(PlainButtonStyle())
     }
 }
 
