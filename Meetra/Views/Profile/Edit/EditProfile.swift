@@ -9,10 +9,14 @@ import SwiftUI
 
 struct EditProfile: View {
     @State private var selection: Int = 0
+    @State private var navigate_settings: Bool = false
     
     var body: some View {
         
-        ProfileNavBar(title: NSLocalizedString("profile", comment: ""), showAlert: .constant(false), message: "") {
+        ProfileNavBar(navigate: $navigate_settings,
+                      title: NSLocalizedString("profile", comment: ""),
+                      showAlert: .constant(false),
+                      message: "") {
             VStack {
                 HStack {
                     Button {

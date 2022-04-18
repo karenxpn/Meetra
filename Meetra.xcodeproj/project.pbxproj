@@ -38,6 +38,7 @@
 		FF4C980A27FF1F41009CB60D /* EditInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980927FF1F41009CB60D /* EditInterests.swift */; };
 		FF4C980E27FF4A10009CB60D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980D27FF4A10009CB60D /* EditOccupation.swift */; };
 		FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */; };
+		FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8D280D83CC0020BE2C /* Settings.swift */; };
 		FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */; };
 		FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */; };
 		FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */; };
@@ -191,6 +192,7 @@
 		FF4C980927FF1F41009CB60D /* EditInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInterests.swift; sourceTree = "<group>"; };
 		FF4C980D27FF4A10009CB60D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
 		FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavBar.swift; sourceTree = "<group>"; };
+		FF537E8D280D83CC0020BE2C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUserModel.swift; sourceTree = "<group>"; };
 		FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipes.swift; sourceTree = "<group>"; };
 		FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSwipeUser.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 		FF537E89280D81B00020BE2C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				FF537E8D280D83CC0020BE2C /* Settings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -932,6 +935,7 @@
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
 				FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */,
 				FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */,
+				FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */,
 				FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */,
 				FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */,
 				FF36400327EFD8EB0057D605 /* UserViewModel.swift in Sources */,

@@ -12,11 +12,13 @@ struct Profile: View {
     
     @StateObject var profileVM = ProfileViewModel()
     @State private var showFillPopup: Bool = true
+    @State private var navigate_settings: Bool = false
     
     var body: some View {
         NavigationView {
             
-            ProfileNavBar(title: NSLocalizedString("profile", comment: ""),
+            ProfileNavBar(navigate: $navigate_settings,
+                          title: NSLocalizedString("profile", comment: ""),
                           showAlert: $profileVM.showAlert,
                           message: profileVM.alertMessage, content: {
                 
