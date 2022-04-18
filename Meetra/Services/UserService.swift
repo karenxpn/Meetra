@@ -16,6 +16,8 @@ protocol UserServiceProtocol {
     func fetchStarredUsers( token: String, page: Int ) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never>
     func fetchFriendRequests( token: String, page: Int ) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never>
     func accept_rejectFriendRequest( token: String, model: FriendRequestResponseRequest ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func reportUser( token: String, id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func blockUser( token: String, id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
 }
 
 class UserService {
@@ -24,6 +26,20 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
+    func reportUser(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)users/report")!
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
+        
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, headers: headers, responseType: GlobalResponse.self)
+    }
+    
+    func blockUser(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)users/report")!
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
+        
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, headers: headers, responseType: GlobalResponse.self)
+    }
+    
     func accept_rejectFriendRequest(token: String, model: FriendRequestResponseRequest ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/respond-request")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]

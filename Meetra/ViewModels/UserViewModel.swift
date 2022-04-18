@@ -115,4 +115,16 @@ class UserViewModel: AlertViewModel, ObservableObject {
                 }
             }.store(in: &cancellableSet)
     }
+    
+    func reportUser( id: Int ) {
+        dataManager.reportUser(token: token, id: id)
+            .sink { _ in
+            }.store(in: &cancellableSet)
+    }
+    
+    func blockUser( id: Int ) {
+        dataManager.blockUser(token: token, id: id)
+            .sink { _ in
+            }.store(in: &cancellableSet)
+    }
 }

@@ -11,6 +11,14 @@ import Alamofire
 @testable import Meetra
 
 class MockUserService: UserServiceProtocol {
+    func reportUser(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: reportUserError, response: globalResponse, responseType: GlobalResponse.self)
+    }
+    
+    func blockUser(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: blockUserError, response: globalResponse, responseType: GlobalResponse.self)
+    }
+    
     func fetchFriendRequests(token: String, page: Int) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: fetchFriendRequestsError, response: friendRequests, responseType: FriendRequestListModel.self)
     }
@@ -30,6 +38,8 @@ class MockUserService: UserServiceProtocol {
     var fetchStarredUsersError = false
     var fetchFriendRequestsError = false
     var accept_rejectError = false
+    var blockUserError = false
+    var reportUserError = false
     
     let globalResponse = GlobalResponse(status: "success", message: "success")
     let userModel = AppPreviewModels.userModel
