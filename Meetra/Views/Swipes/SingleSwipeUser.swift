@@ -101,6 +101,8 @@ struct SingleSwipeUser: View {
                                         user.x = -1000; user.degree = -20
                                         checkLastAndRequestMore()
                                     }
+                                    
+                                    userVM.reportUser(id: user.id)
                                 }
                                 
                                 Divider()
@@ -114,6 +116,8 @@ struct SingleSwipeUser: View {
                                         user.x = -1000; user.degree = -20
                                         checkLastAndRequestMore()
                                     }
+                                    
+                                    userVM.blockUser(id: user.id)
                                 }
                             }
                         }                        
