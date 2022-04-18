@@ -22,7 +22,11 @@ struct Settings: View {
             ScrollView ( showsIndicators: false ) {
                 VStack( spacing: 20 ) {
                     
-                    
+                    NavigationButtonHelper(label: "Основное", destination: AnyView(Text( "General" )))
+                    NavigationButtonHelper(label: "Помощь", destination: AnyView(Text( "Помощь" )))
+                    NavigationButtonHelper(label: "Сообщество", destination: AnyView(Text( "Сообщество" )))
+                    NavigationButtonHelper(label: "Юр. информация", destination: AnyView(Text( "Юр. информация" )))
+
                     
                     Spacer()
                         .padding(.vertical, 100)
@@ -49,7 +53,7 @@ struct Settings: View {
                         alignment: .leading)
                 .padding(30)
                 .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
-            }
+            }.padding(.top, 1)
         }.alert(isPresented: $showDeleteAccountDialog) {
             Alert(title: Text( NSLocalizedString("deleteAccount", comment: "")),
                   message: Text( NSLocalizedString("afterDeletion", comment: "")),
