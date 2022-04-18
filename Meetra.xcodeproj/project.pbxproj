@@ -37,6 +37,7 @@
 		FF4C980827FF124E009CB60D /* ProfileSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980727FF124E009CB60D /* ProfileSpecs.swift */; };
 		FF4C980A27FF1F41009CB60D /* EditInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980927FF1F41009CB60D /* EditInterests.swift */; };
 		FF4C980E27FF4A10009CB60D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980D27FF4A10009CB60D /* EditOccupation.swift */; };
+		FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */; };
 		FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */; };
 		FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */; };
 		FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */; };
@@ -189,6 +190,7 @@
 		FF4C980727FF124E009CB60D /* ProfileSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSpecs.swift; sourceTree = "<group>"; };
 		FF4C980927FF1F41009CB60D /* EditInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInterests.swift; sourceTree = "<group>"; };
 		FF4C980D27FF4A10009CB60D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
+		FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavBar.swift; sourceTree = "<group>"; };
 		FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUserModel.swift; sourceTree = "<group>"; };
 		FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipes.swift; sourceTree = "<group>"; };
 		FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSwipeUser.swift; sourceTree = "<group>"; };
@@ -375,6 +377,32 @@
 				FF61D40527F5D56000FB9A23 /* ImageCarousel.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		FF537E89280D81B00020BE2C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FF537E8A280D81B60020BE2C /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				FF97308F27FDC32900A7BF3F /* EditProfile.swift */,
+				FF4C97FF27FF0711009CB60D /* ProfileEditing.swift */,
+				FF4C980527FF10B0009CB60D /* ProfileEditingInnerView.swift */,
+				FFB798A72800F4700040A9E8 /* EditProfileImageBox.swift */,
+				FF4C980727FF124E009CB60D /* ProfileSpecs.swift */,
+				FF4C980327FF0980009CB60D /* ProfilePreview.swift */,
+				FFB798A32800815F0040A9E8 /* ProfilePreviewInnerView.swift */,
+				FF4C980927FF1F41009CB60D /* EditInterests.swift */,
+				FF4C980D27FF4A10009CB60D /* EditOccupation.swift */,
+				FFB79899280049C00040A9E8 /* EditEducation.swift */,
+				FFB7989B28004BD90040A9E8 /* EditCity.swift */,
+				FFB7989F2800510C0040A9E8 /* EditGender.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		FF61D3FA27F4ADA300FB9A23 /* Swipes */ = {
@@ -586,22 +614,13 @@
 		FF97308427FDAAAC00A7BF3F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				FF537E8A280D81B60020BE2C /* Edit */,
+				FF537E89280D81B00020BE2C /* Settings */,
 				FF97308527FDAAB900A7BF3F /* Profile.swift */,
 				FF97308D27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift */,
-				FF97308F27FDC32900A7BF3F /* EditProfile.swift */,
-				FF4C97FF27FF0711009CB60D /* ProfileEditing.swift */,
-				FF4C980527FF10B0009CB60D /* ProfileEditingInnerView.swift */,
-				FFB798A72800F4700040A9E8 /* EditProfileImageBox.swift */,
-				FF4C980727FF124E009CB60D /* ProfileSpecs.swift */,
-				FF4C980327FF0980009CB60D /* ProfilePreview.swift */,
-				FFB798A32800815F0040A9E8 /* ProfilePreviewInnerView.swift */,
-				FF4C980927FF1F41009CB60D /* EditInterests.swift */,
-				FF4C980D27FF4A10009CB60D /* EditOccupation.swift */,
-				FFB79899280049C00040A9E8 /* EditEducation.swift */,
-				FFB7989B28004BD90040A9E8 /* EditCity.swift */,
-				FFB7989F2800510C0040A9E8 /* EditGender.swift */,
 				FFB798972800493F0040A9E8 /* TextFieldHelper.swift */,
 				FFB798A128005FC00040A9E8 /* EditProfileFieldBuilder.swift */,
+				FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -901,6 +920,7 @@
 				FF61D41827F7867600FB9A23 /* AlamofireAPIHelper.swift in Sources */,
 				FF97308627FDAAB900A7BF3F /* Profile.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
+				FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */,
 				FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */,
 				FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */,
 				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
