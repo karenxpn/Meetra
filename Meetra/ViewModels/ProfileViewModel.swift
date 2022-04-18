@@ -105,4 +105,22 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
                 }
             }.store(in: &cancellableSet)
     }
+    
+    func logout() {
+        dataManager.signout(token: token)
+            .sink { response in
+                if response.error == nil {
+                    self.token = ""
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func deactivateAccount() {
+        dataManager.delete_account(token: token)
+            .sink { response in
+                if response.error == nil {
+                    self.token = ""
+                }
+            }.store(in: &cancellableSet)
+    }
 }

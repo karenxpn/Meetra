@@ -13,7 +13,7 @@ struct EditProfile: View {
     
     var body: some View {
         
-        ProfileNavBar(navigate: $navigate_settings,
+        ProfileNavBar(settingsColor: .black,
                       title: NSLocalizedString("profile", comment: ""),
                       showAlert: .constant(false),
                       message: "") {

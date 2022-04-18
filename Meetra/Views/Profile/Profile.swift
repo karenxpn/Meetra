@@ -17,7 +17,7 @@ struct Profile: View {
     var body: some View {
         NavigationView {
             
-            ProfileNavBar(navigate: $navigate_settings,
+            ProfileNavBar(settingsColor: .black,
                           title: NSLocalizedString("profile", comment: ""),
                           showAlert: $profileVM.showAlert,
                           message: profileVM.alertMessage, content: {

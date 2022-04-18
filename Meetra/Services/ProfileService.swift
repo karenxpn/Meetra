@@ -16,6 +16,9 @@ protocol ProfileServiceProtocol {
     func updateProfileImages(token: String, images: [String] ) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never>
     func deleteProfileImage( token: String, id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     func updateProfile( token: String, model: ProfileEditFields ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    
+    func signout( token: String ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func delete_account( token: String ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
 }
 
 class ProfileService {
@@ -24,6 +27,20 @@ class ProfileService {
 }
 
 extension ProfileService: ProfileServiceProtocol {
+    func signout(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)users/signout")!
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
+        
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: GlobalResponse.self)
+    }
+    
+    func delete_account(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)users/delete")!
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
+        
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, method: .delete, headers: headers, responseType: GlobalResponse.self)
+    }
+    
     func updateProfileImages(token: String, images: [String]) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/image")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]

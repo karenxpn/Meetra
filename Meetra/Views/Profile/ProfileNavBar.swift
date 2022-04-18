@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ProfileNavBar<Content: View>: View {
     
-    @Binding var navigate: Bool
+    let settingsColor: Color
     let title: String
     @Binding var showAlert: Bool
     let message: String
     private var content: Content
     
-    init(navigate:  Binding<Bool>, title: String, showAlert: Binding<Bool>, message: String, @ViewBuilder content: () -> Content) {
-        self._navigate = navigate
+    init(settingsColor:  Color, title: String, showAlert: Binding<Bool>, message: String, @ViewBuilder content: () -> Content) {
+        self.settingsColor = settingsColor
         self.title = title
         self._showAlert = showAlert
         self.message = message
@@ -34,18 +34,12 @@ struct ProfileNavBar<Content: View>: View {
                 .foregroundColor(.black)
                 .font(.custom("Inter-Black", size: 28))
                 .padding(10), trailing: HStack( spacing: 20) {
-                    Button {
-                        navigate.toggle()
-                    } label: {
+                    NavigationLink(destination: {
+                        Settings()
+                    }, label: {
                         Image("settings_icon")
-                            .foregroundColor(navigate ? AppColors.accentColor : .black)
-                    }.background(
-                        NavigationLink(isActive: $navigate, destination: {
-                            Settings()
-                        }, label: {
-                            EmptyView()
-                        }).hidden()
-                    )
+                            .foregroundColor(settingsColor)
+                    })
                     
                     Button {
                         
