@@ -23,7 +23,6 @@ struct MeetraApp: App {
         newAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black, .font: UIFont( name: "Inter-Regular", size: 28)!]
         UINavigationBar.appearance().standardAppearance = newAppearance
         
-        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(.black)
     }
     
     var body: some Scene {

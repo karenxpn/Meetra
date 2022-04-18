@@ -29,7 +29,7 @@ struct Settings: View {
 
                     
                     Spacer()
-                        .padding(.vertical, 100)
+                        .padding(.vertical, 70)
                     
                     ButtonHelper(disabled: false,
                                  label: NSLocalizedString("logout", comment: "")) {
@@ -58,7 +58,7 @@ struct Settings: View {
             Alert(title: Text( NSLocalizedString("deleteAccount", comment: "")),
                   message: Text( NSLocalizedString("afterDeletion", comment: "")),
                   primaryButton: .cancel(Text(NSLocalizedString("no", comment: ""))),
-                  secondaryButton: .cancel(Text( NSLocalizedString("yes", comment: "")), action: {
+                  secondaryButton: .default(Text( NSLocalizedString("yes", comment: "")), action: {
                 profileVM.deactivateAccount()
             }))
         }
