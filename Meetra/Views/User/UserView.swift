@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct UserView: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var userVM = UserViewModel()
+    @State private var showDialog: Bool = false
     
     let userID: Int
     
@@ -41,11 +43,35 @@ struct UserView: View {
                     })
                 )
             
-            
         }.task {
             userVM.getUser(userID: userID)
         }.alert(isPresented: $userVM.showAlert, content: {
             Alert(title: Text("Error"), message: Text(userVM.alertMessage), dismissButton: .default(Text("Got it!")))
+        }).navigationBarItems(center: EmptyView(), trailing: Button {
+            showDialog.toggle()
+        } label: {
+            Image("dots")
+        }.fullScreenCover(isPresented: $showDialog) {
+            CustomActionSheet {
+                
+                ActionSheetButtonHelper(icon: "report_icon",
+                                        label: NSLocalizedString("report", comment: ""),
+                                        role: .destructive) {
+                    self.showDialog.toggle()
+                    userVM.reportUser(id: userID)
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                
+                Divider()
+                
+                ActionSheetButtonHelper(icon: "block_icon",
+                                        label: NSLocalizedString("block", comment: ""),
+                                        role: .destructive) {
+                    self.showDialog.toggle()
+                    userVM.blockUser(id: userID)
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
         })
     }
 }
