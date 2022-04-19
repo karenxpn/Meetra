@@ -23,7 +23,11 @@ struct Settings: View {
                 VStack( spacing: 20 ) {
                     
                     NavigationButtonHelper(label: NSLocalizedString("general", comment: ""), destination: AnyView(GeneralSettings()))
-                    NavigationButtonHelper(label: NSLocalizedString("help", comment: ""), destination: AnyView(Text( "Помощь" )))
+                    ActionButtonHelper(label: NSLocalizedString("help", comment: "")) {
+                        if let url = URL(string: "mailto:support@meetra.app") {
+                            UIApplication.shared.open(url)
+                        }
+                    }
                     NavigationButtonHelper(label: NSLocalizedString("community", comment: ""), destination: AnyView(Community()))
                     NavigationButtonHelper(label: NSLocalizedString("legalInfo", comment: ""), destination: AnyView(Text( "Юр. информация" )))
 
