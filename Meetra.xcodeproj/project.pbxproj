@@ -42,6 +42,7 @@
 		FF537E90280E163C0020BE2C /* ActionButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */; };
 		FF537E92280E18690020BE2C /* NavigationButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E91280E18690020BE2C /* NavigationButtonHelper.swift */; };
 		FF537E94280E19100020BE2C /* SettingsButtonHelperContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E93280E19100020BE2C /* SettingsButtonHelperContent.swift */; };
+		FF537E96280EFDEA0020BE2C /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E95280EFDEA0020BE2C /* GeneralSettings.swift */; };
 		FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */; };
 		FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */; };
 		FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */; };
@@ -199,6 +200,7 @@
 		FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonHelper.swift; sourceTree = "<group>"; };
 		FF537E91280E18690020BE2C /* NavigationButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonHelper.swift; sourceTree = "<group>"; };
 		FF537E93280E19100020BE2C /* SettingsButtonHelperContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonHelperContent.swift; sourceTree = "<group>"; };
+		FF537E95280EFDEA0020BE2C /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
 		FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUserModel.swift; sourceTree = "<group>"; };
 		FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipes.swift; sourceTree = "<group>"; };
 		FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSwipeUser.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				FF537E8D280D83CC0020BE2C /* Settings.swift */,
+				FF537E95280EFDEA0020BE2C /* GeneralSettings.swift */,
 				FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */,
 				FF537E91280E18690020BE2C /* NavigationButtonHelper.swift */,
 				FF537E93280E19100020BE2C /* SettingsButtonHelperContent.swift */,
@@ -965,6 +968,7 @@
 				FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */,
 				FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */,
 				FFF6468827D26D690022EF60 /* AuthInterests.swift in Sources */,
+				FF537E96280EFDEA0020BE2C /* GeneralSettings.swift in Sources */,
 				FFF6468A27D28F6A0022EF60 /* InterestModel.swift in Sources */,
 				FF61D40A27F5DCDB00FB9A23 /* FavouritesListModel.swift in Sources */,
 				FF4C980427FF0980009CB60D /* ProfilePreview.swift in Sources */,

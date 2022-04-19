@@ -11,6 +11,7 @@ import UIKit
 import Combine
 import SwiftUI
 import UserNotifications
+
 class NotificationsViewModel: NSObject, UNUserNotificationCenterDelegate, ObservableObject {
     @AppStorage("token") private var token: String = ""
     @AppStorage( "initialToken" ) private var initialToken: String = ""
@@ -49,5 +50,13 @@ class NotificationsViewModel: NSObject, UNUserNotificationCenterDelegate, Observ
                     self.token = self.initialToken
                 }
             }
+    }
+    
+    func checkPermissionStatus(completion: @escaping(UNAuthorizationStatus) -> ()) {
+        UNUserNotificationCenter.current().getNotificationSettings { permission in
+            DispatchQueue.main.async {
+                completion(permission.authorizationStatus)
+            }
+        }
     }
 }

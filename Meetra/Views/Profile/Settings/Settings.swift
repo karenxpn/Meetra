@@ -22,10 +22,10 @@ struct Settings: View {
             ScrollView ( showsIndicators: false ) {
                 VStack( spacing: 20 ) {
                     
-                    NavigationButtonHelper(label: "Основное", destination: AnyView(Text( "General" )))
-                    NavigationButtonHelper(label: "Помощь", destination: AnyView(Text( "Помощь" )))
-                    NavigationButtonHelper(label: "Сообщество", destination: AnyView(Text( "Сообщество" )))
-                    NavigationButtonHelper(label: "Юр. информация", destination: AnyView(Text( "Юр. информация" )))
+                    NavigationButtonHelper(label: NSLocalizedString("general", comment: ""), destination: AnyView(GeneralSettings()))
+                    NavigationButtonHelper(label: NSLocalizedString("help", comment: ""), destination: AnyView(Text( "Помощь" )))
+                    NavigationButtonHelper(label: NSLocalizedString("community", comment: ""), destination: AnyView(Text( "Сообщество" )))
+                    NavigationButtonHelper(label: NSLocalizedString("legalInfo", comment: ""), destination: AnyView(Text( "Юр. информация" )))
 
                     
                     Spacer()
