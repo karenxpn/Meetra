@@ -43,6 +43,7 @@
 		FF537E92280E18690020BE2C /* NavigationButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E91280E18690020BE2C /* NavigationButtonHelper.swift */; };
 		FF537E94280E19100020BE2C /* SettingsButtonHelperContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E93280E19100020BE2C /* SettingsButtonHelperContent.swift */; };
 		FF537E96280EFDEA0020BE2C /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E95280EFDEA0020BE2C /* GeneralSettings.swift */; };
+		FF537E98280F02D20020BE2C /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E97280F02D20020BE2C /* Community.swift */; };
 		FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */; };
 		FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */; };
 		FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */; };
@@ -201,6 +202,7 @@
 		FF537E91280E18690020BE2C /* NavigationButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonHelper.swift; sourceTree = "<group>"; };
 		FF537E93280E19100020BE2C /* SettingsButtonHelperContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonHelperContent.swift; sourceTree = "<group>"; };
 		FF537E95280EFDEA0020BE2C /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
+		FF537E97280F02D20020BE2C /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUserModel.swift; sourceTree = "<group>"; };
 		FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipes.swift; sourceTree = "<group>"; };
 		FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSwipeUser.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			children = (
 				FF537E8D280D83CC0020BE2C /* Settings.swift */,
 				FF537E95280EFDEA0020BE2C /* GeneralSettings.swift */,
+				FF537E97280F02D20020BE2C /* Community.swift */,
 				FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */,
 				FF537E91280E18690020BE2C /* NavigationButtonHelper.swift */,
 				FF537E93280E19100020BE2C /* SettingsButtonHelperContent.swift */,
@@ -988,6 +991,7 @@
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
 				FF61D41227F6804100FB9A23 /* FriendRequestListModel.swift in Sources */,
 				FF61D41427F6819800FB9A23 /* FriendRequestListCell.swift in Sources */,
+				FF537E98280F02D20020BE2C /* Community.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
 				FF61D41627F7469B00FB9A23 /* FriendRequestResponseRequest.swift in Sources */,
 				FFB7989C28004BD90040A9E8 /* EditCity.swift in Sources */,

@@ -24,7 +24,7 @@ struct Settings: View {
                     
                     NavigationButtonHelper(label: NSLocalizedString("general", comment: ""), destination: AnyView(GeneralSettings()))
                     NavigationButtonHelper(label: NSLocalizedString("help", comment: ""), destination: AnyView(Text( "Помощь" )))
-                    NavigationButtonHelper(label: NSLocalizedString("community", comment: ""), destination: AnyView(Text( "Сообщество" )))
+                    NavigationButtonHelper(label: NSLocalizedString("community", comment: ""), destination: AnyView(Community()))
                     NavigationButtonHelper(label: NSLocalizedString("legalInfo", comment: ""), destination: AnyView(Text( "Юр. информация" )))
 
                     
