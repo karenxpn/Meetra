@@ -19,7 +19,7 @@ struct GeneralSettings: View {
             
             VStack( spacing: 20 ) {
                 
-                NavigationButtonHelper(label: NSLocalizedString("phoneNumber", comment: ""), destination: AnyView(Text( "Change phone number here" )))
+                NavigationButtonHelper(label: NSLocalizedString("phoneNumber", comment: ""), destination: AnyView(ChangePhoneNumber()))
                 ActionButtonHelper(label: NSLocalizedString("notifications", comment: "")) {
                     notificationsVM.checkPermissionStatus { status in
                         if status == .notDetermined {
