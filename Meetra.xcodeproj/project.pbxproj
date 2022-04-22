@@ -99,6 +99,7 @@
 		FF97309227FDCA5900A7BF3F /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97309127FDCA5900A7BF3F /* ProfileViewModelTests.swift */; };
 		FF97309427FDCA6400A7BF3F /* MockProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97309327FDCA6400A7BF3F /* MockProfileService.swift */; };
 		FF99154D2813385300CA2DFD /* ChangePhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF99154C2813385300CA2DFD /* ChangePhoneNumber.swift */; };
+		FF99154F2813469D00CA2DFD /* ChangePhoneNumberVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF99154E2813469D00CA2DFD /* ChangePhoneNumberVerify.swift */; };
 		FF9B60112808B703007994EF /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B60102808B703007994EF /* CustomActionSheet.swift */; };
 		FF9B60132808C1EB007994EF /* ActionSheetButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */; };
 		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
@@ -262,6 +263,7 @@
 		FF97309127FDCA5900A7BF3F /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		FF97309327FDCA6400A7BF3F /* MockProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProfileService.swift; sourceTree = "<group>"; };
 		FF99154C2813385300CA2DFD /* ChangePhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumber.swift; sourceTree = "<group>"; };
+		FF99154E2813469D00CA2DFD /* ChangePhoneNumberVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumberVerify.swift; sourceTree = "<group>"; };
 		FF9B60102808B703007994EF /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetButtonHelper.swift; sourceTree = "<group>"; };
 		FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUsers.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				FF537E8D280D83CC0020BE2C /* Settings.swift */,
 				FF537E95280EFDEA0020BE2C /* GeneralSettings.swift */,
 				FF99154C2813385300CA2DFD /* ChangePhoneNumber.swift */,
+				FF99154E2813469D00CA2DFD /* ChangePhoneNumberVerify.swift */,
 				FF537E97280F02D20020BE2C /* Community.swift */,
 				FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */,
 				FF537E91280E18690020BE2C /* NavigationButtonHelper.swift */,
@@ -1001,6 +1004,7 @@
 				FFB7989C28004BD90040A9E8 /* EditCity.swift in Sources */,
 				FF4C980627FF10B0009CB60D /* ProfileEditingInnerView.swift in Sources */,
 				FF9B60112808B703007994EF /* CustomActionSheet.swift in Sources */,
+				FF99154F2813469D00CA2DFD /* ChangePhoneNumberVerify.swift in Sources */,
 				FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */,
 				FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */,
 				FFB798A62800F28E0040A9E8 /* ProfileImageList.swift in Sources */,

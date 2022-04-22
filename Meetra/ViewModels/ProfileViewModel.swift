@@ -28,6 +28,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     @Published var code: String = "7"
     
     @Published var OTP: String = ""
+    @Published var navigateToCheck: Bool = false
     ///
     
     private var cancellableSet: Set<AnyCancellable> = []

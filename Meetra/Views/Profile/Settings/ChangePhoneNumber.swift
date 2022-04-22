@@ -61,10 +61,10 @@ struct ChangePhoneNumber: View {
 //                profileVM.sendVerificationCode()
             }.padding(.bottom, 30)
                 .background(
-//                    NavigationLink(destination: VerifyPhoneNumber(model: model, phone: "+\(authVM.code) \(authVM.phoneNumber)")
-//                        .environmentObject(authVM), isActive: $authVM.navigate, label: {
-//                            EmptyView()
-//                        }).hidden()
+                    NavigationLink(destination: ChangePhoneNumberVerify(phone: "+\(profileVM.code) \(profileVM.phoneNumber)")
+                        .environmentObject(profileVM), isActive: $profileVM.navigateToCheck, label: {
+                            EmptyView()
+                        }).hidden()
                 )
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
