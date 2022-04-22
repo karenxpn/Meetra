@@ -21,6 +21,15 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     @Published var editFields: ProfileEditFieldsViewModel? = nil
     @Published var profileImages = [ProfileImageModel]()
     
+    
+    /// change phone number
+    @Published var phoneNumber: String = ""
+    @Published var country: String = "RU"
+    @Published var code: String = "7"
+    
+    @Published var OTP: String = ""
+    ///
+    
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ProfileServiceProtocol
     var authDataManager: AuthServiceProtocol

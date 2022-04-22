@@ -57,3 +57,5 @@
 "location" = "Местоположение";
 "rules" = "Правила";
 "privacy" = "Безопасность";
+"yourPhoneNumber" = "Ваш номер:";
+"newPhoneNumber" = "Введите новый номер телефона";
