@@ -11,6 +11,9 @@ import SwiftUI
 
 class ProfileViewModel: AlertViewModel, ObservableObject {
     @AppStorage( "token" ) private var token: String = ""
+    @AppStorage( "user_phone_number" ) private var user_phone: String = "(954)411-11-33"
+    @AppStorage( "user_phone_code" ) private var user_code: String = "7"
+    @AppStorage( "user_phone_country" ) private var user_country: String = "RU"
     
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
@@ -21,6 +24,16 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     @Published var editFields: ProfileEditFieldsViewModel? = nil
     @Published var profileImages = [ProfileImageModel]()
     
+    
+    /// change phone number
+    @Published var phoneNumber: String = ""
+    @Published var country: String = "RU"
+    @Published var code: String = "7"
+    
+    @Published var OTP: String = ""
+    @Published var navigateToCheck: Bool = false
+    ///
+    
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ProfileServiceProtocol
     var authDataManager: AuthServiceProtocol
@@ -29,6 +42,11 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
           authDataManager: AuthServiceProtocol = AuthService.shared ) {
         self.dataManager = dataManager
         self.authDataManager = authDataManager
+        
+        super.init()
+        
+        self.country = self.user_country
+        self.code = self.user_code
     }
     
     func getProfile() {
@@ -102,6 +120,54 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
                     self.interests = response.value!.interests
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func sendVerificationCode() {
+        loading = true
+        dataManager.sendVerificationCode(token: token, phoneNumber: "+\(code)\(phoneNumber)")
+            .sink { response in
+                self.loading = false
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.navigateToCheck = true
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func checkVerificationCode() {
+        dataManager.checkVerificationCode(token: token, phoneNumber: "+\(code)\(phoneNumber)", code: OTP)
+            .sink { response in
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    NotificationCenter.default.post(name: Notification.Name("phone_updated"), object: nil)
+                    self.user_phone = self.phoneNumber
+                    self.user_code = self.code
+                    self.user_country = self.country
+                    
+                    self.phoneNumber = ""
+                    self.OTP = ""
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func logout() {
+        dataManager.signout(token: token)
+            .sink { response in
+                if response.error == nil {
+                    self.token = ""
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func deactivateAccount() {
+        dataManager.delete_account(token: token)
+            .sink { response in
+                if response.error == nil {
+                    self.token = ""
                 }
             }.store(in: &cancellableSet)
     }

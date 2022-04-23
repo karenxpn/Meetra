@@ -12,6 +12,18 @@ import Combine
 @testable import Meetra
 
 class MockProfileService: ProfileServiceProtocol {
+    func signout(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: logouError,
+                                                     response: globalResponse,
+                                                     responseType: GlobalResponse.self)
+    }
+    
+    func delete_account(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: deleteAccountError,
+                                                     response: globalResponse,
+                                                     responseType: GlobalResponse.self)
+    }
+    
     func updateProfileImages(token: String, images: [String]) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: updateProfileImagesError,
                                                      response: profileImages,
@@ -37,6 +49,8 @@ class MockProfileService: ProfileServiceProtocol {
     var updateProfileError: Bool = false
     var updateProfileImagesError: Bool = false
     var deleteProfileImageError: Bool = false
+    var deleteAccountError: Bool = false
+    var logouError: Bool = false
     
     let networkError = NetworkError(initialError: AFError.explicitlyCancelled, backendError: nil)
     let fields = AppPreviewModels.fields

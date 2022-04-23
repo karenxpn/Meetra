@@ -37,6 +37,13 @@
 		FF4C980827FF124E009CB60D /* ProfileSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980727FF124E009CB60D /* ProfileSpecs.swift */; };
 		FF4C980A27FF1F41009CB60D /* EditInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980927FF1F41009CB60D /* EditInterests.swift */; };
 		FF4C980E27FF4A10009CB60D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980D27FF4A10009CB60D /* EditOccupation.swift */; };
+		FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */; };
+		FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8D280D83CC0020BE2C /* Settings.swift */; };
+		FF537E90280E163C0020BE2C /* ActionButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */; };
+		FF537E92280E18690020BE2C /* NavigationButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E91280E18690020BE2C /* NavigationButtonHelper.swift */; };
+		FF537E94280E19100020BE2C /* SettingsButtonHelperContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E93280E19100020BE2C /* SettingsButtonHelperContent.swift */; };
+		FF537E96280EFDEA0020BE2C /* GeneralSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E95280EFDEA0020BE2C /* GeneralSettings.swift */; };
+		FF537E98280F02D20020BE2C /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E97280F02D20020BE2C /* Community.swift */; };
 		FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */; };
 		FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */; };
 		FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */; };
@@ -91,6 +98,8 @@
 		FF97309027FDC32900A7BF3F /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97308F27FDC32900A7BF3F /* EditProfile.swift */; };
 		FF97309227FDCA5900A7BF3F /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97309127FDCA5900A7BF3F /* ProfileViewModelTests.swift */; };
 		FF97309427FDCA6400A7BF3F /* MockProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF97309327FDCA6400A7BF3F /* MockProfileService.swift */; };
+		FF99154D2813385300CA2DFD /* ChangePhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF99154C2813385300CA2DFD /* ChangePhoneNumber.swift */; };
+		FF99154F2813469D00CA2DFD /* ChangePhoneNumberVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF99154E2813469D00CA2DFD /* ChangePhoneNumberVerify.swift */; };
 		FF9B60112808B703007994EF /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B60102808B703007994EF /* CustomActionSheet.swift */; };
 		FF9B60132808C1EB007994EF /* ActionSheetButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */; };
 		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
@@ -189,6 +198,13 @@
 		FF4C980727FF124E009CB60D /* ProfileSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSpecs.swift; sourceTree = "<group>"; };
 		FF4C980927FF1F41009CB60D /* EditInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInterests.swift; sourceTree = "<group>"; };
 		FF4C980D27FF4A10009CB60D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
+		FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavBar.swift; sourceTree = "<group>"; };
+		FF537E8D280D83CC0020BE2C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonHelper.swift; sourceTree = "<group>"; };
+		FF537E91280E18690020BE2C /* NavigationButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonHelper.swift; sourceTree = "<group>"; };
+		FF537E93280E19100020BE2C /* SettingsButtonHelperContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonHelperContent.swift; sourceTree = "<group>"; };
+		FF537E95280EFDEA0020BE2C /* GeneralSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettings.swift; sourceTree = "<group>"; };
+		FF537E97280F02D20020BE2C /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		FF61D3F827F4AD8800FB9A23 /* SwipeUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUserModel.swift; sourceTree = "<group>"; };
 		FF61D3FB27F4ADAF00FB9A23 /* Swipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipes.swift; sourceTree = "<group>"; };
 		FF61D3FF27F4B41800FB9A23 /* SingleSwipeUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSwipeUser.swift; sourceTree = "<group>"; };
@@ -246,6 +262,8 @@
 		FF97308F27FDC32900A7BF3F /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		FF97309127FDCA5900A7BF3F /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		FF97309327FDCA6400A7BF3F /* MockProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProfileService.swift; sourceTree = "<group>"; };
+		FF99154C2813385300CA2DFD /* ChangePhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumber.swift; sourceTree = "<group>"; };
+		FF99154E2813469D00CA2DFD /* ChangePhoneNumberVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumberVerify.swift; sourceTree = "<group>"; };
 		FF9B60102808B703007994EF /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetButtonHelper.swift; sourceTree = "<group>"; };
 		FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUsers.swift; sourceTree = "<group>"; };
@@ -375,6 +393,40 @@
 				FF61D40527F5D56000FB9A23 /* ImageCarousel.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		FF537E89280D81B00020BE2C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FF537E8D280D83CC0020BE2C /* Settings.swift */,
+				FF537E95280EFDEA0020BE2C /* GeneralSettings.swift */,
+				FF99154C2813385300CA2DFD /* ChangePhoneNumber.swift */,
+				FF99154E2813469D00CA2DFD /* ChangePhoneNumberVerify.swift */,
+				FF537E97280F02D20020BE2C /* Community.swift */,
+				FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */,
+				FF537E91280E18690020BE2C /* NavigationButtonHelper.swift */,
+				FF537E93280E19100020BE2C /* SettingsButtonHelperContent.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FF537E8A280D81B60020BE2C /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				FF97308F27FDC32900A7BF3F /* EditProfile.swift */,
+				FF4C97FF27FF0711009CB60D /* ProfileEditing.swift */,
+				FF4C980527FF10B0009CB60D /* ProfileEditingInnerView.swift */,
+				FFB798A72800F4700040A9E8 /* EditProfileImageBox.swift */,
+				FF4C980727FF124E009CB60D /* ProfileSpecs.swift */,
+				FF4C980327FF0980009CB60D /* ProfilePreview.swift */,
+				FFB798A32800815F0040A9E8 /* ProfilePreviewInnerView.swift */,
+				FF4C980927FF1F41009CB60D /* EditInterests.swift */,
+				FF4C980D27FF4A10009CB60D /* EditOccupation.swift */,
+				FFB79899280049C00040A9E8 /* EditEducation.swift */,
+				FFB7989B28004BD90040A9E8 /* EditCity.swift */,
+				FFB7989F2800510C0040A9E8 /* EditGender.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		FF61D3FA27F4ADA300FB9A23 /* Swipes */ = {
@@ -586,22 +638,13 @@
 		FF97308427FDAAAC00A7BF3F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				FF537E8A280D81B60020BE2C /* Edit */,
+				FF537E89280D81B00020BE2C /* Settings */,
 				FF97308527FDAAB900A7BF3F /* Profile.swift */,
 				FF97308D27FDAE6D00A7BF3F /* ProfileTopViewCompleteness.swift */,
-				FF97308F27FDC32900A7BF3F /* EditProfile.swift */,
-				FF4C97FF27FF0711009CB60D /* ProfileEditing.swift */,
-				FF4C980527FF10B0009CB60D /* ProfileEditingInnerView.swift */,
-				FFB798A72800F4700040A9E8 /* EditProfileImageBox.swift */,
-				FF4C980727FF124E009CB60D /* ProfileSpecs.swift */,
-				FF4C980327FF0980009CB60D /* ProfilePreview.swift */,
-				FFB798A32800815F0040A9E8 /* ProfilePreviewInnerView.swift */,
-				FF4C980927FF1F41009CB60D /* EditInterests.swift */,
-				FF4C980D27FF4A10009CB60D /* EditOccupation.swift */,
-				FFB79899280049C00040A9E8 /* EditEducation.swift */,
-				FFB7989B28004BD90040A9E8 /* EditCity.swift */,
-				FFB7989F2800510C0040A9E8 /* EditGender.swift */,
 				FFB798972800493F0040A9E8 /* TextFieldHelper.swift */,
 				FFB798A128005FC00040A9E8 /* EditProfileFieldBuilder.swift */,
+				FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -880,6 +923,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFD6372527E2413400F91AB6 /* NotificationsViewModel.swift in Sources */,
+				FF99154D2813385300CA2DFD /* ChangePhoneNumber.swift in Sources */,
 				FFB6D24D27EA34F5004FD5D3 /* Loading.swift in Sources */,
 				FF4C980227FF07A4009CB60D /* ProfileEditFields.swift in Sources */,
 				FF36400727F0B4070057D605 /* UserInnerView.swift in Sources */,
@@ -901,6 +945,7 @@
 				FF61D41827F7867600FB9A23 /* AlamofireAPIHelper.swift in Sources */,
 				FF97308627FDAAB900A7BF3F /* Profile.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
+				FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */,
 				FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */,
 				FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */,
 				FF7D0CFC27CE7C8A00A828C7 /* NetworkError.swift in Sources */,
@@ -912,6 +957,7 @@
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
 				FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */,
 				FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */,
+				FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */,
 				FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */,
 				FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */,
 				FF36400327EFD8EB0057D605 /* UserViewModel.swift in Sources */,
@@ -932,12 +978,14 @@
 				FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */,
 				FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */,
 				FFF6468827D26D690022EF60 /* AuthInterests.swift in Sources */,
+				FF537E96280EFDEA0020BE2C /* GeneralSettings.swift in Sources */,
 				FFF6468A27D28F6A0022EF60 /* InterestModel.swift in Sources */,
 				FF61D40A27F5DCDB00FB9A23 /* FavouritesListModel.swift in Sources */,
 				FF4C980427FF0980009CB60D /* ProfilePreview.swift in Sources */,
 				FFB798A82800F4700040A9E8 /* EditProfileImageBox.swift in Sources */,
 				FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */,
 				FFB7989E28004C230040A9E8 /* ButtonHelper.swift in Sources */,
+				FF537E90280E163C0020BE2C /* ActionButtonHelper.swift in Sources */,
 				FF61D40227F4C02900FB9A23 /* SwipeButtonHelper.swift in Sources */,
 				FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */,
 				FF7D0D2327D006E900A828C7 /* GlobalResponse.swift in Sources */,
@@ -945,15 +993,18 @@
 				FF61D41027F67FDA00FB9A23 /* FriendRequestList.swift in Sources */,
 				FF363FFF27EFD77D0057D605 /* UserView.swift in Sources */,
 				FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */,
+				FF537E92280E18690020BE2C /* NavigationButtonHelper.swift in Sources */,
 				FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */,
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
 				FF61D41227F6804100FB9A23 /* FriendRequestListModel.swift in Sources */,
 				FF61D41427F6819800FB9A23 /* FriendRequestListCell.swift in Sources */,
+				FF537E98280F02D20020BE2C /* Community.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
 				FF61D41627F7469B00FB9A23 /* FriendRequestResponseRequest.swift in Sources */,
 				FFB7989C28004BD90040A9E8 /* EditCity.swift in Sources */,
 				FF4C980627FF10B0009CB60D /* ProfileEditingInnerView.swift in Sources */,
 				FF9B60112808B703007994EF /* CustomActionSheet.swift in Sources */,
+				FF99154F2813469D00CA2DFD /* ChangePhoneNumberVerify.swift in Sources */,
 				FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */,
 				FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */,
 				FFB798A62800F28E0040A9E8 /* ProfileImageList.swift in Sources */,
@@ -975,6 +1026,7 @@
 				FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */,
 				FFB6D24927EA10DC004FD5D3 /* AgeFilter.swift in Sources */,
 				FF4C980A27FF1F41009CB60D /* EditInterests.swift in Sources */,
+				FF537E94280E19100020BE2C /* SettingsButtonHelperContent.swift in Sources */,
 				FF7D0D0427CE7D2A00A828C7 /* Authentication.swift in Sources */,
 				FF07F23427D0D8B6009B46B7 /* AuthBirthday.swift in Sources */,
 			);
