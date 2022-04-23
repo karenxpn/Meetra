@@ -19,7 +19,6 @@ struct Settings: View {
                       message: "") {
             
             
-            ScrollView ( showsIndicators: false ) {
                 VStack( spacing: 20 ) {
                     
                     NavigationButtonHelper(label: NSLocalizedString("general", comment: ""), destination: AnyView(GeneralSettings()))
@@ -33,7 +32,6 @@ struct Settings: View {
 
                     
                     Spacer()
-                        .padding(.vertical, 70)
                     
                     ButtonHelper(disabled: false,
                                  label: NSLocalizedString("logout", comment: "")) {
@@ -57,7 +55,6 @@ struct Settings: View {
                         alignment: .leading)
                 .padding(30)
                 .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
-            }.padding(.top, 1)
         }.alert(isPresented: $showDeleteAccountDialog) {
             Alert(title: Text( NSLocalizedString("deleteAccount", comment: "")),
                   message: Text( NSLocalizedString("afterDeletion", comment: "")),
