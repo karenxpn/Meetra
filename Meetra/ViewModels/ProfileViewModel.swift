@@ -11,6 +11,9 @@ import SwiftUI
 
 class ProfileViewModel: AlertViewModel, ObservableObject {
     @AppStorage( "token" ) private var token: String = ""
+    @AppStorage( "user_phone_number" ) private var user_phone: String = "(954)411-11-33"
+    @AppStorage( "user_phone_code" ) private var user_code: String = "7"
+    @AppStorage( "user_phone_country" ) private var user_country: String = "RU"
     
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
@@ -39,6 +42,11 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
           authDataManager: AuthServiceProtocol = AuthService.shared ) {
         self.dataManager = dataManager
         self.authDataManager = authDataManager
+        
+        super.init()
+        
+        self.country = self.user_country
+        self.code = self.user_code
     }
     
     func getProfile() {
@@ -138,6 +146,10 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
 //                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
 //                } else {
                     NotificationCenter.default.post(name: Notification.Name("phone_updated"), object: nil)
+                self.user_phone = self.phoneNumber
+                self.user_code = self.code
+                self.user_country = self.country
+                
                 self.phoneNumber = ""
                 self.OTP = ""
 //                }

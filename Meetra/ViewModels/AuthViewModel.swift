@@ -12,6 +12,9 @@ import SwiftUI
 class AuthViewModel: AlertViewModel, ObservableObject {
     @AppStorage("token") private var token: String = ""
     @AppStorage( "initialToken" ) private var initialToken: String = ""
+    @AppStorage( "user_phone_number" ) private var user_phone: String = "(954)411-11-33"
+    @AppStorage( "user_phone_code" ) private var user_code: String = "7"
+    @AppStorage( "user_phone_country" ) private var user_country: String = "RU"
     
     @Published var phoneNumber: String = ""
     @Published var country: String = "RU"
@@ -62,6 +65,12 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
+                    
+                    self.user_phone = self.phoneNumber
+                    self.user_code = self.code
+                    self.user_country = self.country
+                    
+                    
                     if self.login {
                         self.token = self.initialToken
                     } else {

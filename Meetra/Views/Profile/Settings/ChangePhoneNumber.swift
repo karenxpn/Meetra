@@ -14,6 +14,8 @@ struct ChangePhoneNumber: View {
     @FocusState private var isFocused: Bool
     @State private var change: Bool = false
     
+    @AppStorage( "user_phone_number" ) private var user_phone: String = "(954)411-11-33"
+    
     var body: some View {
         VStack( alignment: .leading, spacing: 20) {
             Text(NSLocalizedString("yourPhoneNumber", comment: ""))
@@ -46,7 +48,7 @@ struct ChangePhoneNumber: View {
                         .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
                 }
                 
-                TextField("(954)411-11-33", text: $profileVM.phoneNumber)
+                TextField(user_phone, text: $profileVM.phoneNumber)
                     .keyboardType(.phonePad)
                     .font(.custom("Inter-SemiBold", size: 18))
                     .padding(.vertical, 15)

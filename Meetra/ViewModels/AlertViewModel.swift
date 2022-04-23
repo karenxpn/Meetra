@@ -16,6 +16,7 @@ class AlertViewModel {
         
         if error.initialError.responseCode == 401 {
             self.token = ""
+            
         } else {
             message = error.backendError == nil ? error.initialError.localizedDescription : error.backendError!.message
             alert.toggle()
