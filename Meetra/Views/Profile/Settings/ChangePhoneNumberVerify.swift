@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChangePhoneNumberVerify: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var profileVM: ProfileViewModel
     let phone: String
     
@@ -53,7 +54,8 @@ struct ChangePhoneNumberVerify: View {
             ButtonHelper(disabled: profileVM.OTP.count != 4,
                          label: NSLocalizedString("proceed", comment: "")) {
                 profileVM.checkVerificationCode()
-            }.background(
+            }.padding(.bottom, 30)
+                         .background(
 //                    NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
 //                        EmptyView()
 //                    }).hidden()
@@ -71,6 +73,8 @@ struct ChangePhoneNumberVerify: View {
             .padding(30)
             .alert(isPresented: $profileVM.showAlert) {
                 Alert(title: Text("Error"), message: Text(profileVM.alertMessage), dismissButton: .default(Text("Got it!")))
+            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "phone_updated"))) { _ in
+                presentationMode.wrappedValue.dismiss()
             }
     }
 }

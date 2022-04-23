@@ -121,22 +121,26 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
         dataManager.sendVerificationCode(token: token, phoneNumber: "+\(code)\(phoneNumber)")
             .sink { response in
                 self.loading = false
-                if response.error != nil {
-                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
-                } else {
-                    self.navigateToCheck = true
-                }
+                self.navigateToCheck = true
+
+//                if response.error != nil {
+//                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+//                } else {
+//                    self.navigateToCheck = true
+//                }
             }.store(in: &cancellableSet)
     }
     
     func checkVerificationCode() {
         dataManager.checkVerificationCode(token: token, phoneNumber: "+\(code)\(phoneNumber)", code: OTP)
             .sink { response in
-                if response.error != nil {
-                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
-                } else {
-                    // do smth
-                }
+//                if response.error != nil {
+//                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+//                } else {
+                    NotificationCenter.default.post(name: Notification.Name("phone_updated"), object: nil)
+                self.phoneNumber = ""
+                self.OTP = ""
+//                }
             }.store(in: &cancellableSet)
     }
     

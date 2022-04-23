@@ -10,14 +10,17 @@ import SwiftUI
 struct ChangePhoneNumber: View {
     @StateObject var profileVM = ProfileViewModel()
     @State private var showPicker: Bool = false
-
+    
+    @FocusState private var isFocused: Bool
+    @State private var change: Bool = false
+    
     var body: some View {
         VStack( alignment: .leading, spacing: 20) {
             Text(NSLocalizedString("yourPhoneNumber", comment: ""))
                 .foregroundColor(.black)
                 .font(.custom("Inter-SemiBold", size: 30))
             
-            Text(NSLocalizedString("newPhoneNumber", comment: ""))
+            Text(NSLocalizedString( change ? "newPhoneNumber" : "toChangePhone", comment: ""))
                 .foregroundColor(.black)
                 .font(.custom("Inter-Regular", size: 16))
                 .padding(.trailing)
@@ -51,21 +54,37 @@ struct ChangePhoneNumber: View {
                     .background(.white)
                     .cornerRadius(10)
                     .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
+                    .focused($isFocused)
+                    .onChange(of: isFocused) { value in
+                        if value == true {
+                            change = true
+                        }
+                    }
             }.padding(.top, 20)
             
             
             Spacer()
             
-            ButtonHelper(disabled: profileVM.phoneNumber == "" || profileVM.loading,
-                         label: NSLocalizedString("proceed", comment: "")) {
-                profileVM.sendVerificationCode()
-            }.padding(.bottom, 30)
-                .background(
-                    NavigationLink(destination: ChangePhoneNumberVerify(phone: "+\(profileVM.code) \(profileVM.phoneNumber)")
-                        .environmentObject(profileVM), isActive: $profileVM.navigateToCheck, label: {
-                            EmptyView()
-                        }).hidden()
-                )
+            if !change {
+                ButtonHelper(disabled: false,
+                             label: NSLocalizedString("change", comment: "")) {
+                    change = true
+                    isFocused = true
+                }.padding(.bottom, 30)
+            } else {
+                ButtonHelper(disabled: profileVM.phoneNumber == "" || profileVM.loading,
+                             label: NSLocalizedString("proceed" , comment: "")) {
+                    profileVM.sendVerificationCode()
+                }.padding(.bottom, 30)
+                    .background(
+                        NavigationLink(destination: ChangePhoneNumberVerify(phone: "+\(profileVM.code) \(profileVM.phoneNumber)")
+                            .environmentObject(profileVM), isActive: $profileVM.navigateToCheck, label: {
+                                EmptyView()
+                            }).hidden()
+                    )
+            }
+            
+            
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
                 minWidth: 0,
@@ -82,6 +101,8 @@ struct ChangePhoneNumber: View {
             }
             .alert(isPresented: $profileVM.showAlert) {
                 Alert(title: Text("Error"), message: Text(profileVM.alertMessage), dismissButton: .default(Text("Got it!")))
+            }.onAppear {
+                change = false
             }
     }
 }
