@@ -52,7 +52,7 @@ struct ChangePhoneNumberVerify: View {
             
             ButtonHelper(disabled: profileVM.OTP.count != 4,
                          label: NSLocalizedString("proceed", comment: "")) {
-//                profileVM.checkVerificationCode()
+                profileVM.checkVerificationCode()
             }.background(
 //                    NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
 //                        EmptyView()

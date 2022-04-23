@@ -58,7 +58,7 @@ struct ChangePhoneNumber: View {
             
             ButtonHelper(disabled: profileVM.phoneNumber == "" || profileVM.loading,
                          label: NSLocalizedString("proceed", comment: "")) {
-//                profileVM.sendVerificationCode()
+                profileVM.sendVerificationCode()
             }.padding(.bottom, 30)
                 .background(
                     NavigationLink(destination: ChangePhoneNumberVerify(phone: "+\(profileVM.code) \(profileVM.phoneNumber)")
