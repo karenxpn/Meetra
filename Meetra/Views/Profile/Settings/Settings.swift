@@ -29,7 +29,7 @@ struct Settings: View {
                         }
                     }
                     NavigationButtonHelper(label: NSLocalizedString("community", comment: ""), destination: AnyView(Community()))
-                    NavigationButtonHelper(label: NSLocalizedString("legalInfo", comment: ""), destination: AnyView(Text( "Юр. информация" )))
+//                    NavigationButtonHelper(label: NSLocalizedString("legalInfo", comment: ""), destination: AnyView(Text( "Юр. информация" )))
 
                     
                     Spacer()
