@@ -24,15 +24,13 @@ class PlacesService {
 extension PlacesService: PlacesServiceProtocol {
     func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<SwipeUserListModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/swipes/\(page)")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, headers: headers, responseType: SwipeUserListModel.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, responseType: SwipeUserListModel.self)
     }
     
     func fetchPlaceRoom(token: String, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/place")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, headers: headers, responseType: PlaceRoom.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, responseType: PlaceRoom.self)
     }
 }

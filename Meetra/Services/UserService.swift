@@ -10,14 +10,14 @@ import Alamofire
 import Combine
 
 protocol UserServiceProtocol {
-    func fetchUser( token: String, id: Int ) -> AnyPublisher<DataResponse<UserModel, NetworkError>, Never>
-    func sendFriendRequest( token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
-    func starUser( token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
-    func fetchStarredUsers( token: String, page: Int ) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never>
-    func fetchFriendRequests( token: String, page: Int ) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never>
-    func accept_rejectFriendRequest( token: String, model: FriendRequestResponseRequest ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
-    func reportUser( token: String, id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
-    func blockUser( token: String, id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func fetchUser(id: Int ) -> AnyPublisher<DataResponse<UserModel, NetworkError>, Never>
+    func sendFriendRequest(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func starUser(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func fetchStarredUsers(page: Int ) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never>
+    func fetchFriendRequests(page: Int ) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never>
+    func accept_rejectFriendRequest(model: FriendRequestResponseRequest ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func reportUser(id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func blockUser(id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
 }
 
 class UserService {
@@ -26,60 +26,52 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
-    func reportUser(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func reportUser(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/report")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, responseType: GlobalResponse.self)
     }
     
-    func blockUser(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func blockUser(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/report")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, responseType: GlobalResponse.self)
     }
     
-    func accept_rejectFriendRequest(token: String, model: FriendRequestResponseRequest ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func accept_rejectFriendRequest(model: FriendRequestResponseRequest ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/respond-request")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, responseType: GlobalResponse.self)
     }
     
-    func fetchFriendRequests(token: String, page: Int) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never> {
+    func fetchFriendRequests(page: Int) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/requests/\(page)")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: FriendRequestListModel.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: FriendRequestListModel.self)
     }
     
-    func fetchStarredUsers(token: String, page: Int) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never> {
+    func fetchStarredUsers(page: Int) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/favourites/\(page)")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: FavouritesListModel.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: FavouritesListModel.self)
     }
     
-    func sendFriendRequest(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func sendFriendRequest(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/friend")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, responseType: GlobalResponse.self)
     }
     
-    func starUser(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func starUser( id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)starred-user")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: ["userId" : id], url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["userId" : id], url: url, responseType: GlobalResponse.self)
     }
     
-    func fetchUser(token: String, id: Int) -> AnyPublisher<DataResponse<UserModel, NetworkError>, Never> {
+    func fetchUser(id: Int) -> AnyPublisher<DataResponse<UserModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/\(id)")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: UserModel.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: UserModel.self)
     }
     
 }

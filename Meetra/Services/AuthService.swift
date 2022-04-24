@@ -11,10 +11,10 @@ import Alamofire
 
 protocol AuthServiceProtocol {
     func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never>
-    func checkVerificationCode(token: String, code: String ) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never>
-    func resendVerificationCode(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func checkVerificationCode(code: String ) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never>
+    func resendVerificationCode() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     func fetchInterests() -> AnyPublisher<DataResponse<InterestModel, NetworkError>, Never>
-    func signUpConfirm(model: RegistrationRequest, token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func signUpConfirm(model: RegistrationRequest) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
 }
 
 class AuthService {
@@ -24,11 +24,10 @@ class AuthService {
 }
 
 extension AuthService: AuthServiceProtocol {
-    func signUpConfirm(model: RegistrationRequest, token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func signUpConfirm(model: RegistrationRequest) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)auth/confirm")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, responseType: GlobalResponse.self)
 
     }
     
@@ -50,18 +49,16 @@ extension AuthService: AuthServiceProtocol {
     }
     
     
-    func resendVerificationCode(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func resendVerificationCode() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)auth/resend-code")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: GlobalResponse.self)
     }
     
-    func checkVerificationCode(token: String, code: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {
+    func checkVerificationCode(code: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)auth/check-code")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: ["otp" : code], url: url, headers: headers, responseType: AuthResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["otp" : code], url: url, responseType: AuthResponse.self)
     }
     
     func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {

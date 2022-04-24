@@ -32,7 +32,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     
     func getUser(userID: Int) {
         loading = true
-        dataManager.fetchUser(token: token, id: userID)
+        dataManager.fetchUser(id: userID)
             .sink { response in
                 self.loading = false
                 if response.error != nil {
@@ -44,7 +44,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     }
     
     func sendFriendRequest(userID: Int) {
-        dataManager.sendFriendRequest(token: token, id: userID)
+        dataManager.sendFriendRequest(id: userID)
             .sink { response in
                 if response.error == nil {
                     self.friendRequestSentOffset = -UIScreen.main.bounds.height / 3
@@ -53,7 +53,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     }
     
     func starUser() {
-        dataManager.starUser(token: token, id: user!.id)
+        dataManager.starUser(id: user!.id)
             .sink { response in
                 if response.error == nil {
                     self.user!.starred.toggle()
@@ -62,13 +62,13 @@ class UserViewModel: AlertViewModel, ObservableObject {
     }
     
     func starUserFromSwipes(userID: Int) {
-        dataManager.starUser(token: token, id: userID)
+        dataManager.starUser( id: userID)
             .sink { _ in
             }.store(in: &cancellableSet)
     }
     
     func removeUserFromStars(userID: Int) {
-        dataManager.starUser(token: token, id: userID)
+        dataManager.starUser(id: userID)
             .sink { response in
                 if response.error == nil {
                     self.users.removeAll(where: {$0.id == userID})
@@ -78,7 +78,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     
     func getStarredUsers() {
         loading = true
-        dataManager.fetchStarredUsers(token: token, page: page)
+        dataManager.fetchStarredUsers(page: page)
             .sink { response in
                 self.loading = false
                 if response.error != nil {
@@ -92,7 +92,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     
     func getFriendRequests() {
         loading = true
-        dataManager.fetchFriendRequests(token: token, page: page)
+        dataManager.fetchFriendRequests(page: page)
             .sink { response in
                 self.loading = false
                 if response.error != nil {
@@ -107,7 +107,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     func accept_rejectFriendRequest( id: Int, status: String ) {
         let model = FriendRequestResponseRequest(id: id, status: status)
         
-        dataManager.accept_rejectFriendRequest(token: token, model: model)
+        dataManager.accept_rejectFriendRequest(model: model)
             .sink { response in
                 print(response)
                 if response.error == nil {
@@ -117,13 +117,13 @@ class UserViewModel: AlertViewModel, ObservableObject {
     }
     
     func reportUser( id: Int ) {
-        dataManager.reportUser(token: token, id: id)
+        dataManager.reportUser(id: id)
             .sink { _ in
             }.store(in: &cancellableSet)
     }
     
     func blockUser( id: Int ) {
-        dataManager.blockUser(token: token, id: id)
+        dataManager.blockUser(id: id)
             .sink { _ in
             }.store(in: &cancellableSet)
     }
