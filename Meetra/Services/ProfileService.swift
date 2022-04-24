@@ -56,7 +56,7 @@ extension ProfileService: ProfileServiceProtocol {
     }
     
     func delete_account() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)users/delete")!
+        let url = URL(string: "\(Credentials.BASE_URL)users/me")!
         
         return AlamofireAPIHelper.shared.get_deleteRequest(url: url, method: .delete, responseType: GlobalResponse.self)
     }
