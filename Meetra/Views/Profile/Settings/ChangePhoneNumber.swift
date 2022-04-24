@@ -72,12 +72,12 @@ struct ChangePhoneNumber: View {
                              label: NSLocalizedString("change", comment: "")) {
                     change = true
                     isFocused = true
-                }.padding(.bottom, 30)
+                }
             } else {
                 ButtonHelper(disabled: profileVM.phoneNumber == "" || profileVM.loading,
                              label: NSLocalizedString("proceed" , comment: "")) {
                     profileVM.sendVerificationCode()
-                }.padding(.bottom, 30)
+                }
                     .background(
                         NavigationLink(destination: ChangePhoneNumberVerify(phone: "+\(profileVM.code) \(profileVM.phoneNumber)")
                             .environmentObject(profileVM), isActive: $profileVM.navigateToCheck, label: {
@@ -96,6 +96,7 @@ struct ChangePhoneNumber: View {
                 alignment: .topLeading
             )
             .padding(30)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.1)
             .sheet(isPresented: $showPicker) {
                 CountryCodeSelection(isPresented: $showPicker,
                                      country: $profileVM.country,

@@ -19,11 +19,23 @@ struct ChangePhoneNumberVerify: View {
                 .foregroundColor(.black)
                 .font(.custom("Inter-SemiBold", size: 30))
             
-            Text( "Отправили вам 4-значный код\n на номер \(phone)" )
-                .foregroundColor(.black)
-                .font(.custom("Inter-Regular", size: 16))
-                .padding(.top, 20)
+            VStack( alignment: .leading, spacing: 5) {
+                Text( "Отправили вам 4-значный код\n на номер \(phone)" )
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-Regular", size: 16))
+                
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Text(NSLocalizedString("change", comment: ""))
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-SemiBold", size: 16))
+                        .underline()
+                }
+
+            }.padding(.top, 20)
                 .padding(.bottom, 50)
+
             
             
             OTPTextFieldView { otp in
@@ -42,6 +54,7 @@ struct ChangePhoneNumberVerify: View {
                     Text( " Отправить ещё раз" )
                         .foregroundColor(.black)
                         .font(.custom("Inter-SemiBold", size: 12))
+                        .underline()
                 }
                 
             }.padding(.top)
@@ -54,12 +67,7 @@ struct ChangePhoneNumberVerify: View {
             ButtonHelper(disabled: profileVM.OTP.count != 4,
                          label: NSLocalizedString("proceed", comment: "")) {
                 profileVM.checkVerificationCode()
-            }.padding(.bottom, 30)
-                         .background(
-//                    NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
-//                        EmptyView()
-//                    }).hidden()
-                )
+            }
             
             
         }.navigationBarTitle("", displayMode: .inline)
@@ -71,6 +79,7 @@ struct ChangePhoneNumberVerify: View {
                 alignment: .topLeading
             )
             .padding(30)
+            .padding(.bottom, UIScreen.main.bounds.height * 0.1)
             .alert(isPresented: $profileVM.showAlert) {
                 Alert(title: Text("Error"), message: Text(profileVM.alertMessage), dismissButton: .default(Text("Got it!")))
             }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "phone_updated"))) { _ in
