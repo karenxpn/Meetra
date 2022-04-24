@@ -20,7 +20,7 @@ struct ChangePhoneNumberVerify: View {
                 .font(.custom("Inter-SemiBold", size: 30))
             
             VStack( alignment: .leading, spacing: 5) {
-                Text( "Отправили вам 4-значный код\n на номер \(phone)" )
+                Text( "Отправили вам 4-значный код\nна номер \(phone)" )
                     .foregroundColor(.black)
                     .font(.custom("Inter-Regular", size: 16))
                 
@@ -35,6 +35,7 @@ struct ChangePhoneNumberVerify: View {
 
             }.padding(.top, 20)
                 .padding(.bottom, 50)
+                .fixedSize(horizontal: false, vertical: true)
 
             
             
@@ -49,7 +50,7 @@ struct ChangePhoneNumberVerify: View {
                     .font(.custom("Inter-Regular", size: 12))
                 
                 Button(action: {
-//                    profileVM.resendVerificationCode()
+                    profileVM.sendVerificationCode()
                 }) {
                     Text( " Отправить ещё раз" )
                         .foregroundColor(.black)
