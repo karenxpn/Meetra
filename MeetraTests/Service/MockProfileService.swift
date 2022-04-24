@@ -12,31 +12,43 @@ import Combine
 @testable import Meetra
 
 class MockProfileService: ProfileServiceProtocol {
-    func signout(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        return AlamofireAPIHelper.shared.mockRequest(error: logouError,
+    func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: sendVerificationError,
                                                      response: globalResponse,
                                                      responseType: GlobalResponse.self)
     }
     
-    func delete_account(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func checkVerificationCode(phoneNumber: String, code: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: checkVerificationCodeError,
+                                                     response: globalResponse,
+                                                     responseType: GlobalResponse.self)
+    }
+    
+    func signout() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: logoutError,
+                                                     response: globalResponse,
+                                                     responseType: GlobalResponse.self)
+    }
+    
+    func delete_account() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: deleteAccountError,
                                                      response: globalResponse,
                                                      responseType: GlobalResponse.self)
     }
     
-    func updateProfileImages(token: String, images: [String]) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
+    func updateProfileImages(images: [String]) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: updateProfileImagesError,
                                                      response: profileImages,
                                                      responseType: ProfileImageList.self)
     }
     
-    func deleteProfileImage(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func deleteProfileImage(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: deleteProfileImageError,
                                                      response: globalResponse,
                                                      responseType: GlobalResponse.self)
     }
     
-    func fetchProfileImages(token: String) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
+    func fetchProfileImages() -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: fetchProfileImagesError,
                                                      response: profileImages,
                                                      responseType: ProfileImageList.self)
@@ -50,7 +62,9 @@ class MockProfileService: ProfileServiceProtocol {
     var updateProfileImagesError: Bool = false
     var deleteProfileImageError: Bool = false
     var deleteAccountError: Bool = false
-    var logouError: Bool = false
+    var logoutError: Bool = false
+    var sendVerificationError: Bool = false
+    var checkVerificationCodeError: Bool = false
     
     let networkError = NetworkError(initialError: AFError.explicitlyCancelled, backendError: nil)
     let fields = AppPreviewModels.fields
@@ -58,15 +72,15 @@ class MockProfileService: ProfileServiceProtocol {
     let profile = AppPreviewModels.profile
     let profileImages = AppPreviewModels.profileImages
     
-    func fetchProfile(token: String) -> AnyPublisher<DataResponse<ProfileModel, NetworkError>, Never> {
+    func fetchProfile() -> AnyPublisher<DataResponse<ProfileModel, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: fetchProfileError, response: profile, responseType: ProfileModel.self)
     }
     
-    func fetchProfileEditFields(token: String) -> AnyPublisher<DataResponse<ProfileEditFields, NetworkError>, Never> {
+    func fetchProfileEditFields() -> AnyPublisher<DataResponse<ProfileEditFields, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: fetchEditFieldsError, response: fields, responseType: ProfileEditFields.self)
     }
     
-    func updateProfile(token: String, model: ProfileEditFields) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func updateProfile(model: ProfileEditFields) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: updateProfileError, response: globalResponse, responseType: GlobalResponse.self)
     }
     

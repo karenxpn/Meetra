@@ -11,11 +11,14 @@ import SwiftUI
 class AlertViewModel {
     
     @AppStorage("token") private var token: String = ""
+    @AppStorage( "initialToken" ) private var initialToken: String = ""
+
     
     func makeAlert(with error: NetworkError, message: inout String, alert: inout Bool ) {
         
         if error.initialError.responseCode == 401 {
             self.token = ""
+            self.initialToken = ""
             
         } else {
             message = error.backendError == nil ? error.initialError.localizedDescription : error.backendError!.message

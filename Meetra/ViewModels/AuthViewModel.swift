@@ -59,7 +59,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     
     func checkVerificationCode() {
         loading = true
-        dataManager.checkVerificationCode(token: initialToken, code: OTP)
+        dataManager.checkVerificationCode(code: OTP)
             .sink { response in
                 self.loading = false
                 if response.error != nil {
@@ -81,7 +81,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     }
     
     func resendVerificationCode() {
-        dataManager.resendVerificationCode(token: initialToken)
+        dataManager.resendVerificationCode()
             .sink { _ in
             }.store(in: &cancellableSet)
     }
@@ -101,7 +101,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     
     func confirmSignUp(model: RegistrationRequest) {
         loading = true
-        dataManager.signUpConfirm(model: model, token: initialToken)
+        dataManager.signUpConfirm(model: model)
             .sink { response in
                 self.loading = false
                 if response.error != nil {

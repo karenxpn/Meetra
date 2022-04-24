@@ -33,7 +33,7 @@ struct Profile: View {
                                 ProfileTopViewCompleteness(profile: profileVM.profile!)
                                 
                                 
-                                if showFillPopup {
+                                if showFillPopup && !profileVM.profile!.isVerified {
                                     ZStack( alignment: .topTrailing) {
                                         Text( NSLocalizedString("fill_to_verify", comment: ""))
                                             .kerning(0.24)

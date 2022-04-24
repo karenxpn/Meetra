@@ -11,6 +11,7 @@ import SwiftUI
 
 class ProfileViewModel: AlertViewModel, ObservableObject {
     @AppStorage( "token" ) private var token: String = ""
+    @AppStorage( "initialToken" ) var initialToken: String = ""
     @AppStorage( "user_phone_number" ) private var user_phone: String = "(954)411-11-33"
     @AppStorage( "user_phone_code" ) private var user_code: String = "7"
     @AppStorage( "user_phone_country" ) private var user_country: String = "RU"
@@ -51,7 +52,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     
     func getProfile() {
         loading = true
-        dataManager.fetchProfile(token: token)
+        dataManager.fetchProfile()
             .sink { response in
                 self.loading = false
                 if response.error != nil {
@@ -64,8 +65,8 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     
     func getProfileUpdateFields() {
         loading = true
-        Publishers.Zip(dataManager.fetchProfileEditFields(token: token),
-                       dataManager.fetchProfileImages(token: token))
+        Publishers.Zip(dataManager.fetchProfileEditFields(),
+                       dataManager.fetchProfileImages())
         .sink { fields, images in
             self.loading = false
             if fields.error != nil || images.error != nil {
@@ -80,7 +81,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     }
     
     func updateProfile(fields: ProfileEditFields) {
-        dataManager.updateProfile(token: token, model: fields)
+        dataManager.updateProfile(model: fields)
             .sink { response in
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
@@ -91,7 +92,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     }
     
     func updateProfileImages( images: [String] ) {
-        dataManager.updateProfileImages(token: token, images: images)
+        dataManager.updateProfileImages(images: images)
             .sink { response in
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
@@ -103,7 +104,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     }
     
     func deleteProfileImage(id: Int) {
-        dataManager.deleteProfileImage(token: token, id: id)
+        dataManager.deleteProfileImage(id: id)
             .sink { response in
                 if response.error == nil {
                     self.profileImages.removeAll(where: { $0.id == id })
@@ -126,7 +127,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     
     func sendVerificationCode() {
         loading = true
-        dataManager.sendVerificationCode(token: token, phoneNumber: "+\(code)\(phoneNumber)")
+        dataManager.sendVerificationCode(phoneNumber: "+\(code)\(phoneNumber)")
             .sink { response in
                 self.loading = false
                 if response.error != nil {
@@ -138,7 +139,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     }
     
     func checkVerificationCode() {
-        dataManager.checkVerificationCode(token: token, phoneNumber: "+\(code)\(phoneNumber)", code: OTP)
+        dataManager.checkVerificationCode(phoneNumber: "+\(code)\(phoneNumber)", code: OTP)
             .sink { response in
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
@@ -155,16 +156,17 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     }
     
     func logout() {
-        dataManager.signout(token: token)
+        dataManager.signout()
             .sink { response in
                 if response.error == nil {
                     self.token = ""
+                    self.initialToken = ""
                 }
             }.store(in: &cancellableSet)
     }
     
     func deactivateAccount() {
-        dataManager.delete_account(token: token)
+        dataManager.delete_account()
             .sink { response in
                 if response.error == nil {
                     self.token = ""

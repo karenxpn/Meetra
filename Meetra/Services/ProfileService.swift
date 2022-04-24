@@ -10,18 +10,18 @@ import Alamofire
 import Combine
 
 protocol ProfileServiceProtocol {
-    func fetchProfile( token: String ) -> AnyPublisher<DataResponse<ProfileModel, NetworkError>, Never>
-    func fetchProfileEditFields( token: String ) -> AnyPublisher<DataResponse<ProfileEditFields, NetworkError>, Never>
-    func fetchProfileImages( token: String ) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never>
-    func updateProfileImages(token: String, images: [String] ) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never>
-    func deleteProfileImage( token: String, id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
-    func updateProfile( token: String, model: ProfileEditFields ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func fetchProfile() -> AnyPublisher<DataResponse<ProfileModel, NetworkError>, Never>
+    func fetchProfileEditFields() -> AnyPublisher<DataResponse<ProfileEditFields, NetworkError>, Never>
+    func fetchProfileImages() -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never>
+    func updateProfileImages(images: [String] ) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never>
+    func deleteProfileImage(id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func updateProfile(model: ProfileEditFields ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     
-    func sendVerificationCode(token: String, phoneNumber: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
-    func checkVerificationCode(token: String, phoneNumber: String, code: String ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func checkVerificationCode(phoneNumber: String, code: String ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     
-    func signout( token: String ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
-    func delete_account( token: String ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func signout() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func delete_account() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
 }
 
 class ProfileService {
@@ -30,92 +30,77 @@ class ProfileService {
 }
 
 extension ProfileService: ProfileServiceProtocol {
-    func sendVerificationCode(token: String, phoneNumber: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/phone-number")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AlamofireAPIHelper.shared.post_patchRequest(params: ["phoneNumber" : phoneNumber],
                                                            url: url,
                                                            method: .patch,
-                                                           headers: headers,
                                                            responseType: GlobalResponse.self)
     }
     
-    func checkVerificationCode(token: String, phoneNumber: String, code: String ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func checkVerificationCode(phoneNumber: String, code: String ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/change-phone-number")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AlamofireAPIHelper.shared.post_patchRequest(params: ["phoneNumber" : phoneNumber,
                                                                     "otp": code],
                                                            url: url,
                                                            method: .patch,
-                                                           headers: headers,
                                                            responseType: GlobalResponse.self)
     }
     
-    func signout(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func signout() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/signout")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: GlobalResponse.self)
     }
     
-    func delete_account(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)users/delete")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
+    func delete_account() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)users/me")!
         
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, method: .delete, headers: headers, responseType: GlobalResponse.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, method: .delete, responseType: GlobalResponse.self)
     }
     
-    func updateProfileImages(token: String, images: [String]) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
+    func updateProfileImages(images: [String]) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/image")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AlamofireAPIHelper.shared.post_patchRequest(params: ["images" : images],
                                                            url: url,
-                                                           headers: headers,
                                                            responseType: ProfileImageList.self)
     }
     
-    func deleteProfileImage(token: String, id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func deleteProfileImage(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/image/\(id)")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AlamofireAPIHelper.shared.get_deleteRequest(url: url,
                                                            method: .delete,
-                                                           headers: headers,
                                                            responseType: GlobalResponse.self)
     }
     
-    func fetchProfileImages(token: String) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
+    func fetchProfileImages() -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/images")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: ProfileImageList.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: ProfileImageList.self)
     }
     
-    func fetchProfileEditFields(token: String) -> AnyPublisher<DataResponse<ProfileEditFields, NetworkError>, Never> {
+    func fetchProfileEditFields() -> AnyPublisher<DataResponse<ProfileEditFields, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/profile")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: ProfileEditFields.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: ProfileEditFields.self)
     }
     
-    func updateProfile(token: String, model: ProfileEditFields) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func updateProfile(model: ProfileEditFields) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/profile")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
         return AlamofireAPIHelper.shared.post_patchRequest(params: model,
                                                            url: url,
                                                            method: .patch,
-                                                           headers: headers,
                                                            responseType: GlobalResponse.self)
     }
     
-    func fetchProfile(token: String) -> AnyPublisher<DataResponse<ProfileModel, NetworkError>, Never> {
+    func fetchProfile() -> AnyPublisher<DataResponse<ProfileModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/me")!
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
         
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, headers: headers, responseType: ProfileModel.self)
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: ProfileModel.self)
     }
 }
