@@ -11,8 +11,8 @@ import SocketIO
 import Combine
 
 protocol PlacesServiceProtocol {
-    func fetchPlaceRoom( token: String, model: PlaceRoomRequest ) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never>
-    func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<SwipeUserListModel, NetworkError>, Never>
+    func fetchPlaceRoom(model: PlaceRoomRequest ) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never>
+    func fetchSwipes(page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<SwipeUserListModel, NetworkError>, Never>
 }
 
 class PlacesService {
@@ -22,13 +22,13 @@ class PlacesService {
 }
 
 extension PlacesService: PlacesServiceProtocol {
-    func fetchSwipes(token: String, page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<SwipeUserListModel, NetworkError>, Never> {
+    func fetchSwipes(page: Int, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<SwipeUserListModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/swipes/\(page)")!
         
         return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, responseType: SwipeUserListModel.self)
     }
     
-    func fetchPlaceRoom(token: String, model: PlaceRoomRequest) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never> {
+    func fetchPlaceRoom(model: PlaceRoomRequest) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/place")!
         
         return AlamofireAPIHelper.shared.post_patchRequest(params: model, url: url, responseType: PlaceRoom.self)

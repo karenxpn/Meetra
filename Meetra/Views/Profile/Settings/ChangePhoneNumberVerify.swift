@@ -81,9 +81,7 @@ struct ChangePhoneNumberVerify: View {
             )
             .padding(30)
             .padding(.bottom, UIScreen.main.bounds.height * 0.1)
-            .alert(isPresented: $profileVM.showAlert) {
-                Alert(title: Text("Error"), message: Text(profileVM.alertMessage), dismissButton: .default(Text("Got it!")))
-            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "phone_updated"))) { _ in
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "phone_updated"))) { _ in
                 presentationMode.wrappedValue.dismiss()
             }
     }

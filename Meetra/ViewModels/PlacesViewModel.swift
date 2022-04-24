@@ -74,7 +74,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                                      gender: preferredGender,
                                      status: usersStatus)
         
-        dataManager.fetchPlaceRoom(token: token, model: model)
+        dataManager.fetchPlaceRoom(model: model)
             .sink { response in
                 self.loading = false
                 if response.error != nil {
@@ -92,8 +92,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                                      gender: preferredGender,
                                      status: usersStatus)
         
-        dataManager.fetchSwipes(token: token,
-                                page: swipePage,
+        dataManager.fetchSwipes(page: swipePage,
                                 model: model)
         .sink { response in
             self.loading = false

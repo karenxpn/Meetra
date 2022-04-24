@@ -34,18 +34,7 @@ extension AuthService: AuthServiceProtocol {
     func fetchInterests() -> AnyPublisher<DataResponse<InterestModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)interests")!
         
-        return AF.request(url,
-                          method: .get)
-            .validate()
-            .publishDecodable(type: InterestModel.self)
-            .map { response in
-                response.mapError { error in
-                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
-                    return NetworkError(initialError: error, backendError: backendError)
-                }
-            }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: InterestModel.self)
     }
     
     
@@ -64,19 +53,8 @@ extension AuthService: AuthServiceProtocol {
     func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)auth")!
         
-        return AF.request(url,
-                          method: .post,
-                          parameters: ["phoneNumber": phoneNumber],
-                          encoder: JSONParameterEncoder.default)
-            .validate()
-            .publishDecodable(type: AuthResponse.self)
-            .map { response in
-                response.mapError { error in
-                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
-                    return NetworkError(initialError: error, backendError: backendError)
-                }
-            }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["phoneNumber": phoneNumber],
+                                                           url: url,
+                                                           responseType: AuthResponse.self)
     }
 }

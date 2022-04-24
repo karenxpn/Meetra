@@ -122,5 +122,33 @@ class ProfileViewModelTests: XCTestCase {
         XCTAssertFalse(viewModel.showAlert)
         XCTAssertTrue(viewModel.alertMessage.isEmpty)
     }
-
+    
+    func testSendVerificationCodeWithError() {
+        service.sendVerificationError = true
+        viewModel.sendVerificationCode()
+        
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+        XCTAssertTrue(viewModel.showAlert)
+    }
+    
+    func testSendVerificationCodeWithSuccess() {
+        service.sendVerificationError = false
+        viewModel.sendVerificationCode()
+        
+        XCTAssertTrue(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testCheckVerificationCodeWithError() {
+        service.checkVerificationCodeError = true
+        viewModel.checkVerificationCode()
+        
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testCheckVerificationCodeWithSuccess() {
+        service.checkVerificationCodeError = false
+        viewModel.checkVerificationCode()
+        
+        XCTAssertTrue(viewModel.alertMessage.isEmpty)
+    }
 }

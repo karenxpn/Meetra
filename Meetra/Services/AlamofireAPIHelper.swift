@@ -20,9 +20,13 @@ class AlamofireAPIHelper {
     
     func get_deleteRequest<T>(url: URL,
                               method: HTTPMethod = .get,
-                              responseType: T.Type) -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Decodable {
+                              responseType: T.Type)
+    -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Decodable {
         
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token == "" ? initialToken : token)"]
+        var headers: HTTPHeaders?
+        if !token.isEmpty || !initialToken.isEmpty {
+            headers = ["Authorization": "Bearer \(token == "" ? initialToken : token)"]
+        }
         
         return AF.request(url,
                           method: method,
@@ -42,10 +46,14 @@ class AlamofireAPIHelper {
     func post_patchRequest<T, P>( params: P,
                                   url: URL,
                                   method: HTTPMethod = .post,
-                                  responseType: T.Type) -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Decodable, P : Encodable {
+                                  responseType: T.Type)
+    -> AnyPublisher<DataResponse<T, NetworkError>, Never> where T : Decodable, P : Encodable {
         
-        let headers: HTTPHeaders = ["Authorization": "Bearer \(token == "" ? initialToken : token)"]
-
+        var headers: HTTPHeaders?
+        if !token.isEmpty || !initialToken.isEmpty {
+            headers = ["Authorization": "Bearer \(token == "" ? initialToken : token)"]
+        }
+        
         return AF.request(url,
                           method: method,
                           parameters: params,

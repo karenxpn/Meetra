@@ -12,7 +12,7 @@ import Combine
 
 class MockAuthServie: AuthServiceProtocol {
     
-    func signUpConfirm(model: RegistrationRequest, token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func signUpConfirm(model: RegistrationRequest) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: signUpConfirmError, response: globalResponse, responseType: GlobalResponse.self)
     }
     
@@ -34,11 +34,11 @@ class MockAuthServie: AuthServiceProtocol {
         return AlamofireAPIHelper.shared.mockRequest(error: sendVerificationCodeError, response: authResponse, responseType: AuthResponse.self)
     }
     
-    func checkVerificationCode(token: String, code: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {
+    func checkVerificationCode(code: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: checkVerificationCodeError, response: authResponse, responseType: AuthResponse.self)
     }
     
-    func resendVerificationCode(token: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func resendVerificationCode() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let result = Result<GlobalResponse, NetworkError>.success(globalResponse)
         let response = DataResponse(request: nil, response: nil, data: nil, metrics: nil, serializationDuration: 0, result: result)
         let publisher = CurrentValueSubject<DataResponse<GlobalResponse, NetworkError>, Never>(response)
