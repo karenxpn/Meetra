@@ -60,3 +60,8 @@
 "yourPhoneNumber" = "Ваш номер:";
 "toChangePhone" = "Чтобы изменить номер телефона, нажмите на кнопку";
 "newPhoneNumber" = "Введите новый номер телефона";
+"chats" = "Чаты";
+"interlocutors" = "Собеседники";
+"messages" = "Сообщения";
+"foundInterlocutor" = "Вы нашли собеседника!";
+"writeFirstMessage" = "Напишите первое сообщение, чтобы начать общение";
