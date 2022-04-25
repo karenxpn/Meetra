@@ -14,6 +14,19 @@ struct Chats: View {
         NavigationView {
             List {
                 
+                VStack(alignment: .leading, spacing: 20) {
+                    Text( NSLocalizedString("interlocutors", comment: ""))
+                        .kerning(0.18)
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-SemiBold", size: 18))
+                        .padding(.leading, 26)
+                    
+                    Interlocutors()
+
+                }.listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets())
+
+                
                 Text( "Here should be chats" )
                     .listRowSeparator(.hidden)
                     .frame(width: .greedy)
