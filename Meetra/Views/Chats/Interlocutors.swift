@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct Interlocutors: View {
+    
+    let interlocutors: [InterlocutorsViewModel]
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack {
-                ForEach( 1...15, id: \.self ) { _ in
-                    Image("test_user")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 60, height: 60)
-                        .clipShape(Circle())
+                ForEach( interlocutors, id: \.id ) { interlocuter in
+                    InterlocutorsCell(interlocuter: interlocuter)
                 }
             }.padding(.horizontal, 26)
         }
@@ -25,6 +24,6 @@ struct Interlocutors: View {
 
 struct Interlocutors_Previews: PreviewProvider {
     static var previews: some View {
-        Interlocutors()
+        Interlocutors(interlocutors: AppPreviewModels.interlocutors)
     }
 }

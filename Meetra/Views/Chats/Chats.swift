@@ -34,9 +34,9 @@ struct Chats: View {
                         .font(.custom("Inter-SemiBold", size: 18))
                         .padding(.leading, 26)
                     
-                    Interlocutors()
+                    Interlocutors(interlocutors: chatVM.interlocutors)
                     
-                }.padding(.top, 18)
+                }.padding(.vertical, 18)
                     .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets())
                 
