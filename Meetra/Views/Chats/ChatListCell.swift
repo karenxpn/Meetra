@@ -1,0 +1,94 @@
+//
+//  ChatListCell.swift
+//  Meetra
+//
+//  Created by Karen Mirakyan on 26.04.22.
+//
+
+import SwiftUI
+
+struct ChatListCell: View {
+    @State private var navigate: Bool = false
+    let chat: ChatModelViewModel
+    
+    var body: some View {
+        
+        Button {
+            navigate.toggle()
+        } label: {
+            HStack( alignment: .top, spacing: 14 ) {
+                
+                ZStack(alignment: .bottomTrailing ) {
+                    
+                    ImageHelper(image: chat.image, contentMode: .fill)
+                        .frame(width: 55, height: 55)
+                        .clipShape(Circle())
+                    
+                    if chat.online {
+                        ZStack {
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 15, height: 15)
+                            
+                            Circle()
+                                .fill(AppColors.onlineStatus)
+                                .frame(width: 8, height: 8)
+                        }
+                    }
+                }
+                
+                
+                VStack(alignment: .leading, spacing: 4 ) {
+                    
+                    HStack {
+                        Text( chat.name )
+                            .kerning(0.28)
+                            .foregroundColor(.black)
+                            .font(.custom("Inter-SemiBold", size: 14))
+                        
+                        if chat.mute {
+                            Image("mute_icon")
+                        }
+                    }
+                    
+                    Text( ( chat.message.type == "text" ||
+                            chat.message.type == "emoji" ) ?
+                          chat.message.message :
+                            NSLocalizedString("mediaSent", comment: "") )
+                    
+                    .foregroundColor(.gray)
+                    .font(.custom("Inter-Regular", size: 12))
+                    .kerning(0.24)
+                    
+                }
+                
+                Spacer()
+                
+                Text(chat.message.createdAt)
+                    .foregroundColor(.gray)
+                    .font(.custom("Inter-Regular", size: 12))
+                    .kerning(0.24)
+                
+                
+                
+            }.frame(width: .greedy)
+                .padding(.horizontal, 26)
+                .padding(.vertical, 12)
+                .background(chat.read ? Color.white : AppColors.addProfileImageBG)
+        }.buttonStyle(PlainButtonStyle())
+            .background(
+                NavigationLink(destination: ChatRoom(), isActive: $navigate, label: {
+                    EmptyView()
+                }).hidden()
+            )
+        
+        
+        
+    }
+}
+
+struct ChatListCell_Previews: PreviewProvider {
+    static var previews: some View {
+        ChatListCell(chat: AppPreviewModels.chats[1])
+    }
+}
