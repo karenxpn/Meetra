@@ -43,6 +43,7 @@
 		FF5285612816C9D9004D2AB1 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5285602816C9D9004D2AB1 /* ChatListModel.swift */; };
 		FF5285632816CAC1004D2AB1 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5285622816CAC1004D2AB1 /* ChatService.swift */; };
 		FF5285652816CB81004D2AB1 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5285642816CB81004D2AB1 /* ChatViewModel.swift */; };
+		FF5285672816D918004D2AB1 /* ChatSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5285662816D918004D2AB1 /* ChatSearch.swift */; };
 		FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */; };
 		FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8D280D83CC0020BE2C /* Settings.swift */; };
 		FF537E90280E163C0020BE2C /* ActionButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */; };
@@ -210,6 +211,7 @@
 		FF5285602816C9D9004D2AB1 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		FF5285622816CAC1004D2AB1 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		FF5285642816CB81004D2AB1 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		FF5285662816D918004D2AB1 /* ChatSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSearch.swift; sourceTree = "<group>"; };
 		FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavBar.swift; sourceTree = "<group>"; };
 		FF537E8D280D83CC0020BE2C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonHelper.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			children = (
 				FF5285582816B8EC004D2AB1 /* Chats.swift */,
 				FF52855A2816BE0A004D2AB1 /* Interlocutors.swift */,
+				FF5285662816D918004D2AB1 /* ChatSearch.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -1007,6 +1010,7 @@
 				FF5285592816B8EC004D2AB1 /* Chats.swift in Sources */,
 				FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */,
 				FF5285652816CB81004D2AB1 /* ChatViewModel.swift in Sources */,
+				FF5285672816D918004D2AB1 /* ChatSearch.swift in Sources */,
 				FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */,
 				FFF6468827D26D690022EF60 /* AuthInterests.swift in Sources */,
 				FF537E96280EFDEA0020BE2C /* GeneralSettings.swift in Sources */,

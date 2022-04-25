@@ -21,6 +21,8 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     @Published var interlocutorsPage: Int = 1
     @Published var chatPage: Int = 1
     
+    @Published var search: String = ""
+    
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ChatServiceProtocol
 

@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct Chats: View {
+    @StateObject var chatVM = ChatViewModel()
     @State private var showSearchField: Bool = false
     
     var body: some View {
         NavigationView {
             List {
+                
+                if showSearchField {
+                    HStack {
+                        Spacer()
+                        ChatSearch()
+                            .environmentObject(chatVM)
+                            .padding(.top, 18)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets())
+                        Spacer()
+                    }
+                }
                 
                 VStack(alignment: .leading, spacing: 20) {
                     Text( NSLocalizedString("interlocutors", comment: ""))
@@ -22,10 +35,11 @@ struct Chats: View {
                         .padding(.leading, 26)
                     
                     Interlocutors()
-
-                }.listRowSeparator(.hidden)
+                    
+                }.padding(.top, 18)
+                    .listRowSeparator(.hidden)
                     .listRowInsets(EdgeInsets())
-
+                
                 
                 Text( "Here should be chats" )
                     .listRowSeparator(.hidden)
@@ -35,14 +49,16 @@ struct Chats: View {
                 
             }.listStyle(.plain)
                 .padding(.top, 1)
-            .navigationBarTitle("", displayMode: .inline)
+                .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading: Text(NSLocalizedString("chats", comment: ""))
                     .kerning(0.56)
                     .foregroundColor(.black)
                     .font(.custom("Inter-Black", size: 28))
                     .padding(10), trailing: HStack( spacing: 20) {
                         Button {
-                            showSearchField.toggle()
+                            withAnimation {
+                                showSearchField.toggle()
+                            }
                         } label: {
                             Image("icon_search")
                                 .foregroundColor(showSearchField ? AppColors.accentColor : .black)
@@ -56,6 +72,9 @@ struct Chats: View {
                         }
                     })
         }.navigationViewStyle(StackNavigationViewStyle())
+            .gesture(DragGesture().onChanged({ _ in
+                UIApplication.shared.endEditing()
+            }))
     }
 }
 
