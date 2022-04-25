@@ -39,6 +39,10 @@
 		FF4C980E27FF4A10009CB60D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980D27FF4A10009CB60D /* EditOccupation.swift */; };
 		FF5285592816B8EC004D2AB1 /* Chats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5285582816B8EC004D2AB1 /* Chats.swift */; };
 		FF52855B2816BE0A004D2AB1 /* Interlocutors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52855A2816BE0A004D2AB1 /* Interlocutors.swift */; };
+		FF52855F2816C92E004D2AB1 /* InterlocutorsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52855E2816C92E004D2AB1 /* InterlocutorsListModel.swift */; };
+		FF5285612816C9D9004D2AB1 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5285602816C9D9004D2AB1 /* ChatListModel.swift */; };
+		FF5285632816CAC1004D2AB1 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5285622816CAC1004D2AB1 /* ChatService.swift */; };
+		FF5285652816CB81004D2AB1 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5285642816CB81004D2AB1 /* ChatViewModel.swift */; };
 		FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */; };
 		FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8D280D83CC0020BE2C /* Settings.swift */; };
 		FF537E90280E163C0020BE2C /* ActionButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */; };
@@ -202,6 +206,10 @@
 		FF4C980D27FF4A10009CB60D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
 		FF5285582816B8EC004D2AB1 /* Chats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chats.swift; sourceTree = "<group>"; };
 		FF52855A2816BE0A004D2AB1 /* Interlocutors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interlocutors.swift; sourceTree = "<group>"; };
+		FF52855E2816C92E004D2AB1 /* InterlocutorsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterlocutorsListModel.swift; sourceTree = "<group>"; };
+		FF5285602816C9D9004D2AB1 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
+		FF5285622816CAC1004D2AB1 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		FF5285642816CB81004D2AB1 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavBar.swift; sourceTree = "<group>"; };
 		FF537E8D280D83CC0020BE2C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonHelper.swift; sourceTree = "<group>"; };
@@ -497,6 +505,7 @@
 				FFD6373627E3D4DE00F91AB6 /* PlacesViewModel.swift */,
 				FF36400227EFD8EB0057D605 /* UserViewModel.swift */,
 				FF97308B27FDAC2F00A7BF3F /* ProfileViewModel.swift */,
+				FF5285642816CB81004D2AB1 /* ChatViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -510,6 +519,7 @@
 				FFD6373427E3D4D400F91AB6 /* PlacesService.swift */,
 				FF36400427EFDA780057D605 /* UserService.swift */,
 				FF97308727FDAAD100A7BF3F /* ProfileService.swift */,
+				FF5285622816CAC1004D2AB1 /* ChatService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -533,6 +543,8 @@
 				FF97308927FDAAE500A7BF3F /* ProfileModel.swift */,
 				FF4C980127FF07A4009CB60D /* ProfileEditFields.swift */,
 				FFB798A52800F28E0040A9E8 /* ProfileImageList.swift */,
+				FF52855E2816C92E004D2AB1 /* InterlocutorsListModel.swift */,
+				FF5285602816C9D9004D2AB1 /* ChatListModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -948,6 +960,7 @@
 				FF37966F27E8B2C7007F28E7 /* PlacesRoomView.swift in Sources */,
 				FFF6468227D2582F0022EF60 /* Gallery.swift in Sources */,
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
+				FF5285612816C9D9004D2AB1 /* ChatListModel.swift in Sources */,
 				FF4C980827FF124E009CB60D /* ProfileSpecs.swift in Sources */,
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
 				FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */,
@@ -971,6 +984,7 @@
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
 				FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */,
 				FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */,
+				FF52855F2816C92E004D2AB1 /* InterlocutorsListModel.swift in Sources */,
 				FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */,
 				FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */,
 				FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */,
@@ -992,6 +1006,7 @@
 				FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */,
 				FF5285592816B8EC004D2AB1 /* Chats.swift in Sources */,
 				FF7D0D1227CE889D00A828C7 /* GetTapLocation.swift in Sources */,
+				FF5285652816CB81004D2AB1 /* ChatViewModel.swift in Sources */,
 				FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */,
 				FFF6468827D26D690022EF60 /* AuthInterests.swift in Sources */,
 				FF537E96280EFDEA0020BE2C /* GeneralSettings.swift in Sources */,
@@ -1027,6 +1042,7 @@
 				FFD6372C27E3535900F91AB6 /* Places.swift in Sources */,
 				FFD6373527E3D4D400F91AB6 /* PlacesService.swift in Sources */,
 				FF7D0D1627CFDD3900A828C7 /* Credentials.swift in Sources */,
+				FF5285632816CAC1004D2AB1 /* ChatService.swift in Sources */,
 				FF61D40C27F5E3A300FB9A23 /* FavouritesListCell.swift in Sources */,
 				FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */,
 				FF36400927F0BA170057D605 /* AppPreviewModels.swift in Sources */,
