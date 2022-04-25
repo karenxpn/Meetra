@@ -12,10 +12,40 @@ struct ContentView: View {
     @State private var currentTab: Int = 0
 
     var body: some View {
+        
+//        TabView(selection: $currentTab) {
+//            Places()
+//                .tabItem {
+//                    Image("profiles_icon")
+//                        .foregroundColor(.black)
+//                }
+//
+//            Swipes()
+//                .tabItem {
+//                    Image("profiles_icon")
+//                        .foregroundColor(.black)
+//
+//                }
+//
+//            Chats()
+//                .tabItem {
+//                    Image("profiles_icon")
+//                        .foregroundColor(.black)
+//
+//                }
+//
+//            Profile()
+//                .tabItem {
+//                    Image("profiles_icon")
+//                        .foregroundColor(.black)
+//                    Text( "Profile" )
+//                        .foregroundColor(.black)
+//                }
+//        }
         ZStack( alignment: .bottom) {
-            
+
             VStack {
-                
+
                 if currentTab == 0 {
                     Places()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -30,9 +60,9 @@ struct ContentView: View {
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 }
             }
-            
+
             CustomTabBar( currentTab: $currentTab )
-            
+
         }.edgesIgnoringSafeArea(.bottom)
     }
 }

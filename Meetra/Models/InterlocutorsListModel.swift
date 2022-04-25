@@ -14,7 +14,8 @@ struct InterlocutorsModel: Identifiable, Codable {
     var id: Int
     var image: String
     var online: Bool
-    // etc
+    var isRead: Bool
+    var chat: Int
 }
 
 struct InterlocutorsViewModel: Identifiable {
@@ -26,6 +27,8 @@ struct InterlocutorsViewModel: Identifiable {
     
     var id: Int         { self.model.id }
     var image: String   { self.model.image }
+    var chat: Int       { self.model.chat }
+    var read: Bool      { self.model.isRead }
     
     var online: Bool {
         get { self.model.online }
