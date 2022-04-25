@@ -13,64 +13,95 @@ struct Chats: View {
     
     var body: some View {
         NavigationView {
-            List {
-                
-                if showSearchField {
-                    HStack {
-                        Spacer()
-                        ChatSearch()
-                            .environmentObject(chatVM)
-                            .padding(.top, 18)
-                            .listRowSeparator(.hidden)
-                            .listRowInsets(EdgeInsets())
-                        Spacer()
-                    }
-                }
-                
-                VStack(alignment: .leading, spacing: 20) {
-                    Text( NSLocalizedString("interlocutors", comment: ""))
-                        .kerning(0.18)
-                        .foregroundColor(.black)
-                        .font(.custom("Inter-SemiBold", size: 18))
-                        .padding(.leading, 26)
+            
+            ZStack {
+                if chatVM.loading && !chatVM.loaded {
+                    Loading()
+                } else {
                     
-                    Interlocutors(interlocutors: chatVM.interlocutors)
-                    
-                }.padding(.vertical, 18)
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets())
-                
-                
-                Text( "Here should be chats" )
-                    .listRowSeparator(.hidden)
-                    .frame(width: .greedy)
-                    .background(.red)
-                    .listRowInsets(EdgeInsets())
-                
-            }.listStyle(.plain)
-                .padding(.top, 1)
-                .navigationBarTitle("", displayMode: .inline)
-                .navigationBarItems(leading: Text(NSLocalizedString("chats", comment: ""))
-                    .kerning(0.56)
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-Black", size: 28))
-                    .padding(10), trailing: HStack( spacing: 20) {
-                        Button {
-                            withAnimation {
-                                showSearchField.toggle()
+                    List {
+                        
+                        if showSearchField {
+                            HStack {
+                                Spacer()
+                                ChatSearch()
+                                    .environmentObject(chatVM)
+                                    .padding(.top, 18)
+                                    .listRowSeparator(.hidden)
+                                    .listRowInsets(EdgeInsets())
+                                Spacer()
                             }
-                        } label: {
-                            Image("icon_search")
-                                .foregroundColor(showSearchField ? AppColors.accentColor : .black)
                         }
                         
-                        Button {
-                            
-                        } label: {
-                            Image("icon_ring")
+                        // if the search bar is opened this view should be pinned using section
+                        VStack(alignment: .leading, spacing: 20) {
+                            Text( NSLocalizedString("interlocutors", comment: ""))
+                                .kerning(0.18)
                                 .foregroundColor(.black)
+                                .font(.custom("Inter-SemiBold", size: 18))
+                                .padding(.leading, 26)
+                            
+                            Interlocutors(interlocutors: chatVM.interlocutors)
+                            
+                        }.padding(.vertical, 18)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets())
+                        
+                        
+                        Text( NSLocalizedString("messages", comment: ""))
+                            .kerning(0.18)
+                            .foregroundColor(.black)
+                            .font(.custom("Inter-SemiBold", size: 18))
+                            .padding(.leading, 26)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets())
+                        
+                        ForEach(chatVM.chats, id: \.id) { chat in
+                            Text( chat.name )
+                            //                    some view here
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets())
+                            
                         }
-                    })
+                        
+                    }.listStyle(.plain)
+                        .padding(.top, 1)
+                        .refreshable {
+                            chatVM.chatPage = 1
+                            chatVM.interlocutorsPage = 1
+                            chatVM.getChatScreen()
+                        }
+                }
+            }.task {
+                chatVM.chatPage = 1
+                chatVM.interlocutorsPage = 1
+                chatVM.getChatScreen()
+                // activate connect to socket event
+            }.alert(isPresented: $chatVM.showAlert, content: {
+                Alert(title: Text("Error"), message: Text(chatVM.alertMessage), dismissButton: .default(Text("Got it!")))
+            })
+            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarItems(leading: Text(NSLocalizedString("chats", comment: ""))
+                .kerning(0.56)
+                .foregroundColor(.black)
+                .font(.custom("Inter-Black", size: 28))
+                .padding(10), trailing: HStack( spacing: 20) {
+                    Button {
+                        withAnimation {
+                            showSearchField.toggle()
+                        }
+                    } label: {
+                        Image("icon_search")
+                            .foregroundColor(showSearchField ? AppColors.accentColor : .black)
+                    }
+                    
+                    Button {
+                        
+                    } label: {
+                        Image("icon_ring")
+                            .foregroundColor(.black)
+                    }
+                })
         }.navigationViewStyle(StackNavigationViewStyle())
             .gesture(DragGesture().onChanged({ _ in
                 UIApplication.shared.endEditing()

@@ -13,7 +13,7 @@ struct Interlocutors: View {
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack {
+            LazyHStack( spacing: 14 ) {
                 ForEach( interlocutors, id: \.id ) { interlocuter in
                     InterlocutorsCell(interlocuter: interlocuter)
                 }

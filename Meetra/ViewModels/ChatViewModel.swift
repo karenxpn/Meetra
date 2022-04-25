@@ -23,6 +23,8 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     
     @Published var search: String = ""
     
+    @Published var loaded: Bool = false
+    
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ChatServiceProtocol
 
@@ -35,6 +37,7 @@ class ChatViewModel: AlertViewModel, ObservableObject {
         Publishers.Zip(dataManager.fetchChatList(page: 1), dataManager.fetchInterlocutors(page: 1))
             .sink { chats, interlocutors in
                 self.loading = false
+                self.loaded = true
                 if chats.error != nil || interlocutors.error != nil {
                     self.makeAlert(with: chats.error == nil ? interlocutors.error! : chats.error!,
                                    message: &self.alertMessage,
