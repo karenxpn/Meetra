@@ -23,8 +23,7 @@ struct ContentView: View {
                     Swipes()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if currentTab == 2 {
-//                    Search()
-                    Text( "Third" )
+                    Chats()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if currentTab == 3 {
                     Profile()
