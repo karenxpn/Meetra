@@ -27,7 +27,7 @@ class MockAuthServie: AuthServiceProtocol {
     var signUpConfirmError: Bool = false
     
     let globalResponse = GlobalResponse(status: "Success", message: "Success")
-    let authResponse = AuthResponse(login: false, accessToken: "")
+    let authResponse = AuthResponse(login: false, id: 1, accessToken: "")
     let interests = InterestModel(interests: ["asdf", "asdf"])
     
     func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<AuthResponse, NetworkError>, Never> {

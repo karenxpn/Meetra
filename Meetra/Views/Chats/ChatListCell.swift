@@ -59,7 +59,6 @@ struct ChatListCell: View {
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 12))
                     .kerning(0.24)
-                    
                 }
                 
                 Spacer()
@@ -68,8 +67,6 @@ struct ChatListCell: View {
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 12))
                     .kerning(0.24)
-                
-                
                 
             }.frame(width: .greedy)
                 .padding(.horizontal, 26)

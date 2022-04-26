@@ -11,6 +11,7 @@ import SwiftUI
 
 class AuthViewModel: AlertViewModel, ObservableObject {
     @AppStorage("token") private var token: String = ""
+    @AppStorage("userId") private var userID: Int = 0
     @AppStorage( "initialToken" ) private var initialToken: String = ""
     @AppStorage( "user_phone_number" ) private var user_phone: String = "(954)411-11-33"
     @AppStorage( "user_phone_code" ) private var user_code: String = "7"
@@ -52,6 +53,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 } else {
                     self.initialToken = response.value!.accessToken
                     self.login = response.value!.login!
+                    self.userID = response.value!.id
                     self.navigate = true
                 }
             }.store(in: &cancellableSet)

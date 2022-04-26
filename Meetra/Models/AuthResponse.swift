@@ -8,5 +8,6 @@
 import Foundation
 struct AuthResponse: Codable {
     var login: Bool?
+    var id: Int
     var accessToken: String
 }
