@@ -64,7 +64,7 @@ struct ChatListCell: View {
                 
                 Spacer()
                 
-                Text(chat.message.createdAt)
+                Text(chat.sentTime)
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 12))
                     .kerning(0.24)

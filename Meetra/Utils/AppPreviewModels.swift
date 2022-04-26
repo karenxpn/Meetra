@@ -40,21 +40,21 @@ struct AppPreviewModels {
                                                            name: "Анна",
                                                            image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg",
                                                            online: true,
-                                                           isGroup: false, message: MessagePreviewModel(id: 1, message: "Ты сейчас где??", type: "text", createdAt: "3:45"), isRead: false, isMuted: false)),
+                                                           isGroup: false, message: MessagePreviewModel(id: 1, message: "Ты сейчас где??", type: "text", createdAt: "2022-04-26 14:40:50.000"), isRead: false, isMuted: false)),
                         ChatModelViewModel(chat: ChatModel(id: 2,
                                                                                name: "Анна",
                                                                                image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg",
                                                                                online: true,
-                                                                               isGroup: false, message: MessagePreviewModel(id: 2, message: "ТПонятно", type: "text", createdAt: "3:45"), isRead: true, isMuted: false)),
+                                                                               isGroup: false, message: MessagePreviewModel(id: 2, message: "ТПонятно", type: "text", createdAt: "2022-04-22 21:47:38.123"), isRead: true, isMuted: false)),
                         ChatModelViewModel(chat: ChatModel(id: 3,
                                                                                name: "Анна",
                                                                                image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg",
                                                                                online: true,
-                                                                               isGroup: false, message: MessagePreviewModel(id: 3, message: "Ты сейчас где??", type: "text", createdAt: "3:45"), isRead: false, isMuted: true)),
+                                                                               isGroup: false, message: MessagePreviewModel(id: 3, message: "Ты сейчас где??", type: "text", createdAt: "2022-04-23 21:47:50.000"), isRead: false, isMuted: true)),
                         ChatModelViewModel(chat: ChatModel(id: 4,
                                                                                name: "Анна",
                                                                                image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg",
                                                                                online: false,
-                                                                               isGroup: false, message: MessagePreviewModel(id: 4, message: "Ты сейчас где??", type: "text", createdAt: "3:45"), isRead: true, isMuted: false))]
+                                                                               isGroup: false, message: MessagePreviewModel(id: 4, message: "Ты сейчас где??", type: "text", createdAt: "2022-04-25 21:47:38.0"), isRead: true, isMuted: false))]
 
 }
