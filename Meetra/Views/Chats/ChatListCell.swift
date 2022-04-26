@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ChatListCell: View {
+    
+    @AppStorage("userId") private var userID: Int = 0
     @State private var navigate: Bool = false
     let chat: ChatModelViewModel
     
@@ -49,29 +51,55 @@ struct ChatListCell: View {
                         if chat.mute {
                             Image("mute_icon")
                         }
+                        
+                        Spacer()
+                        
+                        HStack {
+                            
+                            if chat.message != nil {
+                                if chat.message!.sender.id == userID {
+                                    Image(chat.message!.status == "sent" ? "sent_icon" : "read_icon")
+                                        .foregroundColor(AppColors.accentColor)
+                                }
+                            }
+                            Text(chat.sentTime)
+                                .foregroundColor(.gray)
+                                .font(.custom("Inter-Regular", size: 12))
+                                .kerning(0.24)
+                        }
                     }
                     
-                    Text( ( chat.message.type == "text" ||
-                            chat.message.type == "emoji" ) ?
-                          chat.message.message :
-                            NSLocalizedString("mediaSent", comment: "") )
+                    if chat.message != nil {
+                        
+                        if chat.isGroup {
+                            Text( chat.message!.sender.name )
+                                .foregroundColor(.black)
+                                .font(.custom("Inter-Regular", size: 12))
+                                .kerning(0.24)
+                                .lineLimit(1)
+                        }
+                        
+                        Text( ( chat.message!.type == "text" ||
+                                chat.message!.type == "emoji" ) ?
+                              chat.message!.message :
+                                NSLocalizedString("mediaSent", comment: "") )
+                        
+                        .foregroundColor(.gray)
+                        .font(.custom("Inter-Regular", size: 12))
+                        .kerning(0.24)
+                        .lineLimit(2)
+                    }
                     
-                    .foregroundColor(.gray)
-                    .font(.custom("Inter-Regular", size: 12))
-                    .kerning(0.24)
-                }
+                }.frame(width: .greedy)
                 
-                Spacer()
                 
-                Text(chat.sentTime)
-                    .foregroundColor(.gray)
-                    .font(.custom("Inter-Regular", size: 12))
-                    .kerning(0.24)
+
                 
             }.frame(width: .greedy)
                 .padding(.horizontal, 26)
                 .padding(.vertical, 12)
-                .background(chat.read ? Color.white : AppColors.addProfileImageBG)
+                .background( (chat.message != nil && chat.message?.sender.id != userID && chat.message?.status != "read") ?
+                             AppColors.addProfileImageBG : Color.white )
         }.buttonStyle(PlainButtonStyle())
             .background(
                 NavigationLink(destination: ChatRoom(), isActive: $navigate, label: {
@@ -86,6 +114,6 @@ struct ChatListCell: View {
 
 struct ChatListCell_Previews: PreviewProvider {
     static var previews: some View {
-        ChatListCell(chat: AppPreviewModels.chats[1])
+        ChatListCell(chat: AppPreviewModels.chats[2])
     }
 }

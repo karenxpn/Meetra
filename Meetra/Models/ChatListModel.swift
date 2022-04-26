@@ -16,8 +16,7 @@ struct ChatModel: Identifiable, Codable {
     var image: String
     var online: Bool
     var isGroup: Bool
-    var message: MessagePreviewModel
-    var isRead: Bool
+    var message: MessagePreviewModel?
     var isMuted: Bool
     
 }
@@ -27,6 +26,13 @@ struct MessagePreviewModel: Identifiable, Codable {
     var message: String
     var type: String
     var createdAt: String
+    var status: String
+    var sender: SenderModel
+}
+
+struct SenderModel: Identifiable, Codable {
+    var id: Int
+    var name: String
 }
 
 struct ChatModelViewModel: Identifiable {
@@ -41,15 +47,14 @@ struct ChatModelViewModel: Identifiable {
     var name: String                    { self.chat.name }
     var online: Bool                    { self.chat.online }
     var isGroup: Bool                   { self.chat.isGroup }
-    var read: Bool                      { self.chat.isRead }
-    var message: MessagePreviewModel    { self.chat.message}
+    var message: MessagePreviewModel?   { self.chat.message}
     
     var sentTime: String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSS"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let newDate = dateFormatter.date(from: self.chat.message.createdAt) ?? Date()
+        let newDate = dateFormatter.date(from: self.chat.message?.createdAt ?? "") ?? Date()
         
         let currentDateFormatter = DateFormatter()
         currentDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSS"

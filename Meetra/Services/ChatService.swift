@@ -21,13 +21,13 @@ class ChatService {
 
 extension ChatService: ChatServiceProtocol {
     func fetchChatList(page: Int) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)chats")!
+        let url = URL(string: "\(Credentials.BASE_URL)chats/\(page)")!
         return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: ChatListModel.self)
 
     }
     
     func fetchInterlocutors(page: Int) -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)interlocutors")!
+        let url = URL(string: "\(Credentials.BASE_URL)interlocutors/\(page)")!
         return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: InterlocutorsListModel.self)
     }
 }

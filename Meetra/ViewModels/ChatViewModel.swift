@@ -38,16 +38,22 @@ class ChatViewModel: AlertViewModel, ObservableObject {
             .sink { chats, interlocutors in
                 self.loading = false
                 self.loaded = true
+                print(chats, interlocutors)
+                
                 if chats.error != nil || interlocutors.error != nil {
                     self.makeAlert(with: chats.error == nil ? interlocutors.error! : chats.error!,
                                    message: &self.alertMessage,
                                    alert: &self.showAlert)
-                } else {
+                }
+                
+                if chats.error == nil {
                     self.chats = chats.value!.chats.map(ChatModelViewModel.init)
-                    self.interlocutors = interlocutors.value!.interlocutors.map(InterlocutorsViewModel.init)
-                    
-                    self.interlocutorsPage += 1
                     self.chatPage += 1
+                }
+                
+                if interlocutors.error == nil {
+                    self.interlocutors = interlocutors.value!.interlocutors.map(InterlocutorsViewModel.init)
+                    self.interlocutorsPage += 1
                 }
             }.store(in: &cancellableSet)
     }

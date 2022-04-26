@@ -56,7 +56,7 @@ struct Chats: View {
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets())
                         
-                        ForEach(AppPreviewModels.chats, id: \.id) { chat in
+                        ForEach(chatVM.chats, id: \.id) { chat in
                             ChatListCell(chat: chat)
                                 .listRowSeparator(.hidden)
                                 .listRowInsets(EdgeInsets())
