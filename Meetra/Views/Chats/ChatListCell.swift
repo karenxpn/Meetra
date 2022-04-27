@@ -98,7 +98,10 @@ struct ChatListCell: View {
                              AppColors.addProfileImageBG : Color.white )
         }.buttonStyle(PlainButtonStyle())
             .background(
-                NavigationLink(destination: ChatRoom(chatID: chat.id), isActive: $navigate, label: {
+                NavigationLink(destination: ChatRoom(chatID: chat.id,
+                                                     chatName: chat.name),
+                               isActive: $navigate,
+                               label: {
                     EmptyView()
                 }).hidden()
             )
