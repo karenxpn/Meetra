@@ -29,12 +29,12 @@ struct AppPreviewModels {
     static let fields = ProfileEditFields(name: "KarenMirakyan", bio: "IOS Developer with over 2 years of experience", occupation: OccupationModel(job: "Barista", company: "CoffeeShop"), school: "", gender: "Мужчина", city: "Yerevan", showGender: true, interests: ["Coffee"], isVerified: true, age: 22)
     static let profileImages = ProfileImageList(images: [ProfileImageModel(id: 1, type: "avatar", image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg"),
                                                          ProfileImageModel(id: 2, type: "", image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg")])
-    static let interlocutors = [InterlocutorsViewModel(model: InterlocutorsModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: false, chat: 1, hasUnreadMessage: true)),
-                                InterlocutorsViewModel(model: InterlocutorsModel(id: 2, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: false, chat: 1, hasUnreadMessage: false)),
-                                InterlocutorsViewModel(model: InterlocutorsModel(id: 3, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: false, chat: 1, hasUnreadMessage: true)),
-                                InterlocutorsViewModel(model: InterlocutorsModel(id: 4, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: false, isRead: false, chat: 1, hasUnreadMessage: true)),
-                                InterlocutorsViewModel(model: InterlocutorsModel(id: 5, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: false, chat: 1, hasUnreadMessage: false)),
-                                InterlocutorsViewModel(model: InterlocutorsModel(id: 6, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: false, chat: 1, hasUnreadMessage: false))]
+    static let interlocutors = [InterlocutorsViewModel(model: InterlocutorsModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: true, chat: 1)),
+                                InterlocutorsViewModel(model: InterlocutorsModel(id: 2, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: true, chat: 1)),
+                                InterlocutorsViewModel(model: InterlocutorsModel(id: 3, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: false, isRead: false, chat: 1)),
+                                InterlocutorsViewModel(model: InterlocutorsModel(id: 4, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: false, chat: 1)),
+                                InterlocutorsViewModel(model: InterlocutorsModel(id: 5, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: false, isRead: true, chat: 1)),
+                                InterlocutorsViewModel(model: InterlocutorsModel(id: 6, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: false, chat: 1))]
     
     static let chats = [ChatModelViewModel(chat: ChatModel(id: 1,
                                                            name: "Anna",

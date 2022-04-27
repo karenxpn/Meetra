@@ -16,7 +16,6 @@ struct InterlocutorsModel: Identifiable, Codable {
     var online: Bool
     var isRead: Bool
     var chat: Int
-    var hasUnreadMessage: Bool
 }
 
 struct InterlocutorsViewModel: Identifiable {
@@ -29,12 +28,11 @@ struct InterlocutorsViewModel: Identifiable {
     var id: Int         { self.model.id }
     var image: String   { self.model.image }
     var chat: Int       { self.model.chat }
-    var read: Bool      { self.model.isRead }
     
     
-    var hasUnreadMessage: Bool {
-        get { self.model.hasUnreadMessage }
-        set { self.model.hasUnreadMessage = newValue }
+    var read: Bool {
+        get { self.model.isRead }
+        set { self.model.isRead = newValue }
     }
     
     var online: Bool {

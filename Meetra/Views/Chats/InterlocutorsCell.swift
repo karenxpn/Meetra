@@ -20,7 +20,7 @@ struct InterlocutorsCell: View {
                 
                 VStack {
                     
-                    if interlocuter.hasUnreadMessage {
+                    if !interlocuter.read {
                         ZStack {
                             Circle()
                                 .fill(.white)
