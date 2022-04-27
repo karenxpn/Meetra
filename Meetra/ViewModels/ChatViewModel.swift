@@ -23,17 +23,18 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     @Published var search: String = ""
     
     @Published var loaded: Bool = false
+    @Published var loadingPage: Bool = false
     
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ChatServiceProtocol
 
     init(dataManager: ChatServiceProtocol = ChatService.shared) {
         self.dataManager = dataManager
+        super.init()
         
-        print("init")
+        getChatScreen()
     }
     
-    deinit { print("deinit")}
     
     func getChatScreen() {
         loading = true
@@ -41,7 +42,6 @@ class ChatViewModel: AlertViewModel, ObservableObject {
             .sink { chats, interlocutors in
                 self.loading = false
                 self.loaded = true
-                print(chats, interlocutors)
                 
                 if chats.error != nil || interlocutors.error != nil {
                     self.makeAlert(with: chats.error == nil ? interlocutors.error! : chats.error!,
@@ -51,7 +51,8 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                 
                 if chats.error == nil {
                     self.chats = chats.value!.chats.map(ChatModelViewModel.init)
-                    self.chatPage += 1
+                    self.chatPage = 2
+                    self.getChatList()
                 }
                 
                 if interlocutors.error == nil {
@@ -61,10 +62,10 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     }
     
     func getChatList() {
-        loading = true
+        loadingPage = true
         dataManager.fetchChatList(page: chatPage)
             .sink { response in
-                self.loading = false
+                self.loadingPage = false
                 if response.error == nil {
                     self.chats.append(contentsOf: response.value!.chats.map(ChatModelViewModel.init))
                     self.chatPage += 1

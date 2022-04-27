@@ -61,24 +61,27 @@ struct Chats: View {
                                 .listRowSeparator(.hidden)
                                 .listRowInsets(EdgeInsets())
                                 .onAppear(perform: {
-                                    if chat.id == chatVM.chats.last?.id && !chatVM.loading {
+                                    if chat.id == chatVM.chats.last?.id && !chatVM.loadingPage {
                                         chatVM.getChatList()
                                     }
                                 })
-                            
+                        }
+                        
+                        if chatVM.loadingPage {
+                            HStack {
+                                Spacer()
+                                ProgressView()
+                                Spacer()
+                            }.listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets())
                         }
                         
                     }.listStyle(.plain)
                         .padding(.top, 1)
                         .refreshable {
-                            chatVM.chatPage = 1
                             chatVM.getChatScreen()
                         }
                 }
-            }.task {
-                chatVM.chatPage = 1
-                chatVM.getChatScreen()
-                // activate connect to socket event
             }.alert(isPresented: $chatVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(chatVM.alertMessage), dismissButton: .default(Text("Got it!")))
             })
