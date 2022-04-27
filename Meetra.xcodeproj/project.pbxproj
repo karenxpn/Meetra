@@ -426,10 +426,10 @@
 			children = (
 				FF5285582816B8EC004D2AB1 /* Chats.swift */,
 				FF52856C28175D0B004D2AB1 /* ChatListCell.swift */,
-				FF52856E281761CB004D2AB1 /* ChatRoom.swift */,
 				FF52855A2816BE0A004D2AB1 /* Interlocutors.swift */,
 				FF5285682816E6F8004D2AB1 /* InterlocutorsCell.swift */,
 				FF5285662816D918004D2AB1 /* ChatSearch.swift */,
+				FF52856E281761CB004D2AB1 /* ChatRoom.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";

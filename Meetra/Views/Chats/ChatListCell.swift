@@ -91,10 +91,6 @@ struct ChatListCell: View {
                     }
                     
                 }.frame(width: .greedy)
-                
-                
-
-                
             }.frame(width: .greedy)
                 .padding(.horizontal, 26)
                 .padding(.vertical, 12)
@@ -102,7 +98,7 @@ struct ChatListCell: View {
                              AppColors.addProfileImageBG : Color.white )
         }.buttonStyle(PlainButtonStyle())
             .background(
-                NavigationLink(destination: ChatRoom(), isActive: $navigate, label: {
+                NavigationLink(destination: ChatRoom(chatID: chat.id), isActive: $navigate, label: {
                     EmptyView()
                 }).hidden()
             )

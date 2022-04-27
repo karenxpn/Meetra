@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Interlocutors: View {
     
-    @EnvironmentObject var chatVM: ChatViewModel
     let interlocutors: [InterlocutorsViewModel]
     
     var body: some View {

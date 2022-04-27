@@ -9,9 +9,11 @@ import SwiftUI
 
 struct InterlocutorsCell: View {
     let interlocuter: InterlocutorsViewModel
+    @State private var navigate: Bool = false
+    
     var body: some View {
         Button {
-            
+            navigate.toggle()
         } label: {
             ZStack( alignment: .trailing) {
                 ImageHelper(image: interlocuter.image, contentMode: .fill)
@@ -48,7 +50,11 @@ struct InterlocutorsCell: View {
                 
 
             }.frame(width: 60, height: 60)
-        }
+        }.background(
+            NavigationLink(destination: ChatRoom(chatID: interlocuter.id), isActive: $navigate, label: {
+                EmptyView()
+            }).hidden()
+        )
     }
 }
 
