@@ -13,25 +13,42 @@ struct InterlocutorsCell: View {
         Button {
             
         } label: {
-            ZStack( alignment: .bottomTrailing) {
+            ZStack( alignment: .trailing) {
                 ImageHelper(image: interlocuter.image, contentMode: .fill)
                     .frame(width: 60, height: 60)
                     .clipShape(Circle())
                 
-                if interlocuter.online {
-                    ZStack {
-                        Circle()
-                            .fill(.white)
-                            .frame(width: 15, height: 15)
-                        
-                        Circle()
-                            .fill(AppColors.onlineStatus)
-                            .frame(width: 8, height: 8)
+                VStack {
+                    
+                    if interlocuter.hasUnreadMessage {
+                        ZStack {
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 15, height: 15)
+                            
+                            Circle()
+                                .fill(.red)
+                                .frame(width: 8, height: 8)
+                        }
+                    }
+                    
+                    Spacer()
+                    if interlocuter.online {
+                        ZStack {
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 15, height: 15)
+                            
+                            Circle()
+                                .fill(AppColors.onlineStatus)
+                                .frame(width: 8, height: 8)
+                        }
                     }
                 }
-            }
-        }
+                
 
+            }.frame(width: 60, height: 60)
+        }
     }
 }
 

@@ -31,5 +31,6 @@ struct Interlocutors: View {
 struct Interlocutors_Previews: PreviewProvider {
     static var previews: some View {
         Interlocutors(interlocutors: AppPreviewModels.interlocutors)
+            .environmentObject(ChatViewModel())
     }
 }

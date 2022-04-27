@@ -81,6 +81,4 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                 }
             }.store(in: &cancellableSet)
     }
-    
-    
 }
