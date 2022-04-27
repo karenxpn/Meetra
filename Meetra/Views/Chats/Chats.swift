@@ -60,6 +60,11 @@ struct Chats: View {
                             ChatListCell(chat: chat)
                                 .listRowSeparator(.hidden)
                                 .listRowInsets(EdgeInsets())
+                                .onAppear(perform: {
+                                    if chat.id == chatVM.chats.last?.id && !chatVM.loading {
+                                        chatVM.getChatList()
+                                    }
+                                })
                             
                         }
                         

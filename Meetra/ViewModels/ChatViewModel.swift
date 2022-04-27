@@ -59,19 +59,25 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     }
     
     func getChatList() {
+        loading = true
         dataManager.fetchChatList(page: chatPage)
             .sink { response in
+                self.loading = false
                 if response.error == nil {
                     self.chats.append(contentsOf: response.value!.chats.map(ChatModelViewModel.init))
+                    self.chatPage += 1
                 }
             }.store(in: &cancellableSet)
     }
     
     func getInterlocutors() {
+        loading = true
         dataManager.fetchInterlocutors(page: interlocutorsPage)
             .sink { response in
+                self.loading = false
                 if response.error == nil {
                     self.interlocutors.append(contentsOf: response.value!.interlocutors.map(InterlocutorsViewModel.init))
+                    self.interlocutorsPage += 1
                 }
             }.store(in: &cancellableSet)
     }
