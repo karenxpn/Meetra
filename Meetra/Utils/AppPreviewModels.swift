@@ -85,4 +85,20 @@ struct AppPreviewModels {
                                                                                         sender: SenderModel(id: 1, name: "Karen")),
                                                            isMuted: true))]
     
+    
+    static let chatListModel = ChatListModel(chats: [ChatModel(id: 1,
+                                                               name: "Anna",
+                                                               image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg",
+                                                               online: true,
+                                                               isGroup: false,
+                                                               message: MessagePreviewModel(id: 1,
+                                                                                            message: "Hello World",
+                                                                                            type: "text",
+                                                                                            createdAt: "2022-04-22 21:47:38.123",
+                                                                                            status: "sent",
+                                                                                            sender: SenderModel(id: 1, name: "Karen")),
+                                                               isMuted: false)])
+    
+    static let interlocutorsListModel = InterlocutorsListModel(interlocutors: [InterlocutorsModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: true, chat: 1)])
+    
 }

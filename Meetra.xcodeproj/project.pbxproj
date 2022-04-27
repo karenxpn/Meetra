@@ -47,6 +47,8 @@
 		FF5285692816E6F8004D2AB1 /* InterlocutorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5285682816E6F8004D2AB1 /* InterlocutorsCell.swift */; };
 		FF52856D28175D0B004D2AB1 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52856C28175D0B004D2AB1 /* ChatListCell.swift */; };
 		FF52856F281761CB004D2AB1 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52856E281761CB004D2AB1 /* ChatRoom.swift */; };
+		FF52857328198EC9004D2AB1 /* MockChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52857228198EC9004D2AB1 /* MockChatService.swift */; };
+		FF52857528199015004D2AB1 /* ChatViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52857428199015004D2AB1 /* ChatViewModelTests.swift */; };
 		FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */; };
 		FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8D280D83CC0020BE2C /* Settings.swift */; };
 		FF537E90280E163C0020BE2C /* ActionButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */; };
@@ -218,6 +220,8 @@
 		FF5285682816E6F8004D2AB1 /* InterlocutorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterlocutorsCell.swift; sourceTree = "<group>"; };
 		FF52856C28175D0B004D2AB1 /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		FF52856E281761CB004D2AB1 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		FF52857228198EC9004D2AB1 /* MockChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockChatService.swift; sourceTree = "<group>"; };
+		FF52857428199015004D2AB1 /* ChatViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModelTests.swift; sourceTree = "<group>"; };
 		FF537E8B280D81E80020BE2C /* ProfileNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavBar.swift; sourceTree = "<group>"; };
 		FF537E8D280D83CC0020BE2C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		FF537E8F280E163C0020BE2C /* ActionButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonHelper.swift; sourceTree = "<group>"; };
@@ -389,6 +393,7 @@
 				FFB6D25027EB975C004FD5D3 /* MockPlacesService.swift */,
 				FFDE785E27F32F890036B098 /* MockUserService.swift */,
 				FF97309327FDCA6400A7BF3F /* MockProfileService.swift */,
+				FF52857228198EC9004D2AB1 /* MockChatService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				FFB6D25227EB984D004FD5D3 /* PlacesViewModelTests.swift */,
 				FFDE786027F330F30036B098 /* UserViewModelTests.swift */,
 				FF97309127FDCA5900A7BF3F /* ProfileViewModelTests.swift */,
+				FF52857428199015004D2AB1 /* ChatViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1090,9 +1096,11 @@
 				FFDE786127F330F30036B098 /* UserViewModelTests.swift in Sources */,
 				FF97309427FDCA6400A7BF3F /* MockProfileService.swift in Sources */,
 				FF07F23C27D0ED1F009B46B7 /* MockAuthService.swift in Sources */,
+				FF52857528199015004D2AB1 /* ChatViewModelTests.swift in Sources */,
 				FF07F23E27D0EEAD009B46B7 /* AuthViewModelTests.swift in Sources */,
 				FF97309227FDCA5900A7BF3F /* ProfileViewModelTests.swift in Sources */,
 				FFB6D25127EB975C004FD5D3 /* MockPlacesService.swift in Sources */,
+				FF52857328198EC9004D2AB1 /* MockChatService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
