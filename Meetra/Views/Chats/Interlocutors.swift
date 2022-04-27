@@ -17,11 +17,6 @@ struct Interlocutors: View {
             LazyHStack( spacing: 14 ) {
                 ForEach( interlocutors, id: \.id ) { interlocuter in
                     InterlocutorsCell(interlocuter: interlocuter)
-                        .onAppear(perform: {
-                            if interlocuter.id == chatVM.interlocutors.last?.id && !chatVM.loading {
-                                chatVM.getInterlocutors()
-                            }
-                        })
                 }
             }.padding(.horizontal, 26)
         }
@@ -31,6 +26,5 @@ struct Interlocutors: View {
 struct Interlocutors_Previews: PreviewProvider {
     static var previews: some View {
         Interlocutors(interlocutors: AppPreviewModels.interlocutors)
-            .environmentObject(ChatViewModel())
     }
 }

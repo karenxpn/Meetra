@@ -71,21 +71,6 @@ class ChatViewModelTests: XCTestCase {
         viewModel.getChatList()
         
         XCTAssertFalse(viewModel.chats.isEmpty)
-    }
-    
-    func testGetInterlocutorsPageWithError() {
-        service.fetchInterlocutorsError = true
-        viewModel.getInterlocutors()
-        
-        XCTAssertTrue(viewModel.interlocutors.isEmpty)
-    }
-    
-    func testGetInterlocutorsPageWithSuccess() {
-        service.fetchInterlocutorsError = false
-        viewModel.getInterlocutors()
-        
-        XCTAssertFalse(viewModel.interlocutors.isEmpty)
-    }
-    
+    }   
     
 }

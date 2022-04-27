@@ -11,7 +11,7 @@ import Alamofire
 
 protocol ChatServiceProtocol {
     func fetchChatList(page: Int) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never>
-    func fetchInterlocutors(page: Int) -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never>
+    func fetchInterlocutors() -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never>
 }
 
 class ChatService {
@@ -26,8 +26,8 @@ extension ChatService: ChatServiceProtocol {
 
     }
     
-    func fetchInterlocutors(page: Int) -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)interlocutors/\(page)")!
+    func fetchInterlocutors() -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)chats/interlocutors")!
         return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: InterlocutorsListModel.self)
     }
 }

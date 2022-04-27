@@ -72,13 +72,11 @@ struct Chats: View {
                         .padding(.top, 1)
                         .refreshable {
                             chatVM.chatPage = 1
-                            chatVM.interlocutorsPage = 1
                             chatVM.getChatScreen()
                         }
                 }
             }.task {
                 chatVM.chatPage = 1
-                chatVM.interlocutorsPage = 1
                 chatVM.getChatScreen()
                 // activate connect to socket event
             }.alert(isPresented: $chatVM.showAlert, content: {

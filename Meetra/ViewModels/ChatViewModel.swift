@@ -18,7 +18,6 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     @Published var chats = [ChatModelViewModel]()
     @Published var interlocutors = [InterlocutorsViewModel]()
     
-    @Published var interlocutorsPage: Int = 1
     @Published var chatPage: Int = 1
     
     @Published var search: String = ""
@@ -30,11 +29,15 @@ class ChatViewModel: AlertViewModel, ObservableObject {
 
     init(dataManager: ChatServiceProtocol = ChatService.shared) {
         self.dataManager = dataManager
+        
+        print("init")
     }
+    
+    deinit { print("deinit")}
     
     func getChatScreen() {
         loading = true
-        Publishers.Zip(dataManager.fetchChatList(page: 1), dataManager.fetchInterlocutors(page: 1))
+        Publishers.Zip(dataManager.fetchChatList(page: 1), dataManager.fetchInterlocutors())
             .sink { chats, interlocutors in
                 self.loading = false
                 self.loaded = true
@@ -53,7 +56,6 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                 
                 if interlocutors.error == nil {
                     self.interlocutors = interlocutors.value!.interlocutors.map(InterlocutorsViewModel.init)
-                    self.interlocutorsPage += 1
                 }
             }.store(in: &cancellableSet)
     }
@@ -66,18 +68,6 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                 if response.error == nil {
                     self.chats.append(contentsOf: response.value!.chats.map(ChatModelViewModel.init))
                     self.chatPage += 1
-                }
-            }.store(in: &cancellableSet)
-    }
-    
-    func getInterlocutors() {
-        loading = true
-        dataManager.fetchInterlocutors(page: interlocutorsPage)
-            .sink { response in
-                self.loading = false
-                if response.error == nil {
-                    self.interlocutors.append(contentsOf: response.value!.interlocutors.map(InterlocutorsViewModel.init))
-                    self.interlocutorsPage += 1
                 }
             }.store(in: &cancellableSet)
     }

@@ -15,7 +15,7 @@ class MockChatService: ChatServiceProtocol {
         return AlamofireAPIHelper.shared.mockRequest(error: fetchChatsError, response: AppPreviewModels.chatListModel, responseType: ChatListModel.self)
     }
     
-    func fetchInterlocutors(page: Int) -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never> {
+    func fetchInterlocutors() -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: fetchInterlocutorsError, response: AppPreviewModels.interlocutorsListModel, responseType: InterlocutorsListModel.self)
     }
     
