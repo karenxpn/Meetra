@@ -94,13 +94,8 @@ struct Chats: View {
                         withAnimation {
                             chatVM.showSearchField.toggle()
                         }
-                        
-                        chatVM.chatPage = 1
-                        chatVM.chats.removeAll(keepingCapacity: false)
-                        
-                        if !chatVM.showSearchField {
-                            chatVM.search = ""
-                        }
+
+                        chatVM.search = ""
                         
                     } label: {
                         Image("icon_search")

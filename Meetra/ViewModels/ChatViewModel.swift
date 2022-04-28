@@ -36,9 +36,10 @@ class ChatViewModel: AlertViewModel, ObservableObject {
         $search
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .sink { (text) in
+                self.chatPage = 1
+                self.chats.removeAll(keepingCapacity: false)
+                
                 if !text.isEmpty {
-                    self.chatPage = 1
-                    self.chats.removeAll(keepingCapacity: false)
                     self.getChatList()
                 } else {
                     self.getChatScreen()
