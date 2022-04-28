@@ -12,33 +12,47 @@ import SwiftUI
 protocol AppSocketManagerProtocol {
     func sendLocation( lat: CGFloat, lng: CGFloat)
     func fetchLocationResponse(completion: @escaping (Bool) -> ())
+    func disconnectSocket()
+    func connectSocket()
 }
 
 class AppSocketManager {
     static let shared: AppSocketManagerProtocol = AppSocketManager()
-    let manager: SocketManager
-    let socket: SocketIOClient
+    var manager: SocketManager?
+    var socket: SocketIOClient?
     
     private init() {
-        @AppStorage( "token" ) var token: String = ""
-        @AppStorage( "initialToken" ) var initialToken: String = ""
-        
-        manager = SocketManager(socketURL: URL(string: Credentials.socket_url)!,
-                                config: [.compress, .connectParams(["token" : token.isEmpty ? initialToken : token])])
-        socket = manager.defaultSocket
-        
-        socket.on(clientEvent: .connect) {data, ack in
-        }
-        
-        socket.connect()
+        connectSocket()
     }
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
     
+    func disconnectSocket() {
+        socket?.disconnect()
+    }
+    
+    func connectSocket() {
+        @AppStorage( "token" ) var token: String = ""
+        @AppStorage( "initialToken" ) var initialToken: String = ""
+        
+        if !token.isEmpty {
+            manager = SocketManager(socketURL: URL(string: Credentials.socket_url)!,
+                                    config: [.compress,
+                                             .connectParams(["token" : token])])
+            
+            socket = manager?.defaultSocket
+            socket?.on(clientEvent: .connect) {data, ack in
+                print("socket connected")
+            }
+            
+            socket?.connect()
+        }
+    }
+    
     func fetchLocationResponse(completion: @escaping (Bool) -> ()) {
-        self.socket.off("location")
-        self.socket.on("location") { (data, ack) in
+        self.socket?.off("location")
+        self.socket?.on("location") { (data, ack) in
             if let data = data[0] as? [String : Bool], let status = data["inside"] {
                 DispatchQueue.main.async {
                     completion(status)
@@ -48,7 +62,7 @@ extension AppSocketManager: AppSocketManagerProtocol {
     }
     
     func sendLocation( lat: CGFloat, lng: CGFloat) {
-        self.socket.emit("location", ["lat" : lat,
-                                      "lng": lng])
+        self.socket?.emit("location", ["lat" : lat,
+                                       "lng": lng])
     }
 }
