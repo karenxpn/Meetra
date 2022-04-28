@@ -10,6 +10,15 @@ import SwiftUI
 struct ContentView: View {
     @AppStorage("token") private var token: String = ""
     @State private var currentTab: Int = 0
+    
+    init() {
+        let newAppearance = UINavigationBarAppearance()
+        newAppearance.setBackIndicatorImage(UIImage(named: "content_view_back"), transitionMaskImage: UIImage(named: "content_view_back"))
+        newAppearance.configureWithOpaqueBackground()
+        newAppearance.backgroundColor = .none
+        newAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black, .font: UIFont( name: "Inter-Regular", size: 28)!]
+        UINavigationBar.appearance().standardAppearance = newAppearance
+    }
 
     var body: some View {
         

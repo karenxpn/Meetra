@@ -25,19 +25,21 @@ struct ChatRoom: View {
             }
         }
         .navigationBarTitle("", displayMode: .inline)
-        .navigationBarItems(leading: VStack( alignment: .leading, spacing: 14) {
+        .navigationBarItems(leading: VStack( alignment: .leading) {
             Text( chatName )
                 .foregroundColor(.black)
-                .font(.custom("Inter-Black", size: 28))
+                .font(.custom("Inter-Black", size: 24))
                 .kerning(0.56)
+                .lineLimit(1)
             
             // content should be here either group content or just online
             Text( "11 участников, 6 онлайн" )
                 .foregroundColor(.gray)
                 .font(.custom("Inter-Regular", size: 12))
                 .kerning(0.24)
+                .lineLimit(1)
+            
         }, center: EmptyView(), trailing: Image("dots"))
-
     }
 }
 
