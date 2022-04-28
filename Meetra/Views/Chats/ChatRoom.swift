@@ -39,7 +39,7 @@ struct ChatRoom: View {
                 .kerning(0.24)
                 .lineLimit(1)
             
-        }, center: EmptyView(), trailing: Image("dots"))
+        }, center: EmptyView(), trailing: Image("dots").foregroundColor(.black))
     }
 }
 

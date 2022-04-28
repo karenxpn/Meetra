@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Chats: View {
     @StateObject var chatVM = ChatViewModel()
-    @State private var showSearchField: Bool = false
     
     var body: some View {
         NavigationView {
@@ -21,7 +20,7 @@ struct Chats: View {
                     
                     List {
                         
-                        if showSearchField {
+                        if chatVM.showSearchField {
                             HStack {
                                 Spacer()
                                 ChatSearch()
@@ -93,11 +92,19 @@ struct Chats: View {
                 .padding(10), trailing: HStack( spacing: 20) {
                     Button {
                         withAnimation {
-                            showSearchField.toggle()
+                            chatVM.showSearchField.toggle()
                         }
+                        
+                        chatVM.chatPage = 1
+                        chatVM.chats.removeAll(keepingCapacity: false)
+                        
+                        if !chatVM.showSearchField {
+                            chatVM.search = ""
+                        }
+                        
                     } label: {
                         Image("icon_search")
-                            .foregroundColor(showSearchField ? AppColors.accentColor : .black)
+                            .foregroundColor(chatVM.showSearchField ? AppColors.accentColor : .black)
                     }
                     
                     Button {

@@ -51,6 +51,7 @@ struct UserView: View {
             showDialog.toggle()
         } label: {
             Image("dots")
+                .foregroundColor(.white)
         }.fullScreenCover(isPresented: $showDialog) {
             CustomActionSheet {
                 

@@ -20,6 +20,7 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     
     @Published var chatPage: Int = 1
     
+    @Published var showSearchField: Bool = false
     @Published var search: String = ""
     
     @Published var loaded: Bool = false
@@ -32,14 +33,24 @@ class ChatViewModel: AlertViewModel, ObservableObject {
         self.dataManager = dataManager
         super.init()
         
-        getChatScreen()
+        $search
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .sink { (text) in
+                if !text.isEmpty {
+                    self.chatPage = 1
+                    self.chats.removeAll(keepingCapacity: false)
+                    self.getChatList()
+                } else {
+                    self.getChatScreen()
+                }
+            }.store(in: &cancellableSet)
     }
     
     
     func getChatScreen() {
         loading = true
         chatPage = 1
-        Publishers.Zip(dataManager.fetchChatList(page: 1), dataManager.fetchInterlocutors())
+        Publishers.Zip(dataManager.fetchChatList(page: 1, query: ""), dataManager.fetchInterlocutors())
             .sink { chats, interlocutors in
                 self.loading = false
                 self.loaded = true
@@ -64,7 +75,7 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     
     func getChatList() {
         loadingPage = true
-        dataManager.fetchChatList(page: chatPage)
+        dataManager.fetchChatList(page: chatPage, query: search)
             .sink { response in
                 self.loadingPage = false
                 if response.error == nil {

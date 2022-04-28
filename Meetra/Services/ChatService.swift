@@ -10,7 +10,7 @@ import Combine
 import Alamofire
 
 protocol ChatServiceProtocol {
-    func fetchChatList(page: Int) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never>
+    func fetchChatList(page: Int, query: String) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never>
     func fetchInterlocutors() -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never>
 }
 
@@ -20,9 +20,10 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
-    func fetchChatList(page: Int) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)chats/\(page)")!
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: ChatListModel.self)
+    func fetchChatList(page: Int, query: String) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)chats")!
+        let params = GetChatListRequest(page: page, search: query)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: params, url: url, responseType: ChatListModel.self)
 
     }
     
