@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InterlocutorsCell: View {
-    let interlocuter: InterlocutorsViewModel
+    let interlocutor: InterlocutorsViewModel
     @State private var navigate: Bool = false
     
     var body: some View {
@@ -16,13 +16,13 @@ struct InterlocutorsCell: View {
             navigate.toggle()
         } label: {
             ZStack( alignment: .trailing) {
-                ImageHelper(image: interlocuter.image, contentMode: .fill)
+                ImageHelper(image: interlocutor.image, contentMode: .fill)
                     .frame(width: 60, height: 60)
                     .clipShape(Circle())
                 
                 VStack {
                     
-                    if !interlocuter.read {
+                    if !interlocutor.read {
                         ZStack {
                             Circle()
                                 .fill(.white)
@@ -35,7 +35,7 @@ struct InterlocutorsCell: View {
                     }
                     
                     Spacer()
-                    if interlocuter.online {
+                    if interlocutor.online {
                         ZStack {
                             Circle()
                                 .fill(.white)
@@ -51,7 +51,7 @@ struct InterlocutorsCell: View {
 
             }.frame(width: 60, height: 60)
         }.background(
-            NavigationLink(destination: ChatRoom(chatID: interlocuter.id, chatName: interlocuter.name),
+            NavigationLink(destination: ChatRoom(chatID: interlocutor.id, chatName: interlocutor.name),
                            isActive: $navigate,
                            label: {
                 EmptyView()
@@ -62,6 +62,6 @@ struct InterlocutorsCell: View {
 
 struct InterlocutorsCell_Previews: PreviewProvider {
     static var previews: some View {
-        InterlocutorsCell(interlocuter: AppPreviewModels.interlocutors[0])
+        InterlocutorsCell(interlocutor: AppPreviewModels.interlocutors[0])
     }
 }

@@ -14,8 +14,8 @@ struct Interlocutors: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack( spacing: 14 ) {
-                ForEach( interlocutors, id: \.id ) { interlocuter in
-                    InterlocutorsCell(interlocuter: interlocuter)
+                ForEach( interlocutors, id: \.id ) { interlocutor in
+                    InterlocutorsCell(interlocutor: interlocutor)
                 }
             }.padding(.horizontal, 26)
         }
