@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ChatRoom: View {
+    
+    @StateObject var roomVM = ChatRoomViewModel()
+    let userID: Int
     let chatID: Int
     let chatName: String
     
@@ -18,10 +21,15 @@ struct ChatRoom: View {
                 
         }.onAppear {
             if chatID == 0 {
+                roomVM.getChatId(userID: userID)
                 // need to create chat
             } else {
+                roomVM.chatId = chatID
+                roomVM.joinRoom()
+                roomVM.getTypingResponse()
+                roomVM.getOnlineStatus(userID: userID)
+            
                 // get chat messages
-                // connect to socket event
             }
         }
         .navigationBarTitle("", displayMode: .inline)
@@ -45,6 +53,6 @@ struct ChatRoom: View {
 
 struct ChatRoom_Previews: PreviewProvider {
     static var previews: some View {
-        ChatRoom(chatID: 1, chatName: "Hunt Lounge Bar")
+        ChatRoom(userID: 1, chatID: 1, chatName: "Hunt Lounge Bar")
     }
 }

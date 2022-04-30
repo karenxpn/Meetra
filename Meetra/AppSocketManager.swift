@@ -12,6 +12,14 @@ import SwiftUI
 protocol AppSocketManagerProtocol {
     func sendLocation( lat: CGFloat, lng: CGFloat)
     func fetchLocationResponse(completion: @escaping (Bool) -> ())
+    
+    func sendTyping(chatID: Int, typing: Bool)
+    func fetchTypingResponse(completion: @escaping (TypingResponse) -> ())
+    
+    func fetchOnlineUser(completion: @escaping (OnlineResponseModel) -> ())
+    
+    func connectChatRoom(chatID: Int)
+    
     func disconnectSocket()
     func connectSocket()
 }
@@ -27,6 +35,58 @@ class AppSocketManager {
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
+    func fetchOnlineUser(completion: @escaping (OnlineResponseModel) -> ()) {
+        self.socket?.off("online")
+        self.socket?.on("online") { (data, ack) in
+            
+            do {
+                if !data.isEmpty {
+                    let data = data[0]
+                    let serialized = try JSONSerialization.data(withJSONObject: data)
+                    let online = try JSONDecoder().decode(OnlineResponseModel.self, from: serialized)
+                    
+                    print(online)
+                    
+                    DispatchQueue.main.async {
+                        completion(online)
+                    }
+                }
+            } catch {
+                print("error")
+            }
+        }
+    }
+    
+    
+    func connectChatRoom(chatID: Int) {
+        self.socket?.emit("join-chat", ["chatId" : chatID])
+    }
+    
+    func sendTyping(chatID: Int, typing: Bool) {
+        self.socket?.emit("typing", ["chatId" : chatID,
+                                     "typing": typing])
+    }
+    
+    func fetchTypingResponse(completion: @escaping (TypingResponse) -> ()) {
+        self.socket?.off("typing")
+        self.socket?.on("typing") { (data, ack) in
+            
+            do {
+                if !data.isEmpty {
+                    let data = data[0]
+                    let serialized = try JSONSerialization.data(withJSONObject: data)
+                    let typing = try JSONDecoder().decode(TypingResponse.self, from: serialized)
+                    
+                    DispatchQueue.main.async {
+                        completion(typing)
+                    }
+                }
+            } catch {
+                print("error")
+            }
+        }
+    }
+    
     
     func disconnectSocket() {
         socket?.disconnect()

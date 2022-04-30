@@ -56,11 +56,9 @@ struct ChatListCell: View {
                         
                         HStack {
                             
-                            if chat.message != nil {
-                                if chat.message!.sender.id == userID {
-                                    Image(chat.message!.status == "sent" ? "sent_icon" : "read_icon")
-                                        .foregroundColor(AppColors.accentColor)
-                                }
+                            if chat.message.sender.id == userID {
+                                Image(chat.message.status == "sent" ? "sent_icon" : "read_icon")
+                                    .foregroundColor(AppColors.accentColor)
                             }
                             Text(chat.sentTime)
                                 .foregroundColor(.gray)
@@ -69,45 +67,40 @@ struct ChatListCell: View {
                         }
                     }
                     
-                    if chat.message != nil {
-                        
-                        if chat.isGroup {
-                            Text( chat.message!.sender.name )
-                                .foregroundColor(.black)
-                                .font(.custom("Inter-Regular", size: 12))
-                                .kerning(0.24)
-                                .lineLimit(1)
-                        }
-                        
-                        Text( ( chat.message!.type == "text" ||
-                                chat.message!.type == "emoji" ) ?
-                              chat.message!.message :
-                                NSLocalizedString("mediaSent", comment: "") )
-                        
-                        .foregroundColor(.gray)
-                        .font(.custom("Inter-Regular", size: 12))
-                        .kerning(0.24)
-                        .lineLimit(2)
+                    if chat.isGroup {
+                        Text( chat.message.sender.name )
+                            .foregroundColor(.black)
+                            .font(.custom("Inter-Regular", size: 12))
+                            .kerning(0.24)
+                            .lineLimit(1)
                     }
+                    
+                    Text( ( chat.message.type == "text" ||
+                            chat.message.type == "emoji" ) ?
+                          chat.message.message :
+                            NSLocalizedString("mediaSent", comment: "") )
+                    
+                    .foregroundColor(.gray)
+                    .font(.custom("Inter-Regular", size: 12))
+                    .kerning(0.24)
+                    .lineLimit(2)
                     
                 }.frame(width: .greedy)
             }.frame(width: .greedy)
                 .padding(.horizontal, 26)
                 .padding(.vertical, 12)
-                .background( (chat.message != nil && chat.message?.sender.id != userID && chat.message?.status != "read") ?
+                .background( (chat.message.sender.id != userID && chat.message.status != "read") ?
                              AppColors.addProfileImageBG : Color.white )
         }.buttonStyle(PlainButtonStyle())
             .background(
-                NavigationLink(destination: ChatRoom(chatID: chat.id,
+                NavigationLink(destination: ChatRoom(userID: chat.message.sender.id,
+                                                     chatID: chat.id,
                                                      chatName: chat.name),
                                isActive: $navigate,
                                label: {
-                    EmptyView()
-                }).hidden()
+                                   EmptyView()
+                               }).hidden()
             )
-        
-        
-        
     }
 }
 

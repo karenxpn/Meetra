@@ -12,6 +12,8 @@ import Alamofire
 protocol ChatServiceProtocol {
     func fetchChatList(page: Int, query: String) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never>
     func fetchInterlocutors() -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never>
+    
+    func fetchChatId(userId: Int) -> AnyPublisher<DataResponse<GetChatIdResponse, NetworkError>, Never>
 }
 
 class ChatService {
@@ -20,6 +22,12 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    func fetchChatId(userId: Int) -> AnyPublisher<DataResponse<GetChatIdResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)chats/get-chat-id")!
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["userId" : userId], url: url, responseType: GetChatIdResponse.self)
+
+    }
+    
     func fetchChatList(page: Int, query: String) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)chats")!
         let params = GetChatListRequest(page: page, search: query)
