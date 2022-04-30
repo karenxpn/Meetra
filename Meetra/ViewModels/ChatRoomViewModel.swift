@@ -37,6 +37,8 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                 } else {
                     self.chatId = response.value!.chat
                     self.joinRoom()
+                    self.getTypingResponse()
+                    self.getOnlineStatus(userID: userID)
                 }
             }.store(in: &cancellableSet)
     }
