@@ -10,6 +10,7 @@ import SwiftUI
 struct ChatRoom: View {
     
     @StateObject var roomVM = ChatRoomViewModel()
+    let online: Bool
     let userID: Int
     let chatID: Int
     let chatName: String
@@ -24,6 +25,7 @@ struct ChatRoom: View {
                 roomVM.getChatId(userID: userID)
                 // need to create chat
             } else {
+                roomVM.online = online
                 roomVM.chatId = chatID
                 roomVM.joinRoom()
                 roomVM.getTypingResponse()
@@ -41,7 +43,7 @@ struct ChatRoom: View {
                 .lineLimit(1)
             
             // content should be here either group content or just online
-            Text( "11 участников, 6 онлайн" )
+            Text( "\(roomVM.online ? NSLocalizedString("nowOnline", comment: "") : "Была 15 минут назад")" )
                 .foregroundColor(.gray)
                 .font(.custom("Inter-Regular", size: 12))
                 .kerning(0.24)
@@ -53,6 +55,6 @@ struct ChatRoom: View {
 
 struct ChatRoom_Previews: PreviewProvider {
     static var previews: some View {
-        ChatRoom(userID: 1, chatID: 1, chatName: "Hunt Lounge Bar")
+        ChatRoom(online: true, userID: 1, chatID: 1, chatName: "Hunt Lounge Bar")
     }
 }

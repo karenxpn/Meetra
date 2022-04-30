@@ -93,7 +93,8 @@ struct ChatListCell: View {
                              AppColors.addProfileImageBG : Color.white )
         }.buttonStyle(PlainButtonStyle())
             .background(
-                NavigationLink(destination: ChatRoom(userID: chat.message.sender.id,
+                NavigationLink(destination: ChatRoom(online: chat.online,
+                                                     userID: chat.message.sender.id,
                                                      chatID: chat.id,
                                                      chatName: chat.name),
                                isActive: $navigate,

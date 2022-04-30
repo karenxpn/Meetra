@@ -17,6 +17,8 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     
+    @Published var online: Bool = false
+    
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ChatServiceProtocol
     var socketManager: AppSocketManagerProtocol
@@ -46,7 +48,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     func getOnlineStatus(userID: Int) {
         socketManager.fetchOnlineUser { response in
             if response.userId == userID {
-                print("online")
+                self.online = response.online
             }
         }
     }

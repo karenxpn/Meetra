@@ -51,7 +51,10 @@ struct InterlocutorsCell: View {
 
             }.frame(width: 60, height: 60)
         }.background(
-            NavigationLink(destination: ChatRoom( userID: interlocutor.id, chatID: interlocutor.chat, chatName: interlocutor.name),
+            NavigationLink(destination: ChatRoom( online: interlocutor.online,
+                                                  userID: interlocutor.id,
+                                                  chatID: interlocutor.chat,
+                                                  chatName: interlocutor.name),
                            isActive: $navigate,
                            label: {
                 EmptyView()

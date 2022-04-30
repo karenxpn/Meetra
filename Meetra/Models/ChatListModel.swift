@@ -14,7 +14,6 @@ struct ChatModel: Identifiable, Codable {
     var id: Int
     var name: String
     var image: String
-    var online: Bool
     var isGroup: Bool
     var message: MessagePreviewModel
     var isMuted: Bool
@@ -33,6 +32,7 @@ struct MessagePreviewModel: Identifiable, Codable {
 struct SenderModel: Identifiable, Codable {
     var id: Int
     var name: String
+    var online: Bool
 }
 
 struct ChatModelViewModel: Identifiable {
@@ -45,9 +45,9 @@ struct ChatModelViewModel: Identifiable {
     var id: Int                         { self.chat.id }
     var image: String                   { self.chat.image }
     var name: String                    { self.chat.name }
-    var online: Bool                    { self.chat.online }
+    var online: Bool                    { self.chat.message.sender.online }
     var isGroup: Bool                   { self.chat.isGroup }
-    var message: MessagePreviewModel   { self.chat.message}
+    var message: MessagePreviewModel    { self.chat.message}
     
     var sentTime: String {
         
