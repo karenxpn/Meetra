@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class ChatRoomViewModel: AlertViewModel, ObservableObject {
-
+    
     @Published var typing: Bool = false
     
     @Published var loading: Bool = false
@@ -17,6 +17,8 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @Published var alertMessage: String = ""
     
     @Published var online: Bool = false
+    @Published var messages = [MessageModel]()
+    @Published var lastMessageID: Int = 0
     
     
     // message
@@ -54,8 +56,10 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     }
     
     func getChatId() {
+        loading = true
         dataManager.fetchChatId(userId: userID)
             .sink { response in
+                self.loading = false
                 print(response)
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
@@ -67,7 +71,23 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
             }.store(in: &cancellableSet)
     }
     
+    func getMessageList(messageID: Int) {
+        loading = true
+        dataManager.fetchChatMessages(roomID: chatID, messageID: messageID)
+            .sink { response in
+                self.loading = false
+                if response.error == nil {
+                    let messages = response.value!.messages
+                    self.messages.append(contentsOf: messages.reversed())
+                    if !messages.isEmpty {
+                        self.lastMessageID = self.messages[0].id
+                    }
+                }
+            }.store(in: &cancellableSet)
+    }
+    
     func joinGetMessagesListenEventsOnInit() {
+        getMessageList(messageID: 0)
         joinRoom()
         getTypingResponse()
         getOnlineStatus()

@@ -24,6 +24,7 @@ struct ChatRoom: View {
         ZStack {
             
             MessagesList()
+                .environmentObject(roomVM)
             
             VStack {
                 Spacer()

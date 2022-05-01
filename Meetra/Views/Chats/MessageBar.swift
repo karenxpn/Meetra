@@ -24,6 +24,15 @@ struct MessageBar: View {
                 .frame(height: 44)
                 .padding(.horizontal, 20)
             
+            if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                Button {
+                    
+                } label: {
+                    Image("icon_send_message")
+                        .padding([.trailing, .vertical], 20)
+                }
+            }
+            
 
             Button {
                 
