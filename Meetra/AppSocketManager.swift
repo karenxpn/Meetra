@@ -19,6 +19,8 @@ protocol AppSocketManagerProtocol {
     func fetchOnlineUser(completion: @escaping (OnlineResponseModel) -> ())
     
     func connectChatRoom(chatID: Int)
+    func sendMessage(chatID: Int, content: String)
+    func fetchMessage(chatID: Int, completion: @escaping(MessageModel) -> ())
     
     func disconnectSocket()
     func connectSocket()
@@ -35,24 +37,25 @@ class AppSocketManager {
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
+    func sendMessage(chatID: Int, content: String) {
+        self.socket?.emit("message", ["chatId" : chatID,
+                                      "message" : content])
+    }
+    
+    func fetchMessage(chatID: Int, completion: @escaping (MessageModel) -> ()) {
+        self.socket?.off("message")
+        listenEvent(event: "message", response: MessageModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
+            }
+        }
+    }
+    
     func fetchOnlineUser(completion: @escaping (OnlineResponseModel) -> ()) {
         self.socket?.off("online")
-        self.socket?.on("online") { (data, ack) in
-            
-            do {
-                if !data.isEmpty {
-                    let data = data[0]
-                    let serialized = try JSONSerialization.data(withJSONObject: data)
-                    let online = try JSONDecoder().decode(OnlineResponseModel.self, from: serialized)
-                    
-                    print(online)
-                    
-                    DispatchQueue.main.async {
-                        completion(online)
-                    }
-                }
-            } catch {
-                print("error")
+        listenEvent(event: "online", response: OnlineResponseModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
             }
         }
     }
@@ -69,20 +72,10 @@ extension AppSocketManager: AppSocketManagerProtocol {
     
     func fetchTypingResponse(completion: @escaping (TypingResponse) -> ()) {
         self.socket?.off("typing")
-        self.socket?.on("typing") { (data, ack) in
-            
-            do {
-                if !data.isEmpty {
-                    let data = data[0]
-                    let serialized = try JSONSerialization.data(withJSONObject: data)
-                    let typing = try JSONDecoder().decode(TypingResponse.self, from: serialized)
-                    
-                    DispatchQueue.main.async {
-                        completion(typing)
-                    }
-                }
-            } catch {
-                print("error")
+        
+        self.listenEvent(event: "typing", response: TypingResponse.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
             }
         }
     }
@@ -124,5 +117,27 @@ extension AppSocketManager: AppSocketManagerProtocol {
     func sendLocation( lat: CGFloat, lng: CGFloat) {
         self.socket?.emit("location", ["lat" : lat,
                                        "lng": lng])
+    }
+    
+    func listenEvent<T> (event: String, response: T.Type, completion: @escaping(T) -> () ) where T : Codable {
+        self.socket?.on(event) { (data, ack) in
+            
+            print("event listening")
+            do {
+                if !data.isEmpty {
+                    let data = data[0]
+                    let serialized = try JSONSerialization.data(withJSONObject: data)
+                    let decoded = try JSONDecoder().decode(T.self, from: serialized)
+                    
+                    print(decoded)
+                    
+                    DispatchQueue.main.async {
+                        completion(decoded)
+                    }
+                }
+            } catch {
+                print("error")
+            }
+        }
     }
 }
