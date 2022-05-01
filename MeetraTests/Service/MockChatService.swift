@@ -11,8 +11,12 @@ import Combine
 @testable import Meetra
 
 class MockChatService: ChatServiceProtocol {
-    func fetchChatList(page: Int) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never> {
+    func fetchChatList(page: Int, query: String) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: fetchChatsError, response: AppPreviewModels.chatListModel, responseType: ChatListModel.self)
+    }
+    
+    func fetchChatId(userId: Int) -> AnyPublisher<DataResponse<GetChatIdResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: fetchChatIdError, response: getChatIdResponse, responseType: GetChatIdResponse.self)
     }
     
     func fetchInterlocutors() -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never> {
@@ -21,4 +25,7 @@ class MockChatService: ChatServiceProtocol {
     
     var fetchChatsError: Bool = false
     var fetchInterlocutorsError: Bool = false
+    var fetchChatIdError: Bool = false
+    
+    let getChatIdResponse = GetChatIdResponse(chat: 1)
 }

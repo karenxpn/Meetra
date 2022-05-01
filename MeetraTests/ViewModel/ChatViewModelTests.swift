@@ -71,6 +71,5 @@ class ChatViewModelTests: XCTestCase {
         viewModel.getChatList()
         
         XCTAssertFalse(viewModel.chats.isEmpty)
-    }   
-    
+    }
 }

@@ -9,11 +9,15 @@ import SwiftUI
 
 struct ChatRoom: View {
     
-    @StateObject var roomVM = ChatRoomViewModel()
+    @StateObject var roomVM: ChatRoomViewModel
     let online: Bool
-    let userID: Int
-    let chatID: Int
     let chatName: String
+    
+    init(online: Bool, userID: Int, chatID: Int, chatName: String) {
+        _roomVM = StateObject(wrappedValue: ChatRoomViewModel(chatID: chatID, userID: userID))
+        self.online = online
+        self.chatName = chatName
+    }
     
     var body: some View {
         
@@ -21,18 +25,7 @@ struct ChatRoom: View {
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
                 
         }.onAppear {
-            if chatID == 0 {
-                roomVM.getChatId(userID: userID)
-                // need to create chat
-            } else {
-                roomVM.online = online
-                roomVM.chatId = chatID
-                roomVM.joinRoom()
-                roomVM.getTypingResponse()
-                roomVM.getOnlineStatus(userID: userID)
-            
-                // get chat messages
-            }
+            roomVM.online = online
         }
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarItems(leading: VStack( alignment: .leading) {
