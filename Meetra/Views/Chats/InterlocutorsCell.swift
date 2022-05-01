@@ -51,7 +51,8 @@ struct InterlocutorsCell: View {
 
             }.frame(width: 60, height: 60)
         }.background(
-            NavigationLink(destination: ChatRoom( online: interlocutor.online,
+            NavigationLink(destination: ChatRoom( group: false,
+                                                  online: interlocutor.online,
                                                   userID: interlocutor.id,
                                                   chatID: interlocutor.chat,
                                                   chatName: interlocutor.name),

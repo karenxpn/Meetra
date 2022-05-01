@@ -17,7 +17,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @Published var alertMessage: String = ""
     
     @Published var online: Bool = false
-    @Published var messages = [MessageModel]()
+    @Published var messages = [MessageViewModel]()
     @Published var lastMessageID: Int = 0
     
     
@@ -78,7 +78,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                 self.loading = false
                 if response.error == nil {
                     let messages = response.value!.messages
-                    self.messages.append(contentsOf: messages.reversed())
+                    self.messages.append(contentsOf: messages.reversed().map(MessageViewModel.init))
                     if !messages.isEmpty {
                         self.lastMessageID = self.messages[0].id
                     }

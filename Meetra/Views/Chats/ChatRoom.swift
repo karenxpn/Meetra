@@ -10,11 +10,13 @@ import SwiftUI
 struct ChatRoom: View {
     
     @StateObject var roomVM: ChatRoomViewModel
+    let group: Bool
     let online: Bool
     let chatName: String
     
-    init(online: Bool, userID: Int, chatID: Int, chatName: String) {
+    init(group: Bool, online: Bool, userID: Int, chatID: Int, chatName: String) {
         _roomVM = StateObject(wrappedValue: ChatRoomViewModel(chatID: chatID, userID: userID))
+        self.group = group
         self.online = online
         self.chatName = chatName
     }
@@ -23,7 +25,7 @@ struct ChatRoom: View {
         
         ZStack {
             
-            MessagesList()
+            MessagesList(group: group)
                 .environmentObject(roomVM)
             
             VStack {
@@ -63,6 +65,6 @@ struct ChatRoom: View {
 
 struct ChatRoom_Previews: PreviewProvider {
     static var previews: some View {
-        ChatRoom(online: true, userID: 1, chatID: 1, chatName: "Hunt Lounge Bar")
+        ChatRoom(group: false, online: true, userID: 1, chatID: 1, chatName: "Hunt Lounge Bar")
     }
 }

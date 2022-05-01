@@ -10,6 +10,8 @@ import SwiftUI
 struct MessagesList: View {
     
     @EnvironmentObject var roomVM: ChatRoomViewModel
+    let group: Bool
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             ScrollViewReader { scrollView in
@@ -17,7 +19,7 @@ struct MessagesList: View {
                 LazyVStack(spacing: 0) {
                     
                     ForEach(roomVM.messages, id: \.id) { message in
-                        Text(message.message)
+                        MessageCell(message: message, group: group)
                             .environmentObject(roomVM)
                             .padding(.bottom, roomVM.messages[0].id == message.id ? UIScreen.main.bounds.size.height * 0.11 : 0)
                             .rotationEffect(.radians(3.14))
@@ -49,6 +51,7 @@ struct MessagesList: View {
 
 struct MessagesList_Previews: PreviewProvider {
     static var previews: some View {
-        MessagesList()
+        MessagesList(group: false)
+            .environmentObject(ChatRoomViewModel())
     }
 }
