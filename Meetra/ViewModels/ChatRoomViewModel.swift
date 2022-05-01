@@ -9,9 +9,7 @@ import Foundation
 import Combine
 
 class ChatRoomViewModel: AlertViewModel, ObservableObject {
-    
-    var chatID: Int
-    var userID: Int
+
     @Published var typing: Bool = false
     
     @Published var loading: Bool = false
@@ -21,6 +19,9 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @Published var online: Bool = false
     
     private var cancellableSet: Set<AnyCancellable> = []
+    
+    var chatID: Int
+    var userID: Int
     var dataManager: ChatServiceProtocol
     var socketManager: AppSocketManagerProtocol
     
@@ -38,11 +39,14 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
         
         if chatID == 0 {
             getChatId()
-            // need to create chat
         } else {
             joinGetMessagesListenEventsOnInit()
             // get chat messages
         }
+    }
+    
+    deinit {
+        print("deinit of room view model")
     }
     
     func getChatId() {

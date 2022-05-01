@@ -26,7 +26,9 @@ struct ChatRoom: View {
                 
         }.onAppear {
             roomVM.online = online
-        }
+        }.alert(isPresented: $roomVM.showAlert, content: {
+            Alert(title: Text( "Error" ), message: Text(roomVM.alertMessage), dismissButton: .default(Text("Got It!")))
+        })
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarItems(leading: VStack( alignment: .leading) {
             Text( chatName )
