@@ -102,6 +102,6 @@ struct AppPreviewModels {
     
     static let interlocutorsListModel = InterlocutorsListModel(interlocutors: [InterlocutorsModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: true, chat: 1, name: "Hunt Lounge Bar")])
     
-    static let message = MessageViewModel(message: MessageModel(id: 1, createdAt: "2022-04-22 21:47:38.123", updatedAt: "2022-05-01 16:35:00.123", message: "Пойду тоже, только нужно отойти минут на 20 позвонить\nЕсли чего, могу подойти позже", type: "text", status: "sent", sender: MessageSenderModel(id: 1, name: "Karen", online: true)))
+    static let message = MessageViewModel(message: MessageModel(id: 1, createdAt: "2022-04-22 21:47:38.123", updatedAt: "2022-05-01 16:35:00.123", message: "☺️", type: "text", status: "sent", sender: MessageSenderModel(id: 1, name: "Karen", online: true)))
     
 }

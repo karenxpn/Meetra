@@ -42,25 +42,8 @@ struct MessageCell: View {
                     .font(.custom("Inter-Regular", size: 8))
             }
 
-            
-            VStack( alignment: message.sender.id == userID ? .trailing : .leading) {
-                if group && message.sender.id != userID {
-                    Text( message.sender.name )
-                        .foregroundColor(AppColors.proceedButtonColor)
-                        .font(.custom("Inter-SemiBold", size: 12))
-                        .kerning(0.12)
-                        .lineLimit(1)
-                }
-                
-                Text(message.content)
-                    .foregroundColor(message.sender.id == userID ? .white : .black)
-                    .font(.custom("Inter-Regular", size: 12))
-                    .kerning(0.24)
-                    
-            }.padding(.vertical, 12)
-                .padding(.horizontal, 15)
-                .background(message.sender.id == userID ? AppColors.accentColor : AppColors.addProfileImageBG)
-                .cornerRadius(message.sender.id == userID ? [.topLeft, .topRight, .bottomLeft] : [.topLeft, .topRight, .bottomRight], 20)
+            MessageContent(message: message, group: group)
+
 
             if message.sender.id != userID {
                 Text(message.updatedAt)
