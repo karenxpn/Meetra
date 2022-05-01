@@ -18,6 +18,10 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     
     @Published var online: Bool = false
     
+    
+    // message
+    @Published var message: String = ""
+    
     private var cancellableSet: Set<AnyCancellable> = []
     
     var chatID: Int

@@ -22,11 +22,23 @@ struct ChatRoom: View {
     var body: some View {
         
         ZStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                
-        }.onAppear {
+            
+            MessagesList()
+            
+            VStack {
+                Spacer()
+                MessageBar()
+                    .environmentObject(roomVM)
+            }
+            
+        }.edgesIgnoringSafeArea(.bottom)
+        .onAppear {
+            NotificationCenter.default.post(name: Notification.Name("hideTabBar"), object: nil)
             roomVM.online = online
-        }.alert(isPresented: $roomVM.showAlert, content: {
+        }.onDisappear {
+            NotificationCenter.default.post(name: Notification.Name("showTabBar"), object: nil)
+        }
+        .alert(isPresented: $roomVM.showAlert, content: {
             Alert(title: Text( "Error" ), message: Text(roomVM.alertMessage), dismissButton: .default(Text("Got It!")))
         })
         .navigationBarTitle("", displayMode: .inline)
