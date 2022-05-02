@@ -90,10 +90,6 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     func joinGetMessagesListenEventsOnInit() {
         getMessageList(messageID: 0)
         joinRoom()
-        getTypingResponse()
-        getOnlineStatus()
-        getMessage()
-        // listen to message events
         // mark all messages as read
     }
     
@@ -122,7 +118,11 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     }
     
     func joinRoom() {
-        socketManager.connectChatRoom(chatID: chatID)
+        socketManager.connectChatRoom(chatID: chatID) {
+            self.getTypingResponse()
+            self.getOnlineStatus()
+            self.getMessage()
+        }
     }
     
     func sendTyping() {
