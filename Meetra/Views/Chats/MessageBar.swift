@@ -26,7 +26,7 @@ struct MessageBar: View {
             
             if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 Button {
-                    
+                    roomVM.sendTextMessage()
                 } label: {
                     Image("icon_send_message")
                         .padding([.trailing, .vertical], 20)
@@ -40,7 +40,7 @@ struct MessageBar: View {
                 Image("icon_voice_message")
                     .padding([.trailing, .vertical], 20)
             }
-        }.frame(height: 90)
+        }.frame(height: 96)
         .background(.white)
             .cornerRadius([.topLeft, .topRight], 35)
             .shadow(color: Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)

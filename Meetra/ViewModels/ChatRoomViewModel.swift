@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class ChatRoomViewModel: AlertViewModel, ObservableObject {
     
@@ -91,6 +92,25 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
         joinRoom()
         getTypingResponse()
         getOnlineStatus()
+        getMessage()
+        // listen to message events
+        // mark all messages as read
+    }
+    
+    func sendTextMessage() {
+        socketManager.sendMessage(chatID: chatID, type: "text", content: message) {
+            // do smth
+            self.message = ""
+        }
+    }
+    
+    func getMessage() {
+        socketManager.fetchMessage(chatID: chatID) { message in
+            self.lastMessageID = message.id
+            withAnimation {
+                self.messages.insert(MessageViewModel(message: message), at: 0)
+            }
+        }
     }
     
     func getOnlineStatus() {
