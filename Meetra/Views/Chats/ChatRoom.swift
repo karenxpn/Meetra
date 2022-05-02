@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ChatRoom: View {
-    
     @StateObject var roomVM: ChatRoomViewModel
     let group: Bool
     let online: Bool
@@ -33,8 +32,8 @@ struct ChatRoom: View {
                 MessageBar()
                     .environmentObject(roomVM)
             }
-            
         }.edgesIgnoringSafeArea(.bottom)
+        
         .onAppear {
             NotificationCenter.default.post(name: Notification.Name("hideTabBar"), object: nil)
             roomVM.online = online

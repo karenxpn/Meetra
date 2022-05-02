@@ -94,7 +94,7 @@ struct Chats: View {
                         withAnimation {
                             chatVM.showSearchField.toggle()
                         }
-
+                        
                         chatVM.search = ""
                         
                     } label: {

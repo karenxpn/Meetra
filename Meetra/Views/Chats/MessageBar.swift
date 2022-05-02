@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct MessageBar: View {
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
     @EnvironmentObject var roomVM: ChatRoomViewModel
+    
     var body: some View {
         HStack {
             Button {
@@ -44,6 +46,7 @@ struct MessageBar: View {
         .background(.white)
             .cornerRadius([.topLeft, .topRight], 35)
             .shadow(color: Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
+            .KeyboardAwarePadding()
     }
 }
 
