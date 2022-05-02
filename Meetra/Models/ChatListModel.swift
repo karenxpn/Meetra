@@ -45,7 +45,6 @@ struct ChatModelViewModel: Identifiable {
     var id: Int                         { self.chat.id }
     var image: String                   { self.chat.image }
     var name: String                    { self.chat.name }
-    var online: Bool                    { self.chat.message.sender.online }
     var isGroup: Bool                   { self.chat.isGroup }
     var message: MessagePreviewModel    { self.chat.message}
     
@@ -72,5 +71,16 @@ struct ChatModelViewModel: Identifiable {
     var mute: Bool {
         get { self.chat.isMuted }
         set { self.chat.isMuted = newValue }
+    }
+    
+    var online: Bool {
+        get {
+            return self.chat.message.sender.online
+            
+        }
+        set {
+            self.chat.message.sender.online = newValue
+            
+        }
     }
 }

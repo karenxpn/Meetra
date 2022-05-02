@@ -28,9 +28,12 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ChatServiceProtocol
+    var socketManager: AppSocketManagerProtocol
 
-    init(dataManager: ChatServiceProtocol = ChatService.shared) {
+    init(dataManager: ChatServiceProtocol = ChatService.shared,
+         socketManager: AppSocketManagerProtocol = AppSocketManager.shared) {
         self.dataManager = dataManager
+        self.socketManager = socketManager
         super.init()
         
         $search
@@ -45,6 +48,8 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                     self.getChatScreen()
                 }
             }.store(in: &cancellableSet)
+        
+        getOnlineStatusChange()
     }
     
     
@@ -84,5 +89,14 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                     self.chatPage += 1
                 }
             }.store(in: &cancellableSet)
+    }
+    
+    func getOnlineStatusChange() {
+        socketManager.fetchChatListOnlineUser { response in
+            if let index = self.chats.firstIndex(where: {$0.chat.message.sender.id == response.userId}) {
+                print("found")
+                self.chats[index].online = response.online
+            }
+        }
     }
 }
