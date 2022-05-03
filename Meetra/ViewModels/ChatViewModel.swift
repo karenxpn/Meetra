@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class ChatViewModel: AlertViewModel, ObservableObject {
     
@@ -29,7 +30,7 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: ChatServiceProtocol
     var socketManager: AppSocketManagerProtocol
-
+    
     init(dataManager: ChatServiceProtocol = ChatService.shared,
          socketManager: AppSocketManagerProtocol = AppSocketManager.shared) {
         self.dataManager = dataManager
@@ -99,6 +100,30 @@ class ChatViewModel: AlertViewModel, ObservableObject {
             
             if let index = self.interlocutors.firstIndex(where: {$0.id == response.userId}) {
                 self.interlocutors[index].online = response.online
+            }
+        }
+    }
+    
+    func getChatListChange() {
+        socketManager.fetchChatListUpdates { response in
+            if let index = self.chats.firstIndex(where: {$0.id == response.id }) {
+                self.chats.remove(at: index)
+            }
+            
+            withAnimation {
+                self.chats.insert(ChatModelViewModel(chat: response), at: 0)
+            }
+        }
+    }
+    
+    func getInterlocutorsChange() {
+        socketManager.fetchInterlocutorsUpdates { response in
+            if let index = self.interlocutors.firstIndex(where: {$0.id == response.id }) {
+                self.interlocutors.remove(at: index)
+            }
+            
+            withAnimation {
+                self.interlocutors.insert(InterlocutorsViewModel(model: response), at: 0)
             }
         }
     }
