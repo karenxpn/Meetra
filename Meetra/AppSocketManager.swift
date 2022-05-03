@@ -18,8 +18,8 @@ protocol AppSocketManagerProtocol {
     
     func fetchOnlineUser(completion: @escaping (OnlineResponseModel) -> ())
     func fetchChatListOnlineUser(completion: @escaping (OnlineResponseModel) -> ())
-    func fetchChatListUpdates(completion: @escaping (ChatModel) -> ())
-    func fetchInterlocutorsUpdates(completion: @escaping (InterlocutorsModel) -> ())
+    func fetchChatListUpdates(userID: Int, completion: @escaping (ChatModel) -> ())
+    func fetchInterlocutorsUpdates(userID: Int, completion: @escaping (InterlocutorsModel) -> ())
     
     func connectChatRoom(chatID: Int, completion: @escaping() -> ())
     func sendMessage(chatID: Int, type: String, content: String, completion: @escaping() -> ())
@@ -40,18 +40,18 @@ class AppSocketManager {
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
-    func fetchChatListUpdates(completion: @escaping (ChatModel) -> ()) {
-        self.socket?.off("chat")
-        listenEvent(event: "chat", response: ChatModel.self) { response in
+    func fetchChatListUpdates(userID: Int, completion: @escaping (ChatModel) -> ()) {
+        self.socket?.off("chat-list-\(userID)")
+        listenEvent(event: "chat-list-\(userID)", response: ChatModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }
         }
     }
     
-    func fetchInterlocutorsUpdates(completion: @escaping (InterlocutorsModel) -> ()) {
-        self.socket?.off("interlocutos")
-        listenEvent(event: "interlocutos", response: InterlocutorsModel.self) { response in
+    func fetchInterlocutorsUpdates(userID: Int, completion: @escaping (InterlocutorsModel) -> ()) {
+        self.socket?.off("interlocutos-list-\(userID)")
+        listenEvent(event: "interlocutos-list-\(userID)", response: InterlocutorsModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }

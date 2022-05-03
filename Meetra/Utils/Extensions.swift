@@ -148,3 +148,28 @@ extension Image {
 #endif
     }
 }
+
+
+extension Array
+{
+    mutating func move(from sourceIndex: Int, to destinationIndex: Int)
+    {
+        guard
+            sourceIndex != destinationIndex
+            && Swift.min(sourceIndex, destinationIndex) >= 0
+            && Swift.max(sourceIndex, destinationIndex) < count
+        else {
+            return
+        }
+
+        let direction = sourceIndex < destinationIndex ? 1 : -1
+        var sourceIndex = sourceIndex
+
+        repeat {
+            let nextSourceIndex = sourceIndex + direction
+            swapAt(sourceIndex, nextSourceIndex)
+            sourceIndex = nextSourceIndex
+        }
+        while sourceIndex != destinationIndex
+    }
+}

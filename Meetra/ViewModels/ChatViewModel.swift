@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 
 class ChatViewModel: AlertViewModel, ObservableObject {
-    
+    @AppStorage("userId") private var userID: Int = 0
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
@@ -50,7 +50,7 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                 }
             }.store(in: &cancellableSet)
         
-        getOnlineStatusChange()
+        connectListeners()
     }
     
     
@@ -105,26 +105,30 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     }
     
     func getChatListChange() {
-        socketManager.fetchChatListUpdates { response in
+        socketManager.fetchChatListUpdates(userID: userID) { response in
             if let index = self.chats.firstIndex(where: {$0.id == response.id }) {
-                self.chats.remove(at: index)
-            }
-            
-            withAnimation {
-                self.chats.insert(ChatModelViewModel(chat: response), at: 0)
+                withAnimation {
+                    self.chats[index] = ChatModelViewModel(chat: response)
+                    self.chats.move(from: index, to: 0)
+                }
             }
         }
     }
     
     func getInterlocutorsChange() {
-        socketManager.fetchInterlocutorsUpdates { response in
+        socketManager.fetchInterlocutorsUpdates(userID: userID) { response in
             if let index = self.interlocutors.firstIndex(where: {$0.id == response.id }) {
-                self.interlocutors.remove(at: index)
-            }
-            
-            withAnimation {
-                self.interlocutors.insert(InterlocutorsViewModel(model: response), at: 0)
+                withAnimation {
+                    self.interlocutors[index] = InterlocutorsViewModel(model: response)
+                    self.interlocutors.move(from: index, to: 0)
+                }
             }
         }
+    }
+    
+    func connectListeners() {
+        getOnlineStatusChange()
+        getChatListChange()
+        getInterlocutorsChange()
     }
 }

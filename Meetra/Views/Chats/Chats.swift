@@ -109,7 +109,7 @@ struct Chats: View {
                             .foregroundColor(.black)
                     }
                 })
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }.navigationViewStyle(.stack)
             .gesture(DragGesture().onChanged({ _ in
                 UIApplication.shared.endEditing()
             }))
