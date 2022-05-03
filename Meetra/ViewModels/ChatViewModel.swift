@@ -94,8 +94,11 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     func getOnlineStatusChange() {
         socketManager.fetchChatListOnlineUser { response in
             if let index = self.chats.firstIndex(where: {$0.chat.message.sender.id == response.userId}) {
-                print("found")
                 self.chats[index].online = response.online
+            }
+            
+            if let index = self.interlocutors.firstIndex(where: {$0.id == response.userId}) {
+                self.interlocutors[index].online = response.online
             }
         }
     }
