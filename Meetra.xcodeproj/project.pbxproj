@@ -161,6 +161,7 @@
 		FFDE785F27F32F890036B098 /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE785E27F32F890036B098 /* MockUserService.swift */; };
 		FFDE786127F330F30036B098 /* UserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE786027F330F30036B098 /* UserViewModelTests.swift */; };
 		FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE786227F35E450036B098 /* FriendRequestSentNotification.swift */; };
+		FFDF45AB2822E84A005A0A0B /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF45AA2822E84A005A0A0B /* TabViewModel.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* Gallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -347,6 +348,7 @@
 		FFDE785E27F32F890036B098 /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
 		FFDE786027F330F30036B098 /* UserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelTests.swift; sourceTree = "<group>"; };
 		FFDE786227F35E450036B098 /* FriendRequestSentNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestSentNotification.swift; sourceTree = "<group>"; };
+		FFDF45AA2822E84A005A0A0B /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				FF97308B27FDAC2F00A7BF3F /* ProfileViewModel.swift */,
 				FF5285642816CB81004D2AB1 /* ChatViewModel.swift */,
 				FFBF26CF281DBF3D002668D5 /* ChatRoomViewModel.swift */,
+				FFDF45AA2822E84A005A0A0B /* TabViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -683,10 +686,10 @@
 				FF7DA04927CD55CC00CA4338 /* Preview Content */,
 				FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */,
 				FF7D0D1527CFDD3900A828C7 /* Credentials.swift */,
-				FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */,
-				FFD6371D27E23BE200F91AB6 /* Localizable.strings */,
 				FFD6372827E2419300F91AB6 /* AppDelegate.swift */,
 				FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */,
+				FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */,
+				FFD6371D27E23BE200F91AB6 /* Localizable.strings */,
 			);
 			path = Meetra;
 			sourceTree = "<group>";
@@ -1059,6 +1062,7 @@
 				FF7D0CFA27CE7C5400A828C7 /* Introduction.swift in Sources */,
 				FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */,
 				FF52855B2816BE0A004D2AB1 /* Interlocutors.swift in Sources */,
+				FFDF45AB2822E84A005A0A0B /* TabViewModel.swift in Sources */,
 				FF4C980027FF0711009CB60D /* ProfileEditing.swift in Sources */,
 				FF97308827FDAAD100A7BF3F /* ProfileService.swift in Sources */,
 				FF0E6549281F297E003A3F6F /* TextMessageContent.swift in Sources */,

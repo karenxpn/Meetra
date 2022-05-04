@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct CustomTabBar: View {
-    @Binding var currentTab: Int
+    @EnvironmentObject var tabViewModel: TabViewModel
     @State private var tab: Bool = true
     let icons = ["place_icon", "profiles_icon", "chat_icon", "account_icon"]
     
@@ -22,28 +22,45 @@ struct CustomTabBar: View {
                         .fill(.white)
                         .cornerRadius(35, corners: [.topLeft, .topRight])
                         .shadow(radius: 2)
-
+                    
                     HStack {
                         
                         ForEach ( 0..<icons.count, id: \.self ) { id in
                             
                             Spacer()
-                            Image(icons[id])
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(id == currentTab ? AppColors.accentColor : .black)
-                                .frame(width: 28, height: 28)
-                                .padding(10)
-                                .onTapGesture {
-                                    withAnimation {
-                                        currentTab = id
+                            
+                            ZStack( alignment: .topTrailing ) {
+                                Image(icons[id])
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .foregroundColor(id == tabViewModel.currentTab ? AppColors.accentColor : .black)
+                                    .frame(width: 28, height: 28)
+                                
+                                
+                                if id == 2 && tabViewModel.hasUnreadMessage {
+                                    ZStack {
+                                        Circle()
+                                            .fill(.white)
+                                            .frame(width: 10, height: 10)
+                                        
+                                        Circle()
+                                            .fill(.red)
+                                            .frame(width: 5, height: 5)
                                     }
                                 }
+                                
+                            }.padding(10)
+                            .onTapGesture {
+                                withAnimation {
+                                    tabViewModel.currentTab = id
+                                }
+                            }
+                            
                             Spacer()
                         }
                         
                     }.frame(minWidth: 0, maxWidth: .infinity)
-                    .padding(10)
+                        .padding(10)
                 }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: UIScreen.main.bounds.size.height * 0.1)
             } else {
                 EmptyView()
@@ -60,6 +77,7 @@ struct CustomTabBar: View {
 
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTabBar(currentTab: .constant( 0 ))
+        CustomTabBar()
+            .environmentObject(TabViewModel())
     }
 }

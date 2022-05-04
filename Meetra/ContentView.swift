@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("token") private var token: String = ""
-    @State private var currentTab: Int = 0
+    @StateObject private var tabViewModel = TabViewModel()
     
     init() {
         let newAppearance = UINavigationBarAppearance()
@@ -55,22 +55,23 @@ struct ContentView: View {
 
             VStack {
 
-                if currentTab == 0 {
+                if tabViewModel.currentTab == 0 {
                     Places()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                } else if currentTab == 1 {
+                } else if tabViewModel.currentTab == 1 {
                     Swipes()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                } else if currentTab == 2 {
+                } else if tabViewModel.currentTab == 2 {
                     Chats()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                } else if currentTab == 3 {
+                } else if tabViewModel.currentTab == 3 {
                     Profile()
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 }
             }
 
-            CustomTabBar( currentTab: $currentTab )
+            CustomTabBar()
+                .environmentObject(tabViewModel)
 
         }.edgesIgnoringSafeArea(.bottom)
     }
