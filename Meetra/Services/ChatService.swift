@@ -15,6 +15,7 @@ protocol ChatServiceProtocol {
     
     func fetchChatId(userId: Int) -> AnyPublisher<DataResponse<GetChatIdResponse, NetworkError>, Never>
     func fetchChatMessages(roomID: Int, messageID: Int) -> AnyPublisher<DataResponse<MessagesListModel, NetworkError>, Never>
+    func fetchSignedURL() -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never>
 }
 
 class ChatService {
@@ -23,6 +24,11 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    func fetchSignedURL() -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)signedURL")!
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: GetSignedUrlResponse.self)
+    }
+    
     func fetchChatMessages(roomID: Int, messageID: Int) -> AnyPublisher<DataResponse<MessagesListModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)messages")!
         return AlamofireAPIHelper.shared.post_patchRequest(params: ["chatId" : roomID,

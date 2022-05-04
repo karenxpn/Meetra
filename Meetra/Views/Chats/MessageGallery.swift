@@ -11,7 +11,7 @@ import PhotosUI
 
 struct MessageGallery: UIViewControllerRepresentable {
     
-    let action: ((String, String) -> Void)
+    let action: ((String, Data) -> Void)
     
     func makeCoordinator() -> Coordinator {
         return MessageGallery.Coordinator( parent: self)
@@ -74,9 +74,9 @@ struct MessageGallery: UIViewControllerRepresentable {
             if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { (img, error) in
                     if let uiimage = img as? UIImage {
-                        if let imageData = uiimage.jpegData(compressionQuality: 0.4) {
+                        if let imageData = uiimage.jpegData(compressionQuality: 0.7) {
                             DispatchQueue.main.async {
-                                self.parent.action("photo", imageData.base64EncodedString())
+                                self.parent.action("photo", imageData)
                             }
                         }
                     }
@@ -94,7 +94,7 @@ struct MessageGallery: UIViewControllerRepresentable {
                 
                 if let data = try? Data(contentsOf: URL(fileURLWithPath: url.path)) {
                     DispatchQueue.main.async {
-                        self.parent.action("video", data.base64EncodedString())
+                        self.parent.action("video", data)
                     }
                 }
             }

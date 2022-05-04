@@ -21,6 +21,9 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @Published var messages = [MessageViewModel]()
     @Published var lastMessageID: Int = 0
     
+    @Published var mediaBinaryData = Data(count: 0)
+    @Published var signedURL: String = ""
+    @Published var pendingMedia: MessageViewModel?
     
     // message
     @Published var message: String = ""
@@ -52,10 +55,6 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
         }
     }
     
-    deinit {
-        print("deinit of room view model")
-    }
-    
     func getChatId() {
         loading = true
         dataManager.fetchChatId(userId: userID)
@@ -83,6 +82,30 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                     if !messages.isEmpty {
                         self.lastMessageID = self.messages[0].id
                     }
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func getSignedURL() {
+        dataManager.fetchSignedURL()
+            .sink { response in
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.signedURL = response.value!.url
+                    let message = response.value!.message
+                    
+                    self.pendingMedia = MessageViewModel(message: message)
+                    self.pendingMedia?.content = self.mediaBinaryData.base64EncodedString()
+                    
+                    // update last message id
+                    // and insert to the front of messages list
+                    self.lastMessageID = message.id
+                    self.messages.insert(self.pendingMedia!, at: 0)
+                    
+                    /// upload to s3 using this signed url and as soon as the response is available
+                    /// remove pending media message and insert new one( or just replace content with url )
+                    
                 }
             }.store(in: &cancellableSet)
     }

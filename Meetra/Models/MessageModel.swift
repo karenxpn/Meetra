@@ -56,7 +56,11 @@ struct MessageViewModel: Identifiable {
         return newDate == currentDate ? NSLocalizedString("now", comment: "") : string
     }
     
-    var content: String     { self.message.message}
+    var content: String {
+        get { self.message.message }
+        set { self.message.message = newValue }
+    }
+    
     var type: String        { self.message.type }
     var status: String      { self.message.status }
     var sender: MessageSenderModel  { self.message.sender }
