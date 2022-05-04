@@ -31,7 +31,7 @@ struct MessageBar: View {
             
             if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 Button {
-                    roomVM.sendMessage(content: roomVM.message)
+                    roomVM.sendTextMessage()
                 } label: {
                     Image("icon_send_message")
                         .padding([.trailing, .vertical], 20)
@@ -59,7 +59,7 @@ struct MessageBar: View {
 
             }.sheet(isPresented: $openGallery) {
                 MessageGallery { content_type, content in
-                    roomVM.sendMessage(type: content_type, content: content)
+//                    roomVM.sendMessage(type: content_type, content: content)
                 }
             }
     }
