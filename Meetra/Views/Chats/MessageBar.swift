@@ -11,10 +11,13 @@ struct MessageBar: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     @EnvironmentObject var roomVM: ChatRoomViewModel
     
+    @State private var openAttachment: Bool = false
+    @State private var openGallery: Bool = false
+    
     var body: some View {
         HStack {
             Button {
-                
+                openAttachment.toggle()
             } label: {
                 Image("icon_attachment")
                     .padding([.leading, .vertical], 20)
@@ -28,7 +31,7 @@ struct MessageBar: View {
             
             if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 Button {
-                    roomVM.sendTextMessage()
+                    roomVM.sendMessage(content: roomVM.message)
                 } label: {
                     Image("icon_send_message")
                         .padding([.trailing, .vertical], 20)
@@ -47,6 +50,18 @@ struct MessageBar: View {
             .cornerRadius([.topLeft, .topRight], 35)
             .shadow(color: Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
             .KeyboardAwarePadding()
+            .confirmationDialog("", isPresented: $openAttachment, titleVisibility: .hidden) {
+                Button {
+                    openGallery.toggle()
+                } label: {
+                    Text(NSLocalizedString("loadFromGallery", comment: ""))
+                }
+
+            }.sheet(isPresented: $openGallery) {
+                MessageGallery { content_type, content in
+                    roomVM.sendMessage(type: content_type, content: content)
+                }
+            }
     }
 }
 

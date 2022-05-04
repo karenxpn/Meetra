@@ -93,8 +93,8 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
         // mark all messages as read
     }
     
-    func sendTextMessage() {
-        socketManager.sendMessage(chatID: chatID, type: "text", content: message) {
+    func sendMessage(type: String = "text", content: String) {
+        socketManager.sendMessage(chatID: chatID, type: type, content: content) {
             // do smth
             self.message = ""
         }

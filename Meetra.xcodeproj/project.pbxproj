@@ -162,6 +162,8 @@
 		FFDE786127F330F30036B098 /* UserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE786027F330F30036B098 /* UserViewModelTests.swift */; };
 		FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE786227F35E450036B098 /* FriendRequestSentNotification.swift */; };
 		FFDF45AB2822E84A005A0A0B /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF45AA2822E84A005A0A0B /* TabViewModel.swift */; };
+		FFED57BA2822F12A00E828F2 /* MessageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57B92822F12A00E828F2 /* MessageGallery.swift */; };
+		FFED57BC2822F81B00E828F2 /* PhotoMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57BB2822F81B00E828F2 /* PhotoMessageContent.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* Gallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -349,6 +351,8 @@
 		FFDE786027F330F30036B098 /* UserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelTests.swift; sourceTree = "<group>"; };
 		FFDE786227F35E450036B098 /* FriendRequestSentNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestSentNotification.swift; sourceTree = "<group>"; };
 		FFDF45AA2822E84A005A0A0B /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		FFED57B92822F12A00E828F2 /* MessageGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGallery.swift; sourceTree = "<group>"; };
+		FFED57BB2822F81B00E828F2 /* PhotoMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMessageContent.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -464,6 +468,8 @@
 				FF0E6544281EE6F4003A3F6F /* MessageCell.swift */,
 				FF0E6546281F26D9003A3F6F /* MessageContent.swift */,
 				FF0E6548281F297E003A3F6F /* TextMessageContent.swift */,
+				FFED57BB2822F81B00E828F2 /* PhotoMessageContent.swift */,
+				FFED57B92822F12A00E828F2 /* MessageGallery.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -1044,6 +1050,7 @@
 				FF4C980E27FF4A10009CB60D /* EditOccupation.swift in Sources */,
 				FFB7989A280049C00040A9E8 /* EditEducation.swift in Sources */,
 				FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */,
+				FFED57BA2822F12A00E828F2 /* MessageGallery.swift in Sources */,
 				FF0E6547281F26D9003A3F6F /* MessageContent.swift in Sources */,
 				FF36400127EFD7D80057D605 /* UserModel.swift in Sources */,
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
@@ -1053,6 +1060,7 @@
 				FF52856F281761CB004D2AB1 /* ChatRoom.swift in Sources */,
 				FFBF26D4281DCB7B002668D5 /* OnlineResponseModel.swift in Sources */,
 				FF52855F2816C92E004D2AB1 /* InterlocutorsListModel.swift in Sources */,
+				FFED57BC2822F81B00E828F2 /* PhotoMessageContent.swift in Sources */,
 				FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */,
 				FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */,
 				FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */,
