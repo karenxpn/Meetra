@@ -165,6 +165,7 @@
 		FFED57BA2822F12A00E828F2 /* MessageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57B92822F12A00E828F2 /* MessageGallery.swift */; };
 		FFED57BC2822F81B00E828F2 /* PhotoMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57BB2822F81B00E828F2 /* PhotoMessageContent.swift */; };
 		FFED57BE2822FAB800E828F2 /* VideoMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57BD2822FAB800E828F2 /* VideoMessageContent.swift */; };
+		FFED57C0282305E800E828F2 /* TemporaryMediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57BF282305E800E828F2 /* TemporaryMediaFile.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* Gallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -355,6 +356,7 @@
 		FFED57B92822F12A00E828F2 /* MessageGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGallery.swift; sourceTree = "<group>"; };
 		FFED57BB2822F81B00E828F2 /* PhotoMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMessageContent.swift; sourceTree = "<group>"; };
 		FFED57BD2822FAB800E828F2 /* VideoMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessageContent.swift; sourceTree = "<group>"; };
+		FFED57BF282305E800E828F2 /* TemporaryMediaFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryMediaFile.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				FF7D0D1127CE889D00A828C7 /* GetTapLocation.swift */,
 				FF36400827F0BA170057D605 /* AppPreviewModels.swift */,
 				FF1350A928206320008BBD0A /* KeyboardAwareModifier.swift */,
+				FFED57BF282305E800E828F2 /* TemporaryMediaFile.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1033,6 +1036,7 @@
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
 				FF5285612816C9D9004D2AB1 /* ChatListModel.swift in Sources */,
 				FF4C980827FF124E009CB60D /* ProfileSpecs.swift in Sources */,
+				FFED57C0282305E800E828F2 /* TemporaryMediaFile.swift in Sources */,
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
 				FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */,
 				FFB798A4280081600040A9E8 /* ProfilePreviewInnerView.swift in Sources */,

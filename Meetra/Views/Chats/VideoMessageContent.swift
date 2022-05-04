@@ -47,10 +47,21 @@ struct VideoMessageContent: View {
                            height: UIScreen.main.bounds.height * 0.4)
                     .scaledToFit()
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    // view here
+                // view here
             } else {
-                // store video locally and present it
+                let data = Data(base64Encoded: message.content, options: .ignoreUnknownCharacters)
+                if let data = data {
+                    let tempFile = TemporaryMediaFile(withData: data)
+                    if let asset = tempFile.avAsset {
+                        VideoPlayer(player: AVPlayer(playerItem: AVPlayerItem(asset: asset)))
+                    }
+                }
 
+//                if let asset = data?.getAVAsset() {
+//                    VideoPlayer(player: AVPlayer(playerItem: AVPlayerItem(asset: asset)))
+//                }
+                
+                
             }
         }.padding(.vertical, 12)
             .padding(.horizontal, 15)

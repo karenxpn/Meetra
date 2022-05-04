@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AVKit
 
 
 extension UIApplication {
@@ -171,5 +172,16 @@ extension Array
             sourceIndex = nextSourceIndex
         }
         while sourceIndex != destinationIndex
+    }
+}
+
+extension Data {
+    func getAVAsset() -> AVAsset {
+        let directory = NSTemporaryDirectory()
+        let fileName = "\(NSUUID().uuidString).mov"
+        let fullURL = NSURL.fileURL(withPathComponents: [directory, fileName])
+        try! self.write(to: fullURL!)
+        let asset = AVAsset(url: fullURL!)
+        return asset
     }
 }
