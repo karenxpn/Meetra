@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
 import Combine
 
 class TabViewModel: ObservableObject {
+    @AppStorage("userId") private var userID: Int = 0
+
     @Published var currentTab: Int = 0
-    @Published var hasUnreadMessage: Bool = true
+    @Published var hasUnreadMessage: Bool = false
     
     var socketManager: AppSocketManagerProtocol
     
@@ -21,9 +24,8 @@ class TabViewModel: ObservableObject {
     }
     
     func getUnreadMessageResponse() {
-        socketManager.fetchTabViewUnreadMessage { response in
+        socketManager.fetchTabViewUnreadMessage(userID: userID) { response in
             self.hasUnreadMessage = response
         }
     }
-
 }
