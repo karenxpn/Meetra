@@ -108,8 +108,11 @@ class ChatViewModel: AlertViewModel, ObservableObject {
         socketManager.fetchChatListUpdates(userID: userID) { response in
             if let index = self.chats.firstIndex(where: {$0.id == response.id }) {
                 withAnimation {
+                    if self.chats[index].message.id != response.message.id {
+                        self.chats.move(from: index, to: 0)
+                    }
+                    
                     self.chats[index] = ChatModelViewModel(chat: response)
-                    self.chats.move(from: index, to: 0)
                 }
             }
         }
