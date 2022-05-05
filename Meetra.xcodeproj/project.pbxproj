@@ -167,6 +167,9 @@
 		FFED57BE2822FAB800E828F2 /* VideoMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57BD2822FAB800E828F2 /* VideoMessageContent.swift */; };
 		FFED57C0282305E800E828F2 /* TemporaryMediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57BF282305E800E828F2 /* TemporaryMediaFile.swift */; };
 		FFED57C2282342DC00E828F2 /* GetSignedUrlResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57C1282342DB00E828F2 /* GetSignedUrlResponse.swift */; };
+		FFED57FE28244A8F00E828F2 /* AVPlayerControllerRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57FD28244A8F00E828F2 /* AVPlayerControllerRepresented.swift */; };
+		FFED580028244CA000E828F2 /* GetSignedUrlRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57FF28244CA000E828F2 /* GetSignedUrlRequest.swift */; };
+		FFED580228244ECA00E828F2 /* PendingFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED580128244ECA00E828F2 /* PendingFileModel.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* Gallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -359,6 +362,9 @@
 		FFED57BD2822FAB800E828F2 /* VideoMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessageContent.swift; sourceTree = "<group>"; };
 		FFED57BF282305E800E828F2 /* TemporaryMediaFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryMediaFile.swift; sourceTree = "<group>"; };
 		FFED57C1282342DB00E828F2 /* GetSignedUrlResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSignedUrlResponse.swift; sourceTree = "<group>"; };
+		FFED57FD28244A8F00E828F2 /* AVPlayerControllerRepresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerControllerRepresented.swift; sourceTree = "<group>"; };
+		FFED57FF28244CA000E828F2 /* GetSignedUrlRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSignedUrlRequest.swift; sourceTree = "<group>"; };
+		FFED580128244ECA00E828F2 /* PendingFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingFileModel.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -539,6 +545,7 @@
 				FF36400827F0BA170057D605 /* AppPreviewModels.swift */,
 				FF1350A928206320008BBD0A /* KeyboardAwareModifier.swift */,
 				FFED57BF282305E800E828F2 /* TemporaryMediaFile.swift */,
+				FFED57FD28244A8F00E828F2 /* AVPlayerControllerRepresented.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -620,6 +627,8 @@
 				FFBF26D3281DCB7B002668D5 /* OnlineResponseModel.swift */,
 				FFBF26D7281EB953002668D5 /* MessageModel.swift */,
 				FFED57C1282342DB00E828F2 /* GetSignedUrlResponse.swift */,
+				FFED57FF28244CA000E828F2 /* GetSignedUrlRequest.swift */,
+				FFED580128244ECA00E828F2 /* PendingFileModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1052,6 +1061,7 @@
 				FF61D41827F7867600FB9A23 /* AlamofireAPIHelper.swift in Sources */,
 				FF97308627FDAAB900A7BF3F /* Profile.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
+				FFED580228244ECA00E828F2 /* PendingFileModel.swift in Sources */,
 				FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */,
 				FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */,
 				FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */,
@@ -1063,6 +1073,7 @@
 				FFED57BA2822F12A00E828F2 /* MessageGallery.swift in Sources */,
 				FF0E6547281F26D9003A3F6F /* MessageContent.swift in Sources */,
 				FF36400127EFD7D80057D605 /* UserModel.swift in Sources */,
+				FFED580028244CA000E828F2 /* GetSignedUrlRequest.swift in Sources */,
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
 				FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */,
@@ -1110,6 +1121,7 @@
 				FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */,
 				FFB7989E28004C230040A9E8 /* ButtonHelper.swift in Sources */,
 				FF537E90280E163C0020BE2C /* ActionButtonHelper.swift in Sources */,
+				FFED57FE28244A8F00E828F2 /* AVPlayerControllerRepresented.swift in Sources */,
 				FF61D40227F4C02900FB9A23 /* SwipeButtonHelper.swift in Sources */,
 				FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */,
 				FF7D0D2327D006E900A828C7 /* GlobalResponse.swift in Sources */,

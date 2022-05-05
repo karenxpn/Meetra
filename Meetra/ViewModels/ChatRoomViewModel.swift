@@ -10,6 +10,8 @@ import Combine
 import SwiftUI
 
 class ChatRoomViewModel: AlertViewModel, ObservableObject {
+    @AppStorage( "pending_files") private var localStorePendingFiles: Data = Data()
+    
     
     @Published var typing: Bool = false
     
@@ -29,6 +31,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @Published var message: String = ""
     
     private var cancellableSet: Set<AnyCancellable> = []
+    private let userDefaults = UserDefaults.standard
     
     var chatID: Int
     var userID: Int
@@ -86,23 +89,31 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
             }.store(in: &cancellableSet)
     }
     
-    func getSignedURL() {
-        dataManager.fetchSignedURL()
+    func getSignedURL(content_type: String) {
+        dataManager.fetchSignedURL(key: Date().millisecondsSince1970, chatID: chatID,content_type: content_type)
             .sink { response in
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
                     self.signedURL = response.value!.url
+                    
+                    // --------------- creating message locally -------------------
                     let message = response.value!.message
-                    
                     self.pendingMedia = MessageViewModel(message: message)
-                    self.pendingMedia?.content = self.mediaBinaryData.base64EncodedString()
                     
-                    // update last message id
-                    // and insert to the front of messages list
-                    self.lastMessageID = message.id
-                    self.messages.insert(self.pendingMedia!, at: 0)
-                    
+                    // here should be the url from my local storage
+                    self.dataManager.storeLocalFile(withData: self.mediaBinaryData, messageID: message.id, type: content_type) {
+                        
+                        // ------------------ get stored image for current message is ------------------
+                        if let pendingURLs = try? JSONDecoder().decode([PendingFileModel].self, from: self.localStorePendingFiles) {
+                            let mediaURL = pendingURLs.first(where: {$0.messageID == message.id})?.url
+                            self.pendingMedia?.content = content_type == "video" ? (mediaURL?.absoluteString ?? "") : (mediaURL?.path ?? "")
+                            
+                            self.lastMessageID = message.id
+                            self.messages.insert(self.pendingMedia!, at: 0)
+                        }
+                    }
+
                     /// upload to s3 using this signed url and as soon as the response is available
                     /// remove pending media message and insert new one( or just replace content with url )
                     

@@ -8,28 +8,43 @@
 import Foundation
 import Foundation
 import AVKit
+import SwiftUI
 
 class TemporaryMediaFile {
-    var url: URL?
+    @AppStorage( "pending_files") private var localStorePendingFiles: Data = Data()
 
-    init(withData: Data) {
+    var url: URL?
+    var messageID: Int
+    var type: String
+
+    init(withData: Data, messageID: Int, type: String) {
         let directory = FileManager.default.temporaryDirectory
-        let fileName = "\(NSUUID().uuidString).mov"
+        let fileName = "\(NSUUID().uuidString).\(type == "video" ? "mov" : "jpg")"
         let url = directory.appendingPathComponent(fileName)
+        
+        self.messageID = messageID
+        self.type = type
+        
         do {
             try withData.write(to: url)
             self.url = url
+                        
+            // store url and message id locally
+            if var pendingURLs = try? JSONDecoder().decode([PendingFileModel].self, from: localStorePendingFiles) {
+                pendingURLs.append(PendingFileModel(url: url, messageID: messageID))
+                
+                if let newData = try? JSONEncoder().encode(pendingURLs) {
+                    localStorePendingFiles = newData
+                }
+            }
+//            let userDefaults = UserDefaults.standard
+//            let pendingData = userDefaults.data(forKey: "pendingFiles")!
+//            var pendingURLs = try! PropertyListDecoder().decode([PendingFileModel].self, from: pendingData)
+//
+//            userDefaults.set(pendingURLs, forKey: "pendingFiles")
         } catch {
             print("Error creating temporary file: \(error)")
         }
-    }
-
-    public var avAsset: AVAsset? {
-        if let url = self.url {
-            return AVAsset(url: url)
-        }
-
-        return nil
     }
 
     public func deleteFile() {
@@ -43,7 +58,7 @@ class TemporaryMediaFile {
         }
     }
 
-    deinit {
-        self.deleteFile()
-    }
+//    deinit {
+//        self.deleteFile()
+//    }
 }

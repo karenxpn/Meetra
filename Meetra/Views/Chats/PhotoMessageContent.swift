@@ -27,12 +27,22 @@ struct PhotoMessageContent: View {
                 ImageHelper(image: message.content, contentMode: .fill)
                     .frame(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height * 0.4)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    // view here
+                // view here
             } else {
-                Image(base64String: message.content)?.resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height * 0.4)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                if message.status == "pending" && message.sender.id == userID {
+                    
+                    if let data = try? Data(contentsOf: URL(fileURLWithPath: message.content)), let uiImage = UIImage(data: data) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height * 0.4)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+//                            .overlay {
+//                                ProgressView()
+//                            }
+                    }
+                }
+                
             }
         }.padding(.vertical, 12)
             .padding(.horizontal, 15)

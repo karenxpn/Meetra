@@ -8,21 +8,6 @@
 import SwiftUI
 import AVKit
 
-struct AVPlayerControllerRepresented : UIViewControllerRepresentable {
-    var player : AVPlayer
-    
-    func makeUIViewController(context: Context) -> AVPlayerViewController {
-        let controller = AVPlayerViewController()
-        controller.player = player
-        controller.showsPlaybackControls = false
-        return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
-        
-    }
-}
-
 struct VideoMessageContent: View {
     @AppStorage("userId") private var userID: Int = 0
     let message: MessageViewModel
@@ -49,19 +34,18 @@ struct VideoMessageContent: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 // view here
             } else {
-                let data = Data(base64Encoded: message.content, options: .ignoreUnknownCharacters)
-                if let data = data {
-                    let tempFile = TemporaryMediaFile(withData: data)
-                    if let asset = tempFile.avAsset {
-                        VideoPlayer(player: AVPlayer(playerItem: AVPlayerItem(asset: asset)))
-                    }
+                
+                if message.status == "pending" && message.sender.id == userID {
+                    let asset = AVAsset(url: URL(string: message.content)!)
+                    VideoPlayer(player: AVPlayer(playerItem: AVPlayerItem(asset: asset)))
+                        .frame(width: UIScreen.main.bounds.width * 0.5,
+                               height: UIScreen.main.bounds.height * 0.4)
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+//                        .overlay {
+//                            ProgressView()
+//                        }
                 }
-
-//                if let asset = data?.getAVAsset() {
-//                    VideoPlayer(player: AVPlayer(playerItem: AVPlayerItem(asset: asset)))
-//                }
-                
-                
             }
         }.padding(.vertical, 12)
             .padding(.horizontal, 15)

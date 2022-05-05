@@ -60,7 +60,7 @@ struct MessageBar: View {
             }.sheet(isPresented: $openGallery) {
                 MessageGallery { content_type, content in
                     roomVM.mediaBinaryData = content
-//                    roomVM.sendMessage(type: content_type, content: content)
+                    roomVM.getSignedURL(content_type: content_type)
                 }
             }
     }

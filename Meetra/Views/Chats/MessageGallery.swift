@@ -11,7 +11,7 @@ import PhotosUI
 
 struct MessageGallery: UIViewControllerRepresentable {
     
-    let action: ((String, Data) -> Void)
+    let handler: ((String, Data) -> Void)
     
     func makeCoordinator() -> Coordinator {
         return MessageGallery.Coordinator( parent: self)
@@ -53,15 +53,15 @@ struct MessageGallery: UIViewControllerRepresentable {
                     else { continue }
                     
                     if utType.conforms(to: .image) {
-                        self.getPhoto(from: itemProvider)
+                        self.getPhoto(from: itemProvider, typeIdentifier: typeIdentifier)
                     } else if utType.conforms(to: .movie) {
                         self.getVideo(from: itemProvider, typeIdentifier: typeIdentifier)
                     }  else {
-                        self.getPhoto(from: itemProvider)
+                        self.getPhoto(from: itemProvider, typeIdentifier: typeIdentifier)
                     }
 
                     DispatchQueue.main.async {
-                        picker.dismiss()
+                        picker.dismiss(animated: true)
                     }
                 }
                 
@@ -70,18 +70,35 @@ struct MessageGallery: UIViewControllerRepresentable {
             }
         }
         
-        private func getPhoto(from itemProvider: NSItemProvider) {
-            if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                itemProvider.loadObject(ofClass: UIImage.self) { (img, error) in
-                    if let uiimage = img as? UIImage {
-                        if let imageData = uiimage.jpegData(compressionQuality: 0.7) {
-                            DispatchQueue.main.async {
-                                self.parent.action("photo", imageData)
-                            }
-                        }
+        private func getPhoto(from itemProvider: NSItemProvider, typeIdentifier: String) {
+            
+            itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { url, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                guard let url = url else { return }
+                print("path= \(url.path)")
+                print("URL = \(url.absoluteString)")
+                
+                if let data = try? Data(contentsOf: URL(fileURLWithPath: url.path)) {
+                    DispatchQueue.main.async {
+                        self.parent.handler("photo", data)
                     }
                 }
             }
+            
+//            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+//                itemProvider.loadObject(ofClass: UIImage.self) { (img, error) in
+//                    if let uiimage = img as? UIImage {
+//                        if let imageData = uiimage.jpegData(compressionQuality: 0.7) {
+//                            DispatchQueue.main.async {
+//                                self.parent.action("photo", imageData)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
         }
         
         private func getVideo(from itemProvider: NSItemProvider, typeIdentifier: String) {
@@ -94,7 +111,7 @@ struct MessageGallery: UIViewControllerRepresentable {
                 
                 if let data = try? Data(contentsOf: URL(fileURLWithPath: url.path)) {
                     DispatchQueue.main.async {
-                        self.parent.action("video", data)
+                        self.parent.handler("video", data)
                     }
                 }
             }
