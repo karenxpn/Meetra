@@ -62,6 +62,10 @@ struct MessageViewModel: Identifiable {
     }
     
     var type: String        { self.message.type }
-    var status: String      { self.message.status }
+    var status: String {
+        get { self.message.status }
+        set { self.message.status = newValue }
+        
+    }
     var sender: MessageSenderModel  { self.message.sender }
 }

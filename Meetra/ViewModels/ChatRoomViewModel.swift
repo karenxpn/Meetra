@@ -99,26 +99,41 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                     
                     // --------------- creating message locally -------------------
                     let message = response.value!.message
+                    let urlForMedia = response.value!.message.message
                     self.pendingMedia = MessageViewModel(message: message)
                     
-                    // here should be the url from my local storage
-                    self.dataManager.storeLocalFile(withData: self.mediaBinaryData, messageID: message.id, type: content_type) {
-                        
-                        // ------------------ get stored image for current message is ------------------
-                        if let pendingURLs = try? JSONDecoder().decode([PendingFileModel].self, from: self.localStorePendingFiles) {
-                            let mediaURL = pendingURLs.first(where: {$0.messageID == message.id})?.url
-                            self.pendingMedia?.content = content_type == "video" ? (mediaURL?.absoluteString ?? "") : (mediaURL?.path ?? "")
-                            
-                            self.lastMessageID = message.id
-                            self.messages.insert(self.pendingMedia!, at: 0)
-                        }
-                    }
-
-                    /// upload to s3 using this signed url and as soon as the response is available
-                    /// remove pending media message and insert new one( or just replace content with url )
-                    
+                    self.storeMediaFile(content_type: content_type, messageID: message.id, serverMediaURL: urlForMedia)
                 }
             }.store(in: &cancellableSet)
+    }
+    
+    func storeMediaFile(content_type: String, messageID: Int, serverMediaURL: String) {
+        // here should be the url from my local storage
+        self.dataManager.storeLocalFile(withData: self.mediaBinaryData, messageID: messageID, type: content_type) {
+            
+            // ------------------ get stored image for current message id ------------------
+            if let pendingURLs = try? JSONDecoder().decode([PendingFileModel].self, from: self.localStorePendingFiles) {
+                let mediaURL = pendingURLs.first(where: {$0.messageID == messageID})?.url
+                self.pendingMedia?.content = content_type == "video" ? (mediaURL?.absoluteString ?? "") : (mediaURL?.path ?? "")
+                
+                // insert message to the front of array
+                self.lastMessageID = messageID
+                self.messages.insert(self.pendingMedia!, at: 0)
+                
+                // store file to server and on completion update message
+                self.dataManager.storeFileToServer(file: self.mediaBinaryData, url: self.signedURL, completion: { completion in
+                    if completion {
+                        
+                        self.messages[0].content = serverMediaURL
+                        self.messages[0].status = "sent"
+                        self.dataManager.removeLocalFile(url: mediaURL!, messageID: messageID) { }
+                    } else {
+                        print("failed to upload file to server")
+                        // show smth like failted to send file
+                    }
+                })
+            }
+        }
     }
     
     func joinGetMessagesListenEventsOnInit() {

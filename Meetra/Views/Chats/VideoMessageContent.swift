@@ -42,9 +42,9 @@ struct VideoMessageContent: View {
                                height: UIScreen.main.bounds.height * 0.4)
                         .scaledToFit()
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-//                        .overlay {
-//                            ProgressView()
-//                        }
+                        .overlay {
+                            ProgressView()
+                        }
                 }
             }
         }.padding(.vertical, 12)

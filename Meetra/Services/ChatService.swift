@@ -18,6 +18,8 @@ protocol ChatServiceProtocol {
     func fetchChatMessages(roomID: Int, messageID: Int) -> AnyPublisher<DataResponse<MessagesListModel, NetworkError>, Never>
     func fetchSignedURL(key: Int64, chatID: Int, content_type: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never>
     func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping() -> ())
+    func storeFileToServer(file: Data, url: String, completion: @escaping(Bool) -> ())
+    func removeLocalFile(url: URL, messageID: Int, completion: @escaping() -> ())
 }
 
 class ChatService {
@@ -26,6 +28,48 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    func removeLocalFile(url: URL, messageID: Int, completion: @escaping () -> ()) {
+        @AppStorage( "pending_files") var localStorePendingFiles: Data = Data()
+
+        do {
+            try FileManager.default.removeItem(at: url)
+            var pendingURLs: [PendingFileModel] = {
+                do {
+                    return try JSONDecoder().decode([PendingFileModel].self, from: localStorePendingFiles)
+                } catch {
+                    return []
+                }
+            }()
+                        
+            pendingURLs.removeAll(where: {$0.messageID == messageID})
+            
+            if let newData = try? JSONEncoder().encode(pendingURLs) {
+                localStorePendingFiles = newData
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+            
+        } catch {
+            print("Error creating temporary file: \(error)")
+        }
+    }
+    
+    func storeFileToServer(file: Data, url: String, completion: @escaping(Bool) -> ()) {
+        AF.upload(file, to: url, method: .put).response { response in
+            if response.error != nil {
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(true)
+            }
+        }
+    }
+    
 
     func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping() -> ()) {
         @AppStorage( "pending_files") var localStorePendingFiles: Data = Data()
@@ -53,21 +97,6 @@ extension ChatService: ChatServiceProtocol {
                     completion()
                 }
             }
-            // store url and message id locally
-//            if let pendingURLsDecoded = try? JSONDecoder().decode([PendingFileModel].self, from: localStorePendingFiles) {
-//                var pendingURLs = pendingURLsDecoded
-//                print("Decoded pending urls array = \(pendingURLs)")
-//                pendingURLs.append(PendingFileModel(url: url, messageID: messageID))
-//                print("New pending urls array = \(pendingURLs)")
-//
-//                if let newData = try? JSONEncoder().encode(pendingURLs) {
-//                    localStorePendingFiles = newData
-//
-//                    DispatchQueue.main.async {
-//                        completion()
-//                    }
-//                }
-//            }
         } catch {
             print("Error creating temporary file: \(error)")
         }

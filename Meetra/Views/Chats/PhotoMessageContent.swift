@@ -37,9 +37,9 @@ struct PhotoMessageContent: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height * 0.4)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
-//                            .overlay {
-//                                ProgressView()
-//                            }
+                            .overlay {
+                                ProgressView()
+                            }
                     }
                 }
                 

@@ -78,8 +78,6 @@ struct MessageGallery: UIViewControllerRepresentable {
                 }
                 
                 guard let url = url else { return }
-                print("path= \(url.path)")
-                print("URL = \(url.absoluteString)")
                 
                 if let data = try? Data(contentsOf: URL(fileURLWithPath: url.path)) {
                     DispatchQueue.main.async {
@@ -87,18 +85,6 @@ struct MessageGallery: UIViewControllerRepresentable {
                     }
                 }
             }
-            
-//            if itemProvider.canLoadObject(ofClass: UIImage.self) {
-//                itemProvider.loadObject(ofClass: UIImage.self) { (img, error) in
-//                    if let uiimage = img as? UIImage {
-//                        if let imageData = uiimage.jpegData(compressionQuality: 0.7) {
-//                            DispatchQueue.main.async {
-//                                self.parent.action("photo", imageData)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
         }
         
         private func getVideo(from itemProvider: NSItemProvider, typeIdentifier: String) {

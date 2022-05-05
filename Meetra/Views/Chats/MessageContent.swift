@@ -23,7 +23,6 @@ struct MessageContent: View {
         } else if message.type == "audio" {
             
         }
-        
     }
 }
 
