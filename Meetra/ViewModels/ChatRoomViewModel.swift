@@ -109,30 +109,28 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     
     func storeMediaFile(content_type: String, messageID: Int, serverMediaURL: String) {
         // here should be the url from my local storage
-        self.dataManager.storeLocalFile(withData: self.mediaBinaryData, messageID: messageID, type: content_type) {
+        self.dataManager.storeLocalFile(withData: self.mediaBinaryData, messageID: messageID, type: content_type) { pendingURLs in
             
             // ------------------ get stored image for current message id ------------------
-            if let pendingURLs = try? JSONDecoder().decode([PendingFileModel].self, from: self.localStorePendingFiles) {
-                let mediaURL = pendingURLs.first(where: {$0.messageID == messageID})?.url
-                self.pendingMedia?.content = content_type == "video" ? (mediaURL?.absoluteString ?? "") : (mediaURL?.path ?? "")
-                
-                // insert message to the front of array
-                self.lastMessageID = messageID
-                self.messages.insert(self.pendingMedia!, at: 0)
-                
-                // store file to server and on completion update message
-                self.dataManager.storeFileToServer(file: self.mediaBinaryData, url: self.signedURL, completion: { completion in
-                    if completion {
-                        
-                        self.messages[0].content = serverMediaURL
-                        self.messages[0].status = "sent"
-                        self.dataManager.removeLocalFile(url: mediaURL!, messageID: messageID) { }
-                    } else {
-                        print("failed to upload file to server")
-                        // show smth like failted to send file
-                    }
-                })
-            }
+            let mediaURL = pendingURLs.first(where: {$0.messageID == messageID})?.url
+            self.pendingMedia?.content = content_type == "video" ? (mediaURL?.absoluteString ?? "") : (mediaURL?.path ?? "")
+            
+            // insert message to the front of array
+            self.lastMessageID = messageID
+            self.messages.insert(self.pendingMedia!, at: 0)
+            
+            // store file to server and on completion update message
+            self.dataManager.storeFileToServer(file: self.mediaBinaryData, url: self.signedURL, completion: { completion in
+                if completion {
+                    
+                    self.messages[0].content = serverMediaURL
+                    self.messages[0].status = "sent"
+                    self.dataManager.removeLocalFile(url: mediaURL!, messageID: messageID) { }
+                } else {
+                    print("failed to upload file to server")
+                    // show smth like failted to send file
+                }
+            })
         }
     }
     

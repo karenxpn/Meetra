@@ -17,7 +17,7 @@ protocol ChatServiceProtocol {
     func fetchChatId(userId: Int) -> AnyPublisher<DataResponse<GetChatIdResponse, NetworkError>, Never>
     func fetchChatMessages(roomID: Int, messageID: Int) -> AnyPublisher<DataResponse<MessagesListModel, NetworkError>, Never>
     func fetchSignedURL(key: Int64, chatID: Int, content_type: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never>
-    func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping() -> ())
+    func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping([PendingFileModel]) -> ())
     func storeFileToServer(file: Data, url: String, completion: @escaping(Bool) -> ())
     func removeLocalFile(url: URL, messageID: Int, completion: @escaping() -> ())
 }
@@ -71,7 +71,7 @@ extension ChatService: ChatServiceProtocol {
     }
     
 
-    func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping() -> ()) {
+    func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping([PendingFileModel]) -> ()) {
         @AppStorage( "pending_files") var localStorePendingFiles: Data = Data()
 
         let directory = FileManager.default.temporaryDirectory
@@ -94,7 +94,7 @@ extension ChatService: ChatServiceProtocol {
                 localStorePendingFiles = newData
                 
                 DispatchQueue.main.async {
-                    completion()
+                    completion(pendingURLs)
                 }
             }
         } catch {
