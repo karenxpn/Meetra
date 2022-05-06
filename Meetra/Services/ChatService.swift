@@ -105,7 +105,8 @@ extension ChatService: ChatServiceProtocol {
     
     func fetchSignedURL(key: Int64, chatID: Int, content_type: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)messages/pre-signed-url")!
-        let params = GetSignedUrlRequest(key: "chat-\(chatID)/messages/message-\(key).png",
+        
+        let params = GetSignedUrlRequest(key: "chat-\(chatID)/messages/message-\(key).\(content_type == "video" ? "mov" : "png")",
                                          type: content_type,
                                          chatId: chatID)
         
