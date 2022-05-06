@@ -15,8 +15,11 @@ protocol ChatServiceProtocol {
     func fetchInterlocutors() -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never>
     
     func fetchChatId(userId: Int) -> AnyPublisher<DataResponse<GetChatIdResponse, NetworkError>, Never>
+    func fetchNewConversationResponse(roomID: Int) -> AnyPublisher<DataResponse<NewConversationResponse, NetworkError>, Never>
+    
     func fetchChatMessages(roomID: Int, messageID: Int) -> AnyPublisher<DataResponse<MessagesListModel, NetworkError>, Never>
     func fetchSignedURL(key: Int64, chatID: Int, content_type: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never>
+    
     func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping([PendingFileModel]) -> ())
     func storeFileToServer(file: Data, url: String, completion: @escaping(Bool) -> ())
     func removeLocalFile(url: URL, messageID: Int, completion: @escaping() -> ())
@@ -28,6 +31,11 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    func fetchNewConversationResponse(roomID: Int) -> AnyPublisher<DataResponse<NewConversationResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)chats/\(roomID)/new-conversation")!
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: NewConversationResponse.self)
+    }
+    
     func removeLocalFile(url: URL, messageID: Int, completion: @escaping () -> ()) {
         @AppStorage( "pending_files") var localStorePendingFiles: Data = Data()
 

@@ -169,6 +169,8 @@
 		FFED57FE28244A8F00E828F2 /* AVPlayerControllerRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57FD28244A8F00E828F2 /* AVPlayerControllerRepresented.swift */; };
 		FFED580028244CA000E828F2 /* GetSignedUrlRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57FF28244CA000E828F2 /* GetSignedUrlRequest.swift */; };
 		FFED580228244ECA00E828F2 /* PendingFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED580128244ECA00E828F2 /* PendingFileModel.swift */; };
+		FFED583A2825A35300E828F2 /* NewConversationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED58392825A35300E828F2 /* NewConversationResponse.swift */; };
+		FFED583C2825A4FD00E828F2 /* NewConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED583B2825A4FD00E828F2 /* NewConversation.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* Gallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -363,6 +365,8 @@
 		FFED57FD28244A8F00E828F2 /* AVPlayerControllerRepresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerControllerRepresented.swift; sourceTree = "<group>"; };
 		FFED57FF28244CA000E828F2 /* GetSignedUrlRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSignedUrlRequest.swift; sourceTree = "<group>"; };
 		FFED580128244ECA00E828F2 /* PendingFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingFileModel.swift; sourceTree = "<group>"; };
+		FFED58392825A35300E828F2 /* NewConversationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationResponse.swift; sourceTree = "<group>"; };
+		FFED583B2825A4FD00E828F2 /* NewConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversation.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -473,6 +477,7 @@
 				FF5285682816E6F8004D2AB1 /* InterlocutorsCell.swift */,
 				FF5285662816D918004D2AB1 /* ChatSearch.swift */,
 				FF52856E281761CB004D2AB1 /* ChatRoom.swift */,
+				FFED583B2825A4FD00E828F2 /* NewConversation.swift */,
 				FFBF26D9281EBA25002668D5 /* MessageBar.swift */,
 				FFBF26DB281EBEB2002668D5 /* MessagesList.swift */,
 				FF0E6544281EE6F4003A3F6F /* MessageCell.swift */,
@@ -626,6 +631,7 @@
 				FFED57C1282342DB00E828F2 /* GetSignedUrlResponse.swift */,
 				FFED57FF28244CA000E828F2 /* GetSignedUrlRequest.swift */,
 				FFED580128244ECA00E828F2 /* PendingFileModel.swift */,
+				FFED58392825A35300E828F2 /* NewConversationResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1031,6 +1037,7 @@
 			files = (
 				FFD6372527E2413400F91AB6 /* NotificationsViewModel.swift in Sources */,
 				FF99154D2813385300CA2DFD /* ChangePhoneNumber.swift in Sources */,
+				FFED583A2825A35300E828F2 /* NewConversationResponse.swift in Sources */,
 				FFBF26D2281DC5F2002668D5 /* GetChatIdResponse.swift in Sources */,
 				FFB6D24D27EA34F5004FD5D3 /* Loading.swift in Sources */,
 				FFBF26D8281EB953002668D5 /* MessageModel.swift in Sources */,
@@ -1056,6 +1063,7 @@
 				FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */,
 				FF61D41827F7867600FB9A23 /* AlamofireAPIHelper.swift in Sources */,
 				FF97308627FDAAB900A7BF3F /* Profile.swift in Sources */,
+				FFED583C2825A4FD00E828F2 /* NewConversation.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
 				FFED580228244ECA00E828F2 /* PendingFileModel.swift in Sources */,
 				FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */,

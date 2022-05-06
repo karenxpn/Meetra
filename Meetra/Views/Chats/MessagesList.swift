@@ -33,7 +33,7 @@ struct MessagesList: View {
                     if roomVM.loading {
                         ProgressView()
                             .padding()
-                            .padding(.bottom, roomVM.messages.isEmpty ? UIScreen.main.bounds.height * 0.11 : 0)
+                            .padding(.top, roomVM.messages.isEmpty ? UIScreen.main.bounds.height * 0.11 : 0)
                     }
                 }.padding(.top, 20)
                 .onChange(of: roomVM.typing) { (_) in

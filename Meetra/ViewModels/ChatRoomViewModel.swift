@@ -27,6 +27,9 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @Published var signedURL: String = ""
     @Published var pendingMedia: MessageViewModel?
     
+    @Published var newConversation: Bool = false
+    @Published var newConversationResponse: NewConversationResponse?
+    
     // message
     @Published var message: String = ""
     
@@ -63,7 +66,6 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
         dataManager.fetchChatId(userId: userID)
             .sink { response in
                 self.loading = false
-                print(response)
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
@@ -82,8 +84,13 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                 if response.error == nil {
                     let messages = response.value!.messages
                     self.messages.append(contentsOf: messages.reversed().map(MessageViewModel.init))
+                    
                     if !messages.isEmpty {
                         self.lastMessageID = self.messages[0].id
+                    } else if messageID == 0 && messages.isEmpty {
+                        print("new conversation")
+                        self.newConversation = true
+                        self.getNewConversationResponse()
                     }
                 }
             }.store(in: &cancellableSet)
@@ -134,6 +141,19 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
         }
     }
     
+    func getNewConversationResponse() {
+        loading = true
+        dataManager.fetchNewConversationResponse(roomID: chatID)
+            .sink { response in
+                self.loading = false
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.newConversationResponse = response.value!
+                }
+            }.store(in: &cancellableSet)
+    }
+    
     func joinGetMessagesListenEventsOnInit() {
         getMessageList(messageID: 0)
         joinRoom()
@@ -150,6 +170,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     func getMessage() {
         socketManager.fetchMessage(chatID: chatID) { message in
             self.lastMessageID = message.id
+            self.newConversation = false
             withAnimation {
                 self.messages.insert(MessageViewModel(message: message), at: 0)
             }

@@ -71,3 +71,5 @@
 "nowOnline" = "Сейчас онлайн";
 "messageBarPlaceholder" = "Сообщение...";
 "loadFromGallery" = "Загрузить из галереи";
+"youFoundInterlocutor" = "Вы нашли собеседника! ";
+"writeFirstMessage" = "Напишите первое сообщение,\nчтобы начать общение";
