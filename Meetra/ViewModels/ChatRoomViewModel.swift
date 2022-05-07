@@ -124,7 +124,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
             
             // ------------------ get stored image for current message id ------------------
             let mediaURL = pendingURLs.first(where: {$0.messageID == messageID})?.url
-            self.pendingMedia?.content = content_type == "video" ? (mediaURL?.absoluteString ?? "") : (mediaURL?.path ?? "")
+            self.pendingMedia?.content = content_type == "photo" ? (mediaURL?.path ?? "") : (mediaURL?.absoluteString ?? "")
             
             // insert message to the front of array
             self.lastMessageID = messageID

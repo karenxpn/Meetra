@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AudioRecordingView: View {
     @EnvironmentObject var audioVM: AudioRecorderViewModel
+    @EnvironmentObject var roomVM: ChatRoomViewModel
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var duration: Int = 0
 
@@ -45,7 +46,12 @@ struct AudioRecordingView: View {
             
             
             Button {
+                audioVM.stopRecord()
+                timer.upstream.connect().cancel()
+                audioVM.showRecording = false
+                audioVM.recording = false
                 
+                sendAudio()
             } label: {
                 ZStack {
                     Circle()
@@ -64,6 +70,27 @@ struct AudioRecordingView: View {
             .onDisappear {
                 timer.upstream.connect().cancel()
             }
+    }
+    
+    func sendAudio() {
+        audioVM.getSignedURL(content_type: "audio", chatID: roomVM.chatID) { signedUrlResponse in
+            NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
+                        
+            do {
+                let data = try Data(contentsOf: audioVM.url)
+                
+                roomVM.mediaBinaryData = data
+                roomVM.signedURL = signedUrlResponse.url
+                
+                let message = signedUrlResponse.message
+                let urlForMedia = signedUrlResponse.message.message
+                roomVM.pendingMedia = MessageViewModel(message: message)
+                
+                roomVM.storeMediaFile(content_type: "audio", messageID: signedUrlResponse.message.id, serverMediaURL: urlForMedia)
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 

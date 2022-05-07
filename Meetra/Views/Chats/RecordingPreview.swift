@@ -64,26 +64,7 @@ struct RecordingPreview: View {
             }.frame(width: .greedy)
             
             Button {
-                audioVM.getSignedURL(content_type: "audio", chatID: roomVM.chatID) { signedUrlResponse in
-                    NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
-                    
-                    print(signedUrlResponse)
-                    
-                    do {
-                        let data = try Data(contentsOf: audioVM.url)
-                        
-                        roomVM.mediaBinaryData = data
-                        roomVM.signedURL = signedUrlResponse.url
-                        
-                        let message = signedUrlResponse.message
-                        let urlForMedia = signedUrlResponse.message.message
-                        roomVM.pendingMedia = MessageViewModel(message: message)
-                        
-                        roomVM.storeMediaFile(content_type: "audio", messageID: signedUrlResponse.message.id, serverMediaURL: urlForMedia)
-                    } catch {
-                        print(error)
-                    }
-                }
+                sendAudio()
             } label: {
                 Image("icon_send_message")
                     .padding(.vertical, 20)
@@ -97,6 +78,29 @@ struct RecordingPreview: View {
             .onAppear {
                 audioVM.visualizeAudio()
             }
+    }
+    
+    func sendAudio() {
+        audioVM.getSignedURL(content_type: "audio", chatID: roomVM.chatID) { signedUrlResponse in
+            NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
+            
+            print(signedUrlResponse)
+            
+            do {
+                let data = try Data(contentsOf: audioVM.url)
+                
+                roomVM.mediaBinaryData = data
+                roomVM.signedURL = signedUrlResponse.url
+                
+                let message = signedUrlResponse.message
+                let urlForMedia = signedUrlResponse.message.message
+                roomVM.pendingMedia = MessageViewModel(message: message)
+                
+                roomVM.storeMediaFile(content_type: "audio", messageID: signedUrlResponse.message.id, serverMediaURL: urlForMedia)
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 

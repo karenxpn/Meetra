@@ -8,6 +8,7 @@
 import Foundation
 import AVKit
 import AVFoundation
+import Combine
 
 class AudioRecorderViewModel: ObservableObject {
     // 1
@@ -25,10 +26,14 @@ class AudioRecorderViewModel: ObservableObject {
     @Published var audioDuration: Double = 0
     @Published var permissionStatus: AVAudioSession.RecordPermission
     
+    var dataManager: ChatServiceProtocol
+    private var cancellableSet: Set<AnyCancellable> = []
     
-    init() {
+    init(dataManager: ChatServiceProtocol = ChatService.shared) {
         
+        self.dataManager = dataManager
         // 3 request permission
+
         self.audioSession = AVAudioSession.sharedInstance()
         self.permissionStatus = self.audioSession.recordPermission
         
@@ -56,6 +61,16 @@ class AudioRecorderViewModel: ObservableObject {
         }
     }
     
+    func getSignedURL(content_type: String, chatID: Int, completion: @escaping (GetSignedUrlResponse) -> ()) {
+        dataManager.fetchSignedURL(key: Date().millisecondsSince1970, chatID: chatID,content_type: content_type)
+            .sink { response in
+                if response.error == nil {
+                    DispatchQueue.main.async {
+                        completion(response.value!)
+                    }
+                }
+            }.store(in: &cancellableSet)
+    }
     
     func recordAudio() {
         startMonitoring()
@@ -65,6 +80,7 @@ class AudioRecorderViewModel: ObservableObject {
     private func startMonitoring() {
         if let audioRecorder = audioRecorder {
             
+            audioDuration = 0
             audioRecorder.isMeteringEnabled = true
             audioRecorder.record()
             
@@ -98,7 +114,6 @@ class AudioRecorderViewModel: ObservableObject {
     func stopRecord() {
         if audioDuration > 2 {
             audioRecorder?.stop()
-            print(audioDuration)
             timer?.invalidate()
             
         }
