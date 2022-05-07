@@ -33,6 +33,8 @@ class AudioPlayViewModel: ObservableObject {
         self.url = url
         self.sample_count = sampels_count
         self.dataManager = dataManager
+        
+        visualizeAudio()
     }
     
     
@@ -121,7 +123,7 @@ class AudioPlayViewModel: ObservableObject {
     
     func visualizeAudio() {
         dataManager.buffer(url: url, samplesCount: sample_count) { results in
-            self.soundSamples.append(contentsOf: results)
+            self.soundSamples = results
         }
     }
     

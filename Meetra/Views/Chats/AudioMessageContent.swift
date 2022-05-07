@@ -53,8 +53,12 @@ struct AudioMessageContent: View {
                 }
                 
                 HStack(alignment: .bottom, spacing: 2) {
-                    ForEach(audioVM.soundSamples, id: \.self) { model in
-                        BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
+                    if audioVM.soundSamples.isEmpty {
+                        ProgressView()
+                    } else {
+                        ForEach(audioVM.soundSamples, id: \.self) { model in
+                            BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
+                        }
                     }
                 }.frame(width: UIScreen.main.bounds.width * 0.4)
                 
@@ -65,11 +69,6 @@ struct AudioMessageContent: View {
                 }
             }
         }.padding(.vertical, 8)
-            .onAppear {
-                if audioVM.soundSamples.isEmpty {
-                    audioVM.visualizeAudio()
-                }
-            }
     }
 }
 //
