@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct RecordingPreview: View {
+    @EnvironmentObject var roomVM: ChatRoomViewModel
     @StateObject var audioVM: AudioPlayViewModel
+    let url: URL
     
     init(url: URL) {
+        self.url = url
         _audioVM = StateObject(wrappedValue: AudioPlayViewModel(url: url))
     }
     
@@ -25,6 +28,7 @@ struct RecordingPreview: View {
         HStack( spacing: 10 ) {
             
             Button {
+                audioVM.pauseAudio()
                 audioVM.removeAudio()
             } label: {
                 Image("trash_icon")
@@ -62,16 +66,36 @@ struct RecordingPreview: View {
                     
                 }
             }.frame(width: .greedy)
-                        
+            
             Button {
-                
+                audioVM.getSignedURL(content_type: "audio", chatID: roomVM.chatID) { signedUrlResponse in
+                    NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
+                    
+                    print(signedUrlResponse)
+
+                    do {
+                        let data = try Data(contentsOf: audioVM.url)
+                        
+                        roomVM.mediaBinaryData = data
+                        roomVM.signedURL = signedUrlResponse.url
+                        
+                        // --------------- creating message locally -------------------
+                        let message = signedUrlResponse.message
+                        let urlForMedia = signedUrlResponse.message.message
+                        roomVM.pendingMedia = MessageViewModel(message: message)
+                        
+                        roomVM.storeMediaFile(content_type: "audio", messageID: signedUrlResponse.message.id, serverMediaURL: urlForMedia)
+                    } catch {
+                        print(error)
+                    }
+                }
             } label: {
                 Image("icon_send_message")
                     .padding(.vertical, 20)
             }
             
         }.padding(.horizontal, 20)
-        .frame(width: .greedy, height: 96)
+            .frame(width: .greedy, height: 96)
             .background(.white)
             .cornerRadius([.topLeft, .topRight], 35)
             .shadow(color: Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)

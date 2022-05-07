@@ -24,7 +24,6 @@ struct AudioRecordingView: View {
                 .foregroundColor(.black)
                 .font(.custom("Inter-Regular", size: 12))
                 .onReceive(timer) { _ in
-                    print(duration)
                     duration += 1
                 }
             

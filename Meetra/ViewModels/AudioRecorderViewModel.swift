@@ -15,7 +15,6 @@ class AudioRecorderViewModel: ObservableObject {
     private var audioSession: AVAudioSession
     private var timer: Timer?
     
-    private var currentSample: Int
     let url: URL
     
     // 2
@@ -23,13 +22,11 @@ class AudioRecorderViewModel: ObservableObject {
     
     @Published var showRecording: Bool = false
     @Published var showPreview: Bool = false
-    @Published public var soundSamples = [Float]()
     @Published var audioDuration: Double = 0
     @Published var permissionStatus: AVAudioSession.RecordPermission
     
     
     init() {
-        self.currentSample = 0
         
         // 3 request permission
         self.audioSession = AVAudioSession.sharedInstance()
@@ -40,7 +37,6 @@ class AudioRecorderViewModel: ObservableObject {
         self.url = directory.appendingPathComponent(fileName)
         
         requestPermission()
-        
 
         let recorderSettings = [
             
@@ -76,10 +72,15 @@ class AudioRecorderViewModel: ObservableObject {
             showRecording = audioRecorder.isRecording
             
             timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (timer) in
-                // 7
                 self.audioDuration += 0.1
+                if self.audioDuration >= 60 {
+                    self.stopRecord()
+                    
+                    self.recording = false
+                    self.showRecording = false
+                    self.showPreview = true
+                }
                 audioRecorder.updateMeters()
-                self.soundSamples.append( audioRecorder.averagePower(forChannel: 0))
             })
         }
     }
@@ -99,6 +100,7 @@ class AudioRecorderViewModel: ObservableObject {
             audioRecorder?.stop()
             print(audioDuration)
             timer?.invalidate()
+            
         }
     }
     

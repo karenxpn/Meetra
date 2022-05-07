@@ -9,8 +9,11 @@ import Foundation
 import AVKit
 import SwiftUI
 import AVFoundation
+import Combine
 
 class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
+    @AppStorage( "pending_files") private var localStorePendingFiles: Data = Data()
+    
     @Published var player: AVAudioPlayer!
     @Published var session: AVAudioSession!
     private var timer: Timer?
@@ -22,10 +25,14 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     let sample_count = Int(UIScreen.main.bounds.width * 0.5 / 6)
     var index = 0
     let url: URL
-
     
-    init(url: URL) {
+    var dataManager: ChatServiceProtocol
+    private var cancellableSet: Set<AnyCancellable> = []
+    
+    
+    init(url: URL, dataManager: ChatServiceProtocol = ChatService.shared) {
         self.url = url
+        self.dataManager = dataManager
         super.init()
         
         do {
@@ -37,8 +44,20 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         } catch {
             print(error.localizedDescription)
         }
-
+        
         initializePlayer()
+    }
+    
+    
+    func getSignedURL(content_type: String, chatID: Int, completion: @escaping (GetSignedUrlResponse) -> ()) {
+        dataManager.fetchSignedURL(key: Date().millisecondsSince1970, chatID: chatID,content_type: content_type)
+            .sink { response in
+                if response.error == nil {
+                    DispatchQueue.main.async {
+                        completion(response.value!)
+                    }
+                }
+            }.store(in: &cancellableSet)
     }
     
     
@@ -54,30 +73,10 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
     }
     
-    func startAudio() {
-        
-
-        //        guard let fileURL = URL(string: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3") else { return  }
-        //            do {
-        //                let soundData = try Data(contentsOf: fileURL)
-        //                self.player = try? AVAudioPlayer(data: soundData)
-        //                print(soundData)
-        //                guard player != nil else { return }
-        //
-        //                self.player.delegate = self
-        //                startMonitoring(samples: samples)
-        //
-        //            } catch {
-        //                print(error)
-        //            }
-        
-        
-    }
-    
     func startTimer() {
         let sample_count = (UIScreen.main.bounds.width * 0.5 / 6)
         let time_interval = player.duration / sample_count
-
+        
         timer = Timer.scheduledTimer(withTimeInterval: time_interval, repeats: true, block: { (timer) in
             if self.index < self.soundSamples.count {
                 withAnimation(Animation.linear) {
@@ -90,7 +89,6 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     
     func playAudio() {
-
         if let player = player {
             player.play()
             startTimer()
@@ -105,10 +103,23 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
     
     func initializePlayer() {
-        self.player = try? AVAudioPlayer(contentsOf: url)
-        guard player != nil else { return }
+        if url.absoluteString.hasPrefix("https://") {
+            do {
+                let soundData = try Data(contentsOf: url)
+                self.player = try? AVAudioPlayer(data: soundData)
+                guard player != nil else { return }
+                
+                self.player.delegate = self
+            } catch {
+                print(error)
+            }
+        } else {
+            self.player = try? AVAudioPlayer(contentsOf: url)
+            guard player != nil else { return }
+            
+            self.player.delegate = self
+        }
         
-        self.player.delegate = self
     }
     
     func visualizeAudio() {
@@ -120,8 +131,8 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     func removeAudio() {
         do {
             try FileManager.default.removeItem(at: url)
-            NotificationCenter.default.post(name: Notification.Name("audio_preview_removed"), object: nil)
-
+            NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
+            
         } catch {
             print(error)
         }
@@ -154,7 +165,7 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
                     
                     result.append(AudioPreviewModel(magnitude: decibles, color: Color.gray))
                 }
-                                
+                
                 DispatchQueue.main.async {
                     completion(result)
                 }

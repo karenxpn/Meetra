@@ -83,7 +83,7 @@ extension ChatService: ChatServiceProtocol {
         @AppStorage( "pending_files") var localStorePendingFiles: Data = Data()
 
         let directory = FileManager.default.temporaryDirectory
-        let fileName = "\(NSUUID().uuidString).\(type == "video" ? "mov" : "jpg")"
+        let fileName = "\(NSUUID().uuidString).\(type == "video" ? "mov" : type == "audio" ? "m4a" : "jpg")"
         let url = directory.appendingPathComponent(fileName)
         
         do {
@@ -114,7 +114,7 @@ extension ChatService: ChatServiceProtocol {
     func fetchSignedURL(key: Int64, chatID: Int, content_type: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)messages/pre-signed-url")!
         
-        let params = GetSignedUrlRequest(key: "chat-\(chatID)/messages/message-\(key).\(content_type == "video" ? "mov" : "png")",
+        let params = GetSignedUrlRequest(key: "chat-\(chatID)/messages/message-\(key).\(content_type == "video" ? "mov" : content_type == "audio" ? "m4a" : "jpg")",
                                          type: content_type,
                                          chatId: chatID)
         

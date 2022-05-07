@@ -93,7 +93,7 @@ struct MessageBar: View {
                     roomVM.mediaBinaryData = content
                     roomVM.getSignedURL(content_type: content_type)
                 }
-            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "audio_preview_removed"))) { _ in
+            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "hide_audio_preview"))) { _ in
                 audioVM.showPreview = false
             }
         
