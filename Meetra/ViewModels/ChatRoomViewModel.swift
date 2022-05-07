@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import AVFAudio
 
 class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @AppStorage( "pending_files") private var localStorePendingFiles: Data = Data()
@@ -32,6 +33,9 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     
     // message
     @Published var message: String = ""
+    
+    
+    // audio message
     
     private var cancellableSet: Set<AnyCancellable> = []
     private let userDefaults = UserDefaults.standard
