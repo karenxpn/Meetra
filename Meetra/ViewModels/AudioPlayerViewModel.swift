@@ -35,6 +35,19 @@ class AudioPlayViewModel: ObservableObject {
         self.dataManager = dataManager
         
         visualizeAudio()
+        
+        
+        do {
+            session = AVAudioSession.sharedInstance()
+            try session.setCategory(.playAndRecord)
+
+            try session.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        player = AVPlayer(url: self.url)
     }
     
     
@@ -65,6 +78,7 @@ class AudioPlayViewModel: ObservableObject {
     
     @objc func playerDidFinishPlaying(note: NSNotification) {
         self.player.pause()
+        self.player.seek(to: .zero)
         self.timer?.invalidate()
         self.isPlaying = false
         self.index = 0
@@ -81,22 +95,11 @@ class AudioPlayViewModel: ObservableObject {
             pauseAudio()
         } else {
             
-            do {
-                session = AVAudioSession.sharedInstance()
-                try session.setCategory(.playAndRecord)
-
-                try session.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
-                
-            } catch {
-                print(error.localizedDescription)
-            }
-            
-            player = AVPlayer(url: self.url)
-            
             NotificationCenter.default.addObserver(self, selector:#selector(self.playerDidFinishPlaying(note:)),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
 
             isPlaying.toggle()
             player.play()
+            
             startTimer()
             let duration = count_duration()
             
