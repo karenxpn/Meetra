@@ -22,7 +22,7 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var duration: String = "0:0"
     
     @Published public var soundSamples = [AudioPreviewModel]()
-    let sample_count = Int(UIScreen.main.bounds.width * 0.5 / 6)
+    let sample_count: Int
     var index = 0
     let url: URL
     
@@ -30,8 +30,9 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     private var cancellableSet: Set<AnyCancellable> = []
     
     
-    init(url: URL, dataManager: ChatServiceProtocol = ChatService.shared) {
+    init(url: URL, sampels_count: Int, dataManager: ChatServiceProtocol = ChatService.shared) {
         self.url = url
+        self.sample_count = sampels_count
         self.dataManager = dataManager
         super.init()
         
@@ -106,24 +107,30 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         if url.absoluteString.hasPrefix("https://") {
             do {
                 let soundData = try Data(contentsOf: url)
-                self.player = try? AVAudioPlayer(data: soundData)
+                self.player = try AVAudioPlayer(data: soundData)
                 guard player != nil else { return }
                 
                 self.player.delegate = self
+                count_duration()
             } catch {
-                print(error)
+                print("error -> \(error.localizedDescription)")
             }
         } else {
             self.player = try? AVAudioPlayer(contentsOf: url)
             guard player != nil else { return }
             
             self.player.delegate = self
+            count_duration()
         }
-        
+    }
+    
+    func count_duration() {
+        let seconds = Int(self.player.duration.truncatingRemainder(dividingBy: 60))
+        self.duration = "\(Int(self.player.duration / 60)):\(seconds < 10 ? "0\(seconds)" : "\(seconds)")"
     }
     
     func visualizeAudio() {
-        buffer(url: url, samplesCount: sample_count) { results in
+        dataManager.buffer(url: url, samplesCount: sample_count) { results in
             self.soundSamples.append(contentsOf: results)
         }
     }
@@ -137,41 +144,5 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             print(error)
         }
     }
-    
-    func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ()) {
-        do {
-            let file = try AVAudioFile(forReading: url)
-            if let format = AVAudioFormat(commonFormat: .pcmFormatFloat32,
-                                          sampleRate: file.fileFormat.sampleRate,
-                                          channels: file.fileFormat.channelCount, interleaved: false),
-               let buf = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(file.length)) {
-                
-                try file.read(into: buf)
-                guard let floatChannelData = buf.floatChannelData else { return }
-                let frameLength = Int(buf.frameLength)
-                
-                let samples = Array(UnsafeBufferPointer(start:floatChannelData[0], count:frameLength))
-                //        let samples2 = Array(UnsafeBufferPointer(start:floatChannelData[1], count:frameLength))
-                
-                var result = [AudioPreviewModel]()
-                
-                let chunked = samples.chunked(into: samples.count / samplesCount)
-                for row in chunked {
-                    var accumulator: Float = 0
-                    let newRow = row.map{ $0 * $0 }
-                    accumulator = newRow.reduce(0, +)
-                    let power: Float = accumulator / Float(row.count)
-                    let decibles = 10 * log10f(power)
-                    
-                    result.append(AudioPreviewModel(magnitude: decibles, color: Color.gray))
-                }
-                
-                DispatchQueue.main.async {
-                    completion(result)
-                }
-            }
-        } catch {
-            print("Audio Error: \(error)")
-        }
-    }
+
 }

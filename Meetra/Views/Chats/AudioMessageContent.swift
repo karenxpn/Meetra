@@ -24,11 +24,11 @@ struct AudioMessageContent: View {
     init(message: MessageViewModel, group: Bool) {
         self.message = message
         self.group = group
-        _audioVM = StateObject(wrappedValue: AudioPlayViewModel(url: URL(string: message.content)!))
+        _audioVM = StateObject(wrappedValue: AudioPlayViewModel(url: URL(string: message.content)!, sampels_count: Int(UIScreen.main.bounds.width * 0.4 / 6)))
     }
     
     var body: some View {
-        VStack( alignment: message.sender.id == userID ? .trailing : .leading) {
+        LazyVStack( alignment: message.sender.id == userID ? .trailing : .leading) {
             if group && message.sender.id != userID {
                 Text( message.sender.name )
                     .foregroundColor(AppColors.proceedButtonColor)
@@ -38,7 +38,7 @@ struct AudioMessageContent: View {
             }
             
             if message.content.hasPrefix("https://") {
-                HStack(alignment: .center, spacing: 10) {
+                LazyHStack(alignment: .center, spacing: 10) {
                     
                     Button {
                         if audioVM.isPlaying {
@@ -53,25 +53,19 @@ struct AudioMessageContent: View {
                             .frame(width: 20, height: 20)
                     }
                     
-                    HStack(alignment: .bottom, spacing: 10) {
-
-                        Text( "Audio Content" )
-                            .foregroundColor(.black)
-                            .font(.custom("Inter-Regular", size: 14))
-                        
-                        if let player = audioVM.player {
-                            let seconds = Int(player.duration.truncatingRemainder(dividingBy: 60))
-                            
-                            Text("\(Int(player.duration / 60)):\(seconds < 10 ? "0\(seconds)" : "\(seconds)")")
-                                .foregroundColor(.black)
-                                .font(.custom("Inter-Regular", size: 12))
-                            
+                    HStack(alignment: .bottom, spacing: 2) {
+                        ForEach(audioVM.soundSamples, id: \.self) { model in
+                            BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
                         }
                     }
+                    
+                    Text(audioVM.duration)
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-Regular", size: 12))
                 }
-
+                
             } else {
-                HStack(alignment: .bottom, spacing: 2) {
+                LazyHStack(alignment: .center, spacing: 10) {
                     
                     Button {
                         if audioVM.isPlaying {
@@ -86,16 +80,23 @@ struct AudioMessageContent: View {
                             .frame(width: 20, height: 20)
                     }
                     
-                    ForEach(audioVM.soundSamples, id: \.self) { model in
-                        BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
+                    HStack(alignment: .bottom, spacing: 2) {
+                        ForEach(audioVM.soundSamples, id: \.self) { model in
+                            BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
+                        }
                     }
+                    
+                    Text(audioVM.duration)
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-Regular", size: 12))
                 }
             }
-        }.padding(.vertical, 12)
-                .padding(.horizontal, 15)
-            .onAppear {
-//                audioVM.visualizeAudio()
+        }.padding(.vertical, 8)
+        .onAppear {
+            if audioVM.soundSamples.isEmpty {
+                audioVM.visualizeAudio()
             }
+        }
     }
 }
 //

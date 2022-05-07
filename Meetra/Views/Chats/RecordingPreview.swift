@@ -14,7 +14,7 @@ struct RecordingPreview: View {
     
     init(url: URL) {
         self.url = url
-        _audioVM = StateObject(wrappedValue: AudioPlayViewModel(url: url))
+        _audioVM = StateObject(wrappedValue: AudioPlayViewModel(url: url, sampels_count: Int(UIScreen.main.bounds.width * 0.5 / 6)))
     }
     
     private func normalizeSoundLevel(level: Float) -> CGFloat {
@@ -79,7 +79,6 @@ struct RecordingPreview: View {
                         roomVM.mediaBinaryData = data
                         roomVM.signedURL = signedUrlResponse.url
                         
-                        // --------------- creating message locally -------------------
                         let message = signedUrlResponse.message
                         let urlForMedia = signedUrlResponse.message.message
                         roomVM.pendingMedia = MessageViewModel(message: message)
