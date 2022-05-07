@@ -56,15 +56,11 @@ struct RecordingPreview: View {
                         BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
                     }
                 }
+                                
+                Text(audioVM.duration)
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-Regular", size: 12))
                 
-                if let player = audioVM.player {
-                    let seconds = Int(player.duration.truncatingRemainder(dividingBy: 60))
-                    
-                    Text("\(Int(player.duration / 60)):\(seconds < 10 ? "0\(seconds)" : "\(seconds)")")
-                        .foregroundColor(.black)
-                        .font(.custom("Inter-Regular", size: 12))
-                    
-                }
             }.frame(width: .greedy)
             
             Button {
@@ -72,7 +68,7 @@ struct RecordingPreview: View {
                     NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
                     
                     print(signedUrlResponse)
-
+                    
                     do {
                         let data = try Data(contentsOf: audioVM.url)
                         

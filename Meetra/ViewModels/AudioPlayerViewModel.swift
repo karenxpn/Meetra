@@ -11,11 +11,8 @@ import SwiftUI
 import AVFoundation
 import Combine
 
-class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
-    @AppStorage( "pending_files") private var localStorePendingFiles: Data = Data()
+class AudioPlayViewModel: ObservableObject {
     
-    @Published var player: AVAudioPlayer!
-    @Published var session: AVAudioSession!
     private var timer: Timer?
     
     @Published var isPlaying: Bool = false
@@ -29,24 +26,13 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     var dataManager: ChatServiceProtocol
     private var cancellableSet: Set<AnyCancellable> = []
     
+    @Published var player: AVPlayer!
+    @Published var session: AVAudioSession!
     
     init(url: URL, sampels_count: Int, dataManager: ChatServiceProtocol = ChatService.shared) {
         self.url = url
         self.sample_count = sampels_count
         self.dataManager = dataManager
-        super.init()
-        
-        do {
-            self.session = AVAudioSession.sharedInstance()
-            
-            try self.session.setCategory(.playAndRecord)
-            try self.session.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
-            
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        initializePlayer()
     }
     
     
@@ -61,22 +47,9 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             }.store(in: &cancellableSet)
     }
     
-    
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        self.player.stop()
-        self.timer?.invalidate()
-        self.isPlaying = false
-        self.index = 0
-        self.soundSamples = self.soundSamples.map { tmp -> AudioPreviewModel in
-            var cur = tmp
-            cur.color = Color.gray
-            return cur
-        }
-    }
-    
     func startTimer() {
-        let sample_count = (UIScreen.main.bounds.width * 0.5 / 6)
-        let time_interval = player.duration / sample_count
+        let duration = count_duration()
+        let time_interval = duration / Double(sample_count)
         
         timer = Timer.scheduledTimer(withTimeInterval: time_interval, repeats: true, block: { (timer) in
             if self.index < self.soundSamples.count {
@@ -88,12 +61,45 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         })
     }
     
+    @objc func playerDidFinishPlaying(note: NSNotification) {
+        self.player.pause()
+        self.timer?.invalidate()
+        self.isPlaying = false
+        self.index = 0
+        self.soundSamples = self.soundSamples.map { tmp -> AudioPreviewModel in
+            var cur = tmp
+            cur.color = Color.gray
+            return cur
+        }
+    }
     
     func playAudio() {
-        if let player = player {
+        
+        if isPlaying {
+            pauseAudio()
+        } else {
+            
+            do {
+                session = AVAudioSession.sharedInstance()
+                try session.setCategory(.playAndRecord)
+
+                try session.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+            player = AVPlayer(url: self.url)
+            
+            NotificationCenter.default.addObserver(self, selector:#selector(self.playerDidFinishPlaying(note:)),name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+
+            isPlaying.toggle()
             player.play()
             startTimer()
-            self.isPlaying = true
+            let duration = count_duration()
+            
+            let seconds = Int(duration.truncatingRemainder(dividingBy: 60))
+            self.duration = "\(Int(duration / 60)):\(seconds < 10 ? "0\(seconds)" : "\(seconds)")"
         }
     }
     
@@ -102,31 +108,15 @@ class AudioPlayViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         timer?.invalidate()
         self.isPlaying = false
     }
+
     
-    func initializePlayer() {
-        if url.absoluteString.hasPrefix("https://") {
-            do {
-                let soundData = try Data(contentsOf: url)
-                self.player = try AVAudioPlayer(data: soundData)
-                guard player != nil else { return }
-                
-                self.player.delegate = self
-                count_duration()
-            } catch {
-                print("error -> \(error.localizedDescription)")
-            }
-        } else {
-            self.player = try? AVAudioPlayer(contentsOf: url)
-            guard player != nil else { return }
-            
-            self.player.delegate = self
-            count_duration()
+    func count_duration() -> Float64 {
+        if let duration = player.currentItem?.asset.duration {
+            let seconds = CMTimeGetSeconds(duration)
+            return seconds
         }
-    }
-    
-    func count_duration() {
-        let seconds = Int(self.player.duration.truncatingRemainder(dividingBy: 60))
-        self.duration = "\(Int(self.player.duration / 60)):\(seconds < 10 ? "0\(seconds)" : "\(seconds)")"
+        
+        return 1
     }
     
     func visualizeAudio() {

@@ -37,66 +37,39 @@ struct AudioMessageContent: View {
                     .lineLimit(1)
             }
             
-            if message.content.hasPrefix("https://") {
-                LazyHStack(alignment: .center, spacing: 10) {
-                    
-                    Button {
-                        if audioVM.isPlaying {
-                            audioVM.pauseAudio()
-                        } else {
-                            audioVM.playAudio()
-                        }
-                    } label: {
-                        Image(!(audioVM.isPlaying) ? "play_icon" : "pause_icon" )
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 20, height: 20)
+            LazyHStack(alignment: .center, spacing: 10) {
+                
+                Button {
+                    if audioVM.isPlaying {
+                        audioVM.pauseAudio()
+                    } else {
+                        audioVM.playAudio()
                     }
-                    
-                    HStack(alignment: .bottom, spacing: 2) {
-                        ForEach(audioVM.soundSamples, id: \.self) { model in
-                            BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
-                        }
-                    }
-                    
-                    Text(audioVM.duration)
-                        .foregroundColor(.black)
-                        .font(.custom("Inter-Regular", size: 12))
+                } label: {
+                    Image(!(audioVM.isPlaying) ? "play_icon" : "pause_icon" )
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20, height: 20)
                 }
                 
-            } else {
-                LazyHStack(alignment: .center, spacing: 10) {
-                    
-                    Button {
-                        if audioVM.isPlaying {
-                            audioVM.pauseAudio()
-                        } else {
-                            audioVM.playAudio()
-                        }
-                    } label: {
-                        Image(!(audioVM.isPlaying) ? "play_icon" : "pause_icon" )
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 20, height: 20)
+                HStack(alignment: .bottom, spacing: 2) {
+                    ForEach(audioVM.soundSamples, id: \.self) { model in
+                        BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
                     }
-                    
-                    HStack(alignment: .bottom, spacing: 2) {
-                        ForEach(audioVM.soundSamples, id: \.self) { model in
-                            BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
-                        }
-                    }
-                    
+                }.frame(width: UIScreen.main.bounds.width * 0.4)
+                
+                if audioVM.duration != "0:0" {
                     Text(audioVM.duration)
                         .foregroundColor(.black)
                         .font(.custom("Inter-Regular", size: 12))
                 }
             }
         }.padding(.vertical, 8)
-        .onAppear {
-            if audioVM.soundSamples.isEmpty {
-                audioVM.visualizeAudio()
+            .onAppear {
+                if audioVM.soundSamples.isEmpty {
+                    audioVM.visualizeAudio()
+                }
             }
-        }
     }
 }
 //
