@@ -24,7 +24,6 @@ class AudioPlayViewModel: ObservableObject {
     let url: URL
     
     var dataManager: ChatServiceProtocol
-    private var cancellableSet: Set<AnyCancellable> = []
     
     @Published var player: AVPlayer!
     @Published var session: AVAudioSession!
@@ -49,19 +48,7 @@ class AudioPlayViewModel: ObservableObject {
         
         player = AVPlayer(url: self.url)
     }
-    
-    
-    func getSignedURL(content_type: String, chatID: Int, completion: @escaping (GetSignedUrlResponse) -> ()) {
-        dataManager.fetchSignedURL(key: Date().millisecondsSince1970, chatID: chatID,content_type: content_type)
-            .sink { response in
-                if response.error == nil {
-                    DispatchQueue.main.async {
-                        completion(response.value!)
-                    }
-                }
-            }.store(in: &cancellableSet)
-    }
-    
+
     func startTimer() {
         let duration = count_duration()
         let time_interval = duration / Double(sample_count)

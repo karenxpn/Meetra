@@ -103,6 +103,13 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     func getSignedURL(content_type: String) {
         dataManager.fetchSignedURL(key: Date().millisecondsSince1970, chatID: chatID,content_type: content_type)
             .sink { response in
+                
+                // hide audio preview if the content type is audio
+                if content_type == "audio" {
+                    NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
+                }
+                
+                
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {

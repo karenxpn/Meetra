@@ -26,12 +26,8 @@ class AudioRecorderViewModel: ObservableObject {
     @Published var audioDuration: Double = 0
     @Published var permissionStatus: AVAudioSession.RecordPermission
     
-    var dataManager: ChatServiceProtocol
-    private var cancellableSet: Set<AnyCancellable> = []
-    
-    init(dataManager: ChatServiceProtocol = ChatService.shared) {
+    init() {
         
-        self.dataManager = dataManager
         // 3 request permission
 
         self.audioSession = AVAudioSession.sharedInstance()
@@ -59,17 +55,6 @@ class AudioRecorderViewModel: ObservableObject {
         } catch {
             print(error)
         }
-    }
-    
-    func getSignedURL(content_type: String, chatID: Int, completion: @escaping (GetSignedUrlResponse) -> ()) {
-        dataManager.fetchSignedURL(key: Date().millisecondsSince1970, chatID: chatID,content_type: content_type)
-            .sink { response in
-                if response.error == nil {
-                    DispatchQueue.main.async {
-                        completion(response.value!)
-                    }
-                }
-            }.store(in: &cancellableSet)
     }
     
     func recordAudio() {
