@@ -135,6 +135,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
             // insert message to the front of array
             self.lastMessageID = messageID
             self.messages.insert(self.pendingMedia!, at: 0)
+            self.newConversation = false
                         
             // store file to server and on completion update message
             self.dataManager.storeFileToServer(file: self.mediaBinaryData, url: self.signedURL, completion: { completion in
