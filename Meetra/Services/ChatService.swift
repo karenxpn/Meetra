@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import Alamofire
 import SwiftUI
+import AVFoundation
 
 protocol ChatServiceProtocol {
     func fetchChatList(page: Int, query: String) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never>
@@ -23,6 +24,8 @@ protocol ChatServiceProtocol {
     func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping([PendingFileModel]) -> ())
     func storeFileToServer(file: Data, url: String, completion: @escaping(Bool) -> ())
     func removeLocalFile(url: URL, messageID: Int, completion: @escaping() -> ())
+    
+    func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ())
 }
 
 class ChatService {
@@ -31,6 +34,61 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    
+    
+    func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ()) {
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            do {
+                var cur_url = url
+                if url.absoluteString.hasPrefix("https://") {
+                    let data = try Data(contentsOf: url)
+                    
+                    let directory = FileManager.default.temporaryDirectory
+                    let fileName = "chunk.m4a)"
+                    cur_url = directory.appendingPathComponent(fileName)
+                    
+                    try data.write(to: cur_url)
+                }
+                
+                let file = try AVAudioFile(forReading: cur_url)
+                if let format = AVAudioFormat(commonFormat: .pcmFormatFloat32,
+                                              sampleRate: file.fileFormat.sampleRate,
+                                              channels: file.fileFormat.channelCount, interleaved: false),
+                   let buf = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(file.length)) {
+                    
+                    try file.read(into: buf)
+                    guard let floatChannelData = buf.floatChannelData else { return }
+                    let frameLength = Int(buf.frameLength)
+                    
+                    let samples = Array(UnsafeBufferPointer(start:floatChannelData[0], count:frameLength))
+                    //        let samples2 = Array(UnsafeBufferPointer(start:floatChannelData[1], count:frameLength))
+                    
+                    var result = [AudioPreviewModel]()
+                    
+                    let chunked = samples.chunked(into: samples.count / samplesCount)
+                    for row in chunked {
+                        var accumulator: Float = 0
+                        let newRow = row.map{ $0 * $0 }
+                        accumulator = newRow.reduce(0, +)
+                        let power: Float = accumulator / Float(row.count)
+                        let decibles = 10 * log10f(power)
+                        
+                        result.append(AudioPreviewModel(magnitude: decibles, color: Color.gray))
+                        
+                    }
+                    
+                    DispatchQueue.main.async {
+                        completion(result)
+                    }
+                }
+            } catch {
+                print("Audio Error: \(error)")
+            }
+        }
+
+    }
+    
     func fetchNewConversationResponse(roomID: Int) -> AnyPublisher<DataResponse<NewConversationResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)chats/\(roomID)/new-conversation")!
         return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: NewConversationResponse.self)
@@ -83,7 +141,7 @@ extension ChatService: ChatServiceProtocol {
         @AppStorage( "pending_files") var localStorePendingFiles: Data = Data()
 
         let directory = FileManager.default.temporaryDirectory
-        let fileName = "\(NSUUID().uuidString).\(type == "video" ? "mov" : "jpg")"
+        let fileName = "\(NSUUID().uuidString).\(type == "video" ? "mov" : type == "audio" ? "m4a" : "jpg")"
         let url = directory.appendingPathComponent(fileName)
         
         do {
@@ -114,7 +172,7 @@ extension ChatService: ChatServiceProtocol {
     func fetchSignedURL(key: Int64, chatID: Int, content_type: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)messages/pre-signed-url")!
         
-        let params = GetSignedUrlRequest(key: "chat-\(chatID)/messages/message-\(key).\(content_type == "video" ? "mov" : "png")",
+        let params = GetSignedUrlRequest(key: "chat-\(chatID)/messages/message-\(key).\(content_type == "video" ? "mov" : content_type == "audio" ? "m4a" : "jpg")",
                                          type: content_type,
                                          chatId: chatID)
         

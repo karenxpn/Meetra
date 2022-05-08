@@ -195,3 +195,11 @@ extension Date {
         self = Date(timeIntervalSince1970: TimeInterval(milliseconds) / 1000)
     }
 }
+
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+}

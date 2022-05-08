@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import AVFAudio
 
 class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @AppStorage( "pending_files") private var localStorePendingFiles: Data = Data()
@@ -32,6 +33,9 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     
     // message
     @Published var message: String = ""
+    
+    
+    // audio message
     
     private var cancellableSet: Set<AnyCancellable> = []
     private let userDefaults = UserDefaults.standard
@@ -99,6 +103,13 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     func getSignedURL(content_type: String) {
         dataManager.fetchSignedURL(key: Date().millisecondsSince1970, chatID: chatID,content_type: content_type)
             .sink { response in
+                
+                // hide audio preview if the content type is audio
+                if content_type == "audio" {
+                    NotificationCenter.default.post(name: Notification.Name("hide_audio_preview"), object: nil)
+                }
+                
+                
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
@@ -120,16 +131,15 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
             
             // ------------------ get stored image for current message id ------------------
             let mediaURL = pendingURLs.first(where: {$0.messageID == messageID})?.url
-            self.pendingMedia?.content = content_type == "video" ? (mediaURL?.absoluteString ?? "") : (mediaURL?.path ?? "")
+            self.pendingMedia?.content = content_type == "photo" ? (mediaURL?.path ?? "") : (mediaURL?.absoluteString ?? "")
             
             // insert message to the front of array
             self.lastMessageID = messageID
             self.messages.insert(self.pendingMedia!, at: 0)
-            
+                        
             // store file to server and on completion update message
             self.dataManager.storeFileToServer(file: self.mediaBinaryData, url: self.signedURL, completion: { completion in
                 if completion {
-                    
                     self.messages[0].content = serverMediaURL
                     self.messages[0].status = "sent"
                     self.dataManager.removeLocalFile(url: mediaURL!, messageID: messageID) { }
