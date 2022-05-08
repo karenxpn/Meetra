@@ -47,20 +47,26 @@ class AudioPlayViewModel: ObservableObject {
         }
         
         player = AVPlayer(url: self.url)
+        count_duration { duration in
+            let seconds = Int(duration.truncatingRemainder(dividingBy: 60))
+            self.duration = "\(Int(duration / 60)):\(seconds < 10 ? "0\(seconds)" : "\(seconds)")"
+        }
     }
 
     func startTimer() {
-        let duration = count_duration()
-        let time_interval = duration / Double(sample_count)
         
-        timer = Timer.scheduledTimer(withTimeInterval: time_interval, repeats: true, block: { (timer) in
-            if self.index < self.soundSamples.count {
-                withAnimation(Animation.linear) {
-                    self.soundSamples[self.index].color = Color.black
+        count_duration { duration in
+            let time_interval = duration / Double(self.sample_count)
+
+            self.timer = Timer.scheduledTimer(withTimeInterval: time_interval, repeats: true, block: { (timer) in
+                if self.index < self.soundSamples.count {
+                    withAnimation(Animation.linear) {
+                        self.soundSamples[self.index].color = Color.black
+                    }
+                    self.index += 1
                 }
-                self.index += 1
-            }
-        })
+            })
+        }
     }
     
     @objc func playerDidFinishPlaying(note: NSNotification) {
@@ -88,10 +94,6 @@ class AudioPlayViewModel: ObservableObject {
             player.play()
             
             startTimer()
-            let duration = count_duration()
-            
-            let seconds = Int(duration.truncatingRemainder(dividingBy: 60))
-            self.duration = "\(Int(duration / 60)):\(seconds < 10 ? "0\(seconds)" : "\(seconds)")"
         }
     }
     
@@ -102,13 +104,22 @@ class AudioPlayViewModel: ObservableObject {
     }
 
     
-    func count_duration() -> Float64 {
-        if let duration = player.currentItem?.asset.duration {
-            let seconds = CMTimeGetSeconds(duration)
-            return seconds
-        }
+    func count_duration(completion: @escaping(Float64) -> ()) {
         
-        return 1
+        DispatchQueue.global(qos: .userInteractive).async {
+            if let duration = self.player.currentItem?.asset.duration {
+                let seconds = CMTimeGetSeconds(duration)
+                DispatchQueue.main.async {
+                    completion(seconds)
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(1)
+            }
+        }
+
     }
     
     func visualizeAudio() {
