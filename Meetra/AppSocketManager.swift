@@ -26,6 +26,7 @@ protocol AppSocketManagerProtocol {
     func fetchMessage(chatID: Int, completion: @escaping(MessageModel) -> ())
     
     func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ())
+    func sendMedia(chatID: Int, messageID: Int, status: String)
     
     func disconnectSocket()
     func connectSocket()
@@ -42,6 +43,12 @@ class AppSocketManager {
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
+    func sendMedia(chatID: Int, messageID: Int, status: String) {
+        self.socket?.emit("media", ["chatId" : chatID,
+                                     "messageID": messageID,
+                                    "status" : status])
+    }
+    
     func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ()) {
         self.socket?.off("tab-unread-message-\(userID)")
         self.socket?.on("tab-unread-message-\(userID)") { (data, ack) in

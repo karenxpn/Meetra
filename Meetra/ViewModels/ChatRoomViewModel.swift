@@ -142,8 +142,10 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                 if completion {
                     self.messages[0].content = serverMediaURL
                     self.messages[0].status = "sent"
+                    self.socketManager.sendMedia(chatID: self.chatID, messageID: messageID, status: "success")
                     self.dataManager.removeLocalFile(url: mediaURL!, messageID: messageID) { }
                 } else {
+                    self.socketManager.sendMedia(chatID: self.chatID, messageID: messageID, status: "error")
                     print("failed to upload file to server")
                     // show smth like failted to send file
                 }
