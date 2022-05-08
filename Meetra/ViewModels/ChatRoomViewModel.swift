@@ -92,7 +92,6 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                     if !messages.isEmpty {
                         self.lastMessageID = self.messages[0].id
                     } else if messageID == 0 && messages.isEmpty {
-                        print("new conversation")
                         self.newConversation = true
                         self.getNewConversationResponse()
                     }

@@ -108,4 +108,10 @@ struct AppPreviewModels {
     static let video_message = MessageViewModel(message: MessageModel(id: 1, createdAt: "2022-04-22 21:47:38.123", updatedAt: "2022-05-01 16:35:00.123", message: "https://www.youtube.com/watch?v=668nUCeBHyY", type: "video", status: "sent", sender: MessageSenderModel(id: 1, name: "Karen", online: true)))
     
     static let newConversation = NewConversationResponse(userImage: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", interlocutorImage: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", groupMembers: 2)
+    
+    static let messagesList = MessagesListModel(messages: [messageModel])
+    
+    static let messageModel = MessageModel(id: 1, createdAt: "2022-04-22 21:47:38.123", updatedAt: "2022-04-22 21:47:38.123", message: "Hello world!", type: "text", status: "sent", sender: MessageSenderModel(id: 1, name: "Karen", online: true))
+    
+    static let signedUrlResponse = GetSignedUrlResponse(url: "url", message: messageModel)
 }
