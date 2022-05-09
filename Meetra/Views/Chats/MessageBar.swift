@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CameraXPN
 
 struct MessageBar: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
@@ -102,10 +103,13 @@ struct MessageBar: View {
                 roomVM.getSignedURL(content_type: content_type)
             }
         }.fullScreenCover(isPresented: $openCamera, content: {
-            CameraView { url, data in
+            CameraXPN(action: { url, data in
                 roomVM.mediaBinaryData = data
                 roomVM.getSignedURL(content_type: url.absoluteString.hasSuffix(".mov") ? "video" : "photo")
-            }
+            }, font: .custom("Inter-SemiBold", size: 14), permissionMessgae: NSLocalizedString("enableAccessForBoth", comment: ""),
+                      recordVideoButtonColor: AppColors.accentColor,
+                      useMediaContent: NSLocalizedString("userThisMedia", comment: ""))
+
         })
         
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "hide_audio_preview"))) { _ in
