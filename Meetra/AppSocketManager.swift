@@ -80,7 +80,7 @@ extension AppSocketManager: AppSocketManagerProtocol {
     
     
     func sendMessage(chatID: Int, type: String, content: String, completion: @escaping () -> ()) {
-        self.socket?.emit("message", ["chatId" : chatID,
+        self.socket?.emit("send-message", ["chatId" : chatID,
                                       "type" : type,
                                       "message" : content], completion: {
             DispatchQueue.main.async {
@@ -90,8 +90,8 @@ extension AppSocketManager: AppSocketManagerProtocol {
     }
     
     func fetchMessage(chatID: Int, completion: @escaping (MessageModel) -> ()) {
-        self.socket?.off("message")
-        listenEvent(event: "message", response: MessageModel.self) { response in
+        self.socket?.off("send-message")
+        listenEvent(event: "senf-message", response: MessageModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }
