@@ -150,9 +150,11 @@ struct CameraView: View {
             camera.checkPermission()
             camera.checkAudioPermission()
         }.alert(isPresented: $camera.alert) {
-            Alert(title: Text("Enable access for both camera and audio"), primaryButton: .default(Text(NSLocalizedString("goToSettings", comment: "")), action: {
+            Alert(title: Text(NSLocalizedString("youFoundInterlocutor", comment: "")),
+                  primaryButton: .default(Text(NSLocalizedString("goToSettings", comment: "")), action: {
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-            }), secondaryButton: .cancel())
+            }),
+                  secondaryButton: .cancel(Text(NSLocalizedString("cancel", comment: ""))))
         }.onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
             if camera.recordedDuration <= 15 && camera.isRecording {
                 camera.recordedDuration += 1
