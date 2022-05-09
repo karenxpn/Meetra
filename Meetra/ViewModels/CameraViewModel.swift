@@ -65,6 +65,7 @@ class CameraViewModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
             }
             
         case .denied:
+            self.alert.toggle()
             self.recordPermission = .denied
         case .granted:
             self.recordPermission = .granted

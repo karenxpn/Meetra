@@ -91,7 +91,10 @@ struct CameraView: View {
                         Spacer()
                         
                         Button {
-                            action(camera.previewURL!, camera.mediaData)
+                            if let url = camera.previewURL {
+                                action(url, camera.mediaData)
+                                presentationMode.wrappedValue.dismiss()
+                            }
                         } label: {
                             Text(NSLocalizedString("userThisMedia", comment: ""))
                                 .foregroundColor(.black)
@@ -146,9 +149,9 @@ struct CameraView: View {
             camera.checkPermission()
             camera.checkAudioPermission()
         }.alert(isPresented: $camera.alert) {
-            Alert(title: Text("Enable access for both camera and audio"), primaryButton: .cancel(), secondaryButton: .default(Text(NSLocalizedString("goToSettings", comment: "")), action: {
+            Alert(title: Text("Enable access for both camera and audio"), primaryButton: .default(Text(NSLocalizedString("goToSettings", comment: "")), action: {
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-            }))
+            }), secondaryButton: .cancel())
         }.onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
             if camera.recordedDuration <= 15 && camera.isRecording {
                 camera.recordedDuration += 1
