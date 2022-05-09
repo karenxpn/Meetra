@@ -23,6 +23,7 @@ struct CameraView: View {
             
             if camera.isTaken {
                 CameraContentPreview(url: camera.previewURL)
+                    .ignoresSafeArea(.all, edges: .all)
             }
             
             
@@ -34,7 +35,7 @@ struct CameraView: View {
                             camera.retakePic()
                         } label: {
                             
-                            Image(systemName: "xmark")
+                            Image(systemName: "chevron.backward")
                                 .foregroundColor(.black)
                                 .padding()
                                 .background(Color.white)
