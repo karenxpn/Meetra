@@ -9,12 +9,13 @@ import SwiftUI
 
 struct MessageBar: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
-    @EnvironmentObject var roomVM: ChatRoomViewModel
     
+    @EnvironmentObject var roomVM: ChatRoomViewModel
     @StateObject private var audioVM = AudioRecorderViewModel()
     
     @State private var openAttachment: Bool = false
     @State private var openGallery: Bool = false
+    @State private var openCamera: Bool = false
     
     var body: some View {
         
@@ -83,21 +84,33 @@ struct MessageBar: View {
                 .shadow(color: Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
                 .KeyboardAwarePadding()
         }
-            .confirmationDialog("", isPresented: $openAttachment, titleVisibility: .hidden) {
-                Button {
-                    openGallery.toggle()
-                } label: {
-                    Text(NSLocalizedString("loadFromGallery", comment: ""))
-                }
-                
-            }.sheet(isPresented: $openGallery) {
-                MessageGallery { content_type, content in
-                    roomVM.mediaBinaryData = content
-                    roomVM.getSignedURL(content_type: content_type)
-                }
-            }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "hide_audio_preview"))) { _ in
-                audioVM.showPreview = false
+        .confirmationDialog("", isPresented: $openAttachment, titleVisibility: .hidden) {
+            Button {
+                openGallery.toggle()
+            } label: {
+                Text(NSLocalizedString("loadFromGallery", comment: ""))
             }
+            
+            Button {
+                openCamera.toggle()
+            } label: {
+                Text(NSLocalizedString("openCamera", comment: ""))
+            }
+        }.sheet(isPresented: $openGallery) {
+            MessageGallery { content_type, content in
+                roomVM.mediaBinaryData = content
+                roomVM.getSignedURL(content_type: content_type)
+            }
+        }.fullScreenCover(isPresented: $openCamera, content: {
+            CameraView { url, data in
+                print(url)
+                print(data.count)
+            }
+        })
+        
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "hide_audio_preview"))) { _ in
+            audioVM.showPreview = false
+        }
         
         
     }
