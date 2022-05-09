@@ -47,10 +47,6 @@ class AudioPlayViewModel: ObservableObject {
         }
         
         player = AVPlayer(url: self.url)
-        count_duration { duration in
-            let seconds = Int(duration.truncatingRemainder(dividingBy: 60))
-            self.duration = "\(Int(duration / 60)):\(seconds < 10 ? "0\(seconds)" : "\(seconds)")"
-        }
     }
 
     func startTimer() {
@@ -94,6 +90,10 @@ class AudioPlayViewModel: ObservableObject {
             player.play()
             
             startTimer()
+            count_duration { duration in
+                let seconds = Int(duration.truncatingRemainder(dividingBy: 60))
+                self.duration = "\(Int(duration / 60)):\(seconds < 10 ? "0\(seconds)" : "\(seconds)")"
+            }
         }
     }
     
@@ -106,7 +106,7 @@ class AudioPlayViewModel: ObservableObject {
     
     func count_duration(completion: @escaping(Float64) -> ()) {
         
-        DispatchQueue.global(qos: .userInteractive).async {
+        DispatchQueue.global(qos: .background).async {
             if let duration = self.player.currentItem?.asset.duration {
                 let seconds = CMTimeGetSeconds(duration)
                 DispatchQueue.main.async {

@@ -110,9 +110,7 @@ struct MessageBar: View {
                       recordVideoButtonColor: AppColors.accentColor,
                       useMediaContent: NSLocalizedString("userThisMedia", comment: ""))
 
-        })
-        
-        .onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "hide_audio_preview"))) { _ in
+        }).onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "hide_audio_preview"))) { _ in
             audioVM.showPreview = false
         }
         
