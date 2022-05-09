@@ -103,8 +103,8 @@ struct MessageBar: View {
             }
         }.fullScreenCover(isPresented: $openCamera, content: {
             CameraView { url, data in
-                print(url)
-                print(data.count)
+                roomVM.mediaBinaryData = data
+                roomVM.getSignedURL(content_type: url.absoluteString.hasSuffix(".mov") ? "video" : "photo")
             }
         })
         
