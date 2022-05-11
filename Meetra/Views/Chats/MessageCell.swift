@@ -28,8 +28,6 @@ struct MessageCell: View {
                 
             }
             
-            
-            
             if message.sender.id == userID {
                 
                 Image(message.status == "sent" ? "sent_icon" : "read_icon")
@@ -43,6 +41,34 @@ struct MessageCell: View {
             }
 
             MessageContent(message: message, group: group)
+                .contextMenu(menuItems: {
+                    Button {
+                        
+                    } label: {
+                       Text(NSLocalizedString("answer", comment: ""))
+                    }
+                    
+                    Button {
+                    } label: {
+                        Text(NSLocalizedString("copy", comment: ""))
+
+                    }
+                    
+                    if message.type == "text" {
+                        Button {
+                            NotificationCenter.default.post(name: Notification.Name("edit"), object: ["message" : message])
+
+                        } label: {
+                            Text(NSLocalizedString("edit", comment: ""))
+
+                        }
+                    }
+                    
+                    Button(role: .destructive) {
+                    } label: {
+                        Text(NSLocalizedString("delete", comment: ""))
+                    }
+                })
 
 
             if message.sender.id != userID {

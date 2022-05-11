@@ -18,10 +18,18 @@ struct MessageBar: View {
     @State private var openGallery: Bool = false
     @State private var openCamera: Bool = false
     
+    @State private var showEditField: Bool = false
+    @State private var editingMessage: MessageViewModel?
+    
     var body: some View {
         
         
-        VStack {
+        VStack( spacing: 0) {
+            
+            if showEditField && editingMessage != nil{
+                EditMessage( showEditing: $showEditField, message: editingMessage!)
+            }
+            
             if audioVM.recording {
                 HStack( alignment: .top) {
                     Spacer()
@@ -82,7 +90,7 @@ struct MessageBar: View {
             }.frame(height: 96)
                 .background(.white)
                 .cornerRadius([.topLeft, .topRight], 35)
-                .shadow(color: Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
+                .shadow(color: showEditField ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
                 .KeyboardAwarePadding()
         }
         .confirmationDialog("", isPresented: $openAttachment, titleVisibility: .hidden) {
@@ -109,12 +117,24 @@ struct MessageBar: View {
             }, font: .custom("Inter-SemiBold", size: 14), permissionMessgae: NSLocalizedString("enableAccessForBoth", comment: ""),
                       recordVideoButtonColor: AppColors.accentColor,
                       useMediaContent: NSLocalizedString("userThisMedia", comment: ""))
-
+            
         }).onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "hide_audio_preview"))) { _ in
             audioVM.showPreview = false
+        }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "edit"))) { message in
+            if let object = message.object as? [String: MessageViewModel], let message = object["message"] {
+                self.editingMessage = message
+                roomVM.message = editingMessage?.content ?? ""
+
+                withAnimation {
+                    showEditField = true
+                }
+            }
+        }.onChange(of: showEditField) { value in
+            if value == false {
+                roomVM.message = ""
+                self.editingMessage = nil
+            }
         }
-        
-        
     }
 }
 

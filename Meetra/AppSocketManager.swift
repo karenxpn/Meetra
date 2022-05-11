@@ -91,7 +91,7 @@ extension AppSocketManager: AppSocketManagerProtocol {
     
     func fetchMessage(chatID: Int, completion: @escaping (MessageModel) -> ()) {
         self.socket?.off("send-message")
-        listenEvent(event: "senf-message", response: MessageModel.self) { response in
+        listenEvent(event: "send-message", response: MessageModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }
