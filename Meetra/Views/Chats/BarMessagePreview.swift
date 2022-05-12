@@ -23,10 +23,29 @@ struct BarMessagePreview: View {
                     .foregroundColor(AppColors.accentColor)
                     .font(.custom("Inter-SemiBold", size: 12))
                 
-                Text(message.content)
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-Regular", size: 12))
-                    .lineLimit(1)
+                
+                if message.type == "text" {
+                    Text(message.content)
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-Regular", size: 12))
+                        .kerning(0.24)
+                        .lineLimit(1)
+                } else if message.type == "photo" {
+                    ImageHelper(image: message.content, contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                    
+                } else if message.type == "video" {
+                    Text(NSLocalizedString("videoContent", comment: ""))
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-Regular", size: 12))
+                        .kerning(0.24)
+
+                } else if message.type == "audio" {
+                    Text(NSLocalizedString("audioContent", comment: ""))
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-Regular", size: 12))
+                        .kerning(0.24)
+                }
             }
             
             Spacer()

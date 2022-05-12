@@ -92,7 +92,7 @@ struct MessageBar: View {
                 }
             }.frame(height: 96)
                 .background(.white)
-                .cornerRadius([.topLeft, .topRight], 35)
+                .cornerRadius([.topLeft, .topRight], roomVM.showMessagePreview ? 0 : 35)
                 .shadow(color: roomVM.showMessagePreview ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
                 .KeyboardAwarePadding()
         }
@@ -136,7 +136,6 @@ struct MessageBar: View {
             if let object = message.object as? [String: MessageViewModel], let message = object["message"] {
                 // message params here should be used
                 roomVM.replyMessage = message
-                roomVM.message = "reply"
                 withAnimation {
                     roomVM.showMessagePreview = true
                 }
