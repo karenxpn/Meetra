@@ -28,8 +28,6 @@ struct MessageCell: View {
                 
             }
             
-            
-            
             if message.sender.id == userID {
                 
                 Image(message.status == "sent" ? "sent_icon" : "read_icon")
@@ -37,16 +35,48 @@ struct MessageCell: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 7)
                 
-                Text(message.updatedAt)
+                Text("\(message.updatedAt)\(message.isEdited ? NSLocalizedString("edited", comment: "") : "")")
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 8))
             }
 
             MessageContent(message: message, group: group)
+                .onTapGesture {
+                    print("tap")
+                }.contextMenu(menuItems: {
+                    Button {
+                        
+                    } label: {
+                       Text(NSLocalizedString("answer", comment: ""))
+                    }
+                    
+                    Button {
+                    } label: {
+                        Text(NSLocalizedString("copy", comment: ""))
+
+                    }
+                    
+                    if message.type == "text" {
+                        Button {
+                            NotificationCenter.default.post(name: Notification.Name("edit"), object: ["message" : message])
+
+                        } label: {
+                            Text(NSLocalizedString("edit", comment: ""))
+
+                        }
+                    }
+                    
+                    Button(role: .destructive) {
+                    } label: {
+                        Text(NSLocalizedString("delete", comment: ""))
+                    }
+                }).simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded({ _ in
+                    print("long press")
+                }))
 
 
             if message.sender.id != userID {
-                Text(message.updatedAt)
+                Text("\(message.updatedAt)\(message.isEdited ? NSLocalizedString("edited", comment: "") : "")")
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 8))
             }

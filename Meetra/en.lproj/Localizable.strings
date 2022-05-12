@@ -70,3 +70,15 @@
 "now" = "Сейчас";
 "nowOnline" = "Сейчас онлайн";
 "messageBarPlaceholder" = "Сообщение...";
+"loadFromGallery" = "Загрузить из галереи";
+"openCamera" = "Открыть камеру";
+"goToSettings" = "Перейти в настройки";
+"enableAccessForBoth" = "Разрешить доступ как для камеры, так и для аудио";
+"youFoundInterlocutor" = "Вы нашли собеседника! ";
+"writeFirstMessage" = "Напишите первое сообщение,\nчтобы начать общение";
+"userThisMedia" = "Использовать";
+"answer" = "Ответить";
+"copy" = "Скопировать";
+"edit" = "Редактировать";
+"delete" = "Удалить";
+"edited" = "(ред.)";

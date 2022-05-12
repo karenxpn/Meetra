@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AVKit
 
 
 extension UIApplication {
@@ -171,5 +172,34 @@ extension Array
             sourceIndex = nextSourceIndex
         }
         while sourceIndex != destinationIndex
+    }
+}
+
+extension Data {
+    func getAVAsset() -> AVAsset {
+        let directory = NSTemporaryDirectory()
+        let fileName = "\(NSUUID().uuidString).mov"
+        let fullURL = NSURL.fileURL(withPathComponents: [directory, fileName])
+        try! self.write(to: fullURL!)
+        let asset = AVAsset(url: fullURL!)
+        return asset
+    }
+}
+
+extension Date {
+    var millisecondsSince1970: Int64 {
+        Int64((self.timeIntervalSince1970 * 1000.0).rounded())
+    }
+    
+    init(milliseconds: Int64) {
+        self = Date(timeIntervalSince1970: TimeInterval(milliseconds) / 1000)
+    }
+}
+
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
     }
 }

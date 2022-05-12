@@ -24,8 +24,14 @@ struct ChatRoom: View {
         
         ZStack {
             
-            MessagesList(group: group)
-                .environmentObject(roomVM)
+            if roomVM.newConversation {
+                if let response = roomVM.newConversationResponse {
+                    NewConversation(newConversation: response)
+                }
+            } else {
+                MessagesList(group: group)
+                    .environmentObject(roomVM)
+            }
             
             VStack {
                 Spacer()

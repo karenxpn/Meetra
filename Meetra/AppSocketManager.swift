@@ -25,7 +25,11 @@ protocol AppSocketManagerProtocol {
     func sendMessage(chatID: Int, type: String, content: String, completion: @escaping() -> ())
     func fetchMessage(chatID: Int, completion: @escaping(MessageModel) -> ())
     
-    func fetchTabViewUnreadMessage(completion: @escaping (Bool) -> ())
+    func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ())
+    func sendMedia(chatID: Int, messageID: Int, status: String)
+    
+    func editMessage(chatID: Int, messageID: Int, message: String, completion: @escaping() -> ())
+    func fetchEditMessageResponse(chatID: Int, completion: @escaping (MessageModel) -> ())
     
     func disconnectSocket()
     func connectSocket()
@@ -42,10 +46,16 @@ class AppSocketManager {
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
-    func fetchTabViewUnreadMessage(completion: @escaping (Bool) -> ()) {
-        self.socket?.off("tab-unread-message")
-        self.socket?.on("tab-unread-message") { (data, ack) in
-            if let data = data[0] as? [String : Bool], let status = data["unread-message"] {
+    func sendMedia(chatID: Int, messageID: Int, status: String) {
+        self.socket?.emit("media", ["chatId" : chatID,
+                                     "messageID": messageID,
+                                    "status" : status])
+    }
+    
+    func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ()) {
+        self.socket?.off("tab-unread-message-\(userID)")
+        self.socket?.on("tab-unread-message-\(userID)") { (data, ack) in
+            if let data = data[0] as? [String : Bool], let status = data["unreadMessage"] {
                 DispatchQueue.main.async {
                     completion(status)
                 }
@@ -73,7 +83,7 @@ extension AppSocketManager: AppSocketManagerProtocol {
     
     
     func sendMessage(chatID: Int, type: String, content: String, completion: @escaping () -> ()) {
-        self.socket?.emit("message", ["chatId" : chatID,
+        self.socket?.emit("send-message", ["chatId" : chatID,
                                       "type" : type,
                                       "message" : content], completion: {
             DispatchQueue.main.async {
@@ -83,8 +93,27 @@ extension AppSocketManager: AppSocketManagerProtocol {
     }
     
     func fetchMessage(chatID: Int, completion: @escaping (MessageModel) -> ()) {
-        self.socket?.off("message")
-        listenEvent(event: "message", response: MessageModel.self) { response in
+        self.socket?.off("send-message")
+        listenEvent(event: "send-message", response: MessageModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
+            }
+        }
+    }
+    
+    func editMessage(chatID: Int, messageID: Int, message: String, completion: @escaping() -> ()) {
+        self.socket?.emit("edit-message", ["chatId" : chatID,
+                                           "messageId": messageID,
+                                           "message": message], completion: {
+            DispatchQueue.main.async {
+                completion()
+            }
+        })
+    }
+    
+    func fetchEditMessageResponse(chatID: Int, completion: @escaping (MessageModel) -> ()) {
+        self.socket?.off("edit-message")
+        listenEvent(event: "edit-message", response: MessageModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }

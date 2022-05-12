@@ -162,6 +162,23 @@
 		FFDE786127F330F30036B098 /* UserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE786027F330F30036B098 /* UserViewModelTests.swift */; };
 		FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE786227F35E450036B098 /* FriendRequestSentNotification.swift */; };
 		FFDF45AB2822E84A005A0A0B /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF45AA2822E84A005A0A0B /* TabViewModel.swift */; };
+		FFEA3B2428298FCF000EF754 /* CameraXPN in Frameworks */ = {isa = PBXBuildFile; productRef = FFEA3B2328298FCF000EF754 /* CameraXPN */; };
+		FFEA3B26282C6237000EF754 /* EditMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEA3B25282C6237000EF754 /* EditMessage.swift */; };
+		FFED57BA2822F12A00E828F2 /* MessageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57B92822F12A00E828F2 /* MessageGallery.swift */; };
+		FFED57BC2822F81B00E828F2 /* PhotoMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57BB2822F81B00E828F2 /* PhotoMessageContent.swift */; };
+		FFED57BE2822FAB800E828F2 /* VideoMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57BD2822FAB800E828F2 /* VideoMessageContent.swift */; };
+		FFED57C2282342DC00E828F2 /* GetSignedUrlResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57C1282342DB00E828F2 /* GetSignedUrlResponse.swift */; };
+		FFED57FE28244A8F00E828F2 /* AVPlayerControllerRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57FD28244A8F00E828F2 /* AVPlayerControllerRepresented.swift */; };
+		FFED580028244CA000E828F2 /* GetSignedUrlRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED57FF28244CA000E828F2 /* GetSignedUrlRequest.swift */; };
+		FFED580228244ECA00E828F2 /* PendingFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED580128244ECA00E828F2 /* PendingFileModel.swift */; };
+		FFED583A2825A35300E828F2 /* NewConversationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED58392825A35300E828F2 /* NewConversationResponse.swift */; };
+		FFED583C2825A4FD00E828F2 /* NewConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED583B2825A4FD00E828F2 /* NewConversation.swift */; };
+		FFED58622826937900E828F2 /* AudioRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED58612826937900E828F2 /* AudioRecordingView.swift */; };
+		FFED58642826955900E828F2 /* AudioRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED58632826955900E828F2 /* AudioRecorderViewModel.swift */; };
+		FFED58662826A5C500E828F2 /* RecordingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED58652826A5C500E828F2 /* RecordingPreview.swift */; };
+		FFED58682826A5FF00E828F2 /* AudioPreviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED58672826A5FF00E828F2 /* AudioPreviewModel.swift */; };
+		FFED586A2826A94100E828F2 /* AudioPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED58692826A94100E828F2 /* AudioPlayerViewModel.swift */; };
+		FFED586C2826CBF800E828F2 /* AudioMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED586B2826CBF800E828F2 /* AudioMessageContent.swift */; };
 		FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */; };
 		FFF6468227D2582F0022EF60 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468127D2582F0022EF60 /* Gallery.swift */; };
 		FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */; };
@@ -349,6 +366,22 @@
 		FFDE786027F330F30036B098 /* UserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelTests.swift; sourceTree = "<group>"; };
 		FFDE786227F35E450036B098 /* FriendRequestSentNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestSentNotification.swift; sourceTree = "<group>"; };
 		FFDF45AA2822E84A005A0A0B /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		FFEA3B25282C6237000EF754 /* EditMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMessage.swift; sourceTree = "<group>"; };
+		FFED57B92822F12A00E828F2 /* MessageGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGallery.swift; sourceTree = "<group>"; };
+		FFED57BB2822F81B00E828F2 /* PhotoMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMessageContent.swift; sourceTree = "<group>"; };
+		FFED57BD2822FAB800E828F2 /* VideoMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessageContent.swift; sourceTree = "<group>"; };
+		FFED57C1282342DB00E828F2 /* GetSignedUrlResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSignedUrlResponse.swift; sourceTree = "<group>"; };
+		FFED57FD28244A8F00E828F2 /* AVPlayerControllerRepresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerControllerRepresented.swift; sourceTree = "<group>"; };
+		FFED57FF28244CA000E828F2 /* GetSignedUrlRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSignedUrlRequest.swift; sourceTree = "<group>"; };
+		FFED580128244ECA00E828F2 /* PendingFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingFileModel.swift; sourceTree = "<group>"; };
+		FFED58392825A35300E828F2 /* NewConversationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationResponse.swift; sourceTree = "<group>"; };
+		FFED583B2825A4FD00E828F2 /* NewConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversation.swift; sourceTree = "<group>"; };
+		FFED58612826937900E828F2 /* AudioRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingView.swift; sourceTree = "<group>"; };
+		FFED58632826955900E828F2 /* AudioRecorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewModel.swift; sourceTree = "<group>"; };
+		FFED58652826A5C500E828F2 /* RecordingPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingPreview.swift; sourceTree = "<group>"; };
+		FFED58672826A5FF00E828F2 /* AudioPreviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPreviewModel.swift; sourceTree = "<group>"; };
+		FFED58692826A94100E828F2 /* AudioPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewModel.swift; sourceTree = "<group>"; };
+		FFED586B2826CBF800E828F2 /* AudioMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMessageContent.swift; sourceTree = "<group>"; };
 		FFF6467F27D251B60022EF60 /* AuthProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileImages.swift; sourceTree = "<group>"; };
 		FFF6468127D2582F0022EF60 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		FFF6468327D265FB0022EF60 /* ProfileImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageBox.swift; sourceTree = "<group>"; };
@@ -363,6 +396,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFEA3B2428298FCF000EF754 /* CameraXPN in Frameworks */,
 				FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */,
 				FF7D0D2127CFFE1200A828C7 /* SwiftUIX in Frameworks */,
 				FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */,
@@ -459,11 +493,19 @@
 				FF5285682816E6F8004D2AB1 /* InterlocutorsCell.swift */,
 				FF5285662816D918004D2AB1 /* ChatSearch.swift */,
 				FF52856E281761CB004D2AB1 /* ChatRoom.swift */,
+				FFED583B2825A4FD00E828F2 /* NewConversation.swift */,
 				FFBF26D9281EBA25002668D5 /* MessageBar.swift */,
 				FFBF26DB281EBEB2002668D5 /* MessagesList.swift */,
 				FF0E6544281EE6F4003A3F6F /* MessageCell.swift */,
 				FF0E6546281F26D9003A3F6F /* MessageContent.swift */,
 				FF0E6548281F297E003A3F6F /* TextMessageContent.swift */,
+				FFED57BB2822F81B00E828F2 /* PhotoMessageContent.swift */,
+				FFED57BD2822FAB800E828F2 /* VideoMessageContent.swift */,
+				FFED586B2826CBF800E828F2 /* AudioMessageContent.swift */,
+				FFED57B92822F12A00E828F2 /* MessageGallery.swift */,
+				FFED58612826937900E828F2 /* AudioRecordingView.swift */,
+				FFED58652826A5C500E828F2 /* RecordingPreview.swift */,
+				FFEA3B25282C6237000EF754 /* EditMessage.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -525,6 +567,7 @@
 				FF7D0D1127CE889D00A828C7 /* GetTapLocation.swift */,
 				FF36400827F0BA170057D605 /* AppPreviewModels.swift */,
 				FF1350A928206320008BBD0A /* KeyboardAwareModifier.swift */,
+				FFED57FD28244A8F00E828F2 /* AVPlayerControllerRepresented.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -561,6 +604,8 @@
 				FF5285642816CB81004D2AB1 /* ChatViewModel.swift */,
 				FFBF26CF281DBF3D002668D5 /* ChatRoomViewModel.swift */,
 				FFDF45AA2822E84A005A0A0B /* TabViewModel.swift */,
+				FFED58632826955900E828F2 /* AudioRecorderViewModel.swift */,
+				FFED58692826A94100E828F2 /* AudioPlayerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -605,6 +650,11 @@
 				FFBF26D1281DC5F2002668D5 /* GetChatIdResponse.swift */,
 				FFBF26D3281DCB7B002668D5 /* OnlineResponseModel.swift */,
 				FFBF26D7281EB953002668D5 /* MessageModel.swift */,
+				FFED57C1282342DB00E828F2 /* GetSignedUrlResponse.swift */,
+				FFED57FF28244CA000E828F2 /* GetSignedUrlRequest.swift */,
+				FFED580128244ECA00E828F2 /* PendingFileModel.swift */,
+				FFED58392825A35300E828F2 /* NewConversationResponse.swift */,
+				FFED58672826A5FF00E828F2 /* AudioPreviewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -773,6 +823,7 @@
 				FFD6373227E3D47600F91AB6 /* SocketIO */,
 				FFB6D24127E93ACA004FD5D3 /* Sliders */,
 				FFB6D24427EA044E004FD5D3 /* WaterfallGrid */,
+				FFEA3B2328298FCF000EF754 /* CameraXPN */,
 			);
 			productName = Meetra;
 			productReference = FF7DA04027CD55CA00CA4338 /* Meetra.app */;
@@ -855,6 +906,7 @@
 				FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */,
 				FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 				FFB6D24327EA044E004FD5D3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
+				FFEA3B2228298FCF000EF754 /* XCRemoteSwiftPackageReference "CameraXPN" */,
 			);
 			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
 			projectDirPath = "";
@@ -1010,6 +1062,7 @@
 			files = (
 				FFD6372527E2413400F91AB6 /* NotificationsViewModel.swift in Sources */,
 				FF99154D2813385300CA2DFD /* ChangePhoneNumber.swift in Sources */,
+				FFED583A2825A35300E828F2 /* NewConversationResponse.swift in Sources */,
 				FFBF26D2281DC5F2002668D5 /* GetChatIdResponse.swift in Sources */,
 				FFB6D24D27EA34F5004FD5D3 /* Loading.swift in Sources */,
 				FFBF26D8281EB953002668D5 /* MessageModel.swift in Sources */,
@@ -1020,8 +1073,10 @@
 				FF07F24027D0FF9C009B46B7 /* RegistrationRequest.swift in Sources */,
 				FFB6D24F27EA38AE004FD5D3 /* PlaceRoomRequest.swift in Sources */,
 				FF37966F27E8B2C7007F28E7 /* PlacesRoomView.swift in Sources */,
+				FFED58642826955900E828F2 /* AudioRecorderViewModel.swift in Sources */,
 				FFF6468227D2582F0022EF60 /* Gallery.swift in Sources */,
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
+				FFED586A2826A94100E828F2 /* AudioPlayerViewModel.swift in Sources */,
 				FF5285612816C9D9004D2AB1 /* ChatListModel.swift in Sources */,
 				FF4C980827FF124E009CB60D /* ProfileSpecs.swift in Sources */,
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
@@ -1035,7 +1090,9 @@
 				FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */,
 				FF61D41827F7867600FB9A23 /* AlamofireAPIHelper.swift in Sources */,
 				FF97308627FDAAB900A7BF3F /* Profile.swift in Sources */,
+				FFED583C2825A4FD00E828F2 /* NewConversation.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
+				FFED580228244ECA00E828F2 /* PendingFileModel.swift in Sources */,
 				FF537E8C280D81E80020BE2C /* ProfileNavBar.swift in Sources */,
 				FF61D3F927F4AD8800FB9A23 /* SwipeUserModel.swift in Sources */,
 				FF07F23627D0DCD0009B46B7 /* AuthGenderPicker.swift in Sources */,
@@ -1044,8 +1101,10 @@
 				FF4C980E27FF4A10009CB60D /* EditOccupation.swift in Sources */,
 				FFB7989A280049C00040A9E8 /* EditEducation.swift in Sources */,
 				FF61D40027F4B41800FB9A23 /* SingleSwipeUser.swift in Sources */,
+				FFED57BA2822F12A00E828F2 /* MessageGallery.swift in Sources */,
 				FF0E6547281F26D9003A3F6F /* MessageContent.swift in Sources */,
 				FF36400127EFD7D80057D605 /* UserModel.swift in Sources */,
+				FFED580028244CA000E828F2 /* GetSignedUrlRequest.swift in Sources */,
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
 				FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */,
@@ -1053,12 +1112,15 @@
 				FF52856F281761CB004D2AB1 /* ChatRoom.swift in Sources */,
 				FFBF26D4281DCB7B002668D5 /* OnlineResponseModel.swift in Sources */,
 				FF52855F2816C92E004D2AB1 /* InterlocutorsListModel.swift in Sources */,
+				FFED57BC2822F81B00E828F2 /* PhotoMessageContent.swift in Sources */,
 				FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */,
+				FFED57BE2822FAB800E828F2 /* VideoMessageContent.swift in Sources */,
 				FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */,
 				FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */,
 				FF36400327EFD8EB0057D605 /* UserViewModel.swift in Sources */,
 				FFBF26D0281DBF3D002668D5 /* ChatRoomViewModel.swift in Sources */,
 				FFD6371627E2393E00F91AB6 /* AuthLocationPermission.swift in Sources */,
+				FFED57C2282342DC00E828F2 /* GetSignedUrlResponse.swift in Sources */,
 				FF7D0CFA27CE7C5400A828C7 /* Introduction.swift in Sources */,
 				FF7DA04627CD55CA00CA4338 /* ContentView.swift in Sources */,
 				FF52855B2816BE0A004D2AB1 /* Interlocutors.swift in Sources */,
@@ -1090,6 +1152,7 @@
 				FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */,
 				FFB7989E28004C230040A9E8 /* ButtonHelper.swift in Sources */,
 				FF537E90280E163C0020BE2C /* ActionButtonHelper.swift in Sources */,
+				FFED57FE28244A8F00E828F2 /* AVPlayerControllerRepresented.swift in Sources */,
 				FF61D40227F4C02900FB9A23 /* SwipeButtonHelper.swift in Sources */,
 				FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */,
 				FF7D0D2327D006E900A828C7 /* GlobalResponse.swift in Sources */,
@@ -1098,12 +1161,15 @@
 				FF363FFF27EFD77D0057D605 /* UserView.swift in Sources */,
 				FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */,
 				FF1350AA28206320008BBD0A /* KeyboardAwareModifier.swift in Sources */,
+				FFED58662826A5C500E828F2 /* RecordingPreview.swift in Sources */,
 				FF537E92280E18690020BE2C /* NavigationButtonHelper.swift in Sources */,
 				FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */,
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
 				FF61D41227F6804100FB9A23 /* FriendRequestListModel.swift in Sources */,
 				FF61D41427F6819800FB9A23 /* FriendRequestListCell.swift in Sources */,
 				FF537E98280F02D20020BE2C /* Community.swift in Sources */,
+				FFED58622826937900E828F2 /* AudioRecordingView.swift in Sources */,
+				FFEA3B26282C6237000EF754 /* EditMessage.swift in Sources */,
 				FF5285692816E6F8004D2AB1 /* InterlocutorsCell.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
 				FF61D41627F7469B00FB9A23 /* FriendRequestResponseRequest.swift in Sources */,
@@ -1123,8 +1189,10 @@
 				FF36400927F0BA170057D605 /* AppPreviewModels.swift in Sources */,
 				FFB798A228005FC00040A9E8 /* EditProfileFieldBuilder.swift in Sources */,
 				FF61D40E27F64D8800FB9A23 /* SwipeCards.swift in Sources */,
+				FFED586C2826CBF800E828F2 /* AudioMessageContent.swift in Sources */,
 				FF37966727E8AA27007F28E7 /* UserPreviewModel.swift in Sources */,
 				FF7D0D0227CE7CD200A828C7 /* GlobalAuth.swift in Sources */,
+				FFED58682826A5FF00E828F2 /* AudioPreviewModel.swift in Sources */,
 				FFB798A02800510C0040A9E8 /* EditGender.swift in Sources */,
 				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,
 				FF61D40427F4CAD200FB9A23 /* TagsViewHelper.swift in Sources */,
@@ -1326,6 +1394,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Meetra/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to your camera for sending video/photo content messages";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow your location to find people near you";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to your microphone for sendiong voice messages";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1361,6 +1432,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Meetra/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to your camera for sending video/photo content messages";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow your location to find people near you";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to your microphone for sendiong voice messages";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1544,6 +1618,14 @@
 				kind = branch;
 			};
 		};
+		FFEA3B2228298FCF000EF754 /* XCRemoteSwiftPackageReference "CameraXPN" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/karenxpn/CameraXPN";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1571,6 +1653,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */;
 			productName = SocketIO;
+		};
+		FFEA3B2328298FCF000EF754 /* CameraXPN */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFEA3B2228298FCF000EF754 /* XCRemoteSwiftPackageReference "CameraXPN" */;
+			productName = CameraXPN;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -20,17 +20,67 @@ class RoomViewModelTests: XCTestCase {
     
     func testGetChatIdWithError() {
         service.fetchChatIdError = true
-        viewModel.getChatId(userID: 1)
+        viewModel.chatID = 0
+        viewModel.getChatId()
         
         XCTAssertFalse(viewModel.alertMessage.isEmpty)
-        XCTAssertEqual(viewModel.chatId, 0)
+        XCTAssertEqual(viewModel.chatID, 0)
     }
     
     func testGetChatIdWithSuccess() {
         service.fetchChatIdError = false
-        viewModel.getChatId(userID: 1)
+        viewModel.chatID = 0
+        viewModel.getChatId()
         
         XCTAssertTrue(viewModel.alertMessage.isEmpty)
-        XCTAssertEqual(viewModel.chatId, 1)
+        XCTAssertEqual(viewModel.chatID, 1)
+    }
+    
+    func testGetMessgesListWithError() {
+        service.fetchMessagesError = true
+        viewModel.messages.removeAll()
+        viewModel.getMessageList(messageID: 0)
+        
+        XCTAssertTrue(viewModel.messages.isEmpty)
+    }
+    
+    func testGetMessagesWithSuccess() {
+        service.fetchMessagesError = false
+        viewModel.messages.removeAll()
+        viewModel.getMessageList(messageID: 0)
+        
+        XCTAssertFalse(viewModel.messages.isEmpty)
+    }
+    
+    func testGetNewConversationWithError() {
+        service.fetchNewConversationError = true
+        viewModel.getNewConversationResponse()
+        
+        XCTAssertTrue(viewModel.showAlert)
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testGetNewConversationWithSuccess() {
+        service.fetchNewConversationError = false
+        viewModel.getNewConversationResponse()
+        
+        XCTAssertTrue(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testGetSignedUrlWithError() {
+        service.fetchSignedURLError = true
+        viewModel.getSignedURL(content_type: "video")
+        
+        XCTAssertTrue(viewModel.showAlert)
+        XCTAssertFalse(viewModel.alertMessage.isEmpty)
+    }
+    
+    func testGetSignedUrlWithSuccess() {
+        service.fetchSignedURLError = false
+        viewModel.getSignedURL(content_type: "video")
+        
+        XCTAssertFalse(viewModel.showAlert)
+        XCTAssertTrue(viewModel.alertMessage.isEmpty)
+        XCTAssertFalse(viewModel.signedURL.isEmpty)
     }
 }

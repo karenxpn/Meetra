@@ -21,7 +21,7 @@ struct MessagesList: View {
                     ForEach(roomVM.messages, id: \.id) { message in
                         MessageCell(message: message, group: group)
                             .environmentObject(roomVM)
-                            .padding(.bottom, roomVM.messages[0].id == message.id ? UIScreen.main.bounds.size.height * 0.11 : 0)
+                            .padding(.bottom, roomVM.messages[0].id == message.id ? UIScreen.main.bounds.size.height * 0.15 : 0)
                             .rotationEffect(.radians(3.14))
                             .onAppear {
                                 if message.id == roomVM.messages.last?.id && !roomVM.loading {
@@ -33,6 +33,7 @@ struct MessagesList: View {
                     if roomVM.loading {
                         ProgressView()
                             .padding()
+                            .padding(.top, roomVM.messages.isEmpty ? UIScreen.main.bounds.height * 0.11 : 0)
                     }
                 }.padding(.top, 20)
                 .onChange(of: roomVM.typing) { (_) in

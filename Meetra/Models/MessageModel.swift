@@ -18,6 +18,7 @@ struct MessageModel: Identifiable, Codable {
     var message: String
     var type: String
     var status: String
+    var isEdited: Bool
     var sender: MessageSenderModel
 }
 
@@ -35,6 +36,7 @@ struct MessageViewModel: Identifiable {
     
     var id: Int             { self.message.id }
     var createdAt: String   { self.message.createdAt }
+    var isEdited: Bool      { self.message.isEdited }
     
     var updatedAt: String   {
         
@@ -56,8 +58,16 @@ struct MessageViewModel: Identifiable {
         return newDate == currentDate ? NSLocalizedString("now", comment: "") : string
     }
     
-    var content: String     { self.message.message}
+    var content: String {
+        get { self.message.message }
+        set { self.message.message = newValue }
+    }
+    
     var type: String        { self.message.type }
-    var status: String      { self.message.status }
+    var status: String {
+        get { self.message.status }
+        set { self.message.status = newValue }
+        
+    }
     var sender: MessageSenderModel  { self.message.sender }
 }

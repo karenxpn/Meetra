@@ -15,17 +15,14 @@ struct MessageContent: View {
     var body: some View {
         
         if message.type == "text" {
-            
             TextMessageContent(message: message, group: group)
-            
         } else if message.type == "photo" {
-            
+            PhotoMessageContent(message: message, group: group)
         } else if message.type == "video" {
-            
+            VideoMessageContent(message: message, group: group)
         } else if message.type == "audio" {
-            
+            AudioMessageContent(message: message, group: group)
         }
-        
     }
 }
 
