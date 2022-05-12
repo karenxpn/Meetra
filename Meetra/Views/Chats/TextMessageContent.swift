@@ -29,7 +29,7 @@ struct TextMessageContent: View {
                 }
                 
                 if message.reptyedTo != nil {
-                    ReplyedToMessagePreview(replyedTo: message.reptyedTo!)
+                    ReplyedToMessagePreview(repliedTo: message.reptyedTo!)
                 }
                 
                 Text(message.content)

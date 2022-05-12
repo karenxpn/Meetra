@@ -25,7 +25,7 @@ struct VideoMessageContent: View {
             }
             
             if message.reptyedTo != nil {
-                ReplyedToMessagePreview(replyedTo: message.reptyedTo!)
+                ReplyedToMessagePreview(repliedTo: message.reptyedTo!)
                     .frame(width: UIScreen.main.bounds.width * 0.5)
 
             }
