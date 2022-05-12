@@ -24,11 +24,12 @@ struct MenuButtonsHelper: View {
                     .kerning(0.36)
                     .foregroundColor(role == .destructive ? Color.red : Color.black)
                     .font(.custom("Inter-Regular", size: 12))
+                
+                Spacer()
                                     
             }.frame(height: 37)
                 .padding(.horizontal)
                 .background(.white)
-            
-        }.buttonStyle(PlainButtonStyle())
+        }
     }
 }

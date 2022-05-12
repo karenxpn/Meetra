@@ -99,13 +99,13 @@ struct MessageCell: View {
                         }
                         Divider()
                         
-                        MenuButtonsHelper(label: NSLocalizedString("copy", comment: ""), role: .cancel) {
-                            showPopOver = false
-                        }
-                        Divider()
-                        
                         if message.type == "text" {
-                            
+                            MenuButtonsHelper(label: NSLocalizedString("copy", comment: ""), role: .cancel) {
+                                UIPasteboard.general.string = message.content
+                                showPopOver = false
+                            }
+                            Divider()
+                                                    
                             MenuButtonsHelper(label: NSLocalizedString("edit", comment: ""), role: .cancel) {
                                 NotificationCenter.default.post(name: Notification.Name("edit"), object: ["message" : message])
                                 showPopOver = false
