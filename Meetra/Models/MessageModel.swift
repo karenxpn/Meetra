@@ -36,7 +36,10 @@ struct MessageViewModel: Identifiable {
     
     var id: Int             { self.message.id }
     var createdAt: String   { self.message.createdAt }
-    var isEdited: Bool      { self.message.isEdited }
+    var isEdited: Bool {
+        get { self.message.isEdited }
+        set { self.message.isEdited = newValue }
+    }
     
     var updatedAt: String   {
         

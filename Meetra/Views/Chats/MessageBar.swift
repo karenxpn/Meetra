@@ -130,11 +130,6 @@ struct MessageBar: View {
                     roomVM.showEditField = true
                 }
             }
-        }.onChange(of: roomVM.showEditField) { value in
-            if value == false {
-                roomVM.message = ""
-                roomVM.editingMessage = nil
-            }
         }
     }
 }

@@ -186,7 +186,15 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     func editMessage() {
         if let message = editingMessage {
             socketManager.editMessage(chatID: chatID, messageID: message.id, message: self.message) {
-
+                if let index = self.messages.firstIndex(where: {$0.id == message.id}) {
+                    self.messages[index].isEdited = true
+                    self.messages[index].content = self.message
+                    withAnimation {
+                        self.message = ""
+                        self.editingMessage = nil
+                        self.showEditField = false
+                    }
+                }
             }
         }
     }
@@ -199,6 +207,22 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                     self.editingMessage = nil
                     self.showEditField = false
                 }
+            }
+        }
+    }
+    
+    func deleteMessage(messageID: Int) {
+        socketManager.deleteMessage(chatID: chatID, messageID: messageID) {
+            if let index = self.messages.firstIndex(where: {$0.id == messageID}) {
+                self.messages.remove(at: index)
+            }
+        }
+    }
+    
+    func listenDeleteMessageEvent() {
+        socketManager.fetchDeleteMessageResponse(chatID: chatID) { messageID in
+            if let index = self.messages.firstIndex(where: {$0.id == messageID}) {
+                self.messages.remove(at: index)
             }
         }
     }
@@ -227,6 +251,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
             self.getOnlineStatus()
             self.getMessage()
             self.getEditMessage()
+            self.listenDeleteMessageEvent()
         }
     }
     

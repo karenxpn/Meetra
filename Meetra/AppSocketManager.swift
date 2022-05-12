@@ -31,6 +31,9 @@ protocol AppSocketManagerProtocol {
     func editMessage(chatID: Int, messageID: Int, message: String, completion: @escaping() -> ())
     func fetchEditMessageResponse(chatID: Int, completion: @escaping (MessageModel) -> ())
     
+    func deleteMessage(chatID: Int, messageID: Int, completion: @escaping() -> ())
+    func fetchDeleteMessageResponse(chatID: Int, completion: @escaping(Int) -> ())
+    
     func disconnectSocket()
     func connectSocket()
 }
@@ -97,6 +100,26 @@ extension AppSocketManager: AppSocketManagerProtocol {
         listenEvent(event: "send-message", response: MessageModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
+            }
+        }
+    }
+    
+    func deleteMessage(chatID: Int, messageID: Int, completion: @escaping() -> ()) {
+        self.socket?.emit("delete-message", ["chatId" : chatID,
+                                           "messageId": messageID], completion: {
+            DispatchQueue.main.async {
+                completion()
+            }
+        })
+    }
+    
+    func fetchDeleteMessageResponse(chatID: Int, completion: @escaping(Int) -> ()) {
+        self.socket?.off("delete-message")
+        self.socket?.on("delete-message"){ (data, ack) in
+            if let data = data[0] as? [String : Int], let id = data["inside"] {
+                DispatchQueue.main.async {
+                    completion(id)
+                }
             }
         }
     }

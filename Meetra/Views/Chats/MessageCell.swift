@@ -67,6 +67,7 @@ struct MessageCell: View {
                     }
                     
                     Button(role: .destructive) {
+                        roomVM.deleteMessage(messageID: message.id)
                     } label: {
                         Text(NSLocalizedString("delete", comment: ""))
                     }
