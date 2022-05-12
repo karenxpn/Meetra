@@ -23,8 +23,10 @@ struct MessageBar: View {
         
         VStack( spacing: 0) {
             
-            if roomVM.showEditField && roomVM.editingMessage != nil{
-                EditMessage( showEditing: $roomVM.showEditField, message: roomVM.editingMessage!)
+            if roomVM.showMessagePreview && roomVM.editingMessage != nil{
+                BarMessagePreview( showEditing: $roomVM.showMessagePreview, message: roomVM.editingMessage!)
+            } else if roomVM.showMessagePreview && roomVM.replyMessage != nil {
+                BarMessagePreview(showEditing: $roomVM.showMessagePreview, message: roomVM.replyMessage!)
             }
             
             if audioVM.recording {
@@ -64,7 +66,7 @@ struct MessageBar: View {
                     
                     if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Button {
-                            if roomVM.showEditField {
+                            if roomVM.showMessagePreview {
                                 roomVM.editMessage()
                             } else {
                                 roomVM.sendTextMessage()
@@ -91,7 +93,7 @@ struct MessageBar: View {
             }.frame(height: 96)
                 .background(.white)
                 .cornerRadius([.topLeft, .topRight], 35)
-                .shadow(color: roomVM.showEditField ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
+                .shadow(color: roomVM.showMessagePreview ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
                 .KeyboardAwarePadding()
         }
         .confirmationDialog("", isPresented: $openAttachment, titleVisibility: .hidden) {
@@ -127,7 +129,16 @@ struct MessageBar: View {
                 roomVM.message = message.content
 
                 withAnimation {
-                    roomVM.showEditField = true
+                    roomVM.showMessagePreview = true
+                }
+            }
+        }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "reply"))) { message in
+            if let object = message.object as? [String: MessageViewModel], let message = object["message"] {
+                // message params here should be used
+                roomVM.replyMessage = message
+                roomVM.message = "reply"
+                withAnimation {
+                    roomVM.showMessagePreview = true
                 }
             }
         }

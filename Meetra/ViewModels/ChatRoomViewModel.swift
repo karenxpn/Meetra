@@ -41,8 +41,9 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     private let userDefaults = UserDefaults.standard
     
     // edit message
-    @Published var showEditField: Bool = false
+    @Published var showMessagePreview: Bool = false
     @Published var editingMessage: MessageViewModel?
+    @Published var replyMessage: MessageViewModel?
     
     var chatID: Int
     var userID: Int
@@ -192,7 +193,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                     withAnimation {
                         self.message = ""
                         self.editingMessage = nil
-                        self.showEditField = false
+                        self.showMessagePreview = false
                     }
                 }
             }
@@ -205,7 +206,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                 self.messages[index] = MessageViewModel(message: message)
                 withAnimation {
                     self.editingMessage = nil
-                    self.showEditField = false
+                    self.showMessagePreview = false
                 }
             }
         }

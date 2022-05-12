@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct EditMessage: View {
+struct BarMessagePreview: View {
     @Binding var showEditing: Bool
     let message: MessageViewModel
+
     var body: some View {
         
         HStack( alignment: .top) {
@@ -47,6 +48,6 @@ struct EditMessage: View {
 
 struct EditMessage_Previews: PreviewProvider {
     static var previews: some View {
-        EditMessage(showEditing: .constant(false), message: AppPreviewModels.message)
+        BarMessagePreview(showEditing: .constant(false), message: AppPreviewModels.message)
     }
 }
