@@ -186,6 +186,8 @@
 		FFF6468827D26D690022EF60 /* AuthInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468727D26D690022EF60 /* AuthInterests.swift */; };
 		FFF6468A27D28F6A0022EF60 /* InterestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF6468927D28F6A0022EF60 /* InterestModel.swift */; };
 		FFFF9EC3282DB98D006DEC92 /* ReplyedToMessagePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF9EC2282DB98D006DEC92 /* ReplyedToMessagePreview.swift */; };
+		FFFF9EC6282DC1C0006DEC92 /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = FFFF9EC5282DC1C0006DEC92 /* Popovers */; };
+		FFFF9EC8282DC57F006DEC92 /* MenuButtonsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF9EC7282DC57F006DEC92 /* MenuButtonsHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -391,6 +393,7 @@
 		FFF6468927D28F6A0022EF60 /* InterestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestModel.swift; sourceTree = "<group>"; };
 		FFF9BF7B27ECE1AA005906E1 /* Meetra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Meetra.entitlements; sourceTree = "<group>"; };
 		FFFF9EC2282DB98D006DEC92 /* ReplyedToMessagePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyedToMessagePreview.swift; sourceTree = "<group>"; };
+		FFFF9EC7282DC57F006DEC92 /* MenuButtonsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonsHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,6 +407,7 @@
 				FFD6373327E3D47600F91AB6 /* SocketIO in Frameworks */,
 				FFB6D24527EA044E004FD5D3 /* WaterfallGrid in Frameworks */,
 				FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */,
+				FFFF9EC6282DC1C0006DEC92 /* Popovers in Frameworks */,
 				D4A6F0E1386DF6DD344E0938 /* Pods_Meetra.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +513,7 @@
 				FFED58652826A5C500E828F2 /* RecordingPreview.swift */,
 				FFEA3B25282C6237000EF754 /* BarMessagePreview.swift */,
 				FFFF9EC2282DB98D006DEC92 /* ReplyedToMessagePreview.swift */,
+				FFFF9EC7282DC57F006DEC92 /* MenuButtonsHelper.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -827,6 +832,7 @@
 				FFB6D24127E93ACA004FD5D3 /* Sliders */,
 				FFB6D24427EA044E004FD5D3 /* WaterfallGrid */,
 				FFEA3B2328298FCF000EF754 /* CameraXPN */,
+				FFFF9EC5282DC1C0006DEC92 /* Popovers */,
 			);
 			productName = Meetra;
 			productReference = FF7DA04027CD55CA00CA4338 /* Meetra.app */;
@@ -910,6 +916,7 @@
 				FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 				FFB6D24327EA044E004FD5D3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
 				FFEA3B2228298FCF000EF754 /* XCRemoteSwiftPackageReference "CameraXPN" */,
+				FFFF9EC4282DC1C0006DEC92 /* XCRemoteSwiftPackageReference "Popovers" */,
 			);
 			productRefGroup = FF7DA04127CD55CA00CA4338 /* Products */;
 			projectDirPath = "";
@@ -1201,6 +1208,7 @@
 				FF7D0D0027CE7CB600A828C7 /* AuthViewModel.swift in Sources */,
 				FF61D40427F4CAD200FB9A23 /* TagsViewHelper.swift in Sources */,
 				FF7D0D1827CFE2E300A828C7 /* AuthResponse.swift in Sources */,
+				FFFF9EC8282DC57F006DEC92 /* MenuButtonsHelper.swift in Sources */,
 				FF7D0D1C27CFE53E00A828C7 /* VerifyPhoneNumber.swift in Sources */,
 				FFF6468027D251B60022EF60 /* AuthProfileImages.swift in Sources */,
 				FFB6D24927EA10DC004FD5D3 /* AgeFilter.swift in Sources */,
@@ -1630,6 +1638,14 @@
 				kind = branch;
 			};
 		};
+		FFFF9EC4282DC1C0006DEC92 /* XCRemoteSwiftPackageReference "Popovers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aheze/Popovers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1662,6 +1678,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FFEA3B2228298FCF000EF754 /* XCRemoteSwiftPackageReference "CameraXPN" */;
 			productName = CameraXPN;
+		};
+		FFFF9EC5282DC1C0006DEC92 /* Popovers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFF9EC4282DC1C0006DEC92 /* XCRemoteSwiftPackageReference "Popovers" */;
+			productName = Popovers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

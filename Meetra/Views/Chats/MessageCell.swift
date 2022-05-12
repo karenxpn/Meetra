@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import Popovers
 
 struct MessageCell: View {
     
     @AppStorage("userId") private var userID: Int = 0
     @EnvironmentObject var roomVM: ChatRoomViewModel
     @State private var offset: CGFloat = .zero
+    
+    @State private var showPopOver: Bool = false
+    let reactions = ["👍", "👎", "❤️", "😂", "🤣", "😡", "😭"]
     
     let message: MessageViewModel
     let group: Bool
@@ -42,38 +46,83 @@ struct MessageCell: View {
                     .font(.custom("Inter-Regular", size: 8))
             }
             
+            
             MessageContent(message: message, group: group)
-                .onTapGesture {
-                    print("tap")
-                }.contextMenu(menuItems: {
-                    Button {
-                        NotificationCenter.default.post(name: Notification.Name("reply"), object: ["message" : message])
-                    } label: {
-                        Text(NSLocalizedString("answer", comment: ""))
-                    }
-                    
-                    Button {
-                    } label: {
-                        Text(NSLocalizedString("copy", comment: ""))
-                        
-                    }
-                    
-                    if message.type == "text" {
-                        Button {
-                            NotificationCenter.default.post(name: Notification.Name("edit"), object: ["message" : message])
-                            
-                        } label: {
-                            Text(NSLocalizedString("edit", comment: ""))
-                            
-                        }
-                    }
-                    
-                    Button(role: .destructive) {
-                        roomVM.deleteMessage(messageID: message.id)
-                    } label: {
-                        Text(NSLocalizedString("delete", comment: ""))
-                    }
+                .scaleEffect(showPopOver ? 0.8 : 1)
+                .blur(radius: showPopOver ? 0.7 : 0)
+                .animation(.easeInOut, value: showPopOver)
+                .onTapGesture(perform: { })
+                .onLongPressGesture(minimumDuration: 0.7, perform: {
+                    showPopOver = true
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
                 })
+                .popover(
+                    present: $showPopOver,
+                    attributes: {
+                        $0.position = .absolute(
+                            originAnchor: .top,
+                            popoverAnchor: .bottomRight
+                        )
+                    }
+                ) {
+                    HStack {
+                        
+                        ForEach(reactions, id: \.self) { reaction in
+                            Button {
+                                showPopOver = false
+                            } label: {
+                                Text(reaction)
+                                    .font(.system(size: 28))
+                            }
+                        }
+                        
+                    }.padding(.horizontal, 24)
+                        .padding(.vertical, 9)
+                        .background(Color.white)
+                        .cornerRadius(20)
+                        .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 5)
+                }
+            
+                .popover(
+                    present: $showPopOver,
+                    attributes: {
+                        $0.position = .absolute(
+                            originAnchor: .bottom,
+                            popoverAnchor: .top
+                        )
+                    }
+                ) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        MenuButtonsHelper(label: NSLocalizedString("answer", comment: ""), role: .cancel) {
+                            NotificationCenter.default.post(name: Notification.Name("reply"), object: ["message" : message])
+                            showPopOver = false
+                        }
+                        Divider()
+                        
+                        MenuButtonsHelper(label: NSLocalizedString("copy", comment: ""), role: .cancel) {
+                            showPopOver = false
+                        }
+                        Divider()
+                        
+                        if message.type == "text" {
+                            
+                            MenuButtonsHelper(label: NSLocalizedString("edit", comment: ""), role: .cancel) {
+                                NotificationCenter.default.post(name: Notification.Name("edit"), object: ["message" : message])
+                                showPopOver = false
+                            }
+                            
+                            Divider()
+                        }
+                        
+                        MenuButtonsHelper(label: NSLocalizedString("delete", comment: ""), role: .destructive) {
+                            showPopOver = false
+                        }
+                        
+                    }.frame(width: 200)
+                        .background(Color.white)
+                        .cornerRadius(20)
+                        .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 5)
+                }
             
             
             if message.sender.id != userID {
@@ -88,33 +137,34 @@ struct MessageCell: View {
         }.padding(.horizontal, 20)
             .padding(message.sender.id == userID ? .leading : .trailing, UIScreen.main.bounds.width * 0.05)
             .padding(.vertical, 8)
-            .offset(x: offset)
-//            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-//                .onChanged({ value in
-//                    let cur = value.translation.width
-//                    print(cur)
-//                    if message.sender.id == userID {
-//                        if cur < 0 && cur >= -80 {
-//                            offset = cur
-//                        }
-//                    } else {
-//                        if cur > 0 && cur <= 80 {
-//                            offset = cur
-//                        }
-//                    }
-//
-//                }).onEnded({ value in
-//                    if offset <= -80 || offset >= 80 {
-//                        let generator = UINotificationFeedbackGenerator()
-//                        generator.notificationOccurred(.success)
-//
-//                        print("need some action")
-//                    }
-//                    offset = 0
-//
-//                })
-//            )
-
+            .padding(.bottom, (roomVM.lastMessageID == message.id && showPopOver) ? UIScreen.main.bounds.height * 0.08 : 0)
+        
+        //            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+        //                .onChanged({ value in
+        //                    let cur = value.translation.width
+        //                    print(cur)
+        //                    if message.sender.id == userID {
+        //                        if cur < 0 && cur >= -80 {
+        //                            offset = cur
+        //                        }
+        //                    } else {
+        //                        if cur > 0 && cur <= 80 {
+        //                            offset = cur
+        //                        }
+        //                    }
+        //
+        //                }).onEnded({ value in
+        //                    if offset <= -80 || offset >= 80 {
+        //                        let generator = UINotificationFeedbackGenerator()
+        //                        generator.notificationOccurred(.success)
+        //
+        //                        print("need some action")
+        //                    }
+        //                    offset = 0
+        //
+        //                })
+        //            )
+        
     }
 }
 
