@@ -23,6 +23,12 @@ struct PhotoMessageContent: View {
                     .lineLimit(1)
             }
             
+            if message.reptyedTo != nil {
+                ReplyedToMessagePreview(replyedTo: message.reptyedTo!)
+                    .frame(width: UIScreen.main.bounds.width * 0.5)
+
+            }
+            
             if message.content.hasPrefix("https://") {
                 ImageHelper(image: message.content, contentMode: .fill)
                     .frame(width: UIScreen.main.bounds.width * 0.5, height: UIScreen.main.bounds.height * 0.4)

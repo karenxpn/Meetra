@@ -24,6 +24,12 @@ struct VideoMessageContent: View {
                     .lineLimit(1)
             }
             
+            if message.reptyedTo != nil {
+                ReplyedToMessagePreview(replyedTo: message.reptyedTo!)
+                    .frame(width: UIScreen.main.bounds.width * 0.5)
+
+            }
+            
             if message.content.hasPrefix("https://") {
                 let player = AVPlayer(url:  URL(string: message.content)!)
                 

@@ -19,12 +19,17 @@ struct TextMessageContent: View {
                 .font(.system(size: 102))
         } else {
             VStack( alignment: message.sender.id == userID ? .trailing : .leading) {
+                
                 if group && message.sender.id != userID {
                     Text( message.sender.name )
                         .foregroundColor(AppColors.proceedButtonColor)
                         .font(.custom("Inter-SemiBold", size: 12))
                         .kerning(0.12)
                         .lineLimit(1)
+                }
+                
+                if message.reptyedTo != nil {
+                    ReplyedToMessagePreview(replyedTo: message.reptyedTo!)
                 }
                 
                 Text(message.content)

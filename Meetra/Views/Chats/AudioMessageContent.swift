@@ -37,6 +37,12 @@ struct AudioMessageContent: View {
                     .lineLimit(1)
             }
             
+            if message.reptyedTo != nil {
+                ReplyedToMessagePreview(replyedTo: message.reptyedTo!)
+                    .frame(width: UIScreen.main.bounds.width * 0.5)
+
+            }
+            
             LazyHStack(alignment: .center, spacing: 10) {
                 
                 Button {
