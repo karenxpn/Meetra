@@ -40,6 +40,10 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     private var cancellableSet: Set<AnyCancellable> = []
     private let userDefaults = UserDefaults.standard
     
+    // edit message
+    @Published var showEditField: Bool = false
+    @Published var editingMessage: MessageViewModel?
+    
     var chatID: Int
     var userID: Int
     var dataManager: ChatServiceProtocol
@@ -179,6 +183,26 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
         }
     }
     
+    func editMessage() {
+        if let message = editingMessage {
+            socketManager.editMessage(chatID: chatID, messageID: message.id, message: self.message) {
+
+            }
+        }
+    }
+    
+    func getEditMessage() {
+        socketManager.fetchEditMessageResponse(chatID: chatID) { message in
+            if let index = self.messages.firstIndex(where: {$0.id == message.id}) {
+                self.messages[index] = MessageViewModel(message: message)
+                withAnimation {
+                    self.editingMessage = nil
+                    self.showEditField = false
+                }
+            }
+        }
+    }
+    
     func getMessage() {
         socketManager.fetchMessage(chatID: chatID) { message in
             self.lastMessageID = message.id
@@ -202,6 +226,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
             self.getTypingResponse()
             self.getOnlineStatus()
             self.getMessage()
+            self.getEditMessage()
         }
     }
     

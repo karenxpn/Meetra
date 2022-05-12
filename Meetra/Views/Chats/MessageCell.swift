@@ -35,13 +35,15 @@ struct MessageCell: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 7)
                 
-                Text(message.updatedAt)
+                Text("\(message.updatedAt)\(message.isEdited ? NSLocalizedString("edited", comment: "") : "")")
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 8))
             }
 
             MessageContent(message: message, group: group)
-                .contextMenu(menuItems: {
+                .onTapGesture {
+                    print("tap")
+                }.contextMenu(menuItems: {
                     Button {
                         
                     } label: {
@@ -68,11 +70,13 @@ struct MessageCell: View {
                     } label: {
                         Text(NSLocalizedString("delete", comment: ""))
                     }
-                })
+                }).simultaneousGesture(LongPressGesture(minimumDuration: 0.5).onEnded({ _ in
+                    print("long press")
+                }))
 
 
             if message.sender.id != userID {
-                Text(message.updatedAt)
+                Text("\(message.updatedAt)\(message.isEdited ? NSLocalizedString("edited", comment: "") : "")")
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 8))
             }

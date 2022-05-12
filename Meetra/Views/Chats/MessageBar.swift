@@ -18,16 +18,13 @@ struct MessageBar: View {
     @State private var openGallery: Bool = false
     @State private var openCamera: Bool = false
     
-    @State private var showEditField: Bool = false
-    @State private var editingMessage: MessageViewModel?
-    
     var body: some View {
         
         
         VStack( spacing: 0) {
             
-            if showEditField && editingMessage != nil{
-                EditMessage( showEditing: $showEditField, message: editingMessage!)
+            if roomVM.showEditField && roomVM.editingMessage != nil{
+                EditMessage( showEditing: $roomVM.showEditField, message: roomVM.editingMessage!)
             }
             
             if audioVM.recording {
@@ -67,7 +64,11 @@ struct MessageBar: View {
                     
                     if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Button {
-                            roomVM.sendTextMessage()
+                            if roomVM.showEditField {
+                                roomVM.editMessage()
+                            } else {
+                                roomVM.sendTextMessage()
+                            }
                         } label: {
                             Image("icon_send_message")
                                 .padding([.trailing, .vertical], 20)
@@ -90,7 +91,7 @@ struct MessageBar: View {
             }.frame(height: 96)
                 .background(.white)
                 .cornerRadius([.topLeft, .topRight], 35)
-                .shadow(color: showEditField ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
+                .shadow(color: roomVM.showEditField ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
                 .KeyboardAwarePadding()
         }
         .confirmationDialog("", isPresented: $openAttachment, titleVisibility: .hidden) {
@@ -122,17 +123,17 @@ struct MessageBar: View {
             audioVM.showPreview = false
         }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "edit"))) { message in
             if let object = message.object as? [String: MessageViewModel], let message = object["message"] {
-                self.editingMessage = message
-                roomVM.message = editingMessage?.content ?? ""
+                roomVM.editingMessage = message
+                roomVM.message = message.content
 
                 withAnimation {
-                    showEditField = true
+                    roomVM.showEditField = true
                 }
             }
-        }.onChange(of: showEditField) { value in
+        }.onChange(of: roomVM.showEditField) { value in
             if value == false {
                 roomVM.message = ""
-                self.editingMessage = nil
+                roomVM.editingMessage = nil
             }
         }
     }

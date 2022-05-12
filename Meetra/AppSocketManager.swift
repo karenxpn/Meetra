@@ -28,6 +28,9 @@ protocol AppSocketManagerProtocol {
     func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ())
     func sendMedia(chatID: Int, messageID: Int, status: String)
     
+    func editMessage(chatID: Int, messageID: Int, message: String, completion: @escaping() -> ())
+    func fetchEditMessageResponse(chatID: Int, completion: @escaping (MessageModel) -> ())
+    
     func disconnectSocket()
     func connectSocket()
 }
@@ -92,6 +95,25 @@ extension AppSocketManager: AppSocketManagerProtocol {
     func fetchMessage(chatID: Int, completion: @escaping (MessageModel) -> ()) {
         self.socket?.off("send-message")
         listenEvent(event: "send-message", response: MessageModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
+            }
+        }
+    }
+    
+    func editMessage(chatID: Int, messageID: Int, message: String, completion: @escaping() -> ()) {
+        self.socket?.emit("edit-message", ["chatId" : chatID,
+                                           "messageId": messageID,
+                                           "message": message], completion: {
+            DispatchQueue.main.async {
+                completion()
+            }
+        })
+    }
+    
+    func fetchEditMessageResponse(chatID: Int, completion: @escaping (MessageModel) -> ()) {
+        self.socket?.off("edit-message")
+        listenEvent(event: "edit-message", response: MessageModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }

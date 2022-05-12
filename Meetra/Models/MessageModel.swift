@@ -18,6 +18,7 @@ struct MessageModel: Identifiable, Codable {
     var message: String
     var type: String
     var status: String
+    var isEdited: Bool
     var sender: MessageSenderModel
 }
 
@@ -35,6 +36,7 @@ struct MessageViewModel: Identifiable {
     
     var id: Int             { self.message.id }
     var createdAt: String   { self.message.createdAt }
+    var isEdited: Bool      { self.message.isEdited }
     
     var updatedAt: String   {
         
