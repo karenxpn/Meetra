@@ -15,7 +15,7 @@ struct VideoMessageContent: View {
     
     var body: some View {
         
-        VStack( alignment: message.sender.id == userID ? .trailing : .leading) {
+        VStack( alignment: message.sender.id == userID && message.reptyedTo == nil ? .trailing : .leading) {
             if group && message.sender.id != userID {
                 Text( message.sender.name )
                     .foregroundColor(AppColors.proceedButtonColor)
@@ -25,7 +25,7 @@ struct VideoMessageContent: View {
             }
             
             if message.reptyedTo != nil {
-                ReplyedToMessagePreview(repliedTo: message.reptyedTo!)
+                ReplyedToMessagePreview(senderID: message.sender.id, repliedTo: message.reptyedTo!)
                     .frame(width: UIScreen.main.bounds.width * 0.5)
 
             }

@@ -22,7 +22,7 @@ protocol AppSocketManagerProtocol {
     func fetchInterlocutorsUpdates(userID: Int, completion: @escaping (InterlocutorsModel) -> ())
     
     func connectChatRoom(chatID: Int, completion: @escaping() -> ())
-    func sendMessage(chatID: Int, type: String, content: String, completion: @escaping() -> ())
+    func sendMessage(chatID: Int, type: String, content: String, repliedTo: Int?, completion: @escaping() -> ())
     func fetchMessage(chatID: Int, completion: @escaping(MessageModel) -> ())
     
     func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ())
@@ -49,9 +49,10 @@ class AppSocketManager {
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
+    
     func sendMedia(chatID: Int, messageID: Int, status: String) {
         self.socket?.emit("media", ["chatId" : chatID,
-                                     "messageID": messageID,
+                                    "messageID": messageID,
                                     "status" : status])
     }
     
@@ -85,10 +86,11 @@ extension AppSocketManager: AppSocketManagerProtocol {
     }
     
     
-    func sendMessage(chatID: Int, type: String, content: String, completion: @escaping () -> ()) {
+    func sendMessage(chatID: Int, type: String, content: String, repliedTo: Int?, completion: @escaping () -> ()) {
         self.socket?.emit("send-message", ["chatId" : chatID,
-                                      "type" : type,
-                                      "message" : content], completion: {
+                                           "type" : type,
+                                           "message" : content,
+                                           "repliedTo": repliedTo], completion: {
             DispatchQueue.main.async {
                 completion()
             }
@@ -106,7 +108,7 @@ extension AppSocketManager: AppSocketManagerProtocol {
     
     func deleteMessage(chatID: Int, messageID: Int, completion: @escaping() -> ()) {
         self.socket?.emit("delete-message", ["chatId" : chatID,
-                                           "messageId": messageID], completion: {
+                                             "messageId": messageID], completion: {
             DispatchQueue.main.async {
                 completion()
             }

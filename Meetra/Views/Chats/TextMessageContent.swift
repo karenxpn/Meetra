@@ -18,7 +18,7 @@ struct TextMessageContent: View {
             Text(message.content)
                 .font(.system(size: 102))
         } else {
-            VStack( alignment: message.sender.id == userID ? .trailing : .leading) {
+            VStack( alignment: message.sender.id == userID && message.reptyedTo == nil ? .trailing : .leading) {
                 
                 if group && message.sender.id != userID {
                     Text( message.sender.name )
@@ -29,7 +29,7 @@ struct TextMessageContent: View {
                 }
                 
                 if message.reptyedTo != nil {
-                    ReplyedToMessagePreview(repliedTo: message.reptyedTo!)
+                    ReplyedToMessagePreview(senderID: message.sender.id, repliedTo: message.reptyedTo!)
                 }
                 
                 Text(message.content)

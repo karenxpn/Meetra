@@ -23,10 +23,10 @@ struct MessageBar: View {
         
         VStack( spacing: 0) {
             
-            if roomVM.showMessagePreview && roomVM.editingMessage != nil{
-                BarMessagePreview( showEditing: $roomVM.showMessagePreview, message: roomVM.editingMessage!)
-            } else if roomVM.showMessagePreview && roomVM.replyMessage != nil {
-                BarMessagePreview(showEditing: $roomVM.showMessagePreview, message: roomVM.replyMessage!)
+            if roomVM.editingMessage != nil {
+                BarMessagePreview(message: $roomVM.editingMessage)
+            } else if roomVM.replyMessage != nil {
+                BarMessagePreview(message: $roomVM.replyMessage)
             }
             
             if audioVM.recording {
@@ -66,7 +66,7 @@ struct MessageBar: View {
                     
                     if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Button {
-                            if roomVM.showMessagePreview {
+                            if roomVM.editingMessage != nil{
                                 roomVM.editMessage()
                             } else {
                                 roomVM.sendTextMessage()
@@ -92,8 +92,8 @@ struct MessageBar: View {
                 }
             }.frame(height: 96)
                 .background(.white)
-                .cornerRadius([.topLeft, .topRight], roomVM.showMessagePreview ? 0 : 35)
-                .shadow(color: roomVM.showMessagePreview ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
+                .cornerRadius([.topLeft, .topRight], roomVM.editingMessage != nil || roomVM.replyMessage != nil ? 0 : 35)
+                .shadow(color: roomVM.editingMessage != nil || roomVM.replyMessage != nil ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
                 .KeyboardAwarePadding()
         }
         .confirmationDialog("", isPresented: $openAttachment, titleVisibility: .hidden) {
@@ -127,18 +127,11 @@ struct MessageBar: View {
             if let object = message.object as? [String: MessageViewModel], let message = object["message"] {
                 roomVM.editingMessage = message
                 roomVM.message = message.content
-
-                withAnimation {
-                    roomVM.showMessagePreview = true
-                }
             }
         }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "reply"))) { message in
             if let object = message.object as? [String: MessageViewModel], let message = object["message"] {
                 // message params here should be used
                 roomVM.replyMessage = message
-                withAnimation {
-                    roomVM.showMessagePreview = true
-                }
             }
         }
     }

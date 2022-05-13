@@ -19,7 +19,7 @@ struct MessageModel: Identifiable, Codable {
     var type: String
     var status: String
     var isEdited: Bool
-    var replyedTo: RepliedModel?
+    var repliedTo: RepliedModel?
     var sender: MessageSenderModel
 }
 
@@ -29,11 +29,15 @@ struct MessageSenderModel: Identifiable, Codable {
     var online: Bool
 }
 
-struct RepliedModel: Codable {
-    var messageId: Int
+struct RepliedModel: Identifiable, Codable {
+    var id: Int
     var message: String
-    var senderName: String
     var type: String
+    var sender: ReplySenderModel
+}
+
+struct ReplySenderModel: Codable {
+    var name: String
 }
 
 struct MessageViewModel: Identifiable {
@@ -69,7 +73,7 @@ struct MessageViewModel: Identifiable {
         return newDate == currentDate ? NSLocalizedString("now", comment: "") : string
     }
     
-    var reptyedTo: RepliedModel? { self.message.replyedTo }
+    var reptyedTo: RepliedModel? { self.message.repliedTo }
     
     var content: String {
         get { self.message.message }

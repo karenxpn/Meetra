@@ -41,7 +41,6 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     private let userDefaults = UserDefaults.standard
     
     // edit message
-    @Published var showMessagePreview: Bool = false
     @Published var editingMessage: MessageViewModel?
     @Published var replyMessage: MessageViewModel?
     
@@ -178,8 +177,8 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     }
     
     func sendTextMessage() {
-        socketManager.sendMessage(chatID: chatID, type: "text", content: message) {
-            // do smth
+        socketManager.sendMessage(chatID: chatID, type: "text", content: message, repliedTo: replyMessage?.id) {
+            self.replyMessage = nil
             self.message = ""
         }
     }
@@ -193,7 +192,6 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                     withAnimation {
                         self.message = ""
                         self.editingMessage = nil
-                        self.showMessagePreview = false
                     }
                 }
             }
@@ -206,7 +204,6 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                 self.messages[index] = MessageViewModel(message: message)
                 withAnimation {
                     self.editingMessage = nil
-                    self.showMessagePreview = false
                 }
             }
         }

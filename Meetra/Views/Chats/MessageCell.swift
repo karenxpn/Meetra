@@ -61,7 +61,7 @@ struct MessageCell: View {
                     attributes: {
                         $0.position = .absolute(
                             originAnchor: .top,
-                            popoverAnchor: .bottomRight
+                            popoverAnchor: message.sender.id == userID ? .bottomRight : .bottomLeft
                         )
                     }
                 ) {
