@@ -52,7 +52,7 @@ struct MessageCell: View {
                 .blur(radius: showPopOver ? 0.7 : 0)
                 .animation(.easeInOut, value: showPopOver)
                 .onTapGesture(perform: { })
-                .onLongPressGesture(minimumDuration: 0.7, perform: {
+                .onLongPressGesture(minimumDuration: 0.7, maximumDistance: 30, perform: {
                     showPopOver = true
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                 })
@@ -115,6 +115,7 @@ struct MessageCell: View {
                         }
                         
                         MenuButtonsHelper(label: NSLocalizedString("delete", comment: ""), role: .destructive) {
+                            roomVM.deleteMessage(messageID: message.id)
                             showPopOver = false
                         }
                         

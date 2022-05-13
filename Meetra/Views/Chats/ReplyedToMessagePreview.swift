@@ -12,21 +12,23 @@ struct ReplyedToMessagePreview: View {
     let senderID: Int
     let repliedTo: RepliedModel
     
+    var contentType: String = "any"
+    
     var body: some View {
         HStack( alignment: .top) {
             Capsule()
-                .fill( senderID == userID ? .white : AppColors.accentColor)
+                .fill( (senderID == userID && contentType != "audio") ? .white : AppColors.accentColor)
                 .frame(width: 3, height: 35)
             
             LazyVStack( alignment: .leading, spacing: 5) {
                 Text(repliedTo.sender.name)
-                    .foregroundColor( senderID == userID ? .white : AppColors.accentColor)
+                    .foregroundColor( (senderID == userID && contentType != "audio") ? .white : AppColors.accentColor)
                     .font(.custom("Inter-SemiBold", size: 12))
                 
                 
                 if repliedTo.type == "text" {
                     Text(repliedTo.message)
-                        .foregroundColor(senderID == userID ? .white : .black)
+                        .foregroundColor((senderID == userID && contentType != "audio") ? .white : .black)
                         .font(.custom("Inter-Regular", size: 12))
                         .kerning(0.24)
                         .lineLimit(1)
@@ -38,13 +40,13 @@ struct ReplyedToMessagePreview: View {
                     
                 } else if repliedTo.type == "video" {
                     Text(NSLocalizedString("videoContent", comment: ""))
-                        .foregroundColor( senderID == userID ? .white : .black)
+                        .foregroundColor( (senderID == userID && contentType != "audio") ? .white : .black)
                         .font(.custom("Inter-Regular", size: 12))
                         .kerning(0.24)
 
                 } else if repliedTo.type == "audio" {
                     Text(NSLocalizedString("audioContent", comment: ""))
-                        .foregroundColor( senderID == userID ? .white : .black)
+                        .foregroundColor( (senderID == userID && contentType != "audio") ? .white : .black)
                         .font(.custom("Inter-Regular", size: 12))
                         .kerning(0.24)
                 }

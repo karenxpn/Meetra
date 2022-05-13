@@ -28,7 +28,7 @@ struct AudioMessageContent: View {
     }
     
     var body: some View {
-        LazyVStack( alignment: message.sender.id == userID && message.reptyedTo == nil ? .trailing : .leading ) {
+        VStack( alignment: message.sender.id == userID && message.reptyedTo == nil ? .trailing : .leading ) {
             if group && message.sender.id != userID {
                 Text( message.sender.name )
                     .foregroundColor(AppColors.proceedButtonColor)
@@ -38,9 +38,8 @@ struct AudioMessageContent: View {
             }
             
             if message.reptyedTo != nil {
-                ReplyedToMessagePreview(senderID: message.sender.id, repliedTo: message.reptyedTo!)
-                    .frame(width: UIScreen.main.bounds.width * 0.5)
-
+                ReplyedToMessagePreview(senderID: message.sender.id, repliedTo: message.reptyedTo!, contentType: "audio")
+                    .frame(width: UIScreen.main.bounds.width * 0.4)
             }
             
             LazyHStack(alignment: .center, spacing: 10) {

@@ -104,7 +104,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     }
     
     func getSignedURL(content_type: String) {
-        dataManager.fetchSignedURL(key: Date().millisecondsSince1970, chatID: chatID,content_type: content_type)
+        dataManager.fetchSignedURL(key: Date().millisecondsSince1970, chatID: chatID,content_type: content_type, repliedTo: replyMessage?.id)
             .sink { response in
                 
                 // hide audio preview if the content type is audio
@@ -122,6 +122,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                     let message = response.value!.message
                     let urlForMedia = response.value!.message.message
                     self.pendingMedia = MessageViewModel(message: message)
+                    self.replyMessage = nil
                     
                     self.storeMediaFile(content_type: content_type, messageID: message.id, serverMediaURL: urlForMedia)
                 }

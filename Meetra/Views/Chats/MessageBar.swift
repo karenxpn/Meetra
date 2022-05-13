@@ -92,8 +92,8 @@ struct MessageBar: View {
                 }
             }.frame(height: 96)
                 .background(.white)
-                .cornerRadius([.topLeft, .topRight], roomVM.editingMessage != nil || roomVM.replyMessage != nil ? 0 : 35)
-                .shadow(color: roomVM.editingMessage != nil || roomVM.replyMessage != nil ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
+                .cornerRadius([.topLeft, .topRight], (roomVM.editingMessage != nil || roomVM.replyMessage != nil) ? 0 : 35)
+                .shadow(color: (roomVM.editingMessage != nil || roomVM.replyMessage != nil) ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
                 .KeyboardAwarePadding()
         }
         .confirmationDialog("", isPresented: $openAttachment, titleVisibility: .hidden) {

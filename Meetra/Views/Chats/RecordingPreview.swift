@@ -73,8 +73,8 @@ struct RecordingPreview: View {
         }.padding(.horizontal, 20)
             .frame(width: .greedy, height: 96)
             .background(.white)
-            .cornerRadius([.topLeft, .topRight], 35)
-            .shadow(color: Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
+            .cornerRadius([.topLeft, .topRight], roomVM.replyMessage != nil ? 0 : 35)
+            .shadow(color: roomVM.replyMessage != nil ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
             .onAppear {
                 audioVM.visualizeAudio()
             }
