@@ -24,10 +24,8 @@ struct ChatRoom: View {
         
         ZStack {
             
-            if roomVM.newConversation {
-                if let response = roomVM.newConversationResponse {
-                    NewConversation(newConversation: response)
-                }
+            if roomVM.newConversation && roomVM.newConversationResponse != nil{
+                NewConversation(newConversation: roomVM.newConversationResponse!)
             } else {
                 MessagesList(group: group)
                     .environmentObject(roomVM)

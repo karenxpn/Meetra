@@ -114,9 +114,11 @@ struct MessageCell: View {
                             Divider()
                         }
                         
-                        MenuButtonsHelper(label: NSLocalizedString("delete", comment: ""), role: .destructive) {
-                            roomVM.deleteMessage(messageID: message.id)
-                            showPopOver = false
+                        if message.sender.id == userID {
+                            MenuButtonsHelper(label: NSLocalizedString("delete", comment: ""), role: .destructive) {
+                                roomVM.deleteMessage(messageID: message.id)
+                                showPopOver = false
+                            }
                         }
                         
                     }.frame(width: 200)

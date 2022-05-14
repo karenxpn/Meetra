@@ -141,7 +141,8 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
             self.lastMessageID = messageID
             self.messages.insert(self.pendingMedia!, at: 0)
             self.newConversation = false
-                        
+            self.newConversationResponse = nil
+            
             // store file to server and on completion update message
             self.dataManager.storeFileToServer(file: self.mediaBinaryData, url: self.signedURL, completion: { completion in
                 if completion {
@@ -228,10 +229,13 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     
     func getMessage() {
         socketManager.fetchMessage(chatID: chatID) { message in
-            self.lastMessageID = message.id
-            self.newConversation = false
             withAnimation {
+                
+                self.lastMessageID = message.id
+                self.newConversation = false
+                self.newConversationResponse = nil
                 self.messages.insert(MessageViewModel(message: message), at: 0)
+                print(self.messages)
             }
         }
     }
