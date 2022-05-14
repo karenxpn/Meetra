@@ -52,7 +52,7 @@ struct MessageCell: View {
                 .blur(radius: showPopOver ? 0.7 : 0)
                 .animation(.easeInOut, value: showPopOver)
                 .onTapGesture(perform: { })
-                .onLongPressGesture(minimumDuration: 0.7, maximumDistance: 30, perform: {
+                .onLongPressGesture(minimumDuration: 0.7, perform: {
                     showPopOver = true
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                 })
