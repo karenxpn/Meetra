@@ -166,10 +166,22 @@ extension AppSocketManager: AppSocketManagerProtocol {
     
     
     func connectChatRoom(chatID: Int, completion: @escaping() -> ()) {
-        self.socket?.emit("join-chat", ["chatId" : chatID]) {
-            DispatchQueue.main.async {
-                completion()
+        if self.socket?.status == .connected {
+            self.socket?.emit("join-chat", ["chatId" : chatID]) {
+                DispatchQueue.main.async {
+                    completion()
+                }
             }
+        } else {
+            self.socket?.on(clientEvent: .connect, callback: { data, ack in
+                self.socket?.emit("join-chat", ["chatId" : chatID]) {
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }
+            })
+            
+            self.socket?.connect()
         }
     }
     

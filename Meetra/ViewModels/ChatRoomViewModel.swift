@@ -240,7 +240,6 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     
     func joinRoom() {
         socketManager.connectChatRoom(chatID: chatID) {
-            print("room joined")
             self.getTypingResponse()
             self.getOnlineStatus()
             self.getMessage()

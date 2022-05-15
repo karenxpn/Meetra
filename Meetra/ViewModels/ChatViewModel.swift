@@ -114,6 +114,8 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                     
                     self.chats[index] = ChatModelViewModel(chat: response)
                 }
+            } else {
+                self.chats.insert(ChatModelViewModel(chat: response), at: 0)
             }
         }
     }

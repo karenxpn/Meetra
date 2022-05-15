@@ -77,9 +77,6 @@ struct ChatRoom: View {
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 print("will enter foreground")
                 roomVM.joinRoom()
-                
-            }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
-                
             }
     }
 }
