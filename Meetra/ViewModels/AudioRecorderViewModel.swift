@@ -87,8 +87,11 @@ class AudioRecorderViewModel: ObservableObject {
     }
     
     func requestPermission() {
-        if audioSession.recordPermission != .undetermined {
+        if audioSession.recordPermission == .undetermined {
             audioSession.requestRecordPermission { (isGranted) in
+                if isGranted {
+                    self.permissionStatus = .granted
+                }
                 if !isGranted {
                     print("no access to record")
                 }

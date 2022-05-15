@@ -34,6 +34,7 @@ protocol AppSocketManagerProtocol {
     func deleteMessage(chatID: Int, messageID: Int, completion: @escaping() -> ())
     func fetchDeleteMessageResponse(chatID: Int, completion: @escaping(Int) -> ())
     
+    
     func disconnectSocket()
     func connectSocket()
 }
@@ -190,6 +191,7 @@ extension AppSocketManager: AppSocketManagerProtocol {
     
     func disconnectSocket() {
         socket?.disconnect()
+        socket?.removeAllHandlers()
     }
     
     func connectSocket() {

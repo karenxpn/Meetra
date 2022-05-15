@@ -95,9 +95,8 @@ struct ChatListCell: View {
             .background(
                 NavigationLink(destination: ChatRoom(group: chat.isGroup,
                                                      online: chat.online,
-                                                     userID: chat.message.sender.id,
-                                                     chatID: chat.id,
-                                                     chatName: chat.name),
+                                                     chatName: chat.name, userID: chat.message.sender.id,
+                                                     chatID: chat.id),
                                isActive: $navigate,
                                label: {
                                    EmptyView()

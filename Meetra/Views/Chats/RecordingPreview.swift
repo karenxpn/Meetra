@@ -56,10 +56,12 @@ struct RecordingPreview: View {
                         BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
                     }
                 }
-                                
-                Text(audioVM.duration)
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-Regular", size: 12))
+                         
+                if audioVM.duration != "0:0" {
+                    Text(audioVM.duration)
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-Regular", size: 12))
+                }
                 
             }.frame(width: .greedy)
             

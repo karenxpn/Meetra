@@ -44,29 +44,19 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @Published var editingMessage: MessageViewModel?
     @Published var replyMessage: MessageViewModel?
     
-    var chatID: Int
-    var userID: Int
+    @Published var chatID: Int = 0
+    @Published var userID: Int = 0
+    
     var dataManager: ChatServiceProtocol
     var socketManager: AppSocketManagerProtocol
     
     init(socketManager: AppSocketManagerProtocol = AppSocketManager.shared,
-         dataManager: ChatServiceProtocol = ChatService.shared,
-         chatID: Int = 0,
-         userID: Int = 0) {
+         dataManager: ChatServiceProtocol = ChatService.shared) {
         
         self.socketManager = socketManager
         self.dataManager = dataManager
-        self.chatID = chatID
-        self.userID = userID
         
         super.init()
-        
-        if chatID == 0 {
-            getChatId()
-        } else {
-            joinGetMessagesListenEventsOnInit()
-            // get chat messages
-        }
     }
     
     func getChatId() {
@@ -250,6 +240,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     
     func joinRoom() {
         socketManager.connectChatRoom(chatID: chatID) {
+            print("room joined")
             self.getTypingResponse()
             self.getOnlineStatus()
             self.getMessage()
