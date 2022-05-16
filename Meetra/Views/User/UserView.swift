@@ -11,6 +11,7 @@ struct UserView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var userVM = UserViewModel()
     @State private var showDialog: Bool = false
+    @State private var showReportConfirmation: Bool = false
     
     let userID: Int
     
@@ -58,10 +59,36 @@ struct UserView: View {
                 ActionSheetButtonHelper(icon: "report_icon",
                                         label: NSLocalizedString("report", comment: ""),
                                         role: .destructive) {
-                    self.showDialog.toggle()
-                    userVM.reportUser(id: userID)
-                    self.presentationMode.wrappedValue.dismiss()
-                }
+                    self.showReportConfirmation.toggle()
+                }.alert(NSLocalizedString("chooseReason", comment: ""), isPresented: $showReportConfirmation, actions: {
+                    Button {
+                        userVM.reportReason = NSLocalizedString("fraud", comment: "")
+                        userVM.reportUser(id: userID)
+                        self.showDialog.toggle()
+
+                    } label: {
+                        Text( NSLocalizedString("fraud", comment: "") )
+                    }
+                    
+                    Button {
+                        userVM.reportReason = NSLocalizedString("insults", comment: "")
+                        userVM.reportUser(id: userID)
+                        self.showDialog.toggle()
+                    } label: {
+                        Text( NSLocalizedString("insults", comment: "") )
+                    }
+                    
+                    Button {
+                        userVM.reportReason = NSLocalizedString("fakeAccount", comment: "")
+                        userVM.reportUser(id: userID)
+                        self.showDialog.toggle()
+                    } label: {
+                        Text( NSLocalizedString("fakeAccount", comment: "") )
+                    }
+                    
+                    Button(NSLocalizedString("cancel", comment: ""), role: .cancel) { }
+
+                })
                 
                 Divider()
                 

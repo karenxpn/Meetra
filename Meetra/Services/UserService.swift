@@ -16,7 +16,7 @@ protocol UserServiceProtocol {
     func fetchStarredUsers(page: Int ) -> AnyPublisher<DataResponse<FavouritesListModel, NetworkError>, Never>
     func fetchFriendRequests(page: Int ) -> AnyPublisher<DataResponse<FriendRequestListModel, NetworkError>, Never>
     func accept_rejectFriendRequest(model: FriendRequestResponseRequest ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
-    func reportUser(id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func reportUser(id: Int, reason: String ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     func blockUser(id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
 }
 
@@ -26,10 +26,10 @@ class UserService {
 }
 
 extension UserService: UserServiceProtocol {
-    func reportUser(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func reportUser(id: Int, reason: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/report")!
-        
-        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, responseType: GlobalResponse.self)
+        let params = ReportUserRequest(id: id, reason: reason)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: params, url: url, responseType: GlobalResponse.self)
     }
     
     func blockUser(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {

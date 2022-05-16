@@ -34,6 +34,7 @@
 		FF37966B27E8AAE2007F28E7 /* PlaceRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */; };
 		FF37966D27E8ACD4007F28E7 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */; };
 		FF37966F27E8B2C7007F28E7 /* PlacesRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */; };
+		FF499CFB2832E624000D3872 /* ReportUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF499CFA2832E624000D3872 /* ReportUserRequest.swift */; };
 		FF4C980027FF0711009CB60D /* ProfileEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C97FF27FF0711009CB60D /* ProfileEditing.swift */; };
 		FF4C980227FF07A4009CB60D /* ProfileEditFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980127FF07A4009CB60D /* ProfileEditFields.swift */; };
 		FF4C980427FF0980009CB60D /* ProfilePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980327FF0980009CB60D /* ProfilePreview.swift */; };
@@ -241,6 +242,7 @@
 		FF37966A27E8AAE2007F28E7 /* PlaceRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRoom.swift; sourceTree = "<group>"; };
 		FF37966C27E8ACD4007F28E7 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		FF37966E27E8B2C7007F28E7 /* PlacesRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRoomView.swift; sourceTree = "<group>"; };
+		FF499CFA2832E624000D3872 /* ReportUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUserRequest.swift; sourceTree = "<group>"; };
 		FF4C97FF27FF0711009CB60D /* ProfileEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditing.swift; sourceTree = "<group>"; };
 		FF4C980127FF07A4009CB60D /* ProfileEditFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditFields.swift; sourceTree = "<group>"; };
 		FF4C980327FF0980009CB60D /* ProfilePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePreview.swift; sourceTree = "<group>"; };
@@ -663,6 +665,7 @@
 				FFED580128244ECA00E828F2 /* PendingFileModel.swift */,
 				FFED58392825A35300E828F2 /* NewConversationResponse.swift */,
 				FFED58672826A5FF00E828F2 /* AudioPreviewModel.swift */,
+				FF499CFA2832E624000D3872 /* ReportUserRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1182,6 +1185,7 @@
 				FFEA3B26282C6237000EF754 /* BarMessagePreview.swift in Sources */,
 				FF5285692816E6F8004D2AB1 /* InterlocutorsCell.swift in Sources */,
 				FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */,
+				FF499CFB2832E624000D3872 /* ReportUserRequest.swift in Sources */,
 				FF61D41627F7469B00FB9A23 /* FriendRequestResponseRequest.swift in Sources */,
 				FFB7989C28004BD90040A9E8 /* EditCity.swift in Sources */,
 				FF4C980627FF10B0009CB60D /* ProfileEditingInnerView.swift in Sources */,

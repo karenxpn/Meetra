@@ -20,6 +20,8 @@ class UserViewModel: AlertViewModel, ObservableObject {
     @Published var users = [UserPreviewModel]()
     @Published var requests = [FriendRequestModel]()
     
+    @Published var reportReason: String = ""
+    
     @Published var user: ModelUserViewModel? = nil
     @Published var friendRequestSentOffset: CGFloat = -UIScreen.main.bounds.height
     
@@ -116,7 +118,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     }
     
     func reportUser( id: Int ) {
-        dataManager.reportUser(id: id)
+        dataManager.reportUser(id: id, reason: reportReason)
             .sink { _ in
             }.store(in: &cancellableSet)
     }

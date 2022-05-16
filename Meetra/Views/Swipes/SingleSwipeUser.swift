@@ -21,6 +21,7 @@ struct SingleSwipeUser: View {
     @State var user: SwipeUserViewModel
     @State private var navigate: Bool = false
     @State private var showDialog: Bool = false
+    @State private var showReportConfirmation: Bool = false
     
     @State private var cardAction: CardAction? = .none
     
@@ -96,15 +97,33 @@ struct SingleSwipeUser: View {
                                 ActionSheetButtonHelper(icon: "report_icon",
                                                         label: NSLocalizedString("report", comment: ""),
                                                         role: .destructive) {
-                                    self.showDialog.toggle()
-                                    cardAction = .report
-                                    withAnimation(animation) {
-                                        user.x = -1000; user.degree = -20
-                                        checkLastAndRequestMore()
+                                    self.showReportConfirmation.toggle()
+                                }.alert(NSLocalizedString("chooseReason", comment: ""), isPresented: $showReportConfirmation, actions: {
+                                    Button {
+                                        userVM.reportReason = NSLocalizedString("fraud", comment: "")
+                                        reportUser()
+
+                                    } label: {
+                                        Text( NSLocalizedString("fraud", comment: "") )
                                     }
                                     
-                                    userVM.reportUser(id: user.id)
-                                }
+                                    Button {
+                                        userVM.reportReason = NSLocalizedString("insults", comment: "")
+                                        reportUser()
+                                    } label: {
+                                        Text( NSLocalizedString("insults", comment: "") )
+                                    }
+                                    
+                                    Button {
+                                        userVM.reportReason = NSLocalizedString("fakeAccount", comment: "")
+                                        reportUser()
+                                    } label: {
+                                        Text( NSLocalizedString("fakeAccount", comment: "") )
+                                    }
+                                    
+                                    Button(NSLocalizedString("cancel", comment: ""), role: .cancel) { }
+
+                                })
                                 
                                 Divider()
                                 
@@ -257,6 +276,17 @@ struct SingleSwipeUser: View {
             placesVM.swipePage += 1
             placesVM.getSwipes()
         }
+    }
+    
+    func reportUser() {
+        cardAction = .report
+        withAnimation(animation) {
+            user.x = -1000; user.degree = -20
+            checkLastAndRequestMore()
+        }
+        
+        userVM.reportUser(id: user.id)
+        self.showDialog.toggle()
     }
 }
 
