@@ -120,6 +120,28 @@ class ChatViewModel: AlertViewModel, ObservableObject {
         }
     }
     
+    func changeMuteStatus(id: Int) {
+        dataManager.changeChatNotificationStatus(id: id)
+            .sink { response in
+                if response.error == nil {
+                    if let index = self.chats.firstIndex(where: {$0.id == id }) {
+                        self.chats[index].mute.toggle()
+                    }
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func deleteChat(id: Int) {
+        dataManager.deleteChat(id: id)
+            .sink { response in
+                if response.error == nil {
+                    if let index = self.chats.firstIndex(where: {$0.id == id }) {
+                        self.chats.remove(at: index)
+                    }
+                }
+            }.store(in: &cancellableSet)
+    }
+    
     func getInterlocutorsChange() {
         socketManager.fetchInterlocutorsUpdates(userID: userID) { response in
             if let index = self.interlocutors.firstIndex(where: {$0.id == response.id }) {

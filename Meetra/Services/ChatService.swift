@@ -15,6 +15,9 @@ protocol ChatServiceProtocol {
     func fetchChatList(page: Int, query: String) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never>
     func fetchInterlocutors() -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never>
     
+    func changeChatNotificationStatus(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func deleteChat(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    
     func fetchChatId(userId: Int) -> AnyPublisher<DataResponse<GetChatIdResponse, NetworkError>, Never>
     func fetchNewConversationResponse(roomID: Int) -> AnyPublisher<DataResponse<NewConversationResponse, NetworkError>, Never>
     
@@ -34,7 +37,15 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    func deleteChat(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)chats/\(id)")!
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, method: .delete, responseType: GlobalResponse.self)
+    }
     
+    func changeChatNotificationStatus(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)chats/notifications")!
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, responseType: GlobalResponse.self)
+    }
     
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ()) {
         
@@ -86,7 +97,7 @@ extension ChatService: ChatServiceProtocol {
                 print("Audio Error: \(error)")
             }
         }
-
+        
     }
     
     func fetchNewConversationResponse(roomID: Int) -> AnyPublisher<DataResponse<NewConversationResponse, NetworkError>, Never> {
@@ -96,7 +107,7 @@ extension ChatService: ChatServiceProtocol {
     
     func removeLocalFile(url: URL, messageID: Int, completion: @escaping () -> ()) {
         @AppStorage( "pending_files") var localStorePendingFiles: Data = Data()
-
+        
         do {
             try FileManager.default.removeItem(at: url)
             var pendingURLs: [PendingFileModel] = {
@@ -106,7 +117,7 @@ extension ChatService: ChatServiceProtocol {
                     return []
                 }
             }()
-                        
+            
             pendingURLs.removeAll(where: {$0.messageID == messageID})
             
             if let newData = try? JSONEncoder().encode(pendingURLs) {
@@ -136,10 +147,10 @@ extension ChatService: ChatServiceProtocol {
         }
     }
     
-
+    
     func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping([PendingFileModel]) -> ()) {
         @AppStorage( "pending_files") var localStorePendingFiles: Data = Data()
-
+        
         let directory = FileManager.default.temporaryDirectory
         let fileName = "\(NSUUID().uuidString).\(type == "video" ? "mov" : type == "audio" ? "m4a" : "jpg")"
         let url = directory.appendingPathComponent(fileName)

@@ -66,14 +66,14 @@ struct Chats: View {
                                 }).swipeActions {
                                     
                                     Button {
-                                        
+                                        chatVM.deleteChat(id: chat.id)
                                     } label: {
                                         Image("message_delete_icon")
                                     }.tint(.red)
                                     
                                     
                                     Button {
-                                        
+                                        chatVM.changeMuteStatus(id: chat.id)
                                     } label: {
                                         if chat.mute {
                                             Image("message_notification_icon")
