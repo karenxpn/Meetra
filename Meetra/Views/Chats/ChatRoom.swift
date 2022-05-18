@@ -15,15 +15,6 @@ struct ChatRoom: View {
     let userID: Int
     let chatID: Int
     
-//    init(group: Bool, online: Bool, userID: Int, chatID: Int, chatName: String) {
-//        _roomVM = StateObject(wrappedValue: ChatRoomViewModel(chatID: chatID, userID: userID))
-//        self.group = group
-//        self.online = online
-//        self.chatName = chatName
-//
-//        print("init")
-//    }
-    
     var body: some View {
         
         ZStack {

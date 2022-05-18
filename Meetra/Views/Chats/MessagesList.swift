@@ -48,6 +48,9 @@ struct MessagesList: View {
         }.rotationEffect(.radians(3.14))
         .padding(.top, 1)
         .KeyboardAwarePadding()
+        .onAppear{
+            UIScrollView.appearance().keyboardDismissMode = .onDrag
+        }
     }
 }
 

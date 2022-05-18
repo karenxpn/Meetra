@@ -63,7 +63,25 @@ struct Chats: View {
                                     if chat.id == chatVM.chats.last?.id && !chatVM.loadingPage {
                                         chatVM.getChatList()
                                     }
-                                })
+                                }).swipeActions {
+                                    
+                                    Button {
+                                        
+                                    } label: {
+                                        Image("message_delete_icon")
+                                    }.tint(.red)
+                                    
+                                    
+                                    Button {
+                                        
+                                    } label: {
+                                        if chat.mute {
+                                            Image("message_notification_icon")
+                                        } else {
+                                            Image("message_mute_icon")
+                                        }
+                                    }.tint(AppColors.starColor)
+                                }
                         }
                         
                         if chatVM.loadingPage {
@@ -94,6 +112,9 @@ struct Chats: View {
                         withAnimation {
                             chatVM.showSearchField.toggle()
                         }
+                        if !chatVM.showSearchField {
+                            UIApplication.shared.endEditing()
+                        }
                         
                         chatVM.search = ""
                         
@@ -110,9 +131,6 @@ struct Chats: View {
                     }
                 })
         }.navigationViewStyle(.stack)
-            .gesture(DragGesture().onChanged({ _ in
-                UIApplication.shared.endEditing()
-            }))
     }
 }
 
