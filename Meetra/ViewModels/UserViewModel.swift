@@ -24,12 +24,21 @@ class UserViewModel: AlertViewModel, ObservableObject {
     
     @Published var user: ModelUserViewModel? = nil
     @Published var friendRequestSentOffset: CGFloat = -UIScreen.main.bounds.height
+    @Published var newConversationResponse: NewConversationResponse?
+    @Published var chatID: Int?
+
     
     private var cancellableSet: Set<AnyCancellable> = []
     var dataManager: UserServiceProtocol
+    var chatDataManager: ChatServiceProtocol
+    var socketManager: AppSocketManagerProtocol
     
-    init( dataManager: UserServiceProtocol = UserService.shared) {
+    init( dataManager: UserServiceProtocol = UserService.shared,
+          chatDataManager: ChatServiceProtocol = ChatService.shared,
+          socketManager: AppSocketManagerProtocol = AppSocketManager.shared) {
         self.dataManager = dataManager
+        self.chatDataManager = chatDataManager
+        self.socketManager = socketManager
     }
     
     func getUser(userID: Int) {
@@ -49,9 +58,41 @@ class UserViewModel: AlertViewModel, ObservableObject {
         dataManager.sendFriendRequest(id: userID)
             .sink { response in
                 if response.error == nil {
-                    self.friendRequestSentOffset = -UIScreen.main.bounds.height / 3
+                    self.friendRequestSentOffset = 0
                 }
             }.store(in: &cancellableSet)
+    }
+    
+    func getChatID(userID: Int) {
+        chatDataManager.fetchChatId(userId: userID)
+            .sink { response in
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.chatID = response.value!.chat
+                    self.getNewConversation()
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func getNewConversation() {
+        chatDataManager.fetchNewConversationResponse(roomID: chatID!)
+            .sink { response in
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.newConversationResponse = response.value!
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func sendMessage(message: String) {
+        socketManager.sendMessage(chatID: chatID!, type: "text", content: message, repliedTo: nil) {
+            UIApplication.shared.endEditing()
+            self.newConversationResponse = nil
+            self.chatID = nil
+            self.friendRequestSentOffset = -UIScreen.main.bounds.height
+        }
     }
     
     func starUser() {

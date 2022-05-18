@@ -25,21 +25,22 @@ struct UserView: View {
                     .environmentObject(userVM)
             }
             
-            FriendRequestSentNotification()
+            FriendRequestSentNotification(userID: userID)
+                .environmentObject(userVM)
                 .offset(y: userVM.friendRequestSentOffset)
                 .animation(.interpolatingSpring(mass: 1.0, stiffness: 100.0, damping: 10, initialVelocity: 0), value: userVM.friendRequestSentOffset)
                 .gesture(DragGesture()
                     .onChanged({ gesture in
-
+                        UIApplication.shared.endEditing()
                         if gesture.translation.height < 0 {
-                            userVM.friendRequestSentOffset = gesture.translation.height - UIScreen.main.bounds.height / 3
+                            userVM.friendRequestSentOffset = gesture.translation.height
                         }
                     })
                     .onEnded({ gesture in
                         if gesture.translation.height < -40 {
                             userVM.friendRequestSentOffset = -UIScreen.main.bounds.height
                         } else {
-                            userVM.friendRequestSentOffset = -UIScreen.main.bounds.height / 3
+                            userVM.friendRequestSentOffset = 0
                         }
                     })
                 )
