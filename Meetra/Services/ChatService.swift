@@ -43,8 +43,8 @@ extension ChatService: ChatServiceProtocol {
     }
     
     func changeChatNotificationStatus(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)chats/notifications")!
-        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id], url: url, responseType: GlobalResponse.self)
+        let url = URL(string: "\(Credentials.BASE_URL)chats/mute")!
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["chatId" : id], url: url, method: .patch, responseType: GlobalResponse.self)
     }
     
     func buffer(url: URL, samplesCount: Int, completion: @escaping([AudioPreviewModel]) -> ()) {
