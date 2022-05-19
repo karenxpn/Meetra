@@ -147,11 +147,11 @@ struct MessageCell: View {
                 .onChanged({ value in
                     let cur = value.translation.width
                     if message.sender.id == userID {
-                        if cur < 0 && cur >= -80 {
+                        if cur < 0 && cur >= -100 {
                             offset = cur
                         }
                     } else {
-                        if cur > 0 && cur <= 80 {
+                        if cur > 0 && cur <= 100 {
                             offset = cur
                         }
                     }
@@ -159,12 +159,12 @@ struct MessageCell: View {
                 }).onEnded({ value in
                     let cur = value.translation.width
 
-                    if message.sender.id == userID && cur <= -80 {
+                    if message.sender.id == userID && cur <= -100 {
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.success)
                         
                         roomVM.replyMessage = message
-                    } else if message.sender.id != userID && cur >= 80 {
+                    } else if message.sender.id != userID && cur >= 100 {
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.success)
                         
