@@ -67,11 +67,10 @@ struct AudioMessageContent: View {
                     }
                 }.frame(width: UIScreen.main.bounds.width * 0.4)
                 
-                if audioVM.duration != "0:0" {
-                    Text(audioVM.duration)
-                        .foregroundColor(.black)
-                        .font(.custom("Inter-Regular", size: 12))
-                }
+                
+                Text(message.duration ?? "0:00")
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-Regular", size: 12))
             }
         }.padding(.vertical, 8)
     }

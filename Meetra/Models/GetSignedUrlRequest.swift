@@ -11,4 +11,5 @@ struct GetSignedUrlRequest: Codable {
     var type: String
     var chatId: Int
     var repliedTo: Int?
+    var duration: String?
 }

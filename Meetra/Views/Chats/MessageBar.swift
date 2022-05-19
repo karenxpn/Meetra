@@ -49,7 +49,7 @@ struct MessageBar: View {
                     AudioRecordingView()
                         .environmentObject(audioVM)
                 } else if audioVM.showPreview {
-                    RecordingPreview(url: audioVM.url)
+                    RecordingPreview(url: audioVM.url, duration: Int(audioVM.audioDuration))
                 } else {
                     Button {
                         openAttachment.toggle()

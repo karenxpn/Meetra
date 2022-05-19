@@ -16,7 +16,6 @@ class AudioPlayViewModel: ObservableObject {
     private var timer: Timer?
     
     @Published var isPlaying: Bool = false
-    @Published var duration: String = "0:0"
     
     @Published public var soundSamples = [AudioPreviewModel]()
     let sample_count: Int
@@ -90,10 +89,7 @@ class AudioPlayViewModel: ObservableObject {
             player.play()
             
             startTimer()
-            count_duration { duration in
-                let seconds = Int(duration.truncatingRemainder(dividingBy: 60))
-                self.duration = "\(Int(duration / 60)):\(seconds < 10 ? "0\(seconds)" : "\(seconds)")"
-            }
+            count_duration { _ in }
         }
     }
     

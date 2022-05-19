@@ -11,10 +11,13 @@ struct RecordingPreview: View {
     @EnvironmentObject var roomVM: ChatRoomViewModel
     @StateObject var audioVM: AudioPlayViewModel
     let url: URL
+    let duration: Int
     
-    init(url: URL) {
+    init(url: URL, duration: Int) {
         self.url = url
+        self.duration = duration
         _audioVM = StateObject(wrappedValue: AudioPlayViewModel(url: url, sampels_count: Int(UIScreen.main.bounds.width * 0.5 / 6)))
+        print(duration)
     }
     
     private func normalizeSoundLevel(level: Float) -> CGFloat {
@@ -56,12 +59,10 @@ struct RecordingPreview: View {
                         BarView(value: self.normalizeSoundLevel(level: model.magnitude), color: model.color)
                     }
                 }
-                         
-                if audioVM.duration != "0:0" {
-                    Text(audioVM.duration)
-                        .foregroundColor(.black)
-                        .font(.custom("Inter-Regular", size: 12))
-                }
+                
+                Text("\(duration / 60):\(duration % 60 < 10 ? "0\(duration % 60)" : "\(duration % 60)")")
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-Regular", size: 12))
                 
             }.frame(width: .greedy)
             
@@ -86,6 +87,8 @@ struct RecordingPreview: View {
         do {
             let data = try Data(contentsOf: audioVM.url)
             roomVM.mediaBinaryData = data
+            roomVM.duration = "\(duration / 60):\(duration % 60 < 10 ? "0\(duration % 60)" : "\(duration % 60)")"
+            
             
             roomVM.getSignedURL(content_type: "audio")
         } catch {
