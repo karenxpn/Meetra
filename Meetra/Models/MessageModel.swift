@@ -59,21 +59,23 @@ struct MessageViewModel: Identifiable {
     var updatedAt: String   {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSS"
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 2)
         let newDate = dateFormatter.date(from: self.message.updatedAt) ?? Date()
         
+        
         let currentDateFormatter = DateFormatter()
-        currentDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSS"
+        currentDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
         currentDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
 
         let currentDate = currentDateFormatter.date(from: dateFormatter.string(from: Date())) ?? Date()
                         
         let formatter = RelativeDateTimeFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
         formatter.unitsStyle = .short
         let string = formatter.localizedString(for: newDate, relativeTo: currentDate)
         
-        return newDate == currentDate ? NSLocalizedString("now", comment: "") : string
+        return currentDate.millisecondsSince1970 - newDate.millisecondsSince1970 < 3000 ? NSLocalizedString("now", comment: "") : string
     }
     
     var reptyedTo: RepliedModel? { self.message.repliedTo }
