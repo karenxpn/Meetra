@@ -94,7 +94,7 @@ struct MessageCell: View {
                 ) {
                     VStack(alignment: .leading, spacing: 0) {
                         MenuButtonsHelper(label: NSLocalizedString("answer", comment: ""), role: .cancel) {
-                            NotificationCenter.default.post(name: Notification.Name("reply"), object: ["message" : message])
+                            roomVM.replyMessage = message
                             showPopOver = false
                         }
                         Divider()
@@ -105,9 +105,10 @@ struct MessageCell: View {
                                 showPopOver = false
                             }
                             Divider()
-                                                    
+                            
                             MenuButtonsHelper(label: NSLocalizedString("edit", comment: ""), role: .cancel) {
-                                NotificationCenter.default.post(name: Notification.Name("edit"), object: ["message" : message])
+                                roomVM.editingMessage = message
+                                roomVM.message = message.content
                                 showPopOver = false
                             }
                             
@@ -141,33 +142,38 @@ struct MessageCell: View {
             .padding(message.sender.id == userID ? .leading : .trailing, UIScreen.main.bounds.width * 0.05)
             .padding(.vertical, 8)
             .padding(.bottom, (roomVM.lastMessageID == message.id && showPopOver) ? UIScreen.main.bounds.height * 0.08 : 0)
-        
-        //            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-        //                .onChanged({ value in
-        //                    let cur = value.translation.width
-        //                    print(cur)
-        //                    if message.sender.id == userID {
-        //                        if cur < 0 && cur >= -80 {
-        //                            offset = cur
-        //                        }
-        //                    } else {
-        //                        if cur > 0 && cur <= 80 {
-        //                            offset = cur
-        //                        }
-        //                    }
-        //
-        //                }).onEnded({ value in
-        //                    if offset <= -80 || offset >= 80 {
-        //                        let generator = UINotificationFeedbackGenerator()
-        //                        generator.notificationOccurred(.success)
-        //
-        //                        print("need some action")
-        //                    }
-        //                    offset = 0
-        //
-        //                })
-        //            )
-        
+            .offset(x: offset)
+            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                .onChanged({ value in
+                    let cur = value.translation.width
+                    if message.sender.id == userID {
+                        if cur < 0 && cur >= -80 {
+                            offset = cur
+                        }
+                    } else {
+                        if cur > 0 && cur <= 80 {
+                            offset = cur
+                        }
+                    }
+                    
+                }).onEnded({ value in
+                    let cur = value.translation.width
+
+                    if message.sender.id == userID && cur <= -80 {
+                        let generator = UINotificationFeedbackGenerator()
+                        generator.notificationOccurred(.success)
+                        
+                        roomVM.replyMessage = message
+                    } else if message.sender.id != userID && cur >= 80 {
+                        let generator = UINotificationFeedbackGenerator()
+                        generator.notificationOccurred(.success)
+                        
+                        roomVM.replyMessage = message
+                    }
+                    offset = 0
+                    
+                })
+            )
     }
 }
 

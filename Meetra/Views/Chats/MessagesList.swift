@@ -22,6 +22,8 @@ struct MessagesList: View {
                         MessageCell(message: message, group: group)
                             .environmentObject(roomVM)
                             .padding(.bottom, roomVM.messages[0].id == message.id ? UIScreen.main.bounds.size.height * 0.15 : 0)
+                            .padding(.bottom, roomVM.messages[0].id == message.id &&
+                                     ( roomVM.editingMessage != nil || roomVM.replyMessage != nil ) ? UIScreen.main.bounds.height * 0.1 : 0)
                             .rotationEffect(.radians(3.14))
                             .onAppear {
                                 if message.id == roomVM.messages.last?.id && !roomVM.loading {

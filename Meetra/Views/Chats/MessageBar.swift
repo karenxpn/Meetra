@@ -123,16 +123,6 @@ struct MessageBar: View {
             
         }).onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "hide_audio_preview"))) { _ in
             audioVM.showPreview = false
-        }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "edit"))) { message in
-            if let object = message.object as? [String: MessageViewModel], let message = object["message"] {
-                roomVM.editingMessage = message
-                roomVM.message = message.content
-            }
-        }.onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "reply"))) { message in
-            if let object = message.object as? [String: MessageViewModel], let message = object["message"] {
-                // message params here should be used
-                roomVM.replyMessage = message
-            }
         }
     }
 }
