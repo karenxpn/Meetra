@@ -13,6 +13,7 @@ struct MessageCell: View {
     @AppStorage("userId") private var userID: Int = 0
     @EnvironmentObject var roomVM: ChatRoomViewModel
     @State private var offset: CGFloat = .zero
+    @State private var present: Bool = false
     
     @State private var showPopOver: Bool = false
     let reactions = ["👍", "👎", "❤️", "😂", "🤣", "😡", "😭"]
@@ -51,8 +52,13 @@ struct MessageCell: View {
                 .scaleEffect(showPopOver ? 0.8 : 1)
                 .blur(radius: showPopOver ? 0.7 : 0)
                 .animation(.easeInOut, value: showPopOver)
-                .onTapGesture(perform: { })
-                .onLongPressGesture(minimumDuration: 0.7, perform: {
+                .onTapGesture(perform: {
+                    if message.type == "video" || message.type == "photo" {
+                        present.toggle()
+                    }
+                }).fullScreenCover(isPresented: $present, content: { 
+                    SingleMediaContentPreview(url: URL(string: message.content)!)
+                }).onLongPressGesture(minimumDuration: 0.7, perform: {
                     showPopOver = true
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                 })
