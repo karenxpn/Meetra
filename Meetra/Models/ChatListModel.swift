@@ -33,6 +33,7 @@ struct SenderModel: Identifiable, Codable {
     var id: Int
     var name: String
     var online: Bool
+    var lastVisit: String
 }
 
 struct ChatModelViewModel: Identifiable {
@@ -48,26 +49,8 @@ struct ChatModelViewModel: Identifiable {
     var isGroup: Bool                   { self.chat.isGroup }
     var message: MessagePreviewModel    { self.chat.message}
     
-    var sentTime: String {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let newDate = dateFormatter.date(from: self.chat.message.createdAt) ?? Date()
-        
-        let currentDateFormatter = DateFormatter()
-        currentDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
-        currentDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-
-        let currentDate = currentDateFormatter.date(from: dateFormatter.string(from: Date())) ?? Date()
-                        
-        let formatter = RelativeDateTimeFormatter()
-        formatter.locale = Locale(identifier: "ru_RU")
-        formatter.unitsStyle = .short
-        let string = formatter.localizedString(for: newDate, relativeTo: currentDate)
-        
-        return currentDate.millisecondsSince1970 - newDate.millisecondsSince1970 < 3000 ? NSLocalizedString("now", comment: "") : string
-    }
+    var sentTime: String                { self.chat.message.createdAt.countTimeBetweenDates() }
+    var lastVisit: String               { self.chat.message.sender.lastVisit.countTimeBetweenDates()}
     
     var mute: Bool {
         get { self.chat.isMuted }

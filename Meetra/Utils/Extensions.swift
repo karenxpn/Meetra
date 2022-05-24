@@ -73,6 +73,26 @@ extension String {
         return Int( String( tmp ) )!
     }
     
+    func countTimeBetweenDates() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        let newDate = dateFormatter.date(from: self) ?? Date()
+        
+        let currentDateFormatter = DateFormatter()
+        currentDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
+        currentDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+
+        let currentDate = currentDateFormatter.date(from: dateFormatter.string(from: Date())) ?? Date()
+                        
+        let formatter = RelativeDateTimeFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.unitsStyle = .short
+        let string = formatter.localizedString(for: newDate, relativeTo: currentDate)
+        
+        return currentDate.millisecondsSince1970 - newDate.millisecondsSince1970 < 3000 ? NSLocalizedString("nowOnline", comment: "") : string
+    }
+    
     var isSingleEmoji: Bool { count == 1 && containsEmoji }
 
     var containsEmoji: Bool { contains { $0.isEmoji } }

@@ -53,7 +53,9 @@ struct InterlocutorsCell: View {
         }.background(
             NavigationLink(destination: ChatRoom( group: false,
                                                   online: interlocutor.online,
-                                                  chatName: interlocutor.name, userID: interlocutor.id,
+                                                  lastVisit: interlocutor.lastVisit,
+                                                  chatName: interlocutor.name,
+                                                  userID: interlocutor.id,
                                                   chatID: interlocutor.chat),
                            isActive: $navigate,
                            label: {

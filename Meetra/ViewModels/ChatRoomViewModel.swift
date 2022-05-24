@@ -21,6 +21,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     @Published var alertMessage: String = ""
     
     @Published var online: Bool = false
+    @Published var lastVisit: String = ""
     @Published var messages = [MessageViewModel]()
     @Published var lastMessageID: Int = 0
     
@@ -231,21 +232,24 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                 self.newConversation = false
                 self.newConversationResponse = nil
                 self.messages.insert(MessageViewModel(message: message), at: 0)
-                print(self.messages)
             }
         }
     }
     
     func getOnlineStatus() {
         socketManager.fetchOnlineUser { response in
-            if response.userId == self.userID {
-                self.online = response.online
+            let cur_response = OnlineResponseViewModel(model: response)
+            
+            if cur_response.userId == self.userID {
+                self.online = cur_response.online
+                self.lastVisit = cur_response.lastVisit
             }
         }
     }
     
     func joinRoom() {
         socketManager.connectChatRoom(chatID: chatID) {
+            print("join room")
             self.getTypingResponse()
             self.getOnlineStatus()
             self.getMessage()

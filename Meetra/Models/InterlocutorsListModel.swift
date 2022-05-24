@@ -17,6 +17,7 @@ struct InterlocutorsModel: Identifiable, Codable {
     var isRead: Bool
     var chat: Int
     var name: String
+    var lastVisit: String
 }
 
 struct InterlocutorsViewModel: Identifiable {
@@ -30,6 +31,7 @@ struct InterlocutorsViewModel: Identifiable {
     var image: String   { self.model.image }
     var chat: Int       { self.model.chat }
     var name: String    { self.model.name }
+    var lastVisit: String   { self.model.lastVisit.countTimeBetweenDates() }
     
     
     var read: Bool {

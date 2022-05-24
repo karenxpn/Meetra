@@ -61,17 +61,19 @@ struct UserInnerView: View {
                             .shadow(color: Color.gray.opacity(0.4), radius: 3, x: 0, y: 3)
                     }
                     
-                    Button(action: {
-                        userVM.sendFriendRequest(userID: userVM.user!.id)
-                    }, label: {
-                        Image("user_send_request")
-                            .resizable()
-                            .frame(width: 18, height: 18)
-                            .padding()
-                            .background(.white)
-                            .cornerRadius(100)
-                            .shadow(color: Color.gray.opacity(0.4), radius: 3, x: 0, y: 3)
-                    })
+                    if !userVM.user!.isFriend {
+                        Button(action: {
+                            userVM.sendFriendRequest(userID: userVM.user!.id)
+                        }, label: {
+                            Image("user_send_request")
+                                .resizable()
+                                .frame(width: 18, height: 18)
+                                .padding()
+                                .background(.white)
+                                .cornerRadius(100)
+                                .shadow(color: Color.gray.opacity(0.4), radius: 3, x: 0, y: 3)
+                        })
+                    }
                 }
                 
                 HStack {
