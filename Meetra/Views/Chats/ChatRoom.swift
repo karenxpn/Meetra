@@ -70,8 +70,7 @@ struct ChatRoom: View {
                 
             }, center: EmptyView(), trailing: Image("dots").foregroundColor(.black))
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                print("will enter foreground")
-                roomVM.joinRoom()
+                roomVM.joinGetMessagesListenEventsOnInit()
             }
     }
 }

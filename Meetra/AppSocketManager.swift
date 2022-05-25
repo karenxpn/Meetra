@@ -34,6 +34,9 @@ protocol AppSocketManagerProtocol {
     func deleteMessage(chatID: Int, messageID: Int, completion: @escaping() -> ())
     func fetchDeleteMessageResponse(chatID: Int, completion: @escaping(Int) -> ())
     
+    func sendReaction(chatID: Int, messageID: Int, reaction: String, completion: @escaping() -> ())
+    func fetchReaction(chatID: Int, completion: @escaping(ReactionModel) -> ())
+    
     
     func disconnectSocket()
     func connectSocket()
@@ -50,6 +53,22 @@ class AppSocketManager {
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
+    func sendReaction(chatID: Int, messageID: Int, reaction: String, completion: @escaping () -> ()) {
+        self.socket?.emit("message-reaction", ["chatId" : chatID,
+                                               "messageID": messageID,
+                                               "reaction" : reaction])
+    }
+    
+    func fetchReaction(chatID: Int, completion: @escaping (ReactionModel) -> ()) {
+        self.socket?.off("message-reaction")
+        listenEvent(event: "message-reaction", response: ReactionModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
+            }
+        }
+        
+    }
+    
     
     func sendMedia(chatID: Int, messageID: Int, status: String) {
         self.socket?.emit("media", ["chatId" : chatID,

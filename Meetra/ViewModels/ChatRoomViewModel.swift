@@ -170,6 +170,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     }
     
     func joinGetMessagesListenEventsOnInit() {
+        self.messages.removeAll(keepingCapacity: false)
         getMessageList(messageID: 0)
         joinRoom()
         // mark all messages as read
@@ -255,6 +256,16 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
             self.getMessage()
             self.getEditMessage()
             self.listenDeleteMessageEvent()
+        }
+    }
+    
+    func reactMessage(messageID: Int, reaction: String) {
+        socketManager.sendReaction(chatID: chatID, messageID: messageID, reaction: reaction) {}
+    }
+    
+    func listenReactMessage() {
+        socketManager.fetchReaction(chatID: chatID) { reaction in
+            // add reaction to message
         }
     }
     
