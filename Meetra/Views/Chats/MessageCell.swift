@@ -16,6 +16,7 @@ struct MessageCell: View {
     @State private var present: Bool = false
     
     @State private var showPopOver: Bool = false
+    @State private var showMessageReactions: Bool = false
     let reactions = ["👍", "👎", "❤️", "😂", "🤣", "😡", "😭"]
     
     let message: MessageViewModel
@@ -48,7 +49,7 @@ struct MessageCell: View {
             }
             
             
-            MessageContent(message: message, group: group)
+            MessageContent(showReactions: $showMessageReactions, message: message, group: group)
                 .scaleEffect(showPopOver ? 0.8 : 1)
                 .blur(radius: showPopOver ? 0.7 : 0)
                 .animation(.easeInOut, value: showPopOver)
@@ -56,7 +57,7 @@ struct MessageCell: View {
                     if message.type == "video" || message.type == "photo" {
                         present.toggle()
                     }
-                }).fullScreenCover(isPresented: $present, content: { 
+                }).fullScreenCover(isPresented: $present, content: {
                     SingleMediaContentPreview(url: URL(string: message.content)!)
                 }).onLongPressGesture(minimumDuration: 0.7, perform: {
                     showPopOver = true
@@ -133,6 +134,39 @@ struct MessageCell: View {
                         .background(Color.white)
                         .cornerRadius(20)
                         .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 5)
+                }.popover(
+                    present: $showMessageReactions,
+                    attributes: {
+                        $0.position = .absolute(
+                            originAnchor: .bottom,
+                            popoverAnchor: .top
+                        )
+                    }
+                ) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        ForEach(message.reactions, id: \.id) { reaction in
+                            HStack {
+                                ImageHelper(image: reaction.user.image, contentMode: .fill)
+                                    .frame(width: 15, height: 15)
+                                    .clipShape(Circle())
+                                
+                                Text(reaction.user.name )
+                                    .foregroundColor(.black)
+                                    .font(.custom("Inter-Regular", size: 12))
+                                
+                                Spacer()
+                                Text(reaction.reaction )
+                                    .font(.system(size: 15))
+                                
+                            }.frame(height: 37)
+                                .padding(.horizontal)
+
+                        }
+                        
+                    }.frame(width: 200)
+                        .background(Color.white)
+                        .cornerRadius(20)
+                        .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 5)
                 }
             
             
@@ -165,7 +199,7 @@ struct MessageCell: View {
                     
                 }).onEnded({ value in
                     let cur = value.translation.width
-
+                    
                     if message.sender.id == userID && cur <= -100 {
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.success)
@@ -181,6 +215,8 @@ struct MessageCell: View {
                     
                 })
             )
+        
+        
     }
 }
 

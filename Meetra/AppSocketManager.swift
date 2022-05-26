@@ -34,8 +34,8 @@ protocol AppSocketManagerProtocol {
     func deleteMessage(chatID: Int, messageID: Int, completion: @escaping() -> ())
     func fetchDeleteMessageResponse(chatID: Int, completion: @escaping(Int) -> ())
     
-    func sendReaction(chatID: Int, messageID: Int, reaction: String, completion: @escaping() -> ())
-    func fetchReaction(chatID: Int, completion: @escaping(ReactionModel) -> ())
+    func sendReaction(messageID: Int, reaction: String, completion: @escaping() -> ())
+    func fetchReaction(completion: @escaping(ReactionModel) -> ())
     
     
     func disconnectSocket()
@@ -53,15 +53,14 @@ class AppSocketManager {
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
-    func sendReaction(chatID: Int, messageID: Int, reaction: String, completion: @escaping () -> ()) {
-        self.socket?.emit("message-reaction", ["chatId" : chatID,
-                                               "messageID": messageID,
-                                               "reaction" : reaction])
+    func sendReaction(messageID: Int, reaction: String, completion: @escaping () -> ()) {
+        self.socket?.emit("react-message", ["messageId": messageID,
+                                            "reaction" : reaction])
     }
     
-    func fetchReaction(chatID: Int, completion: @escaping (ReactionModel) -> ()) {
-        self.socket?.off("message-reaction")
-        listenEvent(event: "message-reaction", response: ReactionModel.self) { response in
+    func fetchReaction(completion: @escaping (ReactionModel) -> ()) {
+        self.socket?.off("react-message")
+        listenEvent(event: "react-message", response: ReactionModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }

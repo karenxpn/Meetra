@@ -256,16 +256,32 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
             self.getMessage()
             self.getEditMessage()
             self.listenDeleteMessageEvent()
+            self.listenReactMessage()
         }
     }
     
     func reactMessage(messageID: Int, reaction: String) {
-        socketManager.sendReaction(chatID: chatID, messageID: messageID, reaction: reaction) {}
+        socketManager.sendReaction(messageID: messageID, reaction: reaction) {}
     }
     
     func listenReactMessage() {
-        socketManager.fetchReaction(chatID: chatID) { reaction in
+        socketManager.fetchReaction() { reaction in
             // add reaction to message
+            if reaction.action == "create" {
+                if let index = self.messages.firstIndex(where: { $0.id == reaction.messageId }) {
+                    self.messages[index].reactions.append(MessageReactionModel(id: reaction.id, reaction: reaction.reaction, user: reaction.user))
+                }
+            } else if reaction.action == "update" {
+                if let index = self.messages.firstIndex(where: { $0.id == reaction.messageId }),
+                    let reactionID = self.messages[index].reactions.firstIndex(where: {$0.id == reaction.id}) {
+                    self.messages[index].reactions[reactionID] = MessageReactionModel(id: reaction.id, reaction: reaction.reaction, user: reaction.user)
+                }
+            } else {
+                if let index = self.messages.firstIndex(where: { $0.id == reaction.messageId }),
+                    let reactionID = self.messages[index].reactions.firstIndex(where: {$0.id == reaction.id}) {
+                    self.messages[index].reactions.remove(at: reactionID)
+                }
+            }
         }
     }
     

@@ -22,6 +22,7 @@ struct MessageModel: Identifiable, Codable {
     var duration: String?
     var repliedTo: RepliedModel?
     var sender: MessageSenderModel
+    var reactions: [MessageReactionModel]
 }
 
 struct MessageSenderModel: Identifiable, Codable {
@@ -59,6 +60,11 @@ struct MessageViewModel: Identifiable {
     var updatedAt: String   { self.message.updatedAt.countTimeBetweenDates() }
     
     var reptyedTo: RepliedModel? { self.message.repliedTo }
+    
+    var reactions: [MessageReactionModel] {
+        get { self.message.reactions }
+        set { self.message.reactions = newValue }
+    }
     
     var content: String {
         get { self.message.message }

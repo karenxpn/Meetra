@@ -24,6 +24,7 @@
 		FF0E6549281F297E003A3F6F /* TextMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E6548281F297E003A3F6F /* TextMessageContent.swift */; };
 		FF1350AA28206320008BBD0A /* KeyboardAwareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1350A928206320008BBD0A /* KeyboardAwareModifier.swift */; };
 		FF15E8BC283E9666002745C5 /* ReactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF15E8BB283E9666002745C5 /* ReactionModel.swift */; };
+		FF178F2228400DF200652D82 /* MessageReactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF178F2128400DF200652D82 /* MessageReactionModel.swift */; };
 		FF1DBA122837CD06007CAF75 /* SingleMediaContentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1DBA112837CD06007CAF75 /* SingleMediaContentPreview.swift */; };
 		FF363FFF27EFD77D0057D605 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF363FFE27EFD77D0057D605 /* UserView.swift */; };
 		FF36400127EFD7D80057D605 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF36400027EFD7D80057D605 /* UserModel.swift */; };
@@ -235,6 +236,7 @@
 		FF0E6548281F297E003A3F6F /* TextMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageContent.swift; sourceTree = "<group>"; };
 		FF1350A928206320008BBD0A /* KeyboardAwareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAwareModifier.swift; sourceTree = "<group>"; };
 		FF15E8BB283E9666002745C5 /* ReactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionModel.swift; sourceTree = "<group>"; };
+		FF178F2128400DF200652D82 /* MessageReactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReactionModel.swift; sourceTree = "<group>"; };
 		FF1DBA112837CD06007CAF75 /* SingleMediaContentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMediaContentPreview.swift; sourceTree = "<group>"; };
 		FF363FFE27EFD77D0057D605 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		FF36400027EFD7D80057D605 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 				FFED58672826A5FF00E828F2 /* AudioPreviewModel.swift */,
 				FF499CFA2832E624000D3872 /* ReportUserRequest.swift */,
 				FF15E8BB283E9666002745C5 /* ReactionModel.swift */,
+				FF178F2128400DF200652D82 /* MessageReactionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1187,6 +1190,7 @@
 				FF1350AA28206320008BBD0A /* KeyboardAwareModifier.swift in Sources */,
 				FFED58662826A5C500E828F2 /* RecordingPreview.swift in Sources */,
 				FF537E92280E18690020BE2C /* NavigationButtonHelper.swift in Sources */,
+				FF178F2228400DF200652D82 /* MessageReactionModel.swift in Sources */,
 				FF7DA04427CD55CA00CA4338 /* MeetraApp.swift in Sources */,
 				FF7D0CFE27CE7CAE00A828C7 /* AuthService.swift in Sources */,
 				FF61D41227F6804100FB9A23 /* FriendRequestListModel.swift in Sources */,
