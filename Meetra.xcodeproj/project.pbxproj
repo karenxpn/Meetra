@@ -123,6 +123,7 @@
 		FF99154F2813469D00CA2DFD /* ChangePhoneNumberVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF99154E2813469D00CA2DFD /* ChangePhoneNumberVerify.swift */; };
 		FF9B60112808B703007994EF /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B60102808B703007994EF /* CustomActionSheet.swift */; };
 		FF9B60132808C1EB007994EF /* ActionSheetButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */; };
+		FFB5DE992842D57E002460FE /* ReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5DE982842D57E002460FE /* ReadModel.swift */; };
 		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
 		FFB6D24527EA044E004FD5D3 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24427EA044E004FD5D3 /* WaterfallGrid */; };
 		FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */; };
@@ -338,6 +339,7 @@
 		FF99154E2813469D00CA2DFD /* ChangePhoneNumberVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumberVerify.swift; sourceTree = "<group>"; };
 		FF9B60102808B703007994EF /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetButtonHelper.swift; sourceTree = "<group>"; };
+		FFB5DE982842D57E002460FE /* ReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadModel.swift; sourceTree = "<group>"; };
 		FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUsers.swift; sourceTree = "<group>"; };
 		FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeFilter.swift; sourceTree = "<group>"; };
 		FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentPicker.swift; sourceTree = "<group>"; };
@@ -677,6 +679,7 @@
 				FF499CFA2832E624000D3872 /* ReportUserRequest.swift */,
 				FF15E8BB283E9666002745C5 /* ReactionModel.swift */,
 				FF178F2128400DF200652D82 /* MessageReactionModel.swift */,
+				FFB5DE982842D57E002460FE /* ReadModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1108,6 +1111,7 @@
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
 				FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */,
 				FFB798A4280081600040A9E8 /* ProfilePreviewInnerView.swift in Sources */,
+				FFB5DE992842D57E002460FE /* ReadModel.swift in Sources */,
 				FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */,
 				FFD6372727E2416E00F91AB6 /* DeviceTokenManager.swift in Sources */,
 				FFBF26DA281EBA25002668D5 /* MessageBar.swift in Sources */,

@@ -58,13 +58,7 @@ struct ChatModelViewModel: Identifiable {
     }
     
     var online: Bool {
-        get {
-            return self.chat.message.sender.online
-            
-        }
-        set {
-            self.chat.message.sender.online = newValue
-            
-        }
+        get { self.chat.message.sender.online }
+        set { self.chat.message.sender.online = newValue }
     }
 }

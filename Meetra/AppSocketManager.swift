@@ -37,6 +37,8 @@ protocol AppSocketManagerProtocol {
     func sendReaction(messageID: Int, reaction: String, completion: @escaping() -> ())
     func fetchReaction(completion: @escaping(ReactionModel) -> ())
     
+    func sendRead(messageID: Int, completion: @escaping() -> ())
+    func fetchRead(completion: @escaping(ReadModel) -> ())
     
     func disconnectSocket()
     func connectSocket()
@@ -53,6 +55,19 @@ class AppSocketManager {
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
+    func sendRead(messageID: Int, completion: @escaping () -> ()) {
+        self.socket?.emit("read-message", ["messageId": messageID])
+    }
+    
+    func fetchRead(completion: @escaping (ReadModel) -> ()) {
+        self.socket?.off("read-message")
+        listenEvent(event: "read-message", response: ReadModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
+            }
+        }
+    }
+    
     func sendReaction(messageID: Int, reaction: String, completion: @escaping () -> ()) {
         self.socket?.emit("react-message", ["messageId": messageID,
                                             "reaction" : reaction])
@@ -275,7 +290,7 @@ extension AppSocketManager: AppSocketManagerProtocol {
                     }
                 }
             } catch {
-                print("error")
+                print("error", error.localizedDescription)
             }
         }
     }

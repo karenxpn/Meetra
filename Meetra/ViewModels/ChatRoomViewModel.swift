@@ -250,13 +250,13 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     
     func joinRoom() {
         socketManager.connectChatRoom(chatID: chatID) {
-            print("join room")
             self.getTypingResponse()
             self.getOnlineStatus()
             self.getMessage()
             self.getEditMessage()
             self.listenDeleteMessageEvent()
             self.listenReactMessage()
+            self.getReadMessages()
         }
     }
     
@@ -283,6 +283,20 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                 }
             }
         }
+    }
+    
+    func getReadMessages() {
+        socketManager.fetchRead { response in
+            for messageId in response.messages {
+                if let index = self.messages.firstIndex(where: {$0.id == messageId}) {
+                    self.messages[index].status = "read"
+                }
+            }
+        }
+    }
+    
+    func sendReadMessage(messageID: Int) {
+        socketManager.sendRead(messageID: messageID) { }
     }
     
     func sendTyping() {

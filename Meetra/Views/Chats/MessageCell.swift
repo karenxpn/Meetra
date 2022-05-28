@@ -214,9 +214,11 @@ struct MessageCell: View {
                     offset = 0
                     
                 })
-            )
-        
-        
+            ).onAppear {
+                if message.status == "sent" && message.sender.id != userID {
+                    roomVM.sendReadMessage(messageID: message.id)
+                }
+            }
     }
 }
 
