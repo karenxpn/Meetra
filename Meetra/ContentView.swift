@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @AppStorage("token") private var token: String = ""
     @StateObject private var tabViewModel = TabViewModel()
+    @StateObject private var networkVM = NetworkMonitor()
     
     init() {
         let newAppearance = UINavigationBarAppearance()
@@ -21,36 +22,6 @@ struct ContentView: View {
     }
 
     var body: some View {
-        
-//        TabView(selection: $currentTab) {
-//            Places()
-//                .tabItem {
-//                    Image("profiles_icon")
-//                        .foregroundColor(.black)
-//                }
-//
-//            Swipes()
-//                .tabItem {
-//                    Image("profiles_icon")
-//                        .foregroundColor(.black)
-//
-//                }
-//
-//            Chats()
-//                .tabItem {
-//                    Image("profiles_icon")
-//                        .foregroundColor(.black)
-//
-//                }
-//
-//            Profile()
-//                .tabItem {
-//                    Image("profiles_icon")
-//                        .foregroundColor(.black)
-//                    Text( "Profile" )
-//                        .foregroundColor(.black)
-//                }
-//        }
         ZStack( alignment: .bottom) {
 
             VStack {
@@ -74,6 +45,11 @@ struct ContentView: View {
                 .environmentObject(tabViewModel)
 
         }.edgesIgnoringSafeArea(.bottom)
+            .onChange(of: networkVM.isConnected) { value in
+                if value {
+                    AppSocketManager.shared.connectSocket()
+                }
+            }
     }
 }
 

@@ -10,6 +10,7 @@
 		5D732567F96ADB8EECB593F0 /* Pods_MeetraTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0956F8F30954631EC23C4DE /* Pods_MeetraTests.framework */; };
 		D4A6F0E1386DF6DD344E0938 /* Pods_Meetra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA5B5DAB5FF3DEAADBDB32A4 /* Pods_Meetra.framework */; };
 		D97014C72D56A8045035052E /* Pods_Meetra_MeetraUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86E4C8E597F5CFDB923716C6 /* Pods_Meetra_MeetraUITests.framework */; };
+		FF0156B1284438F400CD58F1 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0156B0284438F400CD58F1 /* NetworkMonitor.swift */; };
 		FF07F23027D0210A009B46B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */; };
 		FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23127D0D59A009B46B7 /* AuthNameInput.swift */; };
 		FF07F23427D0D8B6009B46B7 /* AuthBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07F23327D0D8B6009B46B7 /* AuthBirthday.swift */; };
@@ -223,6 +224,7 @@
 		E4E8AB7C7D3E9BE34EE68389 /* Pods-Meetra-MeetraUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra-MeetraUITests.release.xcconfig"; path = "Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F1D0C9BBBE8AA00332E0662E /* Pods-MeetraTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetraTests.debug.xcconfig"; path = "Target Support Files/Pods-MeetraTests/Pods-MeetraTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F790A92BD40CA2A4FF865EE6 /* Pods-Meetra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.debug.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.debug.xcconfig"; sourceTree = "<group>"; };
+		FF0156B0284438F400CD58F1 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF07F23127D0D59A009B46B7 /* AuthNameInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNameInput.swift; sourceTree = "<group>"; };
 		FF07F23327D0D8B6009B46B7 /* AuthBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBirthday.swift; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				FFDF45AA2822E84A005A0A0B /* TabViewModel.swift */,
 				FFED58632826955900E828F2 /* AudioRecorderViewModel.swift */,
 				FFED58692826A94100E828F2 /* AudioPlayerViewModel.swift */,
+				FF0156B0284438F400CD58F1 /* NetworkMonitor.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1144,6 +1147,7 @@
 				FF52855F2816C92E004D2AB1 /* InterlocutorsListModel.swift in Sources */,
 				FFED57BC2822F81B00E828F2 /* PhotoMessageContent.swift in Sources */,
 				FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */,
+				FF0156B1284438F400CD58F1 /* NetworkMonitor.swift in Sources */,
 				FFED57BE2822FAB800E828F2 /* VideoMessageContent.swift in Sources */,
 				FF07F24227D10763009B46B7 /* AuthProgress.swift in Sources */,
 				FFD6373927E486BD00F91AB6 /* AppSocketManager.swift in Sources */,
