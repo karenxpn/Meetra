@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AVKit
 
 
 extension UIApplication {
@@ -71,6 +72,51 @@ extension String {
         }
         return Int( String( tmp ) )!
     }
+    
+    func countTimeBetweenDates() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        let newDate = dateFormatter.date(from: self) ?? Date()
+        
+        let currentDateFormatter = DateFormatter()
+        currentDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
+        currentDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+
+        let currentDate = currentDateFormatter.date(from: dateFormatter.string(from: Date())) ?? Date()
+                        
+        let formatter = RelativeDateTimeFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.unitsStyle = .short
+        let string = formatter.localizedString(for: newDate, relativeTo: currentDate)
+        
+        return currentDate.millisecondsSince1970 - newDate.millisecondsSince1970 < 3000 ? NSLocalizedString("nowOnline", comment: "") : string
+    }
+    
+    var isSingleEmoji: Bool { count == 1 && containsEmoji }
+
+    var containsEmoji: Bool { contains { $0.isEmoji } }
+
+    var containsOnlyEmoji: Bool { !isEmpty && !contains { !$0.isEmoji } }
+
+    var emojiString: String { emojis.map { String($0) }.reduce("", +) }
+
+    var emojis: [Character] { filter { $0.isEmoji } }
+
+    var emojiScalars: [UnicodeScalar] { filter { $0.isEmoji }.flatMap { $0.unicodeScalars } }
+}
+
+extension Character {
+    /// A simple emoji is one scalar and presented to the user as an Emoji
+    var isSimpleEmoji: Bool {
+        guard let firstScalar = unicodeScalars.first else { return false }
+        return firstScalar.properties.isEmoji && firstScalar.value > 0x238C
+    }
+
+    /// Checks if the scalars will be merged into an emoji
+    var isCombinedIntoEmoji: Bool { unicodeScalars.count > 1 && unicodeScalars.first?.properties.isEmoji ?? false }
+
+    var isEmoji: Bool { isSimpleEmoji || isCombinedIntoEmoji }
 }
 
 extension Int {
@@ -121,5 +167,59 @@ extension Image {
 #else
         return nil
 #endif
+    }
+}
+
+
+extension Array
+{
+    mutating func move(from sourceIndex: Int, to destinationIndex: Int)
+    {
+        guard
+            sourceIndex != destinationIndex
+            && Swift.min(sourceIndex, destinationIndex) >= 0
+            && Swift.max(sourceIndex, destinationIndex) < count
+        else {
+            return
+        }
+
+        let direction = sourceIndex < destinationIndex ? 1 : -1
+        var sourceIndex = sourceIndex
+
+        repeat {
+            let nextSourceIndex = sourceIndex + direction
+            swapAt(sourceIndex, nextSourceIndex)
+            sourceIndex = nextSourceIndex
+        }
+        while sourceIndex != destinationIndex
+    }
+}
+
+extension Data {
+    func getAVAsset() -> AVAsset {
+        let directory = NSTemporaryDirectory()
+        let fileName = "\(NSUUID().uuidString).mov"
+        let fullURL = NSURL.fileURL(withPathComponents: [directory, fileName])
+        try! self.write(to: fullURL!)
+        let asset = AVAsset(url: fullURL!)
+        return asset
+    }
+}
+
+extension Date {
+    var millisecondsSince1970: Int64 {
+        Int64((self.timeIntervalSince1970 * 1000.0).rounded())
+    }
+    
+    init(milliseconds: Int64) {
+        self = Date(timeIntervalSince1970: TimeInterval(milliseconds) / 1000)
+    }
+}
+
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
     }
 }

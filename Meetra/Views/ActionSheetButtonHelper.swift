@@ -24,8 +24,8 @@ struct ActionSheetButtonHelper: View {
                 Image(icon)
 
                 Text( label )
-                    .kerning(0.18)
-                    .foregroundColor(role == .destructive ? Color.red : AppColors.starColor)
+                    .kerning(0.36)
+                    .foregroundColor(role == .destructive ? Color.red : Color.black)
                     .font(.custom("Inter-Medium", size: 18))
                 
                 Spacer()

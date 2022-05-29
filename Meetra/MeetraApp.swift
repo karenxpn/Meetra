@@ -12,18 +12,10 @@ struct MeetraApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) private var phase
+    let appSocketManager = AppSocketManager.shared
     
     @AppStorage( "token" ) private var token = ""
     
-    init() {
-        let newAppearance = UINavigationBarAppearance()
-        newAppearance.setBackIndicatorImage(UIImage(named: "back"), transitionMaskImage: UIImage(named: "back"))
-        newAppearance.configureWithOpaqueBackground()
-        newAppearance.backgroundColor = .none
-        newAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black, .font: UIFont( name: "Inter-Regular", size: 28)!]
-        UINavigationBar.appearance().standardAppearance = newAppearance
-        
-    }
     
     var body: some Scene {
         WindowGroup {
@@ -39,6 +31,12 @@ struct MeetraApp: App {
                 UIApplication.shared.applicationIconBadgeNumber = 0
             default:
                 break
+            }
+        }.onChange(of: token) { newValue in
+            if token.isEmpty {
+                appSocketManager.disconnectSocket()
+            } else {
+                appSocketManager.connectSocket()
             }
         }
     }
