@@ -130,7 +130,9 @@ struct Swipes: View {
                     self.firstAppearance = false
                     self.seconds = 0
                     self.timer.upstream.connect().cancel()
-                }
+                }.modifier(NetworkReconnection(action: {
+                    locationManager.getLocationResponse()
+                }))
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
                 if value == "true" {

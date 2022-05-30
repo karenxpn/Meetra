@@ -71,7 +71,9 @@ struct ChatRoom: View {
             }, center: EmptyView(), trailing: Image("dots").foregroundColor(.black))
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 roomVM.joinGetMessagesListenEventsOnInit()
-            }
+            }.modifier(NetworkReconnection(action: {
+                roomVM.joinGetMessagesListenEventsOnInit()
+            }))
     }
 }
 

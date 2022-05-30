@@ -36,7 +36,7 @@ struct MeetraApp: App {
             if token.isEmpty {
                 appSocketManager.disconnectSocket()
             } else {
-                appSocketManager.connectSocket()
+                appSocketManager.connectSocket() { }
             }
         }
     }
