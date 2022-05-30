@@ -47,7 +47,9 @@ struct ContentView: View {
         }.edgesIgnoringSafeArea(.bottom)
             .onChange(of: networkVM.isConnected) { value in
                 if value {
-                    AppSocketManager.shared.connectSocket()
+                    AppSocketManager.shared.connectSocket() {
+                        NotificationCenter.default.post(name: Notification.Name("network_reconnection_notification"), object: nil)
+                    }
                 }
             }
     }

@@ -129,7 +129,9 @@ struct Chats: View {
                         Image("icon_ring")
                             .foregroundColor(.black)
                     }
-                })
+                }).modifier(NetworkReconnection(action: {
+                chatVM.connectListeners()
+            }))
         }.navigationViewStyle(.stack)
     }
 }

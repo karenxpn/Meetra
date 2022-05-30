@@ -38,10 +38,10 @@ extension View {
 }
 
 struct RoundedCorner: Shape {
-
+    
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
-
+    
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
@@ -82,9 +82,9 @@ extension String {
         let currentDateFormatter = DateFormatter()
         currentDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS'Z'"
         currentDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-
+        
         let currentDate = currentDateFormatter.date(from: dateFormatter.string(from: Date())) ?? Date()
-                        
+        
         let formatter = RelativeDateTimeFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.unitsStyle = .short
@@ -94,15 +94,15 @@ extension String {
     }
     
     var isSingleEmoji: Bool { count == 1 && containsEmoji }
-
+    
     var containsEmoji: Bool { contains { $0.isEmoji } }
-
+    
     var containsOnlyEmoji: Bool { !isEmpty && !contains { !$0.isEmoji } }
-
+    
     var emojiString: String { emojis.map { String($0) }.reduce("", +) }
-
+    
     var emojis: [Character] { filter { $0.isEmoji } }
-
+    
     var emojiScalars: [UnicodeScalar] { filter { $0.isEmoji }.flatMap { $0.unicodeScalars } }
 }
 
@@ -112,10 +112,10 @@ extension Character {
         guard let firstScalar = unicodeScalars.first else { return false }
         return firstScalar.properties.isEmoji && firstScalar.value > 0x238C
     }
-
+    
     /// Checks if the scalars will be merged into an emoji
     var isCombinedIntoEmoji: Bool { unicodeScalars.count > 1 && unicodeScalars.first?.properties.isEmoji ?? false }
-
+    
     var isEmoji: Bool { isSimpleEmoji || isCombinedIntoEmoji }
 }
 
@@ -177,15 +177,15 @@ extension Array
     {
         guard
             sourceIndex != destinationIndex
-            && Swift.min(sourceIndex, destinationIndex) >= 0
-            && Swift.max(sourceIndex, destinationIndex) < count
+                && Swift.min(sourceIndex, destinationIndex) >= 0
+                && Swift.max(sourceIndex, destinationIndex) < count
         else {
             return
         }
-
+        
         let direction = sourceIndex < destinationIndex ? 1 : -1
         var sourceIndex = sourceIndex
-
+        
         repeat {
             let nextSourceIndex = sourceIndex + direction
             swapAt(sourceIndex, nextSourceIndex)
@@ -221,5 +221,18 @@ extension Array {
         return stride(from: 0, to: count, by: size).map {
             Array(self[$0 ..< Swift.min($0 + size, count)])
         }
+    }
+}
+
+
+struct NetworkReconnection: ViewModifier {
+    
+    let action: (() -> Void)
+    func body(content: Content) -> some View {
+        content
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "network_reconnection_notification"))) { _ in
+                action()
+            }
+        
     }
 }

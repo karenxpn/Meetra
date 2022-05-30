@@ -41,7 +41,7 @@ protocol AppSocketManagerProtocol {
     func fetchRead(completion: @escaping(ReadModel) -> ())
     
     func disconnectSocket()
-    func connectSocket()
+    func connectSocket(completion: @escaping() -> ())
 }
 
 class AppSocketManager {
@@ -50,7 +50,7 @@ class AppSocketManager {
     var socket: SocketIOClient?
     
     private init() {
-        connectSocket()
+        connectSocket() { }
     }
 }
 
@@ -239,7 +239,7 @@ extension AppSocketManager: AppSocketManagerProtocol {
         socket?.removeAllHandlers()
     }
     
-    func connectSocket() {
+    func connectSocket(completion: @escaping() -> ()) {
         @AppStorage( "token" ) var token: String = ""
         @AppStorage( "initialToken" ) var initialToken: String = ""
         
@@ -250,6 +250,9 @@ extension AppSocketManager: AppSocketManagerProtocol {
             
             socket = manager?.defaultSocket
             socket?.on(clientEvent: .connect) {data, ack in
+                DispatchQueue.main.async {
+                    completion()
+                }
                 print("socket connected")
             }
             
