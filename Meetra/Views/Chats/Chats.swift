@@ -123,12 +123,7 @@ struct Chats: View {
                             .foregroundColor(chatVM.showSearchField ? AppColors.accentColor : .black)
                     }
                     
-                    Button {
-                        
-                    } label: {
-                        Image("icon_ring")
-                            .foregroundColor(.black)
-                    }
+                    NotificationButton()
                 }).modifier(NetworkReconnection(action: {
                 chatVM.connectListeners()
             }))

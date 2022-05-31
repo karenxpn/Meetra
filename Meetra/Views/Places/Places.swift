@@ -77,12 +77,7 @@ struct Places: View {
                             .foregroundColor(showFilter ? AppColors.accentColor : .black)
                     }
                     
-                    Button {
-                        
-                    } label: {
-                        Image("icon_ring")
-                            .foregroundColor(.black)
-                    }
+                    NotificationButton()
                 }).onAppear {
                     locationManager.initLocation()
                     locationManager.getLocationResponse()

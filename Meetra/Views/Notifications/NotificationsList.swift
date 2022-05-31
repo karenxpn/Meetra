@@ -14,14 +14,20 @@ struct NotificationsList: View {
         List {
             
             ForEach(notificationsVM.notifications, id: \.id) { notification in
-                Text( "Notification" )
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets())
-                    .onAppear(perform: {
-                        if notification.id == notificationsVM.notifications.last?.id && !notificationsVM.loadingPage {
-                            notificationsVM.getNotifications()
-                        }
-                    })
+                NotificationCell(notification: notification, action: {
+                    if notification.type == "request" {
+                        
+                    } else {
+                        
+                    }
+                })
+                .listRowSeparator(.hidden)
+                .listRowInsets(EdgeInsets())
+                .onAppear(perform: {
+                    if notification.id == notificationsVM.notifications.last?.id && !notificationsVM.loadingPage {
+                        notificationsVM.getNotifications()
+                    }
+                })
             }
             
             if notificationsVM.loadingPage {
@@ -40,7 +46,7 @@ struct NotificationsList: View {
                 notificationsVM.page = 1
                 notificationsVM.getNotifications()
             }
-
+        
     }
 }
 
