@@ -48,6 +48,7 @@ struct Swipes: View {
                                     }
                                 }
                             }.padding(.leading, 25)
+                                .zIndex(10)
                             
                             
                             if selection == "Анкеты" {

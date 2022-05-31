@@ -11,7 +11,7 @@ import Alamofire
 
 protocol NotificationServiceProtocol {
     func sendDeviceToken( token: String, deviceToken: String ) -> AnyPublisher<GlobalResponse, Error>
-    func fetchNotifications() -> AnyPublisher<DataResponse<NotificationListModel, NetworkError>, Never>
+    func fetchNotifications(page: Int) -> AnyPublisher<DataResponse<NotificationListModel, NetworkError>, Never>
 }
 
 class NotificationService {
@@ -20,8 +20,8 @@ class NotificationService {
 }
 
 extension NotificationService: NotificationServiceProtocol {
-    func fetchNotifications() -> AnyPublisher<DataResponse<NotificationListModel, NetworkError>, Never> {
-        let url = URL(string: "\(Credentials.BASE_URL)users/notifications")!
+    func fetchNotifications(page: Int) -> AnyPublisher<DataResponse<NotificationListModel, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)notifications/\(page)")!
         return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: NotificationListModel.self)
     }
     

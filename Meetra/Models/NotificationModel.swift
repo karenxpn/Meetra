@@ -14,6 +14,7 @@ struct NotificationModel: Identifiable, Codable {
     var id: Int
     var user: UserPreviewModel
     var type: String
+    var chat: Int?
     var createdAt: String
 }
 
@@ -30,5 +31,6 @@ struct NotificationViewModel: Identifiable {
     var user: UserPreviewModel  { self.model.user }
     var type: String            { self.model.type }
     var createdAt: String       { self.model.createdAt.countTimeBetweenDates() }
+    var chat: Int?              { self.model.chat }
     
 }

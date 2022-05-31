@@ -15,7 +15,7 @@ struct NotificationsList: View {
             
             ForEach(notificationsVM.notifications, id: \.id) { notification in
                 NotificationCell(notification: notification, action: {
-                    if notification.type == "request" {
+                    if notification.type == "friend-request" {
                         
                     } else {
                         

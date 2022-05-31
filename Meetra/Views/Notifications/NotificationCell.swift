@@ -19,18 +19,19 @@ struct NotificationCell: View {
                 .clipShape(Circle())
             
             VStack(alignment: .leading, spacing: 4) {
-                Text( notification.user.name )
+                Text( "\(notification.user.name), \(notification.user.age)" )
                     .foregroundColor(AppColors.accentColor)
                     .font(.custom("Inter-Regular", size: 12))
+                    .lineLimit(1)
                 
-                if notification.type == "message" {
+                if notification.type == "send-message" {
                     Text( "wrote" )
                         .foregroundColor(.black)
                         .font(.custom("Inter-Regular", size: 12)) +
                     Text( "message" )
                         .foregroundColor(AppColors.accentColor)
                         .font(.custom("Inter-Regular", size: 12))
-                } else if notification.type == "reaction" {
+                } else if notification.type == "message-reactionn" {
                     Text( "wrote" )
                         .foregroundColor(.black)
                         .font(.custom("Inter-Regular", size: 12)) +

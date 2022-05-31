@@ -90,7 +90,7 @@ extension String {
         formatter.unitsStyle = .short
         let string = formatter.localizedString(for: newDate, relativeTo: currentDate)
         
-        return currentDate.millisecondsSince1970 - newDate.millisecondsSince1970 < 3000 ? NSLocalizedString("nowOnline", comment: "") : string
+        return currentDate.millisecondsSince1970 - newDate.millisecondsSince1970 < 3000 ? NSLocalizedString("now", comment: "") : string
     }
     
     var isSingleEmoji: Bool { count == 1 && containsEmoji }
