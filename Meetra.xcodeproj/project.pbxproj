@@ -27,6 +27,10 @@
 		FF15E8BC283E9666002745C5 /* ReactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF15E8BB283E9666002745C5 /* ReactionModel.swift */; };
 		FF178F2228400DF200652D82 /* MessageReactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF178F2128400DF200652D82 /* MessageReactionModel.swift */; };
 		FF1DBA122837CD06007CAF75 /* SingleMediaContentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1DBA112837CD06007CAF75 /* SingleMediaContentPreview.swift */; };
+		FF2D867828467BBE00DFE3DC /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2D867728467BBE00DFE3DC /* NotificationModel.swift */; };
+		FF2D867B28467D9900DFE3DC /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2D867A28467D9900DFE3DC /* Notifications.swift */; };
+		FF2D867D28467EAD00DFE3DC /* NotificationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2D867C28467EAD00DFE3DC /* NotificationsList.swift */; };
+		FF2D867F28467EB700DFE3DC /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2D867E28467EB700DFE3DC /* NotificationCell.swift */; };
 		FF363FFF27EFD77D0057D605 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF363FFE27EFD77D0057D605 /* UserView.swift */; };
 		FF36400127EFD7D80057D605 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF36400027EFD7D80057D605 /* UserModel.swift */; };
 		FF36400327EFD8EB0057D605 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF36400227EFD8EB0057D605 /* UserViewModel.swift */; };
@@ -157,7 +161,7 @@
 		FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD6371D27E23BE200F91AB6 /* Localizable.strings */; };
 		FFD6371F27E23FAA00F91AB6 /* AuthNotificationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6371E27E23FAA00F91AB6 /* AuthNotificationPermission.swift */; };
 		FFD6372527E2413400F91AB6 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372427E2413400F91AB6 /* NotificationsViewModel.swift */; };
-		FFD6372727E2416E00F91AB6 /* DeviceTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372627E2416E00F91AB6 /* DeviceTokenManager.swift */; };
+		FFD6372727E2416E00F91AB6 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372627E2416E00F91AB6 /* NotificationService.swift */; };
 		FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372827E2419300F91AB6 /* AppDelegate.swift */; };
 		FFD6372C27E3535900F91AB6 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372B27E3535900F91AB6 /* Places.swift */; };
 		FFD6373027E386C000F91AB6 /* LostLocationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */; };
@@ -241,6 +245,10 @@
 		FF15E8BB283E9666002745C5 /* ReactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionModel.swift; sourceTree = "<group>"; };
 		FF178F2128400DF200652D82 /* MessageReactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReactionModel.swift; sourceTree = "<group>"; };
 		FF1DBA112837CD06007CAF75 /* SingleMediaContentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMediaContentPreview.swift; sourceTree = "<group>"; };
+		FF2D867728467BBE00DFE3DC /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		FF2D867A28467D9900DFE3DC /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		FF2D867C28467EAD00DFE3DC /* NotificationsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsList.swift; sourceTree = "<group>"; };
+		FF2D867E28467EB700DFE3DC /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		FF363FFE27EFD77D0057D605 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		FF36400027EFD7D80057D605 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FF36400227EFD8EB0057D605 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -371,7 +379,7 @@
 		FFD6371C27E23BE200F91AB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FFD6371E27E23FAA00F91AB6 /* AuthNotificationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNotificationPermission.swift; sourceTree = "<group>"; };
 		FFD6372427E2413400F91AB6 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
-		FFD6372627E2416E00F91AB6 /* DeviceTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTokenManager.swift; sourceTree = "<group>"; };
+		FFD6372627E2416E00F91AB6 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		FFD6372827E2419300F91AB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFD6372B27E3535900F91AB6 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
 		FFD6372F27E386C000F91AB6 /* LostLocationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostLocationAlert.swift; sourceTree = "<group>"; };
@@ -493,6 +501,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		FF2D867928467D8900DFE3DC /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				FF2D867A28467D9900DFE3DC /* Notifications.swift */,
+				FF2D867C28467EAD00DFE3DC /* NotificationsList.swift */,
+				FF2D867E28467EB700DFE3DC /* NotificationCell.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		FF363FFD27EFD76F0057D605 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,6 +616,7 @@
 		FF7D0CF427CE7BF000A828C7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FF2D867928467D8900DFE3DC /* Notifications */,
 				FF5285572816B8B6004D2AB1 /* Chats */,
 				FF97308427FDAAAC00A7BF3F /* Profile */,
 				FF61D3FA27F4ADA300FB9A23 /* Swipes */,
@@ -639,7 +658,7 @@
 			children = (
 				FF61D41727F7867600FB9A23 /* AlamofireAPIHelper.swift */,
 				FF7D0CFD27CE7CAE00A828C7 /* AuthService.swift */,
-				FFD6372627E2416E00F91AB6 /* DeviceTokenManager.swift */,
+				FFD6372627E2416E00F91AB6 /* NotificationService.swift */,
 				FFD6373427E3D4D400F91AB6 /* PlacesService.swift */,
 				FF36400427EFDA780057D605 /* UserService.swift */,
 				FF97308727FDAAD100A7BF3F /* ProfileService.swift */,
@@ -683,6 +702,7 @@
 				FF15E8BB283E9666002745C5 /* ReactionModel.swift */,
 				FF178F2128400DF200652D82 /* MessageReactionModel.swift */,
 				FFB5DE982842D57E002460FE /* ReadModel.swift */,
+				FF2D867728467BBE00DFE3DC /* NotificationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1116,7 +1136,7 @@
 				FFB798A4280081600040A9E8 /* ProfilePreviewInnerView.swift in Sources */,
 				FFB5DE992842D57E002460FE /* ReadModel.swift in Sources */,
 				FF7D0CF327CE71E400A828C7 /* Extensions.swift in Sources */,
-				FFD6372727E2416E00F91AB6 /* DeviceTokenManager.swift in Sources */,
+				FFD6372727E2416E00F91AB6 /* NotificationService.swift in Sources */,
 				FFBF26DA281EBA25002668D5 /* MessageBar.swift in Sources */,
 				FF61D3FC27F4ADAF00FB9A23 /* Swipes.swift in Sources */,
 				FFBF26DC281EBEB2002668D5 /* MessagesList.swift in Sources */,
@@ -1144,6 +1164,7 @@
 				FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */,
 				FF52856F281761CB004D2AB1 /* ChatRoom.swift in Sources */,
 				FFBF26D4281DCB7B002668D5 /* OnlineResponseModel.swift in Sources */,
+				FF2D867F28467EB700DFE3DC /* NotificationCell.swift in Sources */,
 				FF52855F2816C92E004D2AB1 /* InterlocutorsListModel.swift in Sources */,
 				FFED57BC2822F81B00E828F2 /* PhotoMessageContent.swift in Sources */,
 				FF537E8E280D83CC0020BE2C /* Settings.swift in Sources */,
@@ -1182,12 +1203,14 @@
 				FF537E96280EFDEA0020BE2C /* GeneralSettings.swift in Sources */,
 				FFF6468A27D28F6A0022EF60 /* InterestModel.swift in Sources */,
 				FF61D40A27F5DCDB00FB9A23 /* FavouritesListModel.swift in Sources */,
+				FF2D867D28467EAD00DFE3DC /* NotificationsList.swift in Sources */,
 				FF4C980427FF0980009CB60D /* ProfilePreview.swift in Sources */,
 				FFB798A82800F4700040A9E8 /* EditProfileImageBox.swift in Sources */,
 				FF07F23827D0E171009B46B7 /* BirthdayFields.swift in Sources */,
 				FFB7989E28004C230040A9E8 /* ButtonHelper.swift in Sources */,
 				FF537E90280E163C0020BE2C /* ActionButtonHelper.swift in Sources */,
 				FFED57FE28244A8F00E828F2 /* AVPlayerControllerRepresented.swift in Sources */,
+				FF2D867B28467D9900DFE3DC /* Notifications.swift in Sources */,
 				FF61D40227F4C02900FB9A23 /* SwipeButtonHelper.swift in Sources */,
 				FFF6468627D269E10022EF60 /* AuthBio.swift in Sources */,
 				FF7D0D2327D006E900A828C7 /* GlobalResponse.swift in Sources */,
@@ -1215,6 +1238,7 @@
 				FF9B60112808B703007994EF /* CustomActionSheet.swift in Sources */,
 				FF99154F2813469D00CA2DFD /* ChangePhoneNumberVerify.swift in Sources */,
 				FFDE786327F35E450036B098 /* FriendRequestSentNotification.swift in Sources */,
+				FF2D867828467BBE00DFE3DC /* NotificationModel.swift in Sources */,
 				FFB6D24B27EA155D004FD5D3 /* CustomSegmentPicker.swift in Sources */,
 				FFB798A62800F28E0040A9E8 /* ProfileImageList.swift in Sources */,
 				FFD6372C27E3535900F91AB6 /* Places.swift in Sources */,

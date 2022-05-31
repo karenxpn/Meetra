@@ -17,13 +17,41 @@ class NotificationsViewModel: NSObject, UNUserNotificationCenterDelegate, Observ
     @AppStorage( "initialToken" ) private var initialToken: String = ""
     @Published var deviceToken: String = ""
     
+    @Published var loading: Bool = false
+    @Published var showAlert: Bool = false
+    @Published var alertMessage: String = ""
+    
+    @Published var page: Int = 1
+    @Published var loadingPage: Bool = false
+    @Published var notifications = [NotificationViewModel]()
+    
     private var cancellableSet: Set<AnyCancellable> = []
     
-    var dataManager: DeviceTokenManager
+    var dataManager: NotificationServiceProtocol
     
-    init( dataManager: DeviceTokenManager = DeviceTokenManager.shared) {
+    init( dataManager: NotificationServiceProtocol = NotificationService.shared) {
         self.dataManager = dataManager
         super.init()
+    }
+    
+    func getNotifications() {
+        if notifications.isEmpty {
+            loading = true
+        } else {
+            loadingPage = true
+        }
+        dataManager.fetchNotifications()
+            .sink { response in
+                self.loading = false
+                self.loadingPage = false
+                
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    self.notifications.append(contentsOf: response.value!.notifications.map(NotificationViewModel.init))
+                    self.page += 1
+                }
+            }.store(in: &cancellableSet)
     }
     
     func sendDeviceToken() {
@@ -56,6 +84,18 @@ class NotificationsViewModel: NSObject, UNUserNotificationCenterDelegate, Observ
             DispatchQueue.main.async {
                 completion(permission.authorizationStatus)
             }
+        }
+    }
+    
+    func makeAlert(with error: NetworkError, message: inout String, alert: inout Bool ) {
+        
+        if error.initialError.responseCode == 401 {
+            self.token = ""
+            self.initialToken = ""
+            
+        } else {
+            message = error.backendError == nil ? error.initialError.localizedDescription : error.backendError!.message
+            alert.toggle()
         }
     }
 }

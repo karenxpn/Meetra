@@ -1,5 +1,5 @@
 //
-//  DeviceTokenManager.swift
+//  NotificationService.swift
 //  Meetra
 //
 //  Created by Karen Mirakyan on 16.03.22.
@@ -9,10 +9,22 @@ import Foundation
 import Combine
 import Alamofire
 
-class DeviceTokenManager {
+protocol NotificationServiceProtocol {
+    func sendDeviceToken( token: String, deviceToken: String ) -> AnyPublisher<GlobalResponse, Error>
+    func fetchNotifications() -> AnyPublisher<DataResponse<NotificationListModel, NetworkError>, Never>
+}
+
+class NotificationService {
+    static let shared: NotificationServiceProtocol = NotificationService()
     private init() { }
-    static let shared = DeviceTokenManager()
-        
+}
+
+extension NotificationService: NotificationServiceProtocol {
+    func fetchNotifications() -> AnyPublisher<DataResponse<NotificationListModel, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)users/notifications")!
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: NotificationListModel.self)
+    }
+    
     func sendDeviceToken( token: String, deviceToken: String ) -> AnyPublisher<GlobalResponse, Error> {
         let url = URL(string: "\(Credentials.BASE_URL)users/add-device-token")!
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]

@@ -114,4 +114,8 @@ struct AppPreviewModels {
     static let messageModel = MessageModel(id: 1, createdAt: "2022-04-22 21:47:38.123", updatedAt: "2022-04-22 21:47:38.123", message: "Hello world!", type: "text", status: "sent", isEdited: false, sender: MessageSenderModel(id: 1, name: "Karen", online: true), reactions: [MessageReactionModel(id: 1, reaction: "r", user: ReactionUserModel(id: 1, name: "Karen", image: ""))])
     
     static let signedUrlResponse = GetSignedUrlResponse(url: "url", message: messageModel)
+    
+    static let notifications = [NotificationViewModel(model: NotificationModel(id: 1, user: UserPreviewModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, online: true), type: "message", createdAt: "2022-04-22 21:47:38.123")),
+                                NotificationViewModel(model: NotificationModel(id: 2, user: UserPreviewModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, online: true), type: "reaction", createdAt: "2022-04-22 21:47:38.123")),
+                                NotificationViewModel(model: NotificationModel(id: 3, user: UserPreviewModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, online: true), type: "request", createdAt: "2022-04-22 21:47:38.123"))]
 }
