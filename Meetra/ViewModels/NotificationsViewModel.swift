@@ -40,7 +40,7 @@ class NotificationsViewModel: NSObject, UNUserNotificationCenterDelegate, Observ
         } else {
             loadingPage = true
         }
-        dataManager.fetchNotifications()
+        dataManager.fetchNotifications(page: page)
             .sink { response in
                 self.loading = false
                 self.loadingPage = false

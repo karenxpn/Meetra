@@ -11,41 +11,31 @@ struct NotificationsList: View {
     @EnvironmentObject var notificationsVM: NotificationsViewModel
     
     var body: some View {
-        List {
-            
-            ForEach(notificationsVM.notifications, id: \.id) { notification in
-                NotificationCell(notification: notification, action: {
-                    if notification.type == "friend-request" {
-                        
-                    } else {
-                        
+        ScrollView(showsIndicators: false) {
+            LazyVStack {
+                ForEach(notificationsVM.notifications, id: \.id) { notification in
+                    NotificationCell(notification: notification, action: {
+                        if notification.type == "friend-request" {
+                            
+                        } else {
+                            
+                        }
+                    }).onAppear(perform: {
+                        if notification.id == notificationsVM.notifications.last?.id && !notificationsVM.loadingPage {
+                            notificationsVM.getNotifications()
+                        }
+                    })
+                }
+                
+                if notificationsVM.loadingPage {
+                    HStack {
+                        Spacer()
+                        ProgressView()
+                        Spacer()
                     }
-                })
-                .listRowSeparator(.hidden)
-                .listRowInsets(EdgeInsets())
-                .onAppear(perform: {
-                    if notification.id == notificationsVM.notifications.last?.id && !notificationsVM.loadingPage {
-                        notificationsVM.getNotifications()
-                    }
-                })
+                }
             }
-            
-            if notificationsVM.loadingPage {
-                HStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
-                }.listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets())
-            }
-            
-        }.listStyle(.plain)
-            .padding(.top, 1)
-            .refreshable {
-                notificationsVM.notifications.removeAll(keepingCapacity: false)
-                notificationsVM.page = 1
-                notificationsVM.getNotifications()
-            }
+        }.padding(.top, 1)
         
     }
 }

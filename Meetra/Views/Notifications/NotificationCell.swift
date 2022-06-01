@@ -18,31 +18,37 @@ struct NotificationCell: View {
                 .frame(width: 53, height: 53)
                 .clipShape(Circle())
             
-            VStack(alignment: .leading, spacing: 4) {
+            LazyVStack(alignment: .leading, spacing: 4) {
                 Text( "\(notification.user.name), \(notification.user.age)" )
                     .foregroundColor(AppColors.accentColor)
                     .font(.custom("Inter-Regular", size: 12))
                     .lineLimit(1)
                 
                 if notification.type == "send-message" {
-                    Text( "wrote" )
+                    Text( NSLocalizedString("wrote", comment: "") )
+                        .kerning(0.24)
                         .foregroundColor(.black)
                         .font(.custom("Inter-Regular", size: 12)) +
                     Text( "message" )
+                        .kerning(0.24)
                         .foregroundColor(AppColors.accentColor)
                         .font(.custom("Inter-Regular", size: 12))
-                } else if notification.type == "message-reactionn" {
-                    Text( "wrote" )
+                } else if notification.type == "message-reaction" {
+                    Text( NSLocalizedString("left", comment: "") )
+                        .kerning(0.24)
                         .foregroundColor(.black)
                         .font(.custom("Inter-Regular", size: 12)) +
                     Text( "reactedToMessage" )
+                        .kerning(0.24)
                         .foregroundColor(AppColors.accentColor)
                         .font(.custom("Inter-Regular", size: 12))
                 } else {
-                    Text( "wrote" )
+                    Text( NSLocalizedString("sent", comment: "") )
+                        .kerning(0.24)
                         .foregroundColor(.black)
                         .font(.custom("Inter-Regular", size: 12)) +
                     Text( "friendRequest" )
+                        .kerning(0.24)
                         .foregroundColor(AppColors.accentColor)
                         .font(.custom("Inter-Regular", size: 12))
                 }
@@ -50,10 +56,8 @@ struct NotificationCell: View {
                 Text( notification.createdAt == NSLocalizedString("nowOnline", comment: "") ? NSLocalizedString("now", comment: "") : notification.createdAt )
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 12))
-            }
-            
-            Spacer()
-            
+            }.frame(width: .greedy)
+                        
             Button {
                 action()
                 
