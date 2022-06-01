@@ -14,13 +14,8 @@ struct NotificationsList: View {
         ScrollView(showsIndicators: false) {
             LazyVStack {
                 ForEach(notificationsVM.notifications, id: \.id) { notification in
-                    NotificationCell(notification: notification, action: {
-                        if notification.type == "friend-request" {
-                            
-                        } else {
-                            
-                        }
-                    }).onAppear(perform: {
+                    NotificationCell(notification: notification)
+                        .onAppear(perform: {
                         if notification.id == notificationsVM.notifications.last?.id && !notificationsVM.loadingPage {
                             notificationsVM.getNotifications()
                         }

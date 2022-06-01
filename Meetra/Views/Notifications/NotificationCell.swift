@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct NotificationCell: View {
+    @State private var navigateChat: Bool = false
     let notification: NotificationViewModel
-    let action: (() -> Void)
     
     var body: some View {
         HStack( alignment: .center, spacing: 16) {
@@ -57,10 +57,13 @@ struct NotificationCell: View {
                     .foregroundColor(.gray)
                     .font(.custom("Inter-Regular", size: 12))
             }.frame(width: .greedy)
-                        
+            
             Button {
-                action()
-                
+                if notification.type == "request" {
+                    
+                } else {
+                    navigateChat.toggle()
+                }
             } label: {
                 Text( notification.type == "request" ? NSLocalizedString("view", comment: "") : NSLocalizedString("reply", comment: ""))
                     .foregroundColor(.white)
@@ -69,19 +72,34 @@ struct NotificationCell: View {
                     .padding(.horizontal, 18)
                     .background(AppColors.accentColor)
                     .cornerRadius(10)
-            }
-
+            }.background(
+                ZStack {
+                    if notification.chat != nil {
+                        NavigationLink(isActive: $navigateChat, destination: {
+                            ChatRoom(group: false,
+                                     online: notification.user.online,
+                                     lastVisit: notification.lastVisit,
+                                     chatName: notification.user.name,
+                                     userID: notification.user.id,
+                                     chatID: notification.chat!)
+                        }, label: {
+                            EmptyView()
+                        }).hidden()
+                    } else {
+                        
+                    }
+                }
+            )
+            
             
         }.frame(width: .greedy)
-        .padding(.horizontal, 26)
+            .padding(.horizontal, 26)
             .padding(.vertical, 10)
     }
 }
 
 struct NotificationCell_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationCell(notification: AppPreviewModels.notifications[0]) {
-            
-        }
+        NotificationCell(notification: AppPreviewModels.notifications[0])
     }
 }

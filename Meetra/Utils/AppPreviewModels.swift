@@ -115,7 +115,7 @@ struct AppPreviewModels {
     
     static let signedUrlResponse = GetSignedUrlResponse(url: "url", message: messageModel)
     
-    static let notifications = [NotificationViewModel(model: NotificationModel(id: 1, user: UserPreviewModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, online: true), type: "message", createdAt: "2022-04-22 21:47:38.123")),
-                                NotificationViewModel(model: NotificationModel(id: 2, user: UserPreviewModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, online: true), type: "reaction", createdAt: "2022-04-22 21:47:38.123")),
-                                NotificationViewModel(model: NotificationModel(id: 3, user: UserPreviewModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, online: true), type: "request", createdAt: "2022-04-22 21:47:38.123"))]
+    static let notifications = [NotificationViewModel(model: NotificationModel(id: 1, user: NotificationUserPreview(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, online: true, lastVisit: ""), type: "message", createdAt: "2022-04-22 21:47:38.123")),
+                                NotificationViewModel(model: NotificationModel(id: 2, user: NotificationUserPreview(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, online: true, lastVisit: ""), type: "reaction", createdAt: "2022-04-22 21:47:38.123")),
+                                NotificationViewModel(model: NotificationModel(id: 3, user: NotificationUserPreview(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", name: "Karen", age: 22, online: true, lastVisit: ""), type: "request", createdAt: "2022-04-22 21:47:38.123"))]
 }
