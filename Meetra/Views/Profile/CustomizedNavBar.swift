@@ -41,12 +41,7 @@ struct ProfileNavBar<Content: View>: View {
                             .foregroundColor(settingsColor)
                     })
                     
-                    Button {
-                        
-                    } label: {
-                        Image("icon_ring")
-                            .foregroundColor(.black)
-                    }
+                    NotificationButton()
                 })
     }
 }

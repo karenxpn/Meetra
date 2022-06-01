@@ -48,6 +48,7 @@ struct Swipes: View {
                                     }
                                 }
                             }.padding(.leading, 25)
+                                .zIndex(10)
                             
                             
                             if selection == "Анкеты" {
@@ -100,12 +101,7 @@ struct Swipes: View {
                             .foregroundColor(showFilter ? AppColors.accentColor : .black)
                     }
                     
-                    Button {
-                        
-                    } label: {
-                        Image("icon_ring")
-                            .foregroundColor(.black)
-                    }
+                    NotificationButton()
                 }).onAppear {
                     locationManager.initLocation()
                     locationManager.getLocationResponse()
