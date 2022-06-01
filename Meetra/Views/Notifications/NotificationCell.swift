@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NotificationCell: View {
     @State private var navigateChat: Bool = false
+    @State private var navigateRequests: Bool = false
     let notification: NotificationViewModel
     
     var body: some View {
@@ -59,13 +60,13 @@ struct NotificationCell: View {
             }.frame(width: .greedy)
             
             Button {
-                if notification.type == "request" {
-                    
+                if notification.type == "friend-request" {
+                    navigateRequests.toggle()
                 } else {
                     navigateChat.toggle()
                 }
             } label: {
-                Text( notification.type == "request" ? NSLocalizedString("view", comment: "") : NSLocalizedString("reply", comment: ""))
+                Text( notification.type == "friend-request" ? NSLocalizedString("view", comment: "") : NSLocalizedString("reply", comment: ""))
                     .foregroundColor(.white)
                     .font(.custom("Inter-SemiBold", size: 12))
                     .padding(.vertical, 6)
@@ -86,11 +87,14 @@ struct NotificationCell: View {
                             EmptyView()
                         }).hidden()
                     } else {
-                        
+                        NavigationLink(isActive: $navigateRequests) {
+                            FriendRequestList()
+                        } label: {
+                            EmptyView()
+                        }.hidden()
                     }
                 }
             )
-            
             
         }.frame(width: .greedy)
             .padding(.horizontal, 26)
