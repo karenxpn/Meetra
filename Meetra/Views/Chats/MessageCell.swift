@@ -30,7 +30,7 @@ struct MessageCell: View {
             }
             
             if group && message.sender.id != userID {
-                ImageHelper(image: "image", contentMode: .fill)
+                ImageHelper(image: message.sender.image, contentMode: .fill)
                     .frame(width: 30, height: 30)
                     .clipShape(Circle())
                 

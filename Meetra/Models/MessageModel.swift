@@ -28,6 +28,7 @@ struct MessageModel: Identifiable, Codable {
 struct MessageSenderModel: Identifiable, Codable {
     var id: Int
     var name: String
+    var image: String
     var online: Bool
 }
 
