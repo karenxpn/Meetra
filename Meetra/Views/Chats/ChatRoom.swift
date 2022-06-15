@@ -60,12 +60,14 @@ struct ChatRoom: View {
                     .lineLimit(1)
                 
                 // content should be here either group content or just online
-                Text( "\(roomVM.online ? NSLocalizedString("nowOnline", comment: "") : roomVM.lastVisit)" )
-                    .foregroundColor(.gray)
-                    .font(.custom("Inter-Regular", size: 12))
-                    .kerning(0.24)
-                    .lineLimit(1)
-                    .fixedSize()
+                if !group {
+                    Text( "\(roomVM.online ? NSLocalizedString("nowOnline", comment: "") : roomVM.lastVisit)" )
+                        .foregroundColor(.gray)
+                        .font(.custom("Inter-Regular", size: 12))
+                        .kerning(0.24)
+                        .lineLimit(1)
+                        .fixedSize()
+                }
                     
                 
             }, center: EmptyView(), trailing: Image("dots").foregroundColor(.black))

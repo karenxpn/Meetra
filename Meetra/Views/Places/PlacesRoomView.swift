@@ -10,6 +10,7 @@ import WaterfallGrid
 
 struct PlacesRoomView: View {
     
+    @State private var navigate: Bool = false
     var room: PlaceRoom
     
     init(room: PlaceRoom) {
@@ -23,7 +24,7 @@ struct PlacesRoomView: View {
     var body: some View {
         ScrollView( showsIndicators: false) {
             
-            Text( "\(room.count) человек ищут знакомства в \(room.place)" )
+            Text( "\(room.chat.members) человек ищут знакомства в \(room.chat.name)" )
                 .foregroundColor(.black)
                 .font(.custom("Inter-SemiBold", size: 18))
                 .multilineTextAlignment(.center)
@@ -33,7 +34,7 @@ struct PlacesRoomView: View {
                 Group {
                     if index == 0  {
                         Button {
-                            
+                            navigate.toggle()
                         } label: {
                             
                             VStack {
@@ -47,7 +48,13 @@ struct PlacesRoomView: View {
                                     .foregroundColor(.black)
                                     .font(.custom("Inter-Regular", size: 16))
                             }.padding(.top, 20)
-                        }
+                        }.background(
+                            NavigationLink(isActive: $navigate, destination: {
+                                ChatRoom(group: true, online: true, lastVisit: "", chatName: room.chat.name, userID: 0, chatID: room.chat.id)
+                            }, label: {
+                                EmptyView()
+                            }).hidden()
+                        )
                     } else if index == 2 {
                         Button {
                             
