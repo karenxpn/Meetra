@@ -23,8 +23,8 @@ class MockChatService: ChatServiceProtocol {
     }
     
     var fetchSignedURLError: Bool = false
-    func fetchSignedURL(key: Int64, chatID: Int, content_type: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> {
-        return AlamofireAPIHelper.shared.mockRequest(error: fetchSignedURLError, response: AppPreviewModels.signedUrlResponse, responseType: GetSignedUrlResponse.self)
+    func fetchSignedURL(key: Int64, chatID: Int, content_type: String) -> AnyPublisher<DataResponse<GetMessageSignedUrlResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: fetchSignedURLError, response: AppPreviewModels.signedUrlResponse, responseType: GetMessageSignedUrlResponse.self)
     }
     
     func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping ([PendingFileModel]) -> ()) {

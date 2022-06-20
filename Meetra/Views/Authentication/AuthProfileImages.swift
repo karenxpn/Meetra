@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AuthProfileImages: View {
+    @StateObject private var authVM = AuthViewModel()
     @State var model: RegistrationRequest
     
     @State private var navigate: Bool = false
@@ -84,7 +85,8 @@ struct AuthProfileImages: View {
         }.navigationBarTitle("", displayMode: .inline)
             .sheet(isPresented: $showPicker) {
                 Gallery { images in
-                    self.model.images.append(contentsOf: images)
+                    model.images.append(contentsOf: images)
+                    authVM.getPreSignedURL(images: images.map{ $0 })
                 }
             }
     }

@@ -20,7 +20,7 @@ struct ProfileImageBox: View {
             ZStack( alignment: .bottomLeading) {
                 
                 ZStack( alignment: .topTrailing) {
-                    Image(base64String: model.images[index])?
+                    Image(uiImage: UIImage(data: model.images[index])!)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: width,

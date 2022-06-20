@@ -112,9 +112,9 @@ struct ProfileEditingInnerView: View {
             .padding(.horizontal, 25)
         }.sheet(isPresented: $showPicker) {
             Gallery { images in
-                profileVM.profileImages.append(contentsOf: images.map{ ProfileImageModel(id: UUID().hashValue,
-                                                                                         type: "",
-                                                                                         image: $0 )})
+//                profileVM.profileImages.append(contentsOf: images.map{ ProfileImageModel(id: UUID().hashValue,
+//                                                                                         type: "",
+//                                                                                         image: $0 )})
                 
                 let pref_five = profileVM.profileImages
                     .prefix(5)
