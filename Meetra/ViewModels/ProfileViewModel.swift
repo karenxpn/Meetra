@@ -110,7 +110,9 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
                     if let index = self.profileImages.firstIndex(where: { $0.id == id}) {
-                        self.profileImages.move(from: index, to: 0)
+                        withAnimation {
+                            self.profileImages.move(from: index, to: 0)
+                        }
                     }
                 }
             }.store(in: &cancellableSet)

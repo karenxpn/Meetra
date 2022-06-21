@@ -135,9 +135,6 @@ extension ChatService: ChatServiceProtocol {
     
     func storeFileToServer(file: Data, url: String, completion: @escaping(Bool) -> ()) {
         AF.upload(file, to: url, method: .put).response { response in
-            print("response -> \(response)")
-            print("response result -> \(response.result)" )
-            print("response value -> \(response.value)")
             if response.error != nil {
                 DispatchQueue.main.async {
                     completion(false)
