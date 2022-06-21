@@ -39,7 +39,6 @@ struct AuthProfileImages: View {
                                             width:  UIScreen.main.bounds.size.width * 0.38,
                                             index: index)
                             .environmentObject(authVM)
-                            
                         }
                     }
                     
@@ -88,6 +87,8 @@ struct AuthProfileImages: View {
                 Gallery(action: { images in
                     authVM.getPreSignedURL(images: images)
                 }, existingImageCount: authVM.imageKeys.count)
+            }.alert(isPresented: $authVM.showAlert) {
+                Alert(title: Text( "Error" ), message: Text( authVM.alertMessage), dismissButton: .cancel(Text( "Got It!" )))
             }
     }
 }
