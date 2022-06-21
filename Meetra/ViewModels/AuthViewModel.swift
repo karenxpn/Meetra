@@ -118,9 +118,11 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                     self.showAlert.toggle()
                 }
             }) { result in
-                self.alertMessage = "Some of the images were not able to upload to server!"
-                self.showAlert.toggle()
-                print(result.map { $0.value })
+                let count = result.map{ $0.value }.count
+                if count != images.count {
+                    self.alertMessage = "Some of the images were not able to upload to server!"
+                    self.showAlert.toggle()
+                }
             }.store(in: &cancellableSet)
     }
     

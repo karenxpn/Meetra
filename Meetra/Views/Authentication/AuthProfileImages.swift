@@ -84,10 +84,10 @@ struct AuthProfileImages: View {
             AuthProgress(page: 3)
         }.navigationBarTitle("", displayMode: .inline)
             .sheet(isPresented: $showPicker) {
-                Gallery { images in
+                Gallery(action: { images in
                     model.images.append(contentsOf: images)
                     authVM.getPreSignedURL(images: images.map{ $0 })
-                }
+                }, existingImageCount: model.images.count)
             }
     }
 }
