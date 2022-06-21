@@ -16,6 +16,7 @@ protocol ProfileServiceProtocol {
     func updateProfileImages(images: [String] ) -> AnyPublisher<DataResponse<ProfileImageList, NetworkError>, Never>
     func deleteProfileImage(id: Int ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     func updateProfile(model: ProfileEditFields ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func updateProfileImage(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     
     func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     func checkVerificationCode(phoneNumber: String, code: String ) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
@@ -30,6 +31,15 @@ class ProfileService {
 }
 
 extension ProfileService: ProfileServiceProtocol {
+    func updateProfileImage(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)users/change-avatar")!
+        
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["id" : id],
+                                                           url: url,
+                                                           method: .patch,
+                                                           responseType: GlobalResponse.self)
+    }
+    
     func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)users/phone-number")!
         

@@ -93,6 +93,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                 return Publishers.MergeMany(tasks)
             }.collect()
             .sink(receiveCompletion: { (completion) in
+                print(completion)
                 if case .failure(let error) = completion {
                     self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
                 }

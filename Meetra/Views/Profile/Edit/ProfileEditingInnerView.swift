@@ -28,7 +28,7 @@ struct ProfileEditingInnerView: View {
                                             width:  UIScreen.main.bounds.size.width * 0.38,
                                             index: index, deleteAction: {
                             profileVM.deleteProfileImage(id: profileVM.profileImages[index].id)
-                        })
+                        }).environmentObject(profileVM)
                     }
                 }.padding(.top)
                 
@@ -40,7 +40,7 @@ struct ProfileEditingInnerView: View {
                                             width:  UIScreen.main.bounds.size.width * 0.23,
                                             index: index) {
                             profileVM.deleteProfileImage(id: profileVM.profileImages[index].id)
-                        }
+                        }.environmentObject(profileVM)
                     }
                 }
                 
@@ -112,9 +112,9 @@ struct ProfileEditingInnerView: View {
             .padding(.horizontal, 25)
         }.sheet(isPresented: $showPicker) {
             Gallery(action: { images in
-                //                profileVM.profileImages.append(contentsOf: images.map{ ProfileImageModel(id: UUID().hashValue,
-                //                                                                                         type: "",
-                //                                                                                         image: $0 )})
+                profileVM.profileImages.append(contentsOf: images.map{ ProfileImageModel(id: UUID().hashValue,
+                                                                                         type: "",
+                                                                                         image: $0.base64EncodedString() )})
                 
                 let pref_five = profileVM.profileImages
                     .prefix(5)
@@ -122,7 +122,7 @@ struct ProfileEditingInnerView: View {
                     .map{ $0.image }
                 
                 profileVM.updateProfileImages(images: pref_five)
-            }, existingImageCount: 0)
+            }, existingImageCount: profileVM.profileImages.count)
         }
     }
 }
