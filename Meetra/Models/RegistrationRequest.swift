@@ -11,7 +11,7 @@ struct RegistrationRequest: Codable {
     var birthday: String = ""
     var gender: String = ""
     var showGender: Bool = true
-    var images: [Data] = []
+    var images: [String] = []
     var bio: String = ""
     var interests: [String] = []
 }

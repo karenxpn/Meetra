@@ -34,6 +34,9 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     @Published var proceedRegistration: Bool = false
     @Published var interests = [String]()
     @Published var selected_interests = [String]()
+    
+    @Published var imageKeys = [(Data, String)]()
+    @Published var imagesCount: Int = 0
         
     private var cancellableSet: Set<AnyCancellable> = []
 
@@ -88,7 +91,9 @@ class AuthViewModel: AlertViewModel, ObservableObject {
             .setFailureType(to: NetworkError.self)
             .flatMap { (values) -> Publishers.MergeMany<AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never>> in
                 let tasks = values.map { image -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> in
-                    return self.dataManager.fetchSignedUrl()
+                    let key = "users/\(Date().millisecondsSince1970)-\(UUID().uuidString).jpg"
+                    self.imageKeys.append((image, key))
+                    return self.dataManager.fetchSignedUrl(key: key)
                 }
                 return Publishers.MergeMany(tasks)
             }.collect()
@@ -119,8 +124,8 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                     self.showAlert.toggle()
                 }
             }) { result in
-                let count = result.map{ $0.value }.count
-                if count != images.count {
+                self.imagesCount = result.map{ $0.value }.count
+                if self.imagesCount != images.count {
                     self.alertMessage = "Some of the images were not able to upload to server!"
                     self.showAlert.toggle()
                 }

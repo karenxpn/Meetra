@@ -16,7 +16,7 @@ protocol AuthServiceProtocol {
     func fetchInterests() -> AnyPublisher<DataResponse<InterestModel, NetworkError>, Never>
     func signUpConfirm(model: RegistrationRequest) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     
-    func fetchSignedUrl() -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never>
+    func fetchSignedUrl(key: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never>
     func storeFileToServer(file: Data, url: String) -> AnyPublisher<DataResponse<Data?, AFError>, Never>
 }
 
@@ -35,10 +35,10 @@ extension AuthService: AuthServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchSignedUrl() -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> {
+    func fetchSignedUrl(key: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)aws/pre-signed-url")!
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: ["key" : "users/\(Date().millisecondsSince1970)-\(UUID().uuidString).jpg"], url: url, responseType: GetSignedUrlResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["key" : key], url: url, responseType: GetSignedUrlResponse.self)
     }
     
     func signUpConfirm(model: RegistrationRequest) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
