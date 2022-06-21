@@ -15,6 +15,9 @@ protocol AuthServiceProtocol {
     func resendVerificationCode() -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     func fetchInterests() -> AnyPublisher<DataResponse<InterestModel, NetworkError>, Never>
     func signUpConfirm(model: RegistrationRequest) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    
+    func fetchSignedUrl(key: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never>
+    func storeFileToServer(file: Data, url: String) -> AnyPublisher<DataResponse<Data?, AFError>, Never>
 }
 
 class AuthService {
@@ -24,6 +27,20 @@ class AuthService {
 }
 
 extension AuthService: AuthServiceProtocol {
+    
+    func storeFileToServer(file: Data, url: String) -> AnyPublisher<DataResponse<Data?, AFError>, Never> {
+        return AF.upload(file, to: url, method: .put)
+            .validate()
+            .publishDecodable()
+            .eraseToAnyPublisher()
+    }
+    
+    func fetchSignedUrl(key: String) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)aws/pre-signed-url")!
+        
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["key" : key], url: url, responseType: GetSignedUrlResponse.self)
+    }
+    
     func signUpConfirm(model: RegistrationRequest) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)auth/confirm")!
         

@@ -13,7 +13,7 @@ struct ProfileEditingInnerView: View {
     @FocusState private var isFocused: Bool
     
     @State private var showPicker: Bool = false
-
+    
     let icons = ["user_occupation_icon", "user_school_icon", "user_gender_icon", "user_location_icon"]
     let names = ["Род деятельности", "Образование", "Пол", "Город"]
     
@@ -28,7 +28,7 @@ struct ProfileEditingInnerView: View {
                                             width:  UIScreen.main.bounds.size.width * 0.38,
                                             index: index, deleteAction: {
                             profileVM.deleteProfileImage(id: profileVM.profileImages[index].id)
-                        })
+                        }).environmentObject(profileVM)
                     }
                 }.padding(.top)
                 
@@ -36,11 +36,11 @@ struct ProfileEditingInnerView: View {
                     ForEach(2...4, id: \.self) { index in
                         
                         EditProfileImageBox(images: $profileVM.profileImages, showPicker: $showPicker,
-                                        height: UIScreen.main.bounds.size.height * 0.14,
-                                        width:  UIScreen.main.bounds.size.width * 0.23,
+                                            height: UIScreen.main.bounds.size.height * 0.14,
+                                            width:  UIScreen.main.bounds.size.width * 0.23,
                                             index: index) {
                             profileVM.deleteProfileImage(id: profileVM.profileImages[index].id)
-                        }
+                        }.environmentObject(profileVM)
                     }
                 }
                 
@@ -111,18 +111,18 @@ struct ProfileEditingInnerView: View {
                     alignment: .leading)
             .padding(.horizontal, 25)
         }.sheet(isPresented: $showPicker) {
-            Gallery { images in
+            Gallery(action: { images in
                 profileVM.profileImages.append(contentsOf: images.map{ ProfileImageModel(id: UUID().hashValue,
                                                                                          type: "",
-                                                                                         image: $0 )})
+                                                                                         image: $0.base64EncodedString() )})
                 
                 let pref_five = profileVM.profileImages
                     .prefix(5)
                     .filter{ !$0.image.hasPrefix("https://")}
                     .map{ $0.image }
-
+                
                 profileVM.updateProfileImages(images: pref_five)
-            }
+            }, existingImageCount: profileVM.profileImages.count)
         }
     }
 }

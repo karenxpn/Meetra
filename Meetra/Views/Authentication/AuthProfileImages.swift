@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AuthProfileImages: View {
+    @StateObject private var authVM = AuthViewModel()
     @State var model: RegistrationRequest
     
     @State private var navigate: Bool = false
@@ -33,21 +34,22 @@ struct AuthProfileImages: View {
                     HStack(spacing: 30) {
                         ForEach(0...1, id: \.self) { index in
                             
-                            ProfileImageBox(model: $model, showPicker: $showPicker,
+                            ProfileImageBox(images: $authVM.imageKeys, showPicker: $showPicker,
                                             height: UIScreen.main.bounds.size.height * 0.22,
                                             width:  UIScreen.main.bounds.size.width * 0.38,
                                             index: index)
-                            
+                            .environmentObject(authVM)
                         }
                     }
                     
                     HStack(spacing: 30) {
                         ForEach(2...4, id: \.self) { index in
                             
-                            ProfileImageBox(model: $model, showPicker: $showPicker,
+                            ProfileImageBox(images: $authVM.imageKeys, showPicker: $showPicker,
                                             height: UIScreen.main.bounds.size.height * 0.14,
                                             width:  UIScreen.main.bounds.size.width * 0.23,
                                             index: index)
+                            .environmentObject(authVM)
                         }
                     }
                     
@@ -57,18 +59,17 @@ struct AuthProfileImages: View {
                         .font(.custom("Inter-Regular", size: 12))
                     
                     
-                    
                     Spacer()
                     
-                    ButtonHelper(disabled: model.images.count < 2,
+                    ButtonHelper(disabled: authVM.imageKeys.count < 2,
                                  label: NSLocalizedString("proceed", comment: "")) {
+                        model.images = authVM.imageKeys.map({ $0.1 })
                         navigate.toggle()
                     }.background(
-                            NavigationLink(destination: AuthBio(model: model), isActive: $navigate, label: {
-                                EmptyView()
-                            }).hidden()
-                        )
-                    
+                        NavigationLink(destination: AuthBio(model: model), isActive: $navigate, label: {
+                            EmptyView()
+                        }).hidden()
+                    )
                     
                 }.frame(
                     minWidth: 0,
@@ -77,15 +78,17 @@ struct AuthProfileImages: View {
                     maxHeight: .infinity,
                     alignment: .topLeading
                 )
-                    .padding(30)
+                .padding(30)
             }.padding(.top, 1)
             
             AuthProgress(page: 3)
         }.navigationBarTitle("", displayMode: .inline)
             .sheet(isPresented: $showPicker) {
-                Gallery { images in
-                    self.model.images.append(contentsOf: images)
-                }
+                Gallery(action: { images in
+                    authVM.getPreSignedURL(images: images)
+                }, existingImageCount: authVM.imageKeys.count)
+            }.alert(isPresented: $authVM.showAlert) {
+                Alert(title: Text( "Error" ), message: Text( authVM.alertMessage), dismissButton: .cancel(Text( "Got It!" )))
             }
     }
 }

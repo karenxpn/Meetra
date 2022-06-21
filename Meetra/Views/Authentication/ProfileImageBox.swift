@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProfileImageBox: View {
-    @Binding var model: RegistrationRequest
+    @EnvironmentObject var authVM: AuthViewModel
+    @Binding var images: [(Data, String)]
     @Binding var showPicker: Bool
     let height: CGFloat
     let width: CGFloat
@@ -16,11 +17,11 @@ struct ProfileImageBox: View {
     
     var body: some View {
         
-        if model.images.count > index {
+        if images.count > index {
             ZStack( alignment: .bottomLeading) {
                 
                 ZStack( alignment: .topTrailing) {
-                    Image(base64String: model.images[index])?
+                    Image(uiImage: UIImage(data: images[index].0)!)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: width,
@@ -30,7 +31,7 @@ struct ProfileImageBox: View {
                     
                     
                     Button {
-                        model.images.remove(at: index)
+                        authVM.imageKeys.remove(at: index)
                     } label: {
                         Image("delete_icon")
                             .padding(10)
@@ -64,6 +65,5 @@ struct ProfileImageBox: View {
                     .cornerRadius(10)
             }
         }
-        
     }
 }

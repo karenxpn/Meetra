@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import Popovers
 
 struct EditProfileImageBox: View {
+    
+    @State private var showPopover: Bool = false
+    @EnvironmentObject var profileVM: ProfileViewModel
+
     @Binding var images: [ProfileImageModel]
     @Binding var showPicker: Bool
     let height: CGFloat
@@ -51,6 +56,27 @@ struct EditProfileImageBox: View {
                             .cornerRadius(30)
                             .offset(x: 10, y: -10)
                     }
+                }.onTapGesture {
+                    showPopover.toggle()
+                }.popover(
+                    present: $showPopover,
+                    attributes: {
+                        $0.position = .absolute(
+                            originAnchor: .bottom,
+                            popoverAnchor: .top
+                        )
+                    }
+                ) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        MenuButtonsHelper(label: NSLocalizedString("makeAvatar", comment: ""), role: .cancel) {
+                            profileVM.updateAvatar(id: images[index].id)
+                            showPopover.toggle()
+                        }
+                        
+                    }.frame(width: 200)
+                        .background(Color.white)
+                        .cornerRadius(20)
+                        .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 5)
                 }
                 
                 if index == 0 {

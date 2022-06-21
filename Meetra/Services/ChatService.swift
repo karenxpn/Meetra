@@ -22,7 +22,7 @@ protocol ChatServiceProtocol {
     func fetchNewConversationResponse(roomID: Int) -> AnyPublisher<DataResponse<NewConversationResponse, NetworkError>, Never>
     
     func fetchChatMessages(roomID: Int, messageID: Int) -> AnyPublisher<DataResponse<MessagesListModel, NetworkError>, Never>
-    func fetchSignedURL(key: Int64, chatID: Int, content_type: String, repliedTo: Int?, duration: String?) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never>
+    func fetchSignedURL(key: Int64, chatID: Int, content_type: String, repliedTo: Int?, duration: String?) -> AnyPublisher<DataResponse<GetMessageSignedUrlResponse, NetworkError>, Never>
     
     func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping([PendingFileModel]) -> ())
     func storeFileToServer(file: Data, url: String, completion: @escaping(Bool) -> ())
@@ -180,16 +180,16 @@ extension ChatService: ChatServiceProtocol {
         
     }
     
-    func fetchSignedURL(key: Int64, chatID: Int, content_type: String, repliedTo: Int?, duration: String?) -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> {
+    func fetchSignedURL(key: Int64, chatID: Int, content_type: String, repliedTo: Int?, duration: String?) -> AnyPublisher<DataResponse<GetMessageSignedUrlResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)messages/pre-signed-url")!
         
-        let params = GetSignedUrlRequest(key: "chat-\(chatID)/messages/message-\(key).\(content_type == "video" ? "mov" : content_type == "audio" ? "m4a" : "jpg")",
+        let params = GetMessageSignedUrlRequest(key: "chat-\(chatID)/messages/message-\(key).\(content_type == "video" ? "mov" : content_type == "audio" ? "m4a" : "jpg")",
                                          type: content_type,
                                          chatId: chatID,
                                          repliedTo: repliedTo,
                                          duration: duration)
         
-        return AlamofireAPIHelper.shared.post_patchRequest(params: params, url: url, responseType: GetSignedUrlResponse.self)
+        return AlamofireAPIHelper.shared.post_patchRequest(params: params, url: url, responseType: GetMessageSignedUrlResponse.self)
     }
     
     func fetchChatMessages(roomID: Int, messageID: Int) -> AnyPublisher<DataResponse<MessagesListModel, NetworkError>, Never> {

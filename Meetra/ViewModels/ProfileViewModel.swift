@@ -103,6 +103,21 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
             }.store(in: &cancellableSet)
     }
     
+    func updateAvatar(id: Int) {
+        dataManager.updateProfileImage(id: id)
+            .sink { response in
+                if response.error != nil {
+                    self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
+                } else {
+                    if let index = self.profileImages.firstIndex(where: { $0.id == id}) {
+                        withAnimation {
+                            self.profileImages.move(from: index, to: 0)
+                        }
+                    }
+                }
+            }.store(in: &cancellableSet)
+    }
+    
     func deleteProfileImage(id: Int) {
         dataManager.deleteProfileImage(id: id)
             .sink { response in

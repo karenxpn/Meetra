@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import Alamofire
 
 class AuthViewModel: AlertViewModel, ObservableObject {
     @AppStorage("token") private var token: String = ""
@@ -34,6 +35,9 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     @Published var interests = [String]()
     @Published var selected_interests = [String]()
     
+    @Published var imageKeys = [(Data, String)]()
+    @Published var imagesCount: Int = 0
+        
     private var cancellableSet: Set<AnyCancellable> = []
 
     var dataManager: AuthServiceProtocol
@@ -78,6 +82,51 @@ class AuthViewModel: AlertViewModel, ObservableObject {
                     } else {
                         self.proceedRegistration.toggle()
                     }                    
+                }
+            }.store(in: &cancellableSet)
+    }
+
+    func getPreSignedURL(images: [Data]) {
+        Just(images)
+            .setFailureType(to: NetworkError.self)
+            .flatMap { (values) -> Publishers.MergeMany<AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never>> in
+                let tasks = values.map { image -> AnyPublisher<DataResponse<GetSignedUrlResponse, NetworkError>, Never> in
+                    let key = "users/\(Date().millisecondsSince1970)-\(UUID().uuidString).jpg"
+                    self.imageKeys.append((image, key))
+                    return self.dataManager.fetchSignedUrl(key: key)
+                }
+                return Publishers.MergeMany(tasks)
+            }.collect()
+            .sink(receiveCompletion: { (completion) in
+                if case .failure(let error) = completion {
+                    self.makeAlert(with: error, message: &self.alertMessage, alert: &self.showAlert)
+                }
+            }) { (allURLs) in
+                let urls = allURLs.filter({$0.value != nil}).map{ $0.value!.url }
+                self.upload(images: images, urls: urls)
+            }.store(in: &cancellableSet)
+    }
+    
+    func upload(images: [Data], urls: [String]) {
+
+        Just(zip(images, urls))
+            .setFailureType(to: AFError.self)
+            .flatMap { sequence -> Publishers.MergeMany<AnyPublisher<DataResponse<Data?, AFError>, Never>> in
+                let tasks = sequence.map { (image, url) -> AnyPublisher<DataResponse<Data?, AFError>, Never> in
+                    return self.dataManager.storeFileToServer(file: image, url: url)
+                }
+                return Publishers.MergeMany(tasks)
+            }.collect()
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    self.alertMessage = error.localizedDescription
+                    self.showAlert.toggle()
+                }
+            }) { result in
+                self.imagesCount = result.map{ $0.value }.count
+                if self.imagesCount != images.count {
+                    self.alertMessage = "Some of the images were not able to upload to server!"
+                    self.showAlert.toggle()
                 }
             }.store(in: &cancellableSet)
     }

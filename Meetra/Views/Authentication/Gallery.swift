@@ -11,7 +11,8 @@ import PhotosUI
 
 struct Gallery: UIViewControllerRepresentable {
     
-    let action: (([String]) -> Void)
+    let action: (([Data]) -> Void)
+    let existingImageCount: Int
     
     func makeCoordinator() -> Coordinator {
         return Gallery.Coordinator( parent: self)
@@ -20,7 +21,7 @@ struct Gallery: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var configuration = PHPickerConfiguration()
         configuration.filter = .images
-        configuration.selectionLimit = 5
+        configuration.selectionLimit = 5 - existingImageCount
         
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = context.coordinator
@@ -35,7 +36,7 @@ struct Gallery: UIViewControllerRepresentable {
     
     class Coordinator: NSObject, PHPickerViewControllerDelegate {
         var parent: Gallery
-        var images = [(Int, String)]()
+        var images = [(Int, Data)]()
         
         init( parent: Gallery) {
             self.parent = parent
@@ -67,7 +68,7 @@ struct Gallery: UIViewControllerRepresentable {
                     if let uiimage = img as? UIImage {
                         if let imageData = uiimage.jpegData(compressionQuality: 0.4) {
                             DispatchQueue.main.async {
-                                self.images.append((id, imageData.base64EncodedString()))
+                                self.images.append((id, imageData))
                                 if self.images.count == resultCount {
                                     self.images.sort(by: {$0.0 < $1.0 })
                                     self.parent.action(self.images.map{ $0.1 })
