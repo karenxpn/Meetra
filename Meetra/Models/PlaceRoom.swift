@@ -17,12 +17,5 @@ struct PlaceChat: Codable {
     var isGroup: Bool
     var members: Int
     var online: Int
+    var left: Bool
 }
-
-//"chat": {
-//        "id": 9,
-//        "name": "EVN",
-//        "isGroup": true,
-//        "members": 3,
-//        "online": 0
-//    }

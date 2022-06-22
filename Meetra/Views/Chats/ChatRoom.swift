@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ChatRoom: View {
+    @Environment(\.presentationMode) var presentationMode
+
     @StateObject var roomVM = ChatRoomViewModel()
+    @State private var showPopup: Bool = false
     let group: Bool
     let online: Bool
     let lastVisit: String
     let chatName: String
     let userID: Int
     let chatID: Int
+    let left: Bool
     
     var body: some View {
         
@@ -29,8 +33,10 @@ struct ChatRoom: View {
             
             VStack {
                 Spacer()
-                MessageBar()
-                    .environmentObject(roomVM)
+                if !left {
+                    MessageBar()
+                        .environmentObject(roomVM)
+                }
             }
         }.edgesIgnoringSafeArea(.bottom)
             .onAppear {
@@ -70,17 +76,52 @@ struct ChatRoom: View {
                 }
                     
                 
-            }, center: EmptyView(), trailing: Image("dots").foregroundColor(.black))
+            }, center: EmptyView(), trailing: group ? AnyView(Button(action: {
+                showPopup.toggle()
+            }, label: {
+                Image("dots").foregroundColor(.black)
+            })) : AnyView(EmptyView()))
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 roomVM.joinGetMessagesListenEventsOnInit()
             }.modifier(NetworkReconnection(action: {
                 roomVM.joinGetMessagesListenEventsOnInit()
-            }))
+            })).fullScreenCover(isPresented: $showPopup) {
+                CustomActionSheet {
+                    
+                    ActionSheetButtonHelper(icon: "unread_icon",
+                                            label: NSLocalizedString("markUnread", comment: ""),
+                                            role: .cancel) {
+                        roomVM.markAsUnread()
+                        self.showPopup.toggle()
+                        
+                    }
+                    
+                    Divider()
+                    
+                    ActionSheetButtonHelper(icon: "trash_icon",
+                                            label: NSLocalizedString("delete", comment: ""),
+                                            role: .destructive) {
+                        roomVM.deleteChat()
+                        self.showPopup.toggle()
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                    
+                    Divider()
+                    
+                    ActionSheetButtonHelper(icon: "exit_icon",
+                                            label: NSLocalizedString("leaveChat", comment: ""),
+                                            role: .destructive) {
+                        roomVM.leaveChat()
+                        self.showPopup.toggle()
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }
     }
 }
 
 struct ChatRoom_Previews: PreviewProvider {
     static var previews: some View {
-        ChatRoom(group: false, online: true, lastVisit: "", chatName: "Hunt Lounge Bar", userID: 1, chatID: 1)
+        ChatRoom(group: false, online: true, lastVisit: "", chatName: "Hunt Lounge Bar", userID: 1, chatID: 1, left: true)
     }
 }

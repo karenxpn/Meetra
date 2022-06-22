@@ -22,6 +22,8 @@ struct ActionSheetButtonHelper: View {
             HStack {
                 
                 Image(icon)
+                    .foregroundColor(role == .destructive ? Color.red : Color.black)
+
 
                 Text( label )
                     .kerning(0.36)

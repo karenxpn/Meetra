@@ -27,10 +27,10 @@ struct InterlocutorsViewModel: Identifiable {
         self.model = model
     }
     
-    var id: Int         { self.model.id }
-    var image: String   { self.model.image }
-    var chat: Int       { self.model.chat }
-    var name: String    { self.model.name }
+    var id: Int             { self.model.id }
+    var image: String       { self.model.image }
+    var chat: Int           { self.model.chat }
+    var name: String        { self.model.name }
     var lastVisit: String   { self.model.lastVisit.countTimeBetweenDates() }
     
     

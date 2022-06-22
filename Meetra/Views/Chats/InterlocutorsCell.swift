@@ -56,7 +56,8 @@ struct InterlocutorsCell: View {
                                                   lastVisit: interlocutor.lastVisit,
                                                   chatName: interlocutor.name,
                                                   userID: interlocutor.id,
-                                                  chatID: interlocutor.chat),
+                                                  chatID: interlocutor.chat,
+                                                  left: false),
                            isActive: $navigate,
                            label: {
                 EmptyView()

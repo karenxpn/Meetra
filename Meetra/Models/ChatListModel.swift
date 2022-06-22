@@ -17,6 +17,7 @@ struct ChatModel: Identifiable, Codable {
     var isGroup: Bool
     var message: MessagePreviewModel
     var isMuted: Bool
+    var left: Bool
     
 }
 
@@ -48,6 +49,7 @@ struct ChatModelViewModel: Identifiable {
     var name: String                    { self.chat.name }
     var isGroup: Bool                   { self.chat.isGroup }
     var message: MessagePreviewModel    { self.chat.message}
+    var left: Bool                      { self.chat.left }
     
     var sentTime: String                { self.chat.message.createdAt.countTimeBetweenDates() }
     var lastVisit: String               { self.chat.message.sender.lastVisit.countTimeBetweenDates()}

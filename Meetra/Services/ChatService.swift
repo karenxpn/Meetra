@@ -17,6 +17,8 @@ protocol ChatServiceProtocol {
     
     func changeChatNotificationStatus(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     func deleteChat(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func markUnread(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
+    func leaveChat(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     
     func fetchChatId(userId: Int) -> AnyPublisher<DataResponse<GetChatIdResponse, NetworkError>, Never>
     func fetchNewConversationResponse(roomID: Int) -> AnyPublisher<DataResponse<NewConversationResponse, NetworkError>, Never>
@@ -37,6 +39,16 @@ class ChatService {
 }
 
 extension ChatService: ChatServiceProtocol {
+    func leaveChat(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)chats/leave")!
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["chatId" : id], url: url, method: .patch, responseType: GlobalResponse.self)
+    }
+    
+    func markUnread(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)chats/mark-as-unread")!
+        return AlamofireAPIHelper.shared.post_patchRequest(params: ["chatId" : id], url: url, method: .patch, responseType: GlobalResponse.self)
+    }
+    
     func deleteChat(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)chats/\(id)")!
         return AlamofireAPIHelper.shared.get_deleteRequest(url: url, method: .delete, responseType: GlobalResponse.self)

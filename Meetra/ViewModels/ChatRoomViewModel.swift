@@ -217,6 +217,24 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
         }
     }
     
+    func deleteChat() {
+        dataManager.deleteChat(id: chatID)
+            .sink { _ in
+            }.store(in: &cancellableSet)
+    }
+    
+    func markAsUnread() {
+        dataManager.markUnread(id: chatID)
+            .sink { _ in
+            }.store(in: &cancellableSet)
+    }
+    
+    func leaveChat() {
+        dataManager.leaveChat(id: chatID)
+            .sink { _ in
+            }.store(in: &cancellableSet)
+    }
+    
     func listenDeleteMessageEvent() {
         socketManager.fetchDeleteMessageResponse(chatID: chatID) { messageID in
             if let index = self.messages.firstIndex(where: {$0.id == messageID}) {

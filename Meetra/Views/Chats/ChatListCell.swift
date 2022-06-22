@@ -98,7 +98,8 @@ struct ChatListCell: View {
                                                      lastVisit: chat.lastVisit,
                                                      chatName: chat.name,
                                                      userID: chat.message.sender.id,
-                                                     chatID: chat.id),
+                                                     chatID: chat.id,
+                                                     left: chat.left),
                                isActive: $navigate,
                                label: {
                                    EmptyView()

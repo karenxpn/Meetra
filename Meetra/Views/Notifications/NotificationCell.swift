@@ -82,7 +82,7 @@ struct NotificationCell: View {
                                      lastVisit: notification.lastVisit,
                                      chatName: notification.user.name,
                                      userID: notification.user.id,
-                                     chatID: notification.chat!)
+                                     chatID: notification.chat!, left: false)
                         }, label: {
                             EmptyView()
                         }).hidden()
