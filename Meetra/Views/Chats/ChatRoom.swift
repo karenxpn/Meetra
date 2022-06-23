@@ -108,12 +108,14 @@ struct ChatRoom: View {
                     
                     Divider()
                     
-                    ActionSheetButtonHelper(icon: "exit_icon",
-                                            label: NSLocalizedString("leaveChat", comment: ""),
-                                            role: .destructive) {
-                        roomVM.leaveChat()
-                        self.showPopup.toggle()
-                        self.presentationMode.wrappedValue.dismiss()
+                    if !left {
+                        ActionSheetButtonHelper(icon: "exit_icon",
+                                                label: NSLocalizedString("leaveChat", comment: ""),
+                                                role: .destructive) {
+                            roomVM.leaveChat()
+                            self.showPopup.toggle()
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                     }
                 }
             }
