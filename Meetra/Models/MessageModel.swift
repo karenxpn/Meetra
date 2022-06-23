@@ -50,7 +50,6 @@ struct MessageViewModel: Identifiable {
     }
     
     var id: Int             { self.message.id }
-    var createdAt: String   { self.message.createdAt }
     var duration: String?    { self.message.duration }
     
     var isEdited: Bool {
@@ -58,7 +57,7 @@ struct MessageViewModel: Identifiable {
         set { self.message.isEdited = newValue }
     }
     
-    var updatedAt: String   { self.message.updatedAt.countTimeBetweenDates() }
+    var createdAt: String   { self.message.createdAt.countTimeBetweenDates() }
     
     var reptyedTo: RepliedModel? { self.message.repliedTo }
     
