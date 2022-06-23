@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct UserView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -47,6 +48,9 @@ struct UserView: View {
             
         }.task {
             userVM.getUser(userID: userID)
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [AnalyticsParameterScreenName: "\(UserView.self)",
+                                           AnalyticsParameterScreenClass: "\(UserView.self)"])
         }.alert(isPresented: $userVM.showAlert, content: {
             Alert(title: Text("Error"), message: Text(userVM.alertMessage), dismissButton: .default(Text("Got it!")))
         }).navigationBarItems(center: EmptyView(), trailing: Button {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftUIX
+import FirebaseAnalytics
 
 struct Places: View {
     
@@ -83,6 +84,10 @@ struct Places: View {
                     locationManager.getLocationResponse()
                     placesVM.getRoom()
                     self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                    
+                    Analytics.logEvent(AnalyticsEventScreenView,
+                                       parameters: [AnalyticsParameterScreenName: "\(Places.self)",
+                                                   AnalyticsParameterScreenClass: "\(Places.self)"])
 
                 }.onChange(of: showFilter) { value in
                     if !value {
