@@ -1,0 +1,77 @@
+{
+  "pins" : [
+    {
+      "identity" : "cameraxpn",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/karenxpn/CameraXPN",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a4c59aaff99b85bcc135fed3f104872652be7d7b"
+      }
+    },
+    {
+      "identity" : "popovers",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aheze/Popovers",
+      "state" : {
+        "revision" : "de44c4dd7271ec6413fe350f7efadb14e5e18dce",
+        "version" : "1.3.2"
+      }
+    },
+    {
+      "identity" : "socket.io-client-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/socketio/socket.io-client-swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "a1ed825835a2d8c2555938e96557ccc05e4bebf3"
+      }
+    },
+    {
+      "identity" : "starscream",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/daltoniam/Starscream",
+      "state" : {
+        "revision" : "df8d82047f6654d8e4b655d1b1525c64e1059d21",
+        "version" : "4.0.4"
+      }
+    },
+    {
+      "identity" : "swiftui-sliders",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/spacenation/swiftui-sliders",
+      "state" : {
+        "branch" : "master",
+        "revision" : "538e16b35ad7a066a8f5624da9ecee6327886bf7"
+      }
+    },
+    {
+      "identity" : "swiftuix",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftUIX/SwiftUIX",
+      "state" : {
+        "revision" : "889c781539cdd1e6a1111472c711082522aa35c6",
+        "version" : "0.1.2"
+      }
+    },
+    {
+      "identity" : "taglayoutview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/giiiita/TagLayoutView",
+      "state" : {
+        "branch" : "master",
+        "revision" : "ace045cd3d03fa8c854dcf2e538067e6e2b8d14f"
+      }
+    },
+    {
+      "identity" : "waterfallgrid",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/paololeonardi/WaterfallGrid",
+      "state" : {
+        "branch" : "master",
+        "revision" : "85eeaa9efda928a218c430a8807256b9a56d4905"
+      }
+    }
+  ],
+  "version" : 2
+}
