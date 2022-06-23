@@ -16,7 +16,7 @@ class MockPlacesService: PlacesServiceProtocol {
     var fetchPlaceRoomError: Bool = false
     var fetchSwipesError: Bool = false
     
-    let placeRoom = PlaceRoom(users: [UserPreviewModel(id: 1, image: "", name: "Karen", age: 22, online: true)], count: 1, place: "EVN")
+    let placeRoom = PlaceRoom(users: [UserPreviewModel(id: 1, image: "", name: "Karen", age: 22, online: true)], chat: PlaceChat(id: 1, name: "EVN", isGroup: true, members: 3, online: 3, left: false))
     let swipes = SwipeUserListModel(users: [AppPreviewModels.swipeUser])
 
     func fetchPlaceRoom(model: PlaceRoomRequest) -> AnyPublisher<DataResponse<PlaceRoom, NetworkError>, Never> {

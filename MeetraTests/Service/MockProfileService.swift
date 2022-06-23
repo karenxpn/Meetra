@@ -12,6 +12,12 @@ import Combine
 @testable import Meetra
 
 class MockProfileService: ProfileServiceProtocol {
+    func updateProfileImage(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: sendVerificationError,
+                                                     response: globalResponse,
+                                                     responseType: GlobalResponse.self)
+    }
+    
     func sendVerificationCode(phoneNumber: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: sendVerificationError,
                                                      response: globalResponse,
@@ -65,6 +71,7 @@ class MockProfileService: ProfileServiceProtocol {
     var logoutError: Bool = false
     var sendVerificationError: Bool = false
     var checkVerificationCodeError: Bool = false
+    var updateAvatarError: Bool = false
     
     let networkError = NetworkError(initialError: AFError.explicitlyCancelled, backendError: nil)
     let fields = AppPreviewModels.fields

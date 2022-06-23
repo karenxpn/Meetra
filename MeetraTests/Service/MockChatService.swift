@@ -11,6 +11,32 @@ import Combine
 @testable import Meetra
 
 class MockChatService: ChatServiceProtocol {
+    var changeChatNotificationStatusError: Bool = false
+    func changeChatNotificationStatus(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: changeChatNotificationStatusError, response: globalResponse, responseType: GlobalResponse.self)
+    }
+    
+    var deleteChatError: Bool = false
+    func deleteChat(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: deleteChatError, response: globalResponse, responseType: GlobalResponse.self)
+
+    }
+    
+    var markUnreadError: Bool = false
+    func markUnread(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: markUnreadError, response: globalResponse, responseType: GlobalResponse.self)
+    }
+    
+    var leaveChatError: Bool = false
+    func leaveChat(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: leaveChatError, response: globalResponse, responseType: GlobalResponse.self)
+    }
+    
+    var fetchSignedURLError: Bool = false
+    func fetchSignedURL(key: Int64, chatID: Int, content_type: String, repliedTo: Int?, duration: String?) -> AnyPublisher<DataResponse<GetMessageSignedUrlResponse, NetworkError>, Never> {
+        return AlamofireAPIHelper.shared.mockRequest(error: fetchSignedURLError, response: AppPreviewModels.signedUrlResponse, responseType: GetMessageSignedUrlResponse.self)
+    }
+    
     
     var fetchNewConversationError: Bool = false
     func fetchNewConversationResponse(roomID: Int) -> AnyPublisher<DataResponse<NewConversationResponse, NetworkError>, Never> {
@@ -20,11 +46,6 @@ class MockChatService: ChatServiceProtocol {
     var fetchMessagesError: Bool = false
     func fetchChatMessages(roomID: Int, messageID: Int) -> AnyPublisher<DataResponse<MessagesListModel, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: fetchMessagesError, response: AppPreviewModels.messagesList, responseType: MessagesListModel.self)
-    }
-    
-    var fetchSignedURLError: Bool = false
-    func fetchSignedURL(key: Int64, chatID: Int, content_type: String) -> AnyPublisher<DataResponse<GetMessageSignedUrlResponse, NetworkError>, Never> {
-        return AlamofireAPIHelper.shared.mockRequest(error: fetchSignedURLError, response: AppPreviewModels.signedUrlResponse, responseType: GetMessageSignedUrlResponse.self)
     }
     
     func storeLocalFile(withData: Data, messageID: Int, type: String, completion: @escaping ([PendingFileModel]) -> ()) {
@@ -60,4 +81,5 @@ class MockChatService: ChatServiceProtocol {
     var fetchChatIdError: Bool = false
     
     let getChatIdResponse = GetChatIdResponse(chat: 1)
+    let globalResponse = GlobalResponse(status: "status", message: "message")
 }

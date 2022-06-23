@@ -11,7 +11,7 @@ import Alamofire
 @testable import Meetra
 
 class MockUserService: UserServiceProtocol {
-    func reportUser(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
+    func reportUser(id: Int, reason: String) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never> {
         return AlamofireAPIHelper.shared.mockRequest(error: reportUserError, response: globalResponse, responseType: GlobalResponse.self)
     }
     
