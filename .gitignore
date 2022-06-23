@@ -89,6 +89,7 @@ fastlane/test_output
 
 iOSInjectionProject/
 Credentials.swift
+GoogleService-Info.plist
 Pods
 Podfile.lock
 Meetra.xcworkspace/
