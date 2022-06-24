@@ -201,7 +201,7 @@ struct SingleSwipeUser: View {
                 }
                 
                 SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
-                    Analytics.logEvent("swipe_frien_request", parameters: nil)
+                    Analytics.logEvent("swipe_friend_request", parameters: nil)
 
                     cardAction = .request
                     userVM.sendFriendRequest(userID: user.id)
