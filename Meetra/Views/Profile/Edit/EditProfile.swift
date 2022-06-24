@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EditProfile: View {
+    @StateObject var profileVM = ProfileViewModel()
+
     @State private var selection: Int = 0
     @State private var navigate_settings: Bool = false
     
@@ -15,8 +17,8 @@ struct EditProfile: View {
         
         ProfileNavBar(settingsColor: .black,
                       title: NSLocalizedString("profile", comment: ""),
-                      showAlert: .constant(false),
-                      message: "") {
+                      showAlert: $profileVM.showAlert,
+                      message: profileVM.alertMessage) {
             VStack {
                 HStack {
                     Button {
@@ -48,8 +50,10 @@ struct EditProfile: View {
                 
                 if selection == 0 {
                     ProfileEditing()
+                        .environmentObject(profileVM)
                 } else {
                     ProfilePreview()
+                        .environmentObject(profileVM)
                 }
                 
                 Spacer()

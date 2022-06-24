@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProfileEditing: View {
-    @StateObject var profileVM = ProfileViewModel()
-
+    @EnvironmentObject var profileVM: ProfileViewModel
+    
     var body: some View {
         ZStack {
             if profileVM.loading {
@@ -22,9 +22,7 @@ struct ProfileEditing: View {
             }
         }.onAppear {
             profileVM.getProfileUpdateFields()
-        }.alert(isPresented: $profileVM.showAlert, content: {
-            Alert(title: Text("Error"), message: Text(profileVM.alertMessage), dismissButton: .default(Text("Got it!")))
-        })
+        }
     }
 }
 

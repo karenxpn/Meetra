@@ -36,6 +36,14 @@ struct ChatRoom: View {
                 if !left {
                     MessageBar()
                         .environmentObject(roomVM)
+                } else {
+                    Text(NSLocalizedString("youLeftChat", comment: ""))
+                        .foregroundColor(.black)
+                        .font(.custom("Inter-Regualr", size: 14))
+                        .kerning(0.24)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .padding(.bottom, 30)
                 }
             }
         }.edgesIgnoringSafeArea(.bottom)

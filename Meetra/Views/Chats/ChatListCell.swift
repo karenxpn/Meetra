@@ -16,6 +16,7 @@ struct ChatListCell: View {
     var body: some View {
         
         Button {
+            print( "Entered CHat = \(chat.id)" )
             navigate.toggle()
         } label: {
             HStack( alignment: .top, spacing: 14 ) {
@@ -89,7 +90,7 @@ struct ChatListCell: View {
             }.frame(width: .greedy)
                 .padding(.horizontal, 26)
                 .padding(.vertical, 12)
-                .background( (chat.message.sender.id != userID && chat.message.status != "read") ?
+                .background( (chat.message.sender.id != userID && chat.hasUnreadMessage) ?
                              AppColors.addProfileImageBG : Color.white )
         }.buttonStyle(PlainButtonStyle())
             .background(

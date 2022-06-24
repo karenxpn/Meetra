@@ -110,10 +110,14 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                 withAnimation {
                     if self.chats[index].message.id != response.message.id {
                         self.chats.move(from: index, to: 0)
+                        self.chats[0] = ChatModelViewModel(chat: response)
+                    } else {
+                        self.chats[index] = ChatModelViewModel(chat: response)
                     }
                     
-                    self.chats[0] = ChatModelViewModel(chat: response)
                 }
+            } else {
+                self.chats.insert(ChatModelViewModel(chat: response), at: 0)
             }
         }
     }

@@ -48,7 +48,7 @@ struct AppPreviewModels {
                                                                                         sender: SenderModel(id: 1, name: "Karen",
                                                                                                             online: true, lastVisit: ""
 )),
-                                                           isMuted: false, left: false)),
+                                                           isMuted: false, left: false, hasUnreadMessage: true)),
                         ChatModelViewModel(chat: ChatModel(id: 2,
                                                            name: "Евгений",
                                                            image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg",
@@ -60,7 +60,7 @@ struct AppPreviewModels {
                                                                                         status: "sent",
                                                                                         sender: SenderModel(id: 2, name: "Anna",
                                                                                                             online: true, lastVisit: "")),
-                                                           isMuted: false, left: true)),
+                                                           isMuted: false, left: true, hasUnreadMessage: false)),
                         ChatModelViewModel(chat: ChatModel(id: 3,
                                                            name: "Hunt Lounge Bar",
                                                            image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg",
@@ -72,7 +72,7 @@ struct AppPreviewModels {
                                                                                         status: "read",
                                                                                         sender: SenderModel(id: 3, name: "Анна",
                                                                                                             online: true, lastVisit: "")),
-                                                           isMuted: false, left: false)),
+                                                           isMuted: false, left: false, hasUnreadMessage: true)),
                         ChatModelViewModel(chat: ChatModel(id: 4,
                                                            name: "Anna",
                                                            image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg",
@@ -84,7 +84,7 @@ struct AppPreviewModels {
                                                                                         status: "sent",
                                                                                         sender: SenderModel(id: 1, name: "Karen",
                                                                                                             online: true, lastVisit: "")),
-                                                           isMuted: true, left: false))]
+                                                           isMuted: true, left: false, hasUnreadMessage: true))]
     
     
     static let chatListModel = ChatListModel(chats: [ChatModel(id: 1,
@@ -98,7 +98,7 @@ struct AppPreviewModels {
                                                                                             status: "sent",
                                                                                             sender: SenderModel(id: 1, name: "Karen",
                                                                                                                 online: true, lastVisit: "")),
-                                                               isMuted: false, left: true)])
+                                                               isMuted: false, left: true, hasUnreadMessage: true)])
     
     static let interlocutorsListModel = InterlocutorsListModel(interlocutors: [InterlocutorsModel(id: 1, image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg", online: true, isRead: true, chat: 1, name: "Hunt Lounge Bar", lastVisit: "", isGroup: false, left: false)])
     
