@@ -95,6 +95,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
         dataManager.updateProfileImages(images: images)
             .sink { response in
                 if response.error != nil {
+                    self.profileImages.removeAll(where: {!$0.image.hasPrefix("https:/")})
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
                     self.profileImages.removeAll(where: {!$0.image.hasPrefix("https:/")})

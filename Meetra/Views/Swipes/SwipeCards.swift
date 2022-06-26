@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct SwipeCards: View {
     @EnvironmentObject var placesVM: PlacesViewModel
@@ -18,6 +19,11 @@ struct SwipeCards: View {
             }
         }.frame(minWidth: 0,
                 maxWidth: .infinity)
+        .onAppear {
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [AnalyticsParameterScreenName: "\(SwipeCards.self)",
+                                           AnalyticsParameterScreenClass: "\(SwipeCards.self)"])
+        }
     }
 }
 

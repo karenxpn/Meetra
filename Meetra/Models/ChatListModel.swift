@@ -18,6 +18,7 @@ struct ChatModel: Identifiable, Codable {
     var message: MessagePreviewModel
     var isMuted: Bool
     var left: Bool
+    var hasUnreadMessage: Bool
     
 }
 
@@ -58,6 +59,8 @@ struct ChatModelViewModel: Identifiable {
         get { self.chat.isMuted }
         set { self.chat.isMuted = newValue }
     }
+    
+    var hasUnreadMessage: Bool          { self.chat.hasUnreadMessage }
     
     var online: Bool {
         get { self.chat.message.sender.online }
