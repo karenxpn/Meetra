@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 struct ChatRoom: View {
     @Environment(\.presentationMode) var presentationMode
@@ -58,6 +59,12 @@ struct ChatRoom: View {
                     roomVM.getChatId()
                 } else {
                     roomVM.joinGetMessagesListenEventsOnInit()
+                }
+                
+                if group {
+                    Analytics.logEvent("group_chat", parameters: nil)
+                } else {
+                    Analytics.logEvent("personal_chat", parameters: nil)
                 }
             }.onDisappear {
                 NotificationCenter.default.post(name: Notification.Name("showTabBar"), object: nil)
