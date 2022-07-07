@@ -80,9 +80,7 @@ struct Places: View {
                     
                     NotificationButton()
                 }).onAppear {
-                    locationManager.initLocation()
-                    locationManager.getLocationResponse()
-                    placesVM.getRoom()
+                    connectSocketAndGetRoom()
                     self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                     
                     Analytics.logEvent(AnalyticsEventScreenView,
@@ -104,18 +102,29 @@ struct Places: View {
                 }.onDisappear {
                     self.seconds = 0
                     self.timer.upstream.connect().cancel()
-                }.modifier(NetworkReconnection(action: {
+                }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                    connectSocketAndGetRoom()
+                }
+                .modifier(NetworkReconnection(action: {
+                    locationManager.sendLocation()
                     locationManager.getLocationResponse()
                 }))
 
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
                 if value == "true" {
-                    locationManager.startUpdating()
+                    connectSocketAndGetRoom()
                 } else {
                     locationManager.stopUpdating()
                 }
             }
+    }
+    
+    func connectSocketAndGetRoom() {
+        placesVM.loading = true
+        locationManager.connectSocket {
+            placesVM.getRoom()
+        }
     }
 }
 

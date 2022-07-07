@@ -43,6 +43,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func initLocation() {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
+        if status == "true" {
+            self.startUpdating()
+        }
     }
     
     func startUpdating() {
@@ -81,6 +84,19 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func sendLocation() {
         if location != nil {
             socketManager.sendLocation(lat: self.location!.latitude, lng: self.location!.longitude)
+        }
+    }
+    
+    func connectSocket(completion: @escaping() -> ()) {
+        self.initLocation()
+        if status == "true" {
+            socketManager.connectSocket {
+                self.getLocationResponse()
+                self.sendLocation()
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
         }
     }
 }

@@ -103,11 +103,7 @@ struct Swipes: View {
                     
                     NotificationButton()
                 }).onAppear {
-                    locationManager.initLocation()
-                    locationManager.getLocationResponse()
-                    if firstAppearance {
-                        placesVM.getSwipes()
-                    }
+                    connectSocketAndGetSwipesForFirstAppearance()
                     self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
                 }.onChange(of: showFilter) { value in
@@ -126,17 +122,37 @@ struct Swipes: View {
                     self.firstAppearance = false
                     self.seconds = 0
                     self.timer.upstream.connect().cancel()
-                }.modifier(NetworkReconnection(action: {
+                }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                    connectSocketAndGetSwipesForFirstAppearance()
+                }
+                .modifier(NetworkReconnection(action: {
                     locationManager.getLocationResponse()
                 }))
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
                 if value == "true" {
-                    locationManager.startUpdating()
+                    connectSocketAndGetSwipes()
+                    
                 } else {
                     locationManager.stopUpdating()
                 }
             }
+    }
+    
+    func connectSocketAndGetSwipes() {
+        placesVM.loading = true
+        locationManager.connectSocket {
+            placesVM.getSwipes()
+        }
+    }
+    
+    func connectSocketAndGetSwipesForFirstAppearance() {
+        placesVM.loading = true
+        locationManager.connectSocket {
+            if firstAppearance {
+                placesVM.getSwipes()
+            }
+        }
     }
 }
 
