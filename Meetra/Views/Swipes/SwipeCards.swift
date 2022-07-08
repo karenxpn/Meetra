@@ -10,19 +10,25 @@ import FirebaseAnalytics
 
 struct SwipeCards: View {
     @EnvironmentObject var placesVM: PlacesViewModel
+    @EnvironmentObject var locationManager: LocationManager
     
     var body: some View {
-        ZStack( alignment: .top) {
-            ForEach(placesVM.users) { user in
-                SingleSwipeUser(user: user)
-                    .environmentObject(placesVM)
+        if locationManager.status == "true" && !locationManager.lost_location_socket {
+            ZStack( alignment: .top) {
+                ForEach(placesVM.users) { user in
+                    SingleSwipeUser(user: user)
+                        .environmentObject(placesVM)
+                }
+            }.frame(minWidth: 0,
+                    maxWidth: .infinity)
+            .onAppear {
+                Analytics.logEvent(AnalyticsEventScreenView,
+                                   parameters: [AnalyticsParameterScreenName: "\(SwipeCards.self)",
+                                               AnalyticsParameterScreenClass: "\(SwipeCards.self)"])
             }
-        }.frame(minWidth: 0,
-                maxWidth: .infinity)
-        .onAppear {
-            Analytics.logEvent(AnalyticsEventScreenView,
-                               parameters: [AnalyticsParameterScreenName: "\(SwipeCards.self)",
-                                           AnalyticsParameterScreenClass: "\(SwipeCards.self)"])
+        } else {
+            LostLocationAlert()
+                .environmentObject(locationManager)
         }
     }
 }

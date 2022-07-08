@@ -22,51 +22,45 @@ struct Swipes: View {
     @State private var selection: String = "Анкеты"
     
     @State private var firstAppearance: Bool = true
-
+    
     var body: some View {
         NavigationView {
             ZStack {
                 
-                if locationManager.status == "true" && !locationManager.lost_location_socket {
-                    
-                    if placesVM.loading {
-                        Loading()
-                    } else {
-                        
-                        VStack( alignment: .leading, spacing: 20 ) {
-                            
-                            HStack( spacing: 20 ) {
-                                ForEach(sections, id: \.self) { section in
-                                    Button {
-                                        selection = section
-                                        
-                                    } label: {
-                                        Text( section )
-                                            .foregroundColor(selection == section ? .black : .gray)
-                                            .font(.custom(selection == section ? "Inter-SemiBold" :"Inter-Regular", size: 16))
-                                            .padding(.top)
-                                    }
-                                }
-                            }.padding(.leading, 25)
-                                .zIndex(10)
-                            
-                            
-                            if selection == "Анкеты" {
-                                SwipeCards()
-                                    .environmentObject(placesVM)
-                            } else if selection == "Заявки" {
-                                FriendRequestList()
-                            } else {
-                                FavouritesList()
-                            }
-                            
-                            Spacer()
-                        }
-                    }
-                    
+                if placesVM.loading {
+                    Loading()
                 } else {
-                    LostLocationAlert()
-                        .environmentObject(locationManager)
+                    
+                    VStack( alignment: .leading, spacing: 20 ) {
+                        
+                        HStack( spacing: 20 ) {
+                            ForEach(sections, id: \.self) { section in
+                                Button {
+                                    selection = section
+                                    
+                                } label: {
+                                    Text( section )
+                                        .foregroundColor(selection == section ? .black : .gray)
+                                        .font(.custom(selection == section ? "Inter-SemiBold" :"Inter-Regular", size: 16))
+                                        .padding(.top)
+                                }
+                            }
+                        }.padding(.leading, 25)
+                            .zIndex(10)
+                        
+                        
+                        if selection == "Анкеты" {
+                            SwipeCards()
+                                .environmentObject(placesVM)
+                                .environmentObject(locationManager)
+                        } else if selection == "Заявки" {
+                            FriendRequestList()
+                        } else {
+                            FavouritesList()
+                        }
+                        
+                        Spacer()
+                    }
                 }
                 
                 FilterUsers(present: $showFilter, gender: $placesVM.gender, status: $placesVM.status, range: $placesVM.ageRange)
@@ -105,7 +99,7 @@ struct Swipes: View {
                 }).onAppear {
                     connectSocketAndGetSwipesForFirstAppearance()
                     self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
+                    
                 }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "swipe")

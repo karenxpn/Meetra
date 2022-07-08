@@ -112,6 +112,7 @@ struct Places: View {
 
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
+                print("changing")
                 if value == "true" {
                     connectSocketAndGetRoom()
                 } else {
