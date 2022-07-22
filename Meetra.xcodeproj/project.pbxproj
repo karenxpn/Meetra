@@ -23,7 +23,6 @@
 		FF0E6545281EE6F4003A3F6F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E6544281EE6F4003A3F6F /* MessageCell.swift */; };
 		FF0E6547281F26D9003A3F6F /* MessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E6546281F26D9003A3F6F /* MessageContent.swift */; };
 		FF0E6549281F297E003A3F6F /* TextMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E6548281F297E003A3F6F /* TextMessageContent.swift */; };
-		FF0E9AAD2864D89C00693265 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0E9AAC2864D89C00693265 /* GoogleService-Info.plist */; };
 		FF1350AA28206320008BBD0A /* KeyboardAwareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1350A928206320008BBD0A /* KeyboardAwareModifier.swift */; };
 		FF15E8BC283E9666002745C5 /* ReactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF15E8BB283E9666002745C5 /* ReactionModel.swift */; };
 		FF178F2228400DF200652D82 /* MessageReactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF178F2128400DF200652D82 /* MessageReactionModel.swift */; };
@@ -87,6 +86,7 @@
 		FF61D41427F6819800FB9A23 /* FriendRequestListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D41327F6819800FB9A23 /* FriendRequestListCell.swift */; };
 		FF61D41627F7469B00FB9A23 /* FriendRequestResponseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D41527F7469B00FB9A23 /* FriendRequestResponseRequest.swift */; };
 		FF61D41827F7867600FB9A23 /* AlamofireAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF61D41727F7867600FB9A23 /* AlamofireAPIHelper.swift */; };
+		FF66622B288B1113004A50E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF66622A288B1113004A50E6 /* GoogleService-Info.plist */; };
 		FF7D0CEA27CE6A9800A828C7 /* TagLayoutView in Frameworks */ = {isa = PBXBuildFile; productRef = FF7D0CE927CE6A9800A828C7 /* TagLayoutView */; };
 		FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */; };
 		FF7D0CF127CE6EFB00A828C7 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */; };
@@ -244,7 +244,6 @@
 		FF0E6544281EE6F4003A3F6F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		FF0E6546281F26D9003A3F6F /* MessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContent.swift; sourceTree = "<group>"; };
 		FF0E6548281F297E003A3F6F /* TextMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageContent.swift; sourceTree = "<group>"; };
-		FF0E9AAC2864D89C00693265 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF1350A928206320008BBD0A /* KeyboardAwareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAwareModifier.swift; sourceTree = "<group>"; };
 		FF15E8BB283E9666002745C5 /* ReactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionModel.swift; sourceTree = "<group>"; };
 		FF178F2128400DF200652D82 /* MessageReactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReactionModel.swift; sourceTree = "<group>"; };
@@ -308,6 +307,7 @@
 		FF61D41327F6819800FB9A23 /* FriendRequestListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestListCell.swift; sourceTree = "<group>"; };
 		FF61D41527F7469B00FB9A23 /* FriendRequestResponseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestResponseRequest.swift; sourceTree = "<group>"; };
 		FF61D41727F7867600FB9A23 /* AlamofireAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireAPIHelper.swift; sourceTree = "<group>"; };
+		FF66622A288B1113004A50E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF7D0CEC27CE6CC600A828C7 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FF7D0CED27CE6DD500A828C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		FF7D0CF027CE6EFB00A828C7 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -796,7 +796,7 @@
 				FFD6373827E486BD00F91AB6 /* AppSocketManager.swift */,
 				FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */,
 				FFD6371D27E23BE200F91AB6 /* Localizable.strings */,
-				FF0E9AAC2864D89C00693265 /* GoogleService-Info.plist */,
+				FF66622A288B1113004A50E6 /* GoogleService-Info.plist */,
 			);
 			path = Meetra;
 			sourceTree = "<group>";
@@ -962,7 +962,7 @@
 			packageReferences = (
 				FF7D0CE827CE6A9800A828C7 /* XCRemoteSwiftPackageReference "TagLayoutView" */,
 				FF7D0D1F27CFFE1200A828C7 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
-				FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */,
 				FFB6D24027E93ACA004FD5D3 /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 				FFB6D24327EA044E004FD5D3 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
 				FFEA3B2228298FCF000EF754 /* XCRemoteSwiftPackageReference "CameraXPN" */,
@@ -992,7 +992,7 @@
 				FFD6371B27E23BE200F91AB6 /* Localizable.strings in Resources */,
 				FF7D0D0A27CE819500A828C7 /* Inter-Bold.ttf in Resources */,
 				FF7D0D0C27CE81E600A828C7 /* Inter-Medium.ttf in Resources */,
-				FF0E9AAD2864D89C00693265 /* GoogleService-Info.plist in Resources */,
+				FF66622B288B1113004A50E6 /* GoogleService-Info.plist in Resources */,
 				FF7DA04827CD55CC00CA4338 /* Assets.xcassets in Resources */,
 				FF7D0D1027CE86F400A828C7 /* Inter-SemiBold.ttf in Resources */,
 			);
@@ -1466,7 +1466,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
-				DEVELOPMENT_TEAM = 8GVVA24YR6;
+				DEVELOPMENT_TEAM = PAUM7SK7SC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Meetra/Info.plist;
@@ -1486,7 +1486,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xpn-development.sale.Meetra";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xpn.development.meetra.Meetra;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1504,7 +1504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
-				DEVELOPMENT_TEAM = 8GVVA24YR6;
+				DEVELOPMENT_TEAM = PAUM7SK7SC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Meetra/Info.plist;
@@ -1524,7 +1524,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xpn-development.sale.Meetra";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xpn.development.meetra.Meetra;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1694,7 +1694,7 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+		FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
 			requirement = {
@@ -1748,7 +1748,7 @@
 		};
 		FFD6373227E3D47600F91AB6 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			package = FFD6373127E3D47600F91AB6 /* XCRemoteSwiftPackageReference "socket" */;
 			productName = SocketIO;
 		};
 		FFEA3B2328298FCF000EF754 /* CameraXPN */ = {
