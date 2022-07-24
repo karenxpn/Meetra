@@ -123,8 +123,10 @@ struct Places: View {
     
     func connectSocketAndGetRoom() {
         placesVM.loading = true
-        locationManager.connectSocket {
-            placesVM.getRoom()
+        locationManager.connectSocket { response in
+            if response != nil {
+                placesVM.getRoom()
+            }
         }
     }
 }

@@ -135,16 +135,24 @@ struct Swipes: View {
     
     func connectSocketAndGetSwipes() {
         placesVM.loading = true
-        locationManager.connectSocket {
-            placesVM.getSwipes()
+        locationManager.connectSocket { response in
+            if response != nil {
+                placesVM.getSwipes()
+            } else {
+                placesVM.loading = false
+            }
         }
     }
     
     func connectSocketAndGetSwipesForFirstAppearance() {
         placesVM.loading = true
-        locationManager.connectSocket {
-            if firstAppearance {
-                placesVM.getSwipes()
+        locationManager.connectSocket { response in
+            if response != nil {
+                if firstAppearance {
+                    placesVM.getSwipes()
+                }
+            } else {
+                placesVM.loading = false
             }
         }
     }

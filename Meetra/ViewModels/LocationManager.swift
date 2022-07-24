@@ -87,15 +87,19 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    func connectSocket(completion: @escaping() -> ()) {
+    func connectSocket(completion: @escaping(Any?) -> ()) {
         self.initLocation()
         if status == "true" {
             socketManager.connectSocket {
                 self.getLocationResponse()
                 self.sendLocation()
                 DispatchQueue.main.async {
-                    completion()
+                    completion(true)
                 }
+            }
+        } else {
+            DispatchQueue.main.async {
+                completion(nil)
             }
         }
     }
