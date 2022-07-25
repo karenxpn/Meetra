@@ -9,6 +9,7 @@ import Foundation
 struct PlaceRoom: Codable {
     var users: [UserPreviewModel]
     var chat: PlaceChat
+    var count: Int
 }
 
 struct PlaceChat: Codable {
