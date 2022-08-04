@@ -9,15 +9,13 @@ import SwiftUI
 import CameraXPN
 
 struct MessageBar: View {
-    @Environment(\.safeAreaInsets) private var safeAreaInsets
-    
     @EnvironmentObject var roomVM: ChatRoomViewModel
     @StateObject private var audioVM = AudioRecorderViewModel()
     
     @State private var openAttachment: Bool = false
     @State private var openGallery: Bool = false
     @State private var openCamera: Bool = false
-    
+        
     var body: some View {
         
         
@@ -41,7 +39,6 @@ struct MessageBar: View {
                         Image("stop_record_icon")
                     }
                 }.padding(.trailing, 40)
-                    .KeyboardAwarePadding()
             }
             
             HStack {
@@ -94,7 +91,6 @@ struct MessageBar: View {
                 .background(.white)
                 .cornerRadius([.topLeft, .topRight], (roomVM.editingMessage != nil || roomVM.replyMessage != nil) ? 0 : 35)
                 .shadow(color: (roomVM.editingMessage != nil || roomVM.replyMessage != nil) ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
-                .KeyboardAwarePadding()
         }
         .confirmationDialog("", isPresented: $openAttachment, titleVisibility: .hidden) {
             Button {

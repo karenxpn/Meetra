@@ -47,7 +47,7 @@ struct ChatRoom: View {
                         .padding(.bottom, 30)
                 }
             }
-        }.edgesIgnoringSafeArea(.bottom)
+        }.ignoresSafeArea(.container, edges: .bottom)
             .onAppear {
                 NotificationCenter.default.post(name: Notification.Name("hideTabBar"), object: nil)
                 roomVM.online = online
