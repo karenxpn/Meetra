@@ -87,7 +87,10 @@ struct Places: View {
                                        parameters: [AnalyticsParameterScreenName: "\(Places.self)",
                                                    AnalyticsParameterScreenClass: "\(Places.self)"])
 
-                }.onChange(of: showFilter) { value in
+                }.onDisappear(perform: {
+                    locationManager.stopUpdating()
+                })
+                .onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "place")
                     }

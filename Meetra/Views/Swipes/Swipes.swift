@@ -115,6 +115,7 @@ struct Swipes: View {
                 }.onDisappear {
                     self.firstAppearance = false
                     self.seconds = 0
+                    locationManager.stopUpdating()
                     self.timer.upstream.connect().cancel()
                 }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                     connectSocketAndGetSwipesForFirstAppearance()
