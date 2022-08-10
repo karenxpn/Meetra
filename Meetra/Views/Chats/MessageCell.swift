@@ -214,7 +214,8 @@ struct MessageCell: View {
                     offset = 0
                     
                 })
-            ).onAppear {
+            )
+            .onAppear {
                 if message.status == "sent" && message.sender.id != userID {
                     roomVM.sendReadMessage(messageID: message.id)
                 }

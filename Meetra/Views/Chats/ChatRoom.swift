@@ -89,7 +89,6 @@ struct ChatRoom: View {
                         .lineLimit(1)
                         .fixedSize()
                 }
-                    
                 
             }, center: EmptyView(), trailing: group ? AnyView(Button(action: {
                 showPopup.toggle()

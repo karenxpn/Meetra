@@ -42,6 +42,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func initLocation() {
         manager.delegate = self
+        manager.allowsBackgroundLocationUpdates = true
+        manager.showsBackgroundLocationIndicator = true
         manager.desiredAccuracy = kCLLocationAccuracyBest
         if status == "true" {
             self.startUpdating()
@@ -58,12 +60,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func requestLocation() {
         initLocation()
-        manager.requestWhenInUseAuthorization()
+        manager.requestAlwaysAuthorization()
         startUpdating()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.first?.coordinate
+        print(location)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

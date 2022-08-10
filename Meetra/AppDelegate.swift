@@ -59,5 +59,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       return true
     }
     
-    
+    var backgroundUpdateTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
+
+    func endBackgroundUpdateTask() {
+        UIApplication.shared.endBackgroundTask(self.backgroundUpdateTask)
+        self.backgroundUpdateTask = UIBackgroundTaskIdentifier.invalid
+    }
+    func applicationWillResignActive(_ application: UIApplication) {
+        self.backgroundUpdateTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+            self.endBackgroundUpdateTask()
+        })
+    }
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        self.endBackgroundUpdateTask()
+    }
 }

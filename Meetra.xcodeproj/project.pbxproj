@@ -23,7 +23,6 @@
 		FF0E6545281EE6F4003A3F6F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E6544281EE6F4003A3F6F /* MessageCell.swift */; };
 		FF0E6547281F26D9003A3F6F /* MessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E6546281F26D9003A3F6F /* MessageContent.swift */; };
 		FF0E6549281F297E003A3F6F /* TextMessageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E6548281F297E003A3F6F /* TextMessageContent.swift */; };
-		FF1350AA28206320008BBD0A /* KeyboardAwareModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1350A928206320008BBD0A /* KeyboardAwareModifier.swift */; };
 		FF15E8BC283E9666002745C5 /* ReactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF15E8BB283E9666002745C5 /* ReactionModel.swift */; };
 		FF178F2228400DF200652D82 /* MessageReactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF178F2128400DF200652D82 /* MessageReactionModel.swift */; };
 		FF1DBA122837CD06007CAF75 /* SingleMediaContentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1DBA112837CD06007CAF75 /* SingleMediaContentPreview.swift */; };
@@ -244,7 +243,6 @@
 		FF0E6544281EE6F4003A3F6F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		FF0E6546281F26D9003A3F6F /* MessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContent.swift; sourceTree = "<group>"; };
 		FF0E6548281F297E003A3F6F /* TextMessageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageContent.swift; sourceTree = "<group>"; };
-		FF1350A928206320008BBD0A /* KeyboardAwareModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAwareModifier.swift; sourceTree = "<group>"; };
 		FF15E8BB283E9666002745C5 /* ReactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionModel.swift; sourceTree = "<group>"; };
 		FF178F2128400DF200652D82 /* MessageReactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReactionModel.swift; sourceTree = "<group>"; };
 		FF1DBA112837CD06007CAF75 /* SingleMediaContentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMediaContentPreview.swift; sourceTree = "<group>"; };
@@ -613,7 +611,6 @@
 				FF7D0CF227CE71E400A828C7 /* Extensions.swift */,
 				FF7D0D1127CE889D00A828C7 /* GetTapLocation.swift */,
 				FF36400827F0BA170057D605 /* AppPreviewModels.swift */,
-				FF1350A928206320008BBD0A /* KeyboardAwareModifier.swift */,
 				FFED57FD28244A8F00E828F2 /* AVPlayerControllerRepresented.swift */,
 			);
 			path = Utils;
@@ -1229,7 +1226,6 @@
 				FF61D41027F67FDA00FB9A23 /* FriendRequestList.swift in Sources */,
 				FF363FFF27EFD77D0057D605 /* UserView.swift in Sources */,
 				FF7D0CEE27CE6DD500A828C7 /* CustomTabBar.swift in Sources */,
-				FF1350AA28206320008BBD0A /* KeyboardAwareModifier.swift in Sources */,
 				FFED58662826A5C500E828F2 /* RecordingPreview.swift in Sources */,
 				FF537E92280E18690020BE2C /* NavigationButtonHelper.swift in Sources */,
 				FF178F2228400DF200652D82 /* MessageReactionModel.swift in Sources */,
@@ -1471,6 +1467,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Meetra/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to your camera for sending video/photo content messages";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow your location to find people near you";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow your location to find people near you";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to your microphone for sendiong voice messages";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1509,6 +1506,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Meetra/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to your camera for sending video/photo content messages";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow your location to find people near you";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow your location to find people near you";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to your microphone for sendiong voice messages";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
