@@ -96,7 +96,7 @@ struct Places: View {
                     }
                 }.onReceive(timer) { _ in
                     seconds += 1
-                    if seconds % 5 == 0 {
+                    if seconds % 180 == 0 {
                         if locationManager.status == "true" {
                             locationManager.sendLocation()
                         }

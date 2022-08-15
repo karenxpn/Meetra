@@ -80,10 +80,12 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func getLocationResponse() {
         socketManager.fetchLocationResponse { response in
             self.lost_location_socket = !response
+            print("got response")
         }
     }
     
     func sendLocation() {
+        print("sending location")
         if location != nil {
             socketManager.sendLocation(lat: self.location!.latitude, lng: self.location!.longitude)
         }
