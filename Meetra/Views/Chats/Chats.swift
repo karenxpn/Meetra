@@ -133,7 +133,7 @@ struct Chats: View {
                 }).modifier(NetworkReconnection(action: {
                 chatVM.connectListeners()
             }))
-        }.navigationViewStyle(.stack)
+        }
     }
 }
 
