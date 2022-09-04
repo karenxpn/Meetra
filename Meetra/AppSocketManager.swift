@@ -16,6 +16,7 @@ protocol AppSocketManagerProtocol {
     func sendTyping(chatID: Int, typing: Bool)
     func fetchTypingResponse(completion: @escaping (TypingResponse) -> ())
     
+    func sendOnlineUser(online: Bool)
     func fetchOnlineUser(completion: @escaping (OnlineResponseModel) -> ())
     func fetchChatListOnlineUser(completion: @escaping (OnlineResponseModel) -> ())
     func fetchChatListUpdates(userID: Int, completion: @escaping (ChatModel) -> ())
@@ -186,6 +187,10 @@ extension AppSocketManager: AppSocketManagerProtocol {
                 completion(response)
             }
         }
+    }
+    
+    func sendOnlineUser(online: Bool) {
+        self.socket?.emit("online", ["online" : online])
     }
     
     func fetchOnlineUser(completion: @escaping (OnlineResponseModel) -> ()) {

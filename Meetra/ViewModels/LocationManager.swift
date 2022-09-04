@@ -91,6 +91,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
+    func sendOnline(online: Bool) {
+        socketManager.sendOnlineUser(online: online)
+    }
+    
     func connectSocket(completion: @escaping(Any?) -> ()) {
         self.initLocation()
         if status == "true" {

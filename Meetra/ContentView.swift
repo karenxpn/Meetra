@@ -11,6 +11,12 @@ struct ContentView: View {
     @AppStorage("token") private var token: String = ""
     @StateObject private var tabViewModel = TabViewModel()
     @StateObject private var networkVM = NetworkMonitor()
+    @StateObject private var locationManager = LocationManager()
+    
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var seconds: Int = 0
+    
+    
     
     init() {
         let newAppearance = UINavigationBarAppearance()
@@ -28,9 +34,11 @@ struct ContentView: View {
 
                 if tabViewModel.currentTab == 0 {
                     Places()
+                        .environmentObject(locationManager)
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 1 {
                     Swipes()
+                        .environmentObject(locationManager)
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 2 {
                     Chats()
@@ -45,13 +53,29 @@ struct ContentView: View {
                 .environmentObject(tabViewModel)
 
         }.edgesIgnoringSafeArea(.bottom)
+            .onAppear {
+                self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+            }
             .onChange(of: networkVM.isConnected) { value in
                 if value {
                     AppSocketManager.shared.connectSocket() {
                         NotificationCenter.default.post(name: Notification.Name("network_reconnection_notification"), object: nil)
                     }
                 }
-            }
+            }.onReceive(timer) { _ in
+                seconds += 1
+                if seconds % 180 == 0 {
+                    if locationManager.status == "true" {
+                        locationManager.sendLocation()
+                    }
+                }
+            }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+                // send request for offline
+                locationManager.sendOnline(online: false)
+            }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                // send request for online
+                locationManager.sendOnline(online: true)
+             }
     }
 }
 
