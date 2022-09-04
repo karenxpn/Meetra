@@ -9,11 +9,8 @@ import SwiftUI
 
 struct Swipes: View {
     
-    @StateObject private var locationManager = LocationManager()
+    @EnvironmentObject var locationManager: LocationManager
     @StateObject var placesVM = PlacesViewModel()
-    
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var seconds: Int = 0
     
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
@@ -98,25 +95,12 @@ struct Swipes: View {
                     NotificationButton()
                 }).onAppear {
                     connectSocketAndGetSwipesForFirstAppearance()
-                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                    
                 }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "swipe")
                     }
-                }.onReceive(timer) { _ in
-                    seconds += 1
-                    if seconds % 180 == 0 {
-                        if locationManager.status == "true" {
-                            locationManager.sendLocation()
-                        }
-                    }
-                    
                 }.onDisappear {
                     self.firstAppearance = false
-                    self.seconds = 0
-                    locationManager.stopUpdating()
-                    self.timer.upstream.connect().cancel()
                 }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                     connectSocketAndGetSwipesForFirstAppearance()
                 }
@@ -127,7 +111,6 @@ struct Swipes: View {
             .onChange(of: locationManager.status) { value in
                 if value == "true" {
                     connectSocketAndGetSwipes()
-                    
                 } else {
                     locationManager.stopUpdating()
                 }

@@ -11,11 +11,8 @@ import FirebaseAnalytics
 
 struct Places: View {
     
-    @StateObject private var locationManager = LocationManager()
+    @EnvironmentObject var locationManager: LocationManager
     @StateObject var placesVM = PlacesViewModel()
-    
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var seconds: Int = 0
     
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
@@ -81,30 +78,15 @@ struct Places: View {
                     NotificationButton()
                 }).onAppear {
                     connectSocketAndGetRoom()
-                    self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                     
                     Analytics.logEvent(AnalyticsEventScreenView,
                                        parameters: [AnalyticsParameterScreenName: "\(Places.self)",
                                                    AnalyticsParameterScreenClass: "\(Places.self)"])
 
-                }.onDisappear(perform: {
-                    locationManager.stopUpdating()
-                })
-                .onChange(of: showFilter) { value in
+                }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "place")
                     }
-                }.onReceive(timer) { _ in
-                    seconds += 1
-                    if seconds % 180 == 0 {
-                        if locationManager.status == "true" {
-                            locationManager.sendLocation()
-                        }
-                    }
-                    
-                }.onDisappear {
-                    self.seconds = 0
-                    self.timer.upstream.connect().cancel()
                 }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                     connectSocketAndGetRoom()
                 }
