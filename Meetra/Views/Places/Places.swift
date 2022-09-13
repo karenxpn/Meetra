@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftUIX
-import FirebaseAnalytics
 
 struct Places: View {
     
@@ -79,9 +78,7 @@ struct Places: View {
                 }).onAppear {
                     connectSocketAndGetRoom()
                     
-                    Analytics.logEvent(AnalyticsEventScreenView,
-                                       parameters: [AnalyticsParameterScreenName: "\(Places.self)",
-                                                   AnalyticsParameterScreenClass: "\(Places.self)"])
+                    AppAnalytics().logScreenEvent(viewName: "\(Places.self)")
 
                 }.onChange(of: showFilter) { value in
                     if !value {

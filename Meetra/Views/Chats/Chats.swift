@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FirebaseAnalytics
 
 struct Chats: View {
     @StateObject var chatVM = ChatViewModel()
@@ -101,9 +100,7 @@ struct Chats: View {
                         }
                 }
             }.onAppear(perform: {
-                Analytics.logEvent(AnalyticsEventScreenView,
-                                   parameters: [AnalyticsParameterScreenName: "\(Chats.self)",
-                                               AnalyticsParameterScreenClass: "\(Chats.self)"])
+                AppAnalytics().logScreenEvent(viewName: "\(Chats.self)")
             })
             .alert(isPresented: $chatVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(chatVM.alertMessage), dismissButton: .default(Text("Got it!")))

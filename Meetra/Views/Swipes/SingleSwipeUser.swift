@@ -9,7 +9,6 @@ import SwiftUI
 import SDWebImageSwiftUI
 import TagLayoutView
 import SwiftUIX
-import FirebaseAnalytics
 
 enum CardAction {
     case swipe, report, star, request
@@ -180,7 +179,7 @@ struct SingleSwipeUser: View {
             HStack( spacing: 15) {
                 
                 SwipeButtonHelper(icon: "left_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
-                    Analytics.logEvent("swipe", parameters: nil)
+                    AppAnalytics().logEvent(event: "swipe")
                     cardAction = .swipe
                     withAnimation(animation) {
                         user.x = -1000; user.degree = -20
@@ -189,7 +188,7 @@ struct SingleSwipeUser: View {
                 }
                 
                 SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
-                    Analytics.logEvent("swipe_star", parameters: nil)
+                    AppAnalytics().logEvent(event: "swipe_star")
 
                     cardAction = .star
                     userVM.starUserFromSwipes(userID: user.id)
@@ -201,7 +200,7 @@ struct SingleSwipeUser: View {
                 }
                 
                 SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
-                    Analytics.logEvent("swipe_friend_request", parameters: nil)
+                    AppAnalytics().logEvent(event: "swipe_friend_request")
 
                     cardAction = .request
                     userVM.sendFriendRequest(userID: user.id)
@@ -213,7 +212,7 @@ struct SingleSwipeUser: View {
                 }
                 
                 SwipeButtonHelper(icon: "right_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
-                    Analytics.logEvent("swipe", parameters: nil)
+                    AppAnalytics().logEvent(event: "swipe")
 
                     cardAction = .swipe
                     withAnimation(animation) {
@@ -262,7 +261,7 @@ struct SingleSwipeUser: View {
                             case let x where x > 100:
                                 checkLastAndRequestMore()
                                 user.x = 1000; user.degree = 20
-                                Analytics.logEvent("swipe", parameters: nil)
+                                AppAnalytics().logEvent(event: "swipe")
                             case (-100)...(-1):
                                 self.cardAction = .none
                                 user.x = 0
@@ -270,7 +269,7 @@ struct SingleSwipeUser: View {
                             case let x where x < -100:
                                 checkLastAndRequestMore()
                                 user.x = -1000; user.degree = -20
-                                Analytics.logEvent("swipe", parameters: nil)
+                                AppAnalytics().logEvent(event: "swipe")
                             default:
                                 self.cardAction = .none
                                 user.x = 0;

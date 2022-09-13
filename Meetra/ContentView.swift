@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AppTrackingTransparency
 
 struct ContentView: View {
     @AppStorage("token") private var token: String = ""
@@ -55,6 +56,9 @@ struct ContentView: View {
         }.edgesIgnoringSafeArea(.bottom)
             .onAppear {
                 self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                ATTrackingManager.requestTrackingAuthorization { status in
+                    print(status)
+                }
             }
             .onChange(of: networkVM.isConnected) { value in
                 if value {
