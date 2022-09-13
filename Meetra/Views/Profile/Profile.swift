@@ -7,7 +7,6 @@
 
 import SwiftUI
 import TagLayoutView
-import FirebaseAnalytics
 
 struct Profile: View {
     
@@ -97,9 +96,7 @@ struct Profile: View {
                 }
             }).onAppear {
                 profileVM.getProfile()
-                Analytics.logEvent(AnalyticsEventScreenView,
-                                   parameters: [AnalyticsParameterScreenName: "\(Profile.self)",
-                                               AnalyticsParameterScreenClass: "\(Profile.self)"])
+                AppAnalytics().logScreenEvent(viewName: "\(Profile.self)")
             }
         }.navigationViewStyle(StackNavigationViewStyle())
             .gesture(DragGesture().onChanged({ _ in

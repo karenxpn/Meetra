@@ -129,6 +129,7 @@
 		FF99154F2813469D00CA2DFD /* ChangePhoneNumberVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF99154E2813469D00CA2DFD /* ChangePhoneNumberVerify.swift */; };
 		FF9B60112808B703007994EF /* CustomActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B60102808B703007994EF /* CustomActionSheet.swift */; };
 		FF9B60132808C1EB007994EF /* ActionSheetButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */; };
+		FF9E00C728D0D4FC000C5D3B /* AppAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9E00C628D0D4FC000C5D3B /* AppAnalytics.swift */; };
 		FFA17F67285FA9BD0010F3CF /* GetSignedUrlResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA17F66285FA9BD0010F3CF /* GetSignedUrlResponse.swift */; };
 		FFB5DE992842D57E002460FE /* ReadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB5DE982842D57E002460FE /* ReadModel.swift */; };
 		FFB6D24227E93ACA004FD5D3 /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = FFB6D24127E93ACA004FD5D3 /* Sliders */; };
@@ -352,6 +353,7 @@
 		FF99154E2813469D00CA2DFD /* ChangePhoneNumberVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumberVerify.swift; sourceTree = "<group>"; };
 		FF9B60102808B703007994EF /* CustomActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionSheet.swift; sourceTree = "<group>"; };
 		FF9B60122808C1EB007994EF /* ActionSheetButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetButtonHelper.swift; sourceTree = "<group>"; };
+		FF9E00C628D0D4FC000C5D3B /* AppAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAnalytics.swift; sourceTree = "<group>"; };
 		FFA17F66285FA9BD0010F3CF /* GetSignedUrlResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSignedUrlResponse.swift; sourceTree = "<group>"; };
 		FFB5DE982842D57E002460FE /* ReadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadModel.swift; sourceTree = "<group>"; };
 		FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUsers.swift; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 				FFED58632826955900E828F2 /* AudioRecorderViewModel.swift */,
 				FFED58692826A94100E828F2 /* AudioPlayerViewModel.swift */,
 				FF0156B0284438F400CD58F1 /* NetworkMonitor.swift */,
+				FF9E00C628D0D4FC000C5D3B /* AppAnalytics.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1137,6 +1140,7 @@
 				FF7D0D1E27CFFDA100A828C7 /* OTPTextFieldView.swift in Sources */,
 				FFED586A2826A94100E828F2 /* AudioPlayerViewModel.swift in Sources */,
 				FF5285612816C9D9004D2AB1 /* ChatListModel.swift in Sources */,
+				FF9E00C728D0D4FC000C5D3B /* AppAnalytics.swift in Sources */,
 				FF4C980827FF124E009CB60D /* ProfileSpecs.swift in Sources */,
 				FF07F23227D0D59A009B46B7 /* AuthNameInput.swift in Sources */,
 				FFB6D24727EA0E73004FD5D3 /* FilterUsers.swift in Sources */,
@@ -1470,6 +1474,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow your location to find people near you";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow your location to find people near you";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to your microphone for sendiong voice messages";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This application needs information from your activity for correct suggestions";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1509,6 +1514,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow your location to find people near you";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow your location to find people near you";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to your microphone for sendiong voice messages";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This application needs information from your activity for correct suggestions";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
