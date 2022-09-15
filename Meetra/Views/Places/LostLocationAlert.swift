@@ -29,7 +29,9 @@ struct LostLocationAlert: View {
                 HStack {
                     Spacer()
                     
-                    Text( locationManager.status == "request" ? "Включить" : "Проверить" )
+                    Text( locationManager.status == "request" ?
+                          NSLocalizedString("proceed", comment: "") :
+                            NSLocalizedString("check", comment: "") )
                         .font(.custom("Inter-SemiBold", size: 20))
                         .foregroundColor(.white)
                         .padding(.vertical, 15)

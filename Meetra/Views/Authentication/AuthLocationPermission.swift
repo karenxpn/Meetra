@@ -26,7 +26,7 @@ struct AuthLocationPermission: View {
                 HStack {
                     Spacer()
                     
-                    Text( "Включить" )
+                    Text( NSLocalizedString("proceed", comment: "") )
                         .font(.custom("Inter-SemiBold", size: 20))
                         .foregroundColor(.white)
                         .padding(.vertical, 15)
