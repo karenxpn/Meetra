@@ -1471,8 +1471,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Meetra/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to your camera for sending video/photo content messages";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow your location to find people near you";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow your location to find people near you";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "The app uses your location to find people near you and give you access to the whole content like place you are and swipes";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses your location to find people near you and give you access to the whole content like place you are and swipes";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to your microphone for sendiong voice messages";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to deliver personalized content";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1511,8 +1511,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Meetra/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to your camera for sending video/photo content messages";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow your location to find people near you";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow your location to find people near you";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "The app uses your location to find people near you and give you access to the whole content like place you are and swipes";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses your location to find people near you and give you access to the whole content like place you are and swipes";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to your microphone for sendiong voice messages";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to deliver personalized content";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
