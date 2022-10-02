@@ -129,7 +129,10 @@ struct Swipes: View {
     }
     
     func connectSocketAndGetSwipesForFirstAppearance() {
-        placesVM.loading = true
+        if firstAppearance {
+            placesVM.loading = true
+        }
+        
         locationManager.connectSocket { response in
             if response != nil {
                 if firstAppearance {

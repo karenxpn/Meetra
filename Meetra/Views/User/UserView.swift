@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var userVM = UserViewModel()
+    @StateObject var userVM = UserViewModel()
     @State private var showDialog: Bool = false
     @State private var showReportConfirmation: Bool = false
     
@@ -47,6 +47,7 @@ struct UserView: View {
             
         }.task {
             userVM.getUser(userID: userID)
+            print("task")
             AppAnalytics().logScreenEvent(viewName: "\(UserView.self)")
         }.alert(isPresented: $userVM.showAlert, content: {
             Alert(title: Text("Error"), message: Text(userVM.alertMessage), dismissButton: .default(Text("Got it!")))
