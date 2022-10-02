@@ -100,9 +100,10 @@ struct Swipes: View {
                         placesVM.storeFilterValues(location: "swipe")
                     }
                 }.onDisappear {
-                    self.firstAppearance = false
+                    firstAppearance = false
                 }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                    connectSocketAndGetSwipesForFirstAppearance()
+                    firstAppearance = true
+//                    connectSocketAndGetSwipesForFirstAppearance()
                 }
                 .modifier(NetworkReconnection(action: {
                     locationManager.getLocationResponse()
@@ -137,6 +138,8 @@ struct Swipes: View {
             if response != nil {
                 if firstAppearance {
                     placesVM.getSwipes()
+                } else {
+                    placesVM.loading = false
                 }
             } else {
                 placesVM.loading = false
