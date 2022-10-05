@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct LostLocationAlert: View {
+    @State private var settings: Bool = false
     @EnvironmentObject var locationManager: LocationManager
+    
     var body: some View {
         VStack( spacing: 30 ){
             Spacer()
@@ -22,7 +24,8 @@ struct LostLocationAlert: View {
                 if locationManager.locationStatus == .notDetermined {
                     locationManager.requestLocation()
                 } else {
-                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+//                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                    settings.toggle()
                 }
             }) {
                 
@@ -39,7 +42,11 @@ struct LostLocationAlert: View {
                     Spacer()
                 }.background(AppColors.proceedButtonColor)
                     .cornerRadius(30)
-            }
+            }.background(
+                NavigationLink(destination: GeneralSettings(), isActive: $settings, label: {
+                    EmptyView()
+                }).hidden()
+            )
 
         }.frame(
             minWidth: 0,

@@ -56,8 +56,7 @@ struct ContentView: View {
         }.edgesIgnoringSafeArea(.bottom)
             .onAppear {
                 self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                ATTrackingManager.requestTrackingAuthorization { status in
-                    print(status)
+                ATTrackingManager.requestTrackingAuthorization { _ in
                 }
             }
             .onChange(of: networkVM.isConnected) { value in
