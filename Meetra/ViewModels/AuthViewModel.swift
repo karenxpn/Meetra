@@ -22,6 +22,8 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     @Published var country: String = "RU"
     @Published var code: String = "7"
     
+    @Published var agreement: Bool = false
+    
     @Published var OTP: String = ""
     
     @Published var login: Bool = false

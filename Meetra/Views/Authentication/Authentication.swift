@@ -14,6 +14,8 @@ struct Authentication: View {
     @StateObject var authVM = AuthViewModel()
     @State private var showPicker: Bool = false
     @State private var model = RegistrationRequest()
+    @State private var animate: Bool = false
+    
     
     var body: some View {
         
@@ -58,12 +60,65 @@ struct Authentication: View {
                     .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 0, y: 5)
             }.padding(.top, 20)
             
+            HStack {
+                
+                Button {
+                    authVM.agreement.toggle()
+                } label: {
+                    ZStack {
+                        if authVM.agreement {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(AppColors.accentColor)
+                                .frame(width: 16, height: 16, alignment: .center)
+                        } else {
+                            RoundedRectangle(cornerRadius: 5)
+                                .strokeBorder(.black, lineWidth: 1)
+                                .frame(width: 16, height: 16, alignment: .center)
+                        }
+                        
+                        if authVM.agreement {
+                            Image(systemName: "checkmark")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 10, height: 10, alignment: .center)
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
+                
+                Link(NSLocalizedString("termsOfUse", comment: ""), destination: URL(string: Credentials.terms_of_use)!)
+                    .foregroundColor(.blue)
+                    .font(.custom("Inter-Regular", size: 12))
+                
+                Text( "*Required" )
+                    .foregroundColor(.red)
+                    .font(.custom("Inter-Regular", size: 10))
+                
+            }.scaleEffect(animate ? 1.3 : 1)
             
-            Spacer()
             
-            ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
-                         label: NSLocalizedString("proceed", comment: "")) {
-                authVM.sendVerificationCode()
+            HStack {
+                
+                Spacer()
+                
+                ButtonHelper(disabled: authVM.phoneNumber == "" || authVM.loading,
+                             label: NSLocalizedString("proceed", comment: "")) {
+                    if authVM.agreement {
+                        authVM.sendVerificationCode()
+                        
+                    } else{
+                        withAnimation(.easeInOut(duration: 0.7)) {
+                            animate.toggle()
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                            withAnimation(.easeInOut(duration: 0.7)) {
+                                animate.toggle()
+                            }
+                        }
+                        
+                    }
+                }
             }.padding(.bottom, 30)
                 .background(
                     NavigationLink(destination: VerifyPhoneNumber(model: model, phone: "+\(authVM.code) \(authVM.phoneNumber)")
@@ -71,6 +126,7 @@ struct Authentication: View {
                             EmptyView()
                         }).hidden()
                 )
+            
         }.navigationBarTitle("", displayMode: .inline)
             .frame(
                 minWidth: 0,

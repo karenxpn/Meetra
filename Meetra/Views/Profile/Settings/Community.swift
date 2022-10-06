@@ -18,9 +18,9 @@ struct Community: View {
             VStack( spacing: 20 ) {
                 
                 ActionButtonHelper(label: NSLocalizedString("rules", comment: "")) {
-//                    if let url = URL(string: Credentials.terms_of_use) {
-//                        UIApplication.shared.open(url)
-//                    }
+                    if let url = URL(string: Credentials.terms_of_use) {
+                        UIApplication.shared.open(url)
+                    }
                 }
                 
                 ActionButtonHelper(label: NSLocalizedString("privacy", comment: "")) {
