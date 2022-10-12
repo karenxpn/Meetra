@@ -1464,7 +1464,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Meetra/Meetra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
 				DEVELOPMENT_TEAM = PAUM7SK7SC;
 				ENABLE_PREVIEWS = YES;
@@ -1473,8 +1473,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Meetra;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to your camera for sending video/photo content messages";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "The app uses your location to find people near you and give you access to the whole content like place you are and swipes";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses your location to find people near you and give you access to the whole content like place you are and swipes";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "The app uses your location to find people nearby and gives you access to the whole content like the place you are in and swipes. Also even if you leave the app it will still track your location to remove you from your current location if you leave and change it if you enter another location.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "The app uses your location to find people nearby and gives you access to the whole content like the place you are in and swipes. Also even if you leave the app it will still track your location to remove you from your current location if you leave and change it if you enter another location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses your location to find people nearby and gives you access to the whole content like the place you are in and swipes. Also even if you leave the app it will still track your location to remove you from your current location if you leave and change it if you enter another location.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to your microphone for sendiong voice messages";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to deliver personalized content";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1506,7 +1507,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Meetra/Meetra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
 				DEVELOPMENT_TEAM = PAUM7SK7SC;
 				ENABLE_PREVIEWS = YES;
@@ -1515,8 +1516,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Meetra;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to your camera for sending video/photo content messages";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "The app uses your location to find people near you and give you access to the whole content like place you are and swipes";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses your location to find people near you and give you access to the whole content like place you are and swipes";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "The app uses your location to find people nearby and gives you access to the whole content like the place you are in and swipes. Also even if you leave the app it will still track your location to remove you from your current location if you leave and change it if you enter another location.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "The app uses your location to find people nearby and gives you access to the whole content like the place you are in and swipes. Also even if you leave the app it will still track your location to remove you from your current location if you leave and change it if you enter another location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses your location to find people nearby and gives you access to the whole content like the place you are in and swipes. Also even if you leave the app it will still track your location to remove you from your current location if you leave and change it if you enter another location.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to your microphone for sendiong voice messages";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to deliver personalized content";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
