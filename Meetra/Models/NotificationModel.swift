@@ -16,6 +16,7 @@ struct NotificationModel: Identifiable, Codable {
     var type: String
     var chatId: Int?
     var createdAt: String
+    var blocked: Bool?
 }
 
 
@@ -33,6 +34,7 @@ struct NotificationViewModel: Identifiable {
     var createdAt: String               { self.model.createdAt.countTimeBetweenDates() }
     var chat: Int?                      { self.model.chatId }
     var lastVisit: String               { self.model.user.lastVisit.countTimeBetweenDates()}
+    var blocked: Bool                   { self.model.blocked ?? false }
 }
 
 
