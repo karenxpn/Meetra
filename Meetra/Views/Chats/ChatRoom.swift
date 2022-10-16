@@ -10,8 +10,10 @@ import SwiftUI
 struct ChatRoom: View {
     @Environment(\.presentationMode) var presentationMode
 
+    @StateObject var userVM = UserViewModel()
     @StateObject var roomVM = ChatRoomViewModel()
     @State private var showPopup: Bool = false
+    @State private var showReportConfirmation: Bool = false
     let group: Bool
     let online: Bool
     let lastVisit: String
@@ -89,44 +91,91 @@ struct ChatRoom: View {
                         .fixedSize()
                 }
                 
-            }, center: EmptyView(), trailing: group ? AnyView(Button(action: {
+            }, center: EmptyView(), trailing: Button(action: {
                 showPopup.toggle()
             }, label: {
                 Image("dots").foregroundColor(.black)
-            })) : AnyView(EmptyView()))
+            }))
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 roomVM.joinGetMessagesListenEventsOnInit()
             }.modifier(NetworkReconnection(action: {
                 roomVM.joinGetMessagesListenEventsOnInit()
             })).fullScreenCover(isPresented: $showPopup) {
-                CustomActionSheet {
-                    
-                    ActionSheetButtonHelper(icon: "unread_icon",
-                                            label: NSLocalizedString("markUnread", comment: ""),
-                                            role: .cancel) {
-                        roomVM.markAsUnread()
-                        self.showPopup.toggle()
+                if group {
+                    CustomActionSheet {
                         
-                    }
-                    
-                    Divider()
-                    
-                    ActionSheetButtonHelper(icon: "trash_icon",
-                                            label: NSLocalizedString("delete", comment: ""),
-                                            role: .destructive) {
-                        roomVM.deleteChat()
-                        self.showPopup.toggle()
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                    
-                    Divider()
-                    
-                    if !left {
-                        ActionSheetButtonHelper(icon: "exit_icon",
-                                                label: NSLocalizedString("leaveChat", comment: ""),
-                                                role: .destructive) {
-                            roomVM.leaveChat()
+                        ActionSheetButtonHelper(icon: "unread_icon",
+                                                label: NSLocalizedString("markUnread", comment: ""),
+                                                role: .cancel) {
+                            roomVM.markAsUnread()
                             self.showPopup.toggle()
+                            
+                        }
+                        
+                        Divider()
+                        
+                        ActionSheetButtonHelper(icon: "trash_icon",
+                                                label: NSLocalizedString("delete", comment: ""),
+                                                role: .destructive) {
+                            roomVM.deleteChat()
+                            self.showPopup.toggle()
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                        
+                        Divider()
+                        
+                        if !left {
+                            ActionSheetButtonHelper(icon: "exit_icon",
+                                                    label: NSLocalizedString("leaveChat", comment: ""),
+                                                    role: .destructive) {
+                                roomVM.leaveChat()
+                                self.showPopup.toggle()
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        }
+                    }
+                } else {
+                    CustomActionSheet {
+                        
+                        ActionSheetButtonHelper(icon: "report_icon",
+                                                label: NSLocalizedString("report", comment: ""),
+                                                role: .destructive) {
+                            self.showReportConfirmation.toggle()
+                        }.alert(NSLocalizedString("chooseReason", comment: ""), isPresented: $showReportConfirmation, actions: {
+                            Button {
+                                userVM.reportReason = NSLocalizedString("fraud", comment: "")
+                                userVM.reportUser(id: userID)
+                                self.showPopup.toggle()
+
+                            } label: {
+                                Text( NSLocalizedString("fraud", comment: "") )
+                            }
+                            
+                            Button {
+                                userVM.reportReason = NSLocalizedString("insults", comment: "")
+                                userVM.reportUser(id: userID)
+                                self.showPopup.toggle()
+                            } label: {
+                                Text( NSLocalizedString("insults", comment: "") )
+                            }
+                            
+                            Button {
+                                userVM.reportReason = NSLocalizedString("fakeAccount", comment: "")
+                                userVM.reportUser(id: userID)
+                                self.showPopup.toggle()
+                            } label: {
+                                Text( NSLocalizedString("fakeAccount", comment: "") )
+                            }
+                            Button(NSLocalizedString("cancel", comment: ""), role: .cancel) { }
+                        })
+                        
+                        Divider()
+                        
+                        ActionSheetButtonHelper(icon: "block_icon",
+                                                label: NSLocalizedString("block", comment: ""),
+                                                role: .destructive) {
+                            self.showPopup.toggle()
+                            userVM.blockUser(id: userID)
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     }

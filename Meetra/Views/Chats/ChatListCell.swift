@@ -16,7 +16,6 @@ struct ChatListCell: View {
     var body: some View {
         
         Button {
-            print( "Entered CHat = \(chat.id)" )
             navigate.toggle()
         } label: {
             HStack( alignment: .top, spacing: 14 ) {
