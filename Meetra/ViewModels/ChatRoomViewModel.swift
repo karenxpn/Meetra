@@ -81,7 +81,6 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
         dataManager.fetchChatMessages(roomID: chatID, messageID: messageID)
             .sink { response in
                 self.loading = false
-                print(response)
                 if response.error == nil {
                     let messages = response.value!.messages
                     self.messages.append(contentsOf: messages.reversed().map(MessageViewModel.init))

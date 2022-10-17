@@ -165,18 +165,14 @@ class UserViewModel: AlertViewModel, ObservableObject {
     }
     
     func blockUser( id: Int ) {
-        print(id)
         dataManager.blockUser(id: id)
-            .sink { response in
-                print(response)
+            .sink { _ in
             }.store(in: &cancellableSet)
     }
     
     func unblockUser(id: Int) {
-        print(id)
         dataManager.unblockUser(id: id)
-            .sink { response in
-                print(response)
+            .sink { _ in
             }.store(in: &cancellableSet)
     }
 }

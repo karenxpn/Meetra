@@ -70,7 +70,6 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                 
                 if chats.error == nil {
                     self.chats = chats.value!.chats.map(ChatModelViewModel.init)
-                    print(self.chats)
                     self.chatPage = 2
                     self.getChatList()
                 }
@@ -85,7 +84,6 @@ class ChatViewModel: AlertViewModel, ObservableObject {
         loadingPage = true
         dataManager.fetchChatList(page: chatPage, query: search)
             .sink { response in
-                print(response)
                 self.loadingPage = false
                 if response.error == nil {
                     self.chats.append(contentsOf: response.value!.chats.map(ChatModelViewModel.init))
