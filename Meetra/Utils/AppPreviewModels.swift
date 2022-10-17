@@ -72,7 +72,7 @@ struct AppPreviewModels {
                                                                                         status: "read",
                                                                                         sender: SenderModel(id: 3, name: "Анна",
                                                                                                             online: true, lastVisit: "")),
-                                                           isMuted: false, left: false, hasUnreadMessage: true)),
+                                                           isMuted: false, left: false, hasUnreadMessage: true, interlocutorId: 12)),
                         ChatModelViewModel(chat: ChatModel(id: 4,
                                                            name: "Anna",
                                                            image: "https://meetraapp.s3.us-east-2.amazonaws.com/users/karen-1648577225513.jpg",

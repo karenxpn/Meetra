@@ -56,7 +56,8 @@ struct InterlocutorsCell: View {
                                                   userID: interlocutor.id,
                                                   chatID: interlocutor.chat,
                                                   left: false,
-                                                  blocked: interlocutor.blocked),
+                                                  blocked: interlocutor.blocked,
+                                                  blockedByMe: interlocutor.blockedByMe),
                            isActive: $navigate,
                            label: {
                 EmptyView()

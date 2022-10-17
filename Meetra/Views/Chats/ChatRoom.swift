@@ -22,6 +22,7 @@ struct ChatRoom: View {
     let chatID: Int
     let left: Bool
     @State var blocked: Bool
+    let blockedByMe: Bool?
     
     var body: some View {
         
@@ -36,7 +37,7 @@ struct ChatRoom: View {
             
             VStack {
                 Spacer()
-                if !left && !blocked{
+                if !left && !blocked {
                     MessageBar()
                         .environmentObject(roomVM)
                 } else if blocked {
@@ -46,20 +47,23 @@ struct ChatRoom: View {
                         .kerning(0.24)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
+                        .padding(.bottom, (blockedByMe ?? false) ? 0 : 30)
                     
-                    Button {
-                        // unblock here
-                        withAnimation {
-                            self.blocked.toggle()
+                    if (blockedByMe ?? false) {
+                        Button {
+                            userVM.unblockUser(id: userID)
+                            withAnimation {
+                                self.blocked.toggle()
+                            }
+                        } label: {
+                            Text(NSLocalizedString("unblock", comment: ""))
+                                .foregroundColor(.gray)
+                                .font(.custom("Inter-Regualr", size: 14))
+                                .kerning(0.24)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal)
+                                .padding(.bottom, 30)
                         }
-                    } label: {
-                        Text(NSLocalizedString("unblock", comment: ""))
-                            .foregroundColor(.gray)
-                            .font(.custom("Inter-Regualr", size: 14))
-                            .kerning(0.24)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal)
-                            .padding(.bottom, 30)
                     }
 
                 } else {
@@ -79,6 +83,7 @@ struct ChatRoom: View {
                 roomVM.lastVisit = lastVisit
                 roomVM.userID = userID
                 roomVM.chatID = chatID
+                print(blockedByMe)
                 
                 if chatID == 0 {
                     roomVM.getChatId()
@@ -203,7 +208,6 @@ struct ChatRoom: View {
                                 self.blocked.toggle()
                             }
                             userVM.blockUser(id: userID)
-//                            self.presentationMode.wrappedValue.dismiss()
                         }
                     }
                 }
@@ -213,6 +217,6 @@ struct ChatRoom: View {
 
 struct ChatRoom_Previews: PreviewProvider {
     static var previews: some View {
-        ChatRoom(group: false, online: true, lastVisit: "", chatName: "Hunt Lounge Bar", userID: 1, chatID: 1, left: true, blocked: true)
+        ChatRoom(group: false, online: true, lastVisit: "", chatName: "Hunt Lounge Bar", userID: 1, chatID: 1, left: true, blocked: true, blockedByMe: false)
     }
 }

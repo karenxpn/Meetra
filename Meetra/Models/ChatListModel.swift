@@ -19,8 +19,9 @@ struct ChatModel: Identifiable, Codable {
     var isMuted: Bool
     var left: Bool
     var blocked: Bool?
+    var blockedByMe: Bool?
     var hasUnreadMessage: Bool
-    
+    var interlocutorId: Int?
 }
 
 struct MessagePreviewModel: Identifiable, Codable {
@@ -57,6 +58,8 @@ struct ChatModelViewModel: Identifiable {
     var lastVisit: String               { self.chat.message.sender.lastVisit.countTimeBetweenDates()}
     
     var blocked: Bool                   { self.chat.blocked ?? false }
+    var blockedByMe: Bool?              { self.chat.blockedByMe }
+    var interlocutorId: Int             { self.chat.interlocutorId ?? 0 }
     
     var mute: Bool {
         get { self.chat.isMuted }

@@ -57,7 +57,8 @@ struct PlacesRoomView: View {
                                          userID: 0,
                                          chatID: room.chat.id,
                                          left: room.chat.left,
-                                         blocked: false)
+                                         blocked: false,
+                                         blockedByMe: false)
                             }, label: {
                                 EmptyView()
                             }).hidden()
