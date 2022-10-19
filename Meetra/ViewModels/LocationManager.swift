@@ -66,11 +66,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         startUpdating()
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.first?.coordinate
-        print(location)
-    }
-    
     func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
         // Make sure the devices supports region monitoring.
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
@@ -84,18 +79,33 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        if let region = region as? CLCircularRegion {            
-            if UIApplication.shared.applicationState != .active {
-                self.notification(body: "You left " + region.identifier)
-            }
-        }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        location = locations.first?.coordinate
+        print(location)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+        manager.requestState(for: region)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        print("Status for: \(region.identifier) is \(state.rawValue)")
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         if let region = region as? CLCircularRegion {
+            print("entered region")
             if UIApplication.shared.applicationState != .active {
                 self.notification(body: "You entered" + region.identifier)
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if let region = region as? CLCircularRegion {
+            print("left region")
+            if UIApplication.shared.applicationState != .active {
+                self.notification(body: "You left " + region.identifier)
             }
         }
     }
