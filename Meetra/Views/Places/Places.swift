@@ -22,7 +22,9 @@ struct Places: View {
         NavigationView {
             ZStack {
                 
-                if locationManager.status == "true" && !locationManager.lost_location_socket {
+                if placesVM.loading {
+                    Loading()
+                } else if locationManager.status == "true" && locationManager.regionState == .inside {
                     
                     if placesVM.loading {
                         Loading()
@@ -76,8 +78,7 @@ struct Places: View {
                     
                     NotificationButton()
                 }).onAppear {
-                    connectSocketAndGetRoom()
-                    
+                    getRoom()
                     AppAnalytics().logScreenEvent(viewName: "\(Places.self)")
 
                 }.onChange(of: showFilter) { value in
@@ -85,31 +86,27 @@ struct Places: View {
                         placesVM.storeFilterValues(location: "place")
                     }
                 }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                    connectSocketAndGetRoom()
+                    getRoom()
                 }
-                .modifier(NetworkReconnection(action: {
-                    locationManager.sendLocation()
-                    locationManager.getLocationResponse()
-                }))
+//                .modifier(NetworkReconnection(action: {
+//                    locationManager.sendLocation()
+//                    locationManager.getLocationResponse()
+//                }))
 
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
-                print("changing")
                 if value == "true" {
-                    connectSocketAndGetRoom()
+                    getRoom()
                 } else {
                     locationManager.stopUpdating()
                 }
             }
     }
     
-    func connectSocketAndGetRoom() {
+    func getRoom() {
         placesVM.loading = true
-        locationManager.connectSocket { response in
-            if response != nil {
-                placesVM.getRoom()
-            }
-        }
+        locationManager.initLocation()
+        placesVM.getRoom()
     }
 }
 

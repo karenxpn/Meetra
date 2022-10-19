@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import SwiftUI
+import Combine
 
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
@@ -17,19 +18,24 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var navigate: Bool = false
     @Published var locationStatus: CLAuthorizationStatus?
     
+    @Published var regions = [RegionModel]()
     @Published var regionState: CLRegionState?
-    
-    @Published var lost_location_socket: Bool = false
+        
+    private var cancellableSet: Set<AnyCancellable> = []
     
     var socketManager: AppSocketManagerProtocol
+    var locationManager: LocationServiceProtocol
     
-    init(socketManager: AppSocketManagerProtocol = AppSocketManager.shared) {
+    init(socketManager: AppSocketManagerProtocol = AppSocketManager.shared,
+         locationManager: LocationServiceProtocol = LocationService.shared) {
         self.socketManager = socketManager
+        self.locationManager = locationManager
         super.init()
     }
     
     convenience override init() {
-        self.init(socketManager: AppSocketManager.shared)
+        self.init(socketManager: AppSocketManager.shared,
+                  locationManager: LocationService.shared)
     }
     
     var status: String {
@@ -45,6 +51,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func initLocation() {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.distanceFilter = 30
         if status == "true" {
             self.startUpdating()
         }
@@ -52,7 +59,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func startUpdating() {
         manager.startUpdatingLocation()
-        self.monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: -38.720590091698284, longitude: -66.0070948168), identifier: "some_identifier")
     }
     
     func stopUpdating() {
@@ -65,12 +71,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         startUpdating()
     }
     
-    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
+    func monitorRegionAtLocation(center: CLLocationCoordinate2D, radius: Double, identifier: String ) {
         // Make sure the devices supports region monitoring.
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             // Register the region.
             let region = CLCircularRegion(center: center,
-                                          radius: 10, identifier: identifier)
+                                          radius: radius,
+                                          identifier: identifier)
             region.notifyOnEntry = true
             region.notifyOnExit = true
             
@@ -79,21 +86,16 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let curLocationCoordinate = locations.first?.coordinate
-        if location == nil { location = curLocationCoordinate }
-        
-        if let curLocationCoordinate, let location {
-            let curLocation = CLLocation(latitude: curLocationCoordinate.latitude,
-                                         longitude: curLocationCoordinate.longitude)
-            let prevLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-            
-            if curLocation.distance(from: prevLocation) >= 30 {
-                self.location = curLocationCoordinate
-                print(location)
-            }
+        if location == nil {
+            location = locations.first?.coordinate
+            print(location)
+            getRegions()
+        } else if regionState == .outside {
+            location = locations.first?.coordinate
+            print(location)
+            getRegions()
         }
-        // calculate passed distance and send request
-        
+
     }
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
@@ -106,43 +108,17 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         if self.regionState != state {
             self.regionState = state
             print("Status for: \(region.identifier) is \(state.rawValue)")
+            self.sendRegionState(region: region, state: state == .inside ? true : false)
             // send request here with region.identifier
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        if let region = region as? CLCircularRegion {
-            print("entered region")
-            if UIApplication.shared.applicationState != .active {
-                self.notification(body: "You entered" + region.identifier)
-            }
-        }
+        print("entered region")
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        if let region = region as? CLCircularRegion {
-            print("left region")
-            if UIApplication.shared.applicationState != .active {
-                self.notification(body: "You left " + region.identifier)
-            }
-        }
-    }
-    
-    func notification(body: String) {
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.body = body
-        notificationContent.sound = .default
-        notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(
-            identifier: "location_change",
-            content: notificationContent,
-            trigger: trigger)
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Error: \(error)")
-            }
-        }
+        print("left region")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -154,38 +130,64 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         navigate = true
     }
     
-    func getLocationResponse() {
-        socketManager.fetchLocationResponse { response in
-            self.lost_location_socket = !response
-            print("got response")
+    func getRegions() {
+        if let location {
+            locationManager.fetchRegions(lat: location.latitude, lng: location.longitude)
+                .sink { response in
+                    if response.error == nil {
+                        self.regions = response.value!.regions
+                        print(self.regions)
+                        self.regions.forEach { region in
+                            self.monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: region.lat, longitude: region.lng),
+                                                         radius: region.radius,
+                                                         identifier: region.place_id)
+                        }
+                    }
+                }.store(in: &cancellableSet)
         }
     }
     
-    func sendLocation() {
-        print("sending location")
-        if location != nil {
-            socketManager.sendLocation(lat: self.location!.latitude, lng: self.location!.longitude)
-        }
+    func sendRegionState(region: CLRegion, state: Bool) {
+        self.locationManager.sendRegionState(identifier: region.identifier, state: state)
+            .sink { _ in
+            }.store(in: &cancellableSet)
+
     }
+    
+    /// fuck this shit
+    
+//    func getLocationResponse() {
+//        socketManager.fetchLocationResponse { response in
+////            self.lost_location_socket = !response
+//            print("got response")
+//        }
+//    }
+//
+//    func sendLocation() {
+//        print("sending location")
+//        if location != nil {
+//            socketManager.sendLocation(lat: self.location!.latitude, lng: self.location!.longitude)
+//        }
+//    }
     
     func sendOnline(online: Bool) {
         socketManager.sendOnlineUser(online: online)
     }
     
-    func connectSocket(completion: @escaping(Any?) -> ()) {
-        self.initLocation()
-        if status == "true" {
-            socketManager.connectSocket {
-                self.getLocationResponse()
-                self.sendLocation()
-                DispatchQueue.main.async {
-                    completion(true)
-                }
-            }
-        } else {
-            DispatchQueue.main.async {
-                completion(nil)
-            }
-        }
-    }
+//    func connectSocket(completion: @escaping(Any?) -> ()) {
+//        self.initLocation()
+//        if status == "true" {
+//            socketManager.connectSocket {
+//                self.getLocationResponse()
+//                self.sendLocation()
+//                DispatchQueue.main.async {
+//                    completion(true)
+//                }
+//            }
+//        } else {
+//            DispatchQueue.main.async {
+//                completion(nil)
+//            }
+//        }
+//    }
 }

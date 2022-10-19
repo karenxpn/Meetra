@@ -12,7 +12,7 @@ struct SwipeCards: View {
     @EnvironmentObject var locationManager: LocationManager
     
     var body: some View {
-        if locationManager.status == "true" && !locationManager.lost_location_socket {
+        if locationManager.status == "true" && locationManager.regionState == .inside {
             ZStack( alignment: .top) {
                 ForEach(placesVM.users) { user in
                     SingleSwipeUser(user: user)

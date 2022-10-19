@@ -106,7 +106,7 @@ struct Swipes: View {
 //                    connectSocketAndGetSwipesForFirstAppearance()
                 }
                 .modifier(NetworkReconnection(action: {
-                    locationManager.getLocationResponse()
+//                    locationManager.getLocationResponse()
                 }))
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
@@ -120,30 +120,15 @@ struct Swipes: View {
     
     func connectSocketAndGetSwipes() {
         placesVM.loading = true
-        locationManager.connectSocket { response in
-            if response != nil {
-                placesVM.getSwipes()
-            } else {
-                placesVM.loading = false
-            }
-        }
+        placesVM.getSwipes()
     }
     
     func connectSocketAndGetSwipesForFirstAppearance() {
         if firstAppearance {
             placesVM.loading = true
-        }
-        
-        locationManager.connectSocket { response in
-            if response != nil {
-                if firstAppearance {
-                    placesVM.getSwipes()
-                } else {
-                    placesVM.loading = false
-                }
-            } else {
-                placesVM.loading = false
-            }
+            placesVM.getSwipes()
+        } else {
+            placesVM.loading = false
         }
     }
 }
