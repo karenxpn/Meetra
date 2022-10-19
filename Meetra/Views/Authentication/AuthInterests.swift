@@ -10,8 +10,8 @@ import TagLayoutView
 
 struct AuthInterests: View {
     @ObservedObject var authVM = AuthViewModel()
+    @StateObject var locationManager = LocationManager()
     @State var model: RegistrationRequest
-    @State private var navigate: Bool = false
     
     var body: some View {
         ZStack {
@@ -54,11 +54,11 @@ struct AuthInterests: View {
                                             .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
                                             .foregroundColor( authVM.selected_interests.contains(where: {$0 == tag}) ?  AppColors.accentColor : .white)
                                             .background(RoundedRectangle(cornerRadius: 30)
-                                                            .strokeBorder(AppColors.accentColor, lineWidth: 1.5)
-                                                            .background(
-                                                                RoundedRectangle(cornerRadius: 30)
-                                                                    .fill(authVM.selected_interests.contains(where: {$0 == tag}) ? .white : AppColors.accentColor)
-                                                            )
+                                                .strokeBorder(AppColors.accentColor, lineWidth: 1.5)
+                                                .background(
+                                                    RoundedRectangle(cornerRadius: 30)
+                                                        .fill(authVM.selected_interests.contains(where: {$0 == tag}) ? .white : AppColors.accentColor)
+                                                )
                                             )
                                         
                                     }
@@ -77,10 +77,18 @@ struct AuthInterests: View {
                     model.interests = authVM.selected_interests
                     authVM.confirmSignUp(model: model)
                 }.background(
-                        NavigationLink(destination: AuthLocationPermission(), isActive: $authVM.navigate, label: {
-                            EmptyView()
-                        }).hidden()
-                    )
+                    Group {
+                        if locationManager.status == "request" {
+                            NavigationLink(destination: AuthLocationPermission(), isActive: $authVM.navigate, label: {
+                                EmptyView()
+                            }).hidden()
+                        } else {
+                            NavigationLink(destination: AuthNotificationPermission(), isActive: $authVM.navigate, label: {
+                                EmptyView()
+                            }).hidden()
+                        }
+                    }
+                )
                 
             }.frame(
                 minWidth: 0,
@@ -89,7 +97,7 @@ struct AuthInterests: View {
                 maxHeight: .infinity,
                 alignment: .topLeading
             )
-                .padding(30)
+            .padding(30)
             
             AuthProgress(page: 5)
         }.task(priority: .high) {

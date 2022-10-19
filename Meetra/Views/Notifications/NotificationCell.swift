@@ -76,20 +76,18 @@ struct NotificationCell: View {
             }.background(
                 ZStack {
                     if notification.chat != nil {
-                        NavigationLink(isActive: $navigateChat, destination: {
-                            ChatRoom(group: false,
-                                     online: notification.user.online,
-                                     lastVisit: notification.lastVisit,
-                                     chatName: notification.user.name,
-                                     userID: notification.user.id,
-                                     chatID: notification.chat!, left: false)
-                        }, label: {
+                        NavigationLink(destination: ChatRoom(group: false,
+                                                             online: notification.user.online,
+                                                             lastVisit: notification.lastVisit,
+                                                             chatName: notification.user.name,
+                                                             userID: notification.user.id,
+                                                             chatID: notification.chat!, left: false,
+                                                             blocked: notification.blocked,
+                                                             blockedByMe: notification.blockedByMe), isActive: $navigateChat) {
                             EmptyView()
-                        }).hidden()
+                        }.hidden()
                     } else {
-                        NavigationLink(isActive: $navigateRequests) {
-                            FriendRequestList()
-                        } label: {
+                        NavigationLink(destination: FriendRequestList(), isActive: $navigateRequests) {
                             EmptyView()
                         }.hidden()
                     }

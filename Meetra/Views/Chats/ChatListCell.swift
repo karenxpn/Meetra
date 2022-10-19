@@ -97,9 +97,11 @@ struct ChatListCell: View {
                                                      online: chat.online,
                                                      lastVisit: chat.lastVisit,
                                                      chatName: chat.name,
-                                                     userID: chat.message.sender.id,
+                                                     userID: chat.interlocutorId,
                                                      chatID: chat.id,
-                                                     left: chat.left),
+                                                     left: chat.left,
+                                                     blocked: chat.blocked,
+                                                     blockedByMe: chat.blockedByMe),
                                isActive: $navigate,
                                label: {
                                    EmptyView()

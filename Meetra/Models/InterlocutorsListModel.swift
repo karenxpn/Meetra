@@ -18,6 +18,8 @@ struct InterlocutorsModel: Identifiable, Codable {
     var chat: Int
     var name: String
     var lastVisit: String
+    var blocked: Bool?
+    var blockedByMe: Bool?
 }
 
 struct InterlocutorsViewModel: Identifiable {
@@ -32,6 +34,8 @@ struct InterlocutorsViewModel: Identifiable {
     var chat: Int           { self.model.chat }
     var name: String        { self.model.name }
     var lastVisit: String   { self.model.lastVisit.countTimeBetweenDates() }
+    var blocked: Bool       { self.model.blocked ?? false }
+    var blockedByMe: Bool?  { self.model.blockedByMe }
     
     var read: Bool {
         get { self.model.isRead }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChatRoom: View {
     @Environment(\.presentationMode) var presentationMode
-
+    
     @StateObject var userVM = UserViewModel()
     @StateObject var roomVM = ChatRoomViewModel()
     @State private var showPopup: Bool = false
@@ -21,6 +21,8 @@ struct ChatRoom: View {
     let userID: Int
     let chatID: Int
     let left: Bool
+    let blocked: Bool
+    let blockedByMe: Bool?
     
     var body: some View {
         
@@ -35,9 +37,34 @@ struct ChatRoom: View {
             
             VStack {
                 Spacer()
-                if !left {
+                if !left && !blocked {
                     MessageBar()
                         .environmentObject(roomVM)
+                } else if blocked {
+                    Text( (blockedByMe ?? false) ?
+                          NSLocalizedString("youBlockedUser", comment: "") :
+                            NSLocalizedString("userBlockedYou", comment: ""))
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-Regualr", size: 14))
+                    .kerning(0.24)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+                    .padding(.bottom, (blockedByMe ?? false) ? 0 : 30)
+                    
+                    if (blockedByMe ?? false) {
+                        Button {
+                            userVM.unblockUser(id: userID)
+                        } label: {
+                            Text(NSLocalizedString("unblock", comment: ""))
+                                .foregroundColor(.gray)
+                                .font(.custom("Inter-Regualr", size: 14))
+                                .kerning(0.24)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal)
+                                .padding(.bottom, 30)
+                        }
+                    }
+                    
                 } else {
                     Text(NSLocalizedString("youLeftChat", comment: ""))
                         .foregroundColor(.black)
@@ -146,7 +173,7 @@ struct ChatRoom: View {
                                 userVM.reportReason = NSLocalizedString("fraud", comment: "")
                                 userVM.reportUser(id: userID)
                                 self.showPopup.toggle()
-
+                                
                             } label: {
                                 Text( NSLocalizedString("fraud", comment: "") )
                             }
@@ -176,7 +203,6 @@ struct ChatRoom: View {
                                                 role: .destructive) {
                             self.showPopup.toggle()
                             userVM.blockUser(id: userID)
-                            self.presentationMode.wrappedValue.dismiss()
                         }
                     }
                 }
@@ -186,6 +212,6 @@ struct ChatRoom: View {
 
 struct ChatRoom_Previews: PreviewProvider {
     static var previews: some View {
-        ChatRoom(group: false, online: true, lastVisit: "", chatName: "Hunt Lounge Bar", userID: 1, chatID: 1, left: true)
+        ChatRoom(group: false, online: true, lastVisit: "", chatName: "Hunt Lounge Bar", userID: 1, chatID: 1, left: true, blocked: true, blockedByMe: false)
     }
 }

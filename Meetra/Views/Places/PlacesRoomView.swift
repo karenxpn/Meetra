@@ -50,7 +50,15 @@ struct PlacesRoomView: View {
                             }.padding(.top, 20)
                         }.background(
                             NavigationLink(isActive: $navigate, destination: {
-                                ChatRoom(group: true, online: true, lastVisit: "", chatName: room.chat.name, userID: 0, chatID: room.chat.id, left: room.chat.left)
+                                ChatRoom(group: true,
+                                         online: true,
+                                         lastVisit: "",
+                                         chatName: room.chat.name,
+                                         userID: 0,
+                                         chatID: room.chat.id,
+                                         left: room.chat.left,
+                                         blocked: false,
+                                         blockedByMe: false)
                             }, label: {
                                 EmptyView()
                             }).hidden()
