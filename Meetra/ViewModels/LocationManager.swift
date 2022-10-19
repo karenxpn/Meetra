@@ -75,7 +75,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         // Make sure the devices supports region monitoring.
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             // Register the region.
-            //            let maxDistance = manager.maximumRegionMonitoringDistance
             let region = CLCircularRegion(center: center,
                                           radius: 10, identifier: identifier)
             region.notifyOnEntry = true
@@ -86,54 +85,34 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        if let region = region as? CLCircularRegion {
-            let identifier = region.identifier
-            
-            if UIApplication.shared.applicationState == .active {
-                
-            } else {
-                
-                let body = "You left " + region.identifier
-                let notificationContent = UNMutableNotificationContent()
-                notificationContent.body = body
-                notificationContent.sound = .default
-                notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                let request = UNNotificationRequest(
-                    identifier: "location_change",
-                    content: notificationContent,
-                    trigger: trigger)
-                UNUserNotificationCenter.current().add(request) { error in
-                    if let error = error {
-                        print("Error: \(error)")
-                    }
-                }
+        if let region = region as? CLCircularRegion {            
+            if UIApplication.shared.applicationState != .active {
+                self.notification(body: "You left " + region.identifier)
             }
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         if let region = region as? CLCircularRegion {
-            let identifier = region.identifier
-            if UIApplication.shared.applicationState == .active {
-                
-            } else {
-                
-                let body = "You arrived at " + region.identifier
-                let notificationContent = UNMutableNotificationContent()
-                notificationContent.body = body
-                notificationContent.sound = .default
-                notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                let request = UNNotificationRequest(
-                    identifier: "location_change",
-                    content: notificationContent,
-                    trigger: trigger)
-                UNUserNotificationCenter.current().add(request) { error in
-                    if let error = error {
-                        print("Error: \(error)")
-                    }
-                }
+            if UIApplication.shared.applicationState != .active {
+                self.notification(body: "You entered" + region.identifier)
+            }
+        }
+    }
+    
+    func notification(body: String) {
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.body = body
+        notificationContent.sound = .default
+        notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(
+            identifier: "location_change",
+            content: notificationContent,
+            trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Error: \(error)")
             }
         }
     }
