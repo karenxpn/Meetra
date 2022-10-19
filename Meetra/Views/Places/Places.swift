@@ -24,7 +24,9 @@ struct Places: View {
                 
                 if placesVM.loading {
                     Loading()
-                } else if locationManager.status == "true" && locationManager.regionState == .inside {
+                } else if locationManager.status == "true" &&
+                            locationManager.regionState == .inside ||
+                            locationManager.regionState == nil {
                     
                     if placesVM.loading {
                         Loading()
@@ -88,10 +90,9 @@ struct Places: View {
                 }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                     getRoom()
                 }
-//                .modifier(NetworkReconnection(action: {
-//                    locationManager.sendLocation()
-//                    locationManager.getLocationResponse()
-//                }))
+                .modifier(NetworkReconnection(action: {
+                    getRoom()
+                }))
 
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
