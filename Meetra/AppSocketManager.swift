@@ -284,7 +284,8 @@ extension AppSocketManager: AppSocketManagerProtocol {
     func listenEvent<T> (event: String, response: T.Type, completion: @escaping(T) -> () ) where T : Codable {
         self.socket?.on(event) { (data, ack) in
             
-            print("event listening")
+            print("event listening: \(event)")
+            print(data)
             do {
                 if !data.isEmpty {
                     let data = data[0]

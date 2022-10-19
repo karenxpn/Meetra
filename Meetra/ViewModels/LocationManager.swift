@@ -42,8 +42,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func initLocation() {
         manager.delegate = self
-        manager.allowsBackgroundLocationUpdates = true
-        manager.showsBackgroundLocationIndicator = true
+        //        manager.allowsBackgroundLocationUpdates = true
+        //        manager.showsBackgroundLocationIndicator = true
+        manager.distanceFilter = 20
         manager.desiredAccuracy = kCLLocationAccuracyBest
         if status == "true" {
             self.startUpdating()
@@ -52,6 +53,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func startUpdating() {
         manager.startUpdatingLocation()
+        self.monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: -38.720590091698284, longitude: -66.0070948168), identifier: "some_identifier")
     }
     
     func stopUpdating() {
@@ -66,6 +68,74 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.first?.coordinate
+        print(location)
+    }
+    
+    func monitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String ) {
+        // Make sure the devices supports region monitoring.
+        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            // Register the region.
+            //            let maxDistance = manager.maximumRegionMonitoringDistance
+            let region = CLCircularRegion(center: center,
+                                          radius: 10, identifier: identifier)
+            region.notifyOnEntry = true
+            region.notifyOnExit = true
+            
+            manager.startMonitoring(for: region)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if let region = region as? CLCircularRegion {
+            let identifier = region.identifier
+            
+            if UIApplication.shared.applicationState == .active {
+                
+            } else {
+                
+                let body = "You left " + region.identifier
+                let notificationContent = UNMutableNotificationContent()
+                notificationContent.body = body
+                notificationContent.sound = .default
+                notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let request = UNNotificationRequest(
+                    identifier: "location_change",
+                    content: notificationContent,
+                    trigger: trigger)
+                UNUserNotificationCenter.current().add(request) { error in
+                    if let error = error {
+                        print("Error: \(error)")
+                    }
+                }
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        if let region = region as? CLCircularRegion {
+            let identifier = region.identifier
+            if UIApplication.shared.applicationState == .active {
+                
+            } else {
+                
+                let body = "You arrived at " + region.identifier
+                let notificationContent = UNMutableNotificationContent()
+                notificationContent.body = body
+                notificationContent.sound = .default
+                notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let request = UNNotificationRequest(
+                    identifier: "location_change",
+                    content: notificationContent,
+                    trigger: trigger)
+                UNUserNotificationCenter.current().add(request) { error in
+                    if let error = error {
+                        print("Error: \(error)")
+                    }
+                }
+            }
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
