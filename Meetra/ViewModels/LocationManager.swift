@@ -17,6 +17,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var navigate: Bool = false
     @Published var locationStatus: CLAuthorizationStatus?
     
+    @Published var regionState: CLRegionState?
+    
     @Published var lost_location_socket: Bool = false
     
     var socketManager: AppSocketManagerProtocol
@@ -42,9 +44,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func initLocation() {
         manager.delegate = self
-        //        manager.allowsBackgroundLocationUpdates = true
-        //        manager.showsBackgroundLocationIndicator = true
-        manager.distanceFilter = 20
         manager.desiredAccuracy = kCLLocationAccuracyBest
         if status == "true" {
             self.startUpdating()
@@ -80,8 +79,21 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.first?.coordinate
-        print(location)
+        let curLocationCoordinate = locations.first?.coordinate
+        if location == nil { location = curLocationCoordinate }
+        
+        if let curLocationCoordinate, let location {
+            let curLocation = CLLocation(latitude: curLocationCoordinate.latitude,
+                                         longitude: curLocationCoordinate.longitude)
+            let prevLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+            
+            if curLocation.distance(from: prevLocation) >= 30 {
+                self.location = curLocationCoordinate
+                print(location)
+            }
+        }
+        // calculate passed distance and send request
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
@@ -89,7 +101,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        print("Status for: \(region.identifier) is \(state.rawValue)")
+        
+        // check if the previous value of the region state is not the same -> send request
+        if self.regionState != state {
+            self.regionState = state
+            print("Status for: \(region.identifier) is \(state.rawValue)")
+            // send request here with region.identifier
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
