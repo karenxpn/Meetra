@@ -13,11 +13,7 @@ struct ContentView: View {
     @StateObject private var tabViewModel = TabViewModel()
     @StateObject private var networkVM = NetworkMonitor()
     @StateObject private var locationManager = LocationManager()
-    
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var seconds: Int = 0
-    
-    
+
     
     init() {
         let newAppearance = UINavigationBarAppearance()
@@ -55,8 +51,6 @@ struct ContentView: View {
 
         }.edgesIgnoringSafeArea(.bottom)
             .onAppear {
-                print(token)
-                self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                 ATTrackingManager.requestTrackingAuthorization { _ in
                 }
             }
@@ -64,13 +58,6 @@ struct ContentView: View {
                 if value {
                     AppSocketManager.shared.connectSocket() {
                         NotificationCenter.default.post(name: Notification.Name("network_reconnection_notification"), object: nil)
-                    }
-                }
-            }.onReceive(timer) { _ in
-                seconds += 1
-                if seconds % 180 == 0 {
-                    if locationManager.status == "true" {
-                        locationManager.sendLocation()
                     }
                 }
             }.onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in

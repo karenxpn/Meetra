@@ -10,8 +10,6 @@ import SocketIO
 import SwiftUI
 
 protocol AppSocketManagerProtocol {
-    func sendLocation( lat: CGFloat, lng: CGFloat)
-    func fetchLocationResponse(completion: @escaping (Bool) -> ())
     
     func sendTyping(chatID: Int, typing: Bool)
     func fetchTypingResponse(completion: @escaping (TypingResponse) -> ())
@@ -265,26 +263,11 @@ extension AppSocketManager: AppSocketManagerProtocol {
         }
     }
     
-    func fetchLocationResponse(completion: @escaping (Bool) -> ()) {
-        self.socket?.off("location")
-        self.socket?.on("location") { (data, ack) in
-            if let data = data[0] as? [String : Bool], let status = data["inside"] {
-                DispatchQueue.main.async {
-                    completion(status)
-                }
-            }
-        }
-    }
-    
-    func sendLocation( lat: CGFloat, lng: CGFloat) {
-        self.socket?.emit("location", ["lat" : lat,
-                                       "lng": lng])
-    }
-    
     func listenEvent<T> (event: String, response: T.Type, completion: @escaping(T) -> () ) where T : Codable {
         self.socket?.on(event) { (data, ack) in
             
-            print("event listening")
+            print("event listening: \(event)")
+            print(data)
             do {
                 if !data.isEmpty {
                     let data = data[0]
