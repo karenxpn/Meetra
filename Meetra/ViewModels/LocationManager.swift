@@ -85,6 +85,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
+    func stopMonitorRegion(region: RegionModel) {
+        manager.stopMonitoring(for: CLCircularRegion(center: CLLocationCoordinate2D(latitude: region.lat,
+                                                                                    longitude: region.lng),
+                                                     radius: region.radius,
+                                                     identifier: region.place_id))
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if location == nil {
             location = locations.first?.coordinate
@@ -135,13 +142,16 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             locationManager.fetchRegions(lat: location.latitude, lng: location.longitude)
                 .sink { response in
                     if response.error == nil {
-                        self.regions = response.value!.regions
-                        print(self.regions)
-                        self.regions.forEach { region in
-                            self.monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: region.lat, longitude: region.lng),
-                                                         radius: region.radius,
-                                                         identifier: region.place_id)
+                        if let region = self.regions.first {
+                            self.stopMonitorRegion(region: region)
                         }
+                        
+                        self.regions = response.value!.regions
+                        let region = self.regions[0]
+                        self.monitorRegionAtLocation(center: CLLocationCoordinate2D(latitude: region.lat,
+                                                                                    longitude: region.lng),
+                                                     radius: region.radius,
+                                                     identifier: region.place_id)
                     }
                 }.store(in: &cancellableSet)
         }

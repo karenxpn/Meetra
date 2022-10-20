@@ -22,11 +22,11 @@ struct Places: View {
         NavigationView {
             ZStack {
                 
-                if placesVM.loading {
+                if placesVM.loading ||
+                    locationManager.regionState == nil {
                     Loading()
                 } else if locationManager.status == "true" &&
-                            locationManager.regionState == .inside ||
-                            locationManager.regionState == nil {
+                            locationManager.regionState == .inside {
                     
                     if placesVM.loading {
                         Loading()
