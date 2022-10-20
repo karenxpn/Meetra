@@ -88,11 +88,11 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if location == nil {
             location = locations.first?.coordinate
-            print(location)
+//            print(location)
             getRegions()
         } else if regionState == .outside {
             location = locations.first?.coordinate
-            print(location)
+//            print(location)
             getRegions()
         }
 
@@ -154,40 +154,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     }
     
-    /// fuck this shit
-    
-//    func getLocationResponse() {
-//        socketManager.fetchLocationResponse { response in
-////            self.lost_location_socket = !response
-//            print("got response")
-//        }
-//    }
-//
-//    func sendLocation() {
-//        print("sending location")
-//        if location != nil {
-//            socketManager.sendLocation(lat: self.location!.latitude, lng: self.location!.longitude)
-//        }
-//    }
-    
     func sendOnline(online: Bool) {
         socketManager.sendOnlineUser(online: online)
     }
-    
-//    func connectSocket(completion: @escaping(Any?) -> ()) {
-//        self.initLocation()
-//        if status == "true" {
-//            socketManager.connectSocket {
-//                self.getLocationResponse()
-//                self.sendLocation()
-//                DispatchQueue.main.async {
-//                    completion(true)
-//                }
-//            }
-//        } else {
-//            DispatchQueue.main.async {
-//                completion(nil)
-//            }
-//        }
-//    }
 }
