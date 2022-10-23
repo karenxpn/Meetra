@@ -23,7 +23,7 @@ struct Places: View {
             ZStack {
                 
                 if placesVM.loading ||
-                    locationManager.regionState == nil {
+                    (locationManager.regionState == nil && locationManager.status == "true") {
                     Loading()
                 } else if locationManager.status == "true" &&
                             locationManager.regionState == .inside {

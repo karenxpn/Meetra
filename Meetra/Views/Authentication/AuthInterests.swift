@@ -9,7 +9,7 @@ import SwiftUI
 import TagLayoutView
 
 struct AuthInterests: View {
-    @ObservedObject var authVM = AuthViewModel()
+    @StateObject var authVM = AuthViewModel()
     @StateObject var locationManager = LocationManager()
     @State var model: RegistrationRequest
     
@@ -77,17 +77,12 @@ struct AuthInterests: View {
                     model.interests = authVM.selected_interests
                     authVM.confirmSignUp(model: model)
                 }.background(
-                    Group {
-                        if locationManager.status == "request" {
-                            NavigationLink(destination: AuthLocationPermission(), isActive: $authVM.navigate, label: {
-                                EmptyView()
-                            }).hidden()
-                        } else {
-                            NavigationLink(destination: AuthNotificationPermission(), isActive: $authVM.navigate, label: {
-                                EmptyView()
-                            }).hidden()
-                        }
-                    }
+                    NavigationLink(destination: locationManager.status == "request" ?
+                                   AnyView(AuthLocationPermission()) :
+                                    AnyView(AuthNotificationPermission()),
+                                   isActive: $authVM.navigate, label: {
+                                       EmptyView()
+                                   }).hidden()
                 )
                 
             }.frame(
@@ -100,8 +95,9 @@ struct AuthInterests: View {
             .padding(30)
             
             AuthProgress(page: 5)
-        }.task(priority: .high) {
+        }.onAppear {
             authVM.getInterests()
+            locationManager.initLocation()
         }.alert(isPresented: $authVM.showAlert) {
             Alert(title: Text( "Error" ), message: Text( authVM.alertMessage ), dismissButton: .default(Text( "OK" )))
         }.navigationBarTitle("", displayMode: .inline)
