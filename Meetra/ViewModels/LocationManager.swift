@@ -30,6 +30,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
          locationManager: LocationServiceProtocol = LocationService.shared) {
         self.socketManager = socketManager
         self.locationManager = locationManager
+        self.locationStatus = self.manager.authorizationStatus
+
         super.init()
     }
     
@@ -52,6 +54,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.distanceFilter = 30
+
+        print(status)
+        print(locationStatus)
+        print(locationStatus.debugDescription)
         if status == "true" {
             self.startUpdating()
         }
