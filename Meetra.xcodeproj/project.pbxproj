@@ -53,6 +53,7 @@
 		FF4C980827FF124E009CB60D /* ProfileSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980727FF124E009CB60D /* ProfileSpecs.swift */; };
 		FF4C980A27FF1F41009CB60D /* EditInterests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980927FF1F41009CB60D /* EditInterests.swift */; };
 		FF4C980E27FF4A10009CB60D /* EditOccupation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C980D27FF4A10009CB60D /* EditOccupation.swift */; };
+		FF4F9C8C2906B90300BDD053 /* EnterLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4F9C8B2906B90300BDD053 /* EnterLocation.swift */; };
 		FF5285592816B8EC004D2AB1 /* Chats.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5285582816B8EC004D2AB1 /* Chats.swift */; };
 		FF52855B2816BE0A004D2AB1 /* Interlocutors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52855A2816BE0A004D2AB1 /* Interlocutors.swift */; };
 		FF52855F2816C92E004D2AB1 /* InterlocutorsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF52855E2816C92E004D2AB1 /* InterlocutorsListModel.swift */; };
@@ -277,6 +278,7 @@
 		FF4C980727FF124E009CB60D /* ProfileSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSpecs.swift; sourceTree = "<group>"; };
 		FF4C980927FF1F41009CB60D /* EditInterests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInterests.swift; sourceTree = "<group>"; };
 		FF4C980D27FF4A10009CB60D /* EditOccupation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOccupation.swift; sourceTree = "<group>"; };
+		FF4F9C8B2906B90300BDD053 /* EnterLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterLocation.swift; sourceTree = "<group>"; };
 		FF5285582816B8EC004D2AB1 /* Chats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chats.swift; sourceTree = "<group>"; };
 		FF52855A2816BE0A004D2AB1 /* Interlocutors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interlocutors.swift; sourceTree = "<group>"; };
 		FF52855E2816C92E004D2AB1 /* InterlocutorsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterlocutorsListModel.swift; sourceTree = "<group>"; };
@@ -861,6 +863,7 @@
 				FFB6D24627EA0E73004FD5D3 /* FilterUsers.swift */,
 				FFB6D24827EA10DC004FD5D3 /* AgeFilter.swift */,
 				FFB6D24A27EA155D004FD5D3 /* CustomSegmentPicker.swift */,
+				FF4F9C8B2906B90300BDD053 /* EnterLocation.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -1184,6 +1187,7 @@
 				FF7D0D1A27CFE46700A828C7 /* AlertViewModel.swift in Sources */,
 				FF186D912900651200A826EA /* LocationService.swift in Sources */,
 				FFF6468427D265FB0022EF60 /* ProfileImageBox.swift in Sources */,
+				FF4F9C8C2906B90300BDD053 /* EnterLocation.swift in Sources */,
 				FFD6373727E3D4DE00F91AB6 /* PlacesViewModel.swift in Sources */,
 				FFD6372927E2419300F91AB6 /* AppDelegate.swift in Sources */,
 				FF52856F281761CB004D2AB1 /* ChatRoom.swift in Sources */,
@@ -1476,7 +1480,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Meetra/Meetra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
 				DEVELOPMENT_TEAM = PAUM7SK7SC;
 				ENABLE_PREVIEWS = YES;
@@ -1519,7 +1523,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Meetra/Meetra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
 				DEVELOPMENT_TEAM = PAUM7SK7SC;
 				ENABLE_PREVIEWS = YES;

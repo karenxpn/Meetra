@@ -102,7 +102,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 //            print(location)
             getRegions()
         }
-
     }
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {

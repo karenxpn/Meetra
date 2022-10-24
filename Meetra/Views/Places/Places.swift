@@ -13,6 +13,9 @@ struct Places: View {
     @EnvironmentObject var locationManager: LocationManager
     @StateObject var placesVM = PlacesViewModel()
     
+    @State private var alert: Bool = false
+    @State private var enter: Bool = false
+    
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
     
@@ -22,27 +25,30 @@ struct Places: View {
         NavigationView {
             ZStack {
                 
-                if placesVM.loading ||
-                    (locationManager.regionState == nil && locationManager.status == "true") {
-                    Loading()
-                } else if locationManager.status == "true" &&
-                            locationManager.regionState == .inside {
-                    
-                    if placesVM.loading {
-                        Loading()
-                    } else {
-                        VStack {
-                            
-                            if placesVM.placeRoom != nil {
-                                PlacesRoomView(room: placesVM.placeRoom!)
-                            }
-                            
-                        }
-                    }
-                    
+                if !enter {
+                    EnterLocation(alert: $alert)
                 } else {
-                    LostLocationAlert()
-                        .environmentObject(locationManager)
+                    if placesVM.loading ||
+                        (locationManager.regionState == nil && locationManager.status == "true") {
+                        Loading()
+                    } else if locationManager.status == "true" &&
+                                locationManager.regionState == .inside {
+                        
+                        if placesVM.loading {
+                            Loading()
+                        } else {
+                            VStack {
+                                
+                                if placesVM.placeRoom != nil {
+                                    PlacesRoomView(room: placesVM.placeRoom!)
+                                }
+                            }
+                        }
+                        
+                    } else {
+                        LostLocationAlert()
+                            .environmentObject(locationManager)
+                    }
                 }
                 
                 FilterUsers(present: $showFilter, gender: $placesVM.gender, status: $placesVM.status, range: $placesVM.ageRange)
@@ -65,6 +71,17 @@ struct Places: View {
             .alert(isPresented: $placesVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
             })
+            .alert(isPresented: $alert) {
+                Alert(title: Text(NSLocalizedString("enterLocation", comment: "")),
+                      message: Text(NSLocalizedString("enterLocationTerms", comment: "")),
+                      primaryButton: .default(Text(NSLocalizedString("accept", comment: "")), action: {
+                    enter = true
+                    getRoom()
+                }),
+                      secondaryButton: .default(Text(NSLocalizedString("reject", comment: "")), action: {
+                    enter = false
+                }))
+            }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading: Text("Meetra")
                 .kerning(0.56)
@@ -80,9 +97,7 @@ struct Places: View {
                     
                     NotificationButton()
                 }).onAppear {
-                    getRoom()
                     AppAnalytics().logScreenEvent(viewName: "\(Places.self)")
-
                 }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "place")
@@ -96,7 +111,7 @@ struct Places: View {
 
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
-                if value == "true" {
+                if value == "true" && enter {
                     getRoom()
                 } else {
                     locationManager.stopUpdating()

@@ -20,43 +20,50 @@ struct Swipes: View {
     
     @State private var firstAppearance: Bool = true
     
+    @State private var alert: Bool = false
+    @State private var enter: Bool = false
+    
     var body: some View {
         NavigationView {
             ZStack {
                 
-                if placesVM.loading {
-                    Loading()
+                if !enter {
+                    EnterLocation(alert: $alert)
                 } else {
-                    
-                    VStack( alignment: .leading, spacing: 20 ) {
+                    if placesVM.loading {
+                        Loading()
+                    } else {
                         
-                        HStack( spacing: 20 ) {
-                            ForEach(sections, id: \.self) { section in
-                                Button {
-                                    selection = section
-                                    
-                                } label: {
-                                    Text( section )
-                                        .foregroundColor(selection == section ? .black : .gray)
-                                        .font(.custom(selection == section ? "Inter-SemiBold" :"Inter-Regular", size: 16))
-                                        .padding(.top)
+                        VStack( alignment: .leading, spacing: 20 ) {
+                            
+                            HStack( spacing: 20 ) {
+                                ForEach(sections, id: \.self) { section in
+                                    Button {
+                                        selection = section
+                                        
+                                    } label: {
+                                        Text( section )
+                                            .foregroundColor(selection == section ? .black : .gray)
+                                            .font(.custom(selection == section ? "Inter-SemiBold" :"Inter-Regular", size: 16))
+                                            .padding(.top)
+                                    }
                                 }
+                            }.padding(.leading, 25)
+                                .zIndex(10)
+                            
+                            
+                            if selection == "Анкеты" {
+                                SwipeCards()
+                                    .environmentObject(placesVM)
+                                    .environmentObject(locationManager)
+                            } else if selection == "Заявки" {
+                                FriendRequestList()
+                            } else {
+                                FavouritesList()
                             }
-                        }.padding(.leading, 25)
-                            .zIndex(10)
-                        
-                        
-                        if selection == "Анкеты" {
-                            SwipeCards()
-                                .environmentObject(placesVM)
-                                .environmentObject(locationManager)
-                        } else if selection == "Заявки" {
-                            FriendRequestList()
-                        } else {
-                            FavouritesList()
+                            
+                            Spacer()
                         }
-                        
-                        Spacer()
                     }
                 }
                 
@@ -78,7 +85,17 @@ struct Swipes: View {
                 
             }.alert(isPresented: $placesVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
-            })
+            }).alert(isPresented: $alert) {
+                Alert(title: Text(NSLocalizedString("enterLocation", comment: "")),
+                      message: Text(NSLocalizedString("enterLocationTerms", comment: "")),
+                      primaryButton: .default(Text(NSLocalizedString("accept", comment: "")), action: {
+                    enter = true
+                    getSwipes()
+                }),
+                      secondaryButton: .default(Text(NSLocalizedString("reject", comment: "")), action: {
+                    enter = false
+                }))
+            }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading: Text("Meetra")
                 .kerning(0.56)
@@ -94,7 +111,7 @@ struct Swipes: View {
                     
                     NotificationButton()
                 }).onAppear {
-                    connectSocketAndGetSwipesForFirstAppearance()
+//                    getSwipesForFirstAppearance()
                 }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "swipe")
@@ -110,22 +127,18 @@ struct Swipes: View {
                 }))
         }.navigationViewStyle(StackNavigationViewStyle())
             .onChange(of: locationManager.status) { value in
-                if value == "true" {
-                    connectSocketAndGetSwipes()
+                if value == "true" && enter {
+                    getSwipes()
                 } else {
                     locationManager.stopUpdating()
                 }
             }
     }
     
-    func connectSocketAndGetSwipes() {
-        placesVM.loading = true
-        placesVM.getSwipes()
-    }
-    
-    func connectSocketAndGetSwipesForFirstAppearance() {
+    func getSwipes() {
         if firstAppearance {
             placesVM.loading = true
+            locationManager.initLocation()
             placesVM.getSwipes()
         } else {
             placesVM.loading = false
