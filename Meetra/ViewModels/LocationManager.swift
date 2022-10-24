@@ -55,9 +55,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.distanceFilter = 30
 
-        print(status)
-        print(locationStatus)
-        print(locationStatus.debugDescription)
         if status == "true" {
             self.startUpdating()
         }

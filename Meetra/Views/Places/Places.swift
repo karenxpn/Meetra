@@ -11,10 +11,11 @@ import SwiftUIX
 struct Places: View {
     
     @EnvironmentObject var locationManager: LocationManager
+    @Binding var enter: Bool
+
     @StateObject var placesVM = PlacesViewModel()
     
     @State private var alert: Bool = false
-    @State private var enter: Bool = false
     
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
@@ -98,6 +99,9 @@ struct Places: View {
                     NotificationButton()
                 }).onAppear {
                     AppAnalytics().logScreenEvent(viewName: "\(Places.self)")
+                    if enter {
+                        getRoom()
+                    }
                 }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "place")
@@ -128,6 +132,6 @@ struct Places: View {
 
 struct Places_Previews: PreviewProvider {
     static var previews: some View {
-        Places()
+        Places(enter: .constant(false))
     }
 }

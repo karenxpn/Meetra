@@ -13,7 +13,8 @@ struct ContentView: View {
     @StateObject private var tabViewModel = TabViewModel()
     @StateObject private var networkVM = NetworkMonitor()
     @StateObject private var locationManager = LocationManager()
-
+    
+    @State private var enter: Bool = false
     
     init() {
         let newAppearance = UINavigationBarAppearance()
@@ -30,11 +31,11 @@ struct ContentView: View {
             VStack {
 
                 if tabViewModel.currentTab == 0 {
-                    Places()
+                    Places(enter: $enter)
                         .environmentObject(locationManager)
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 1 {
-                    Swipes()
+                    Swipes(enter: $enter)
                         .environmentObject(locationManager)
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 2 {

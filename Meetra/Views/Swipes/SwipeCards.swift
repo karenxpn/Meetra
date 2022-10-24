@@ -12,7 +12,10 @@ struct SwipeCards: View {
     @EnvironmentObject var locationManager: LocationManager
     
     var body: some View {
-        if locationManager.status == "true" && locationManager.regionState == .inside {
+        if placesVM.loading ||
+            (locationManager.regionState == nil && locationManager.status == "true") {
+            Loading()
+        } else if locationManager.status == "true" && locationManager.regionState == .inside {
             ZStack( alignment: .top) {
                 ForEach(placesVM.users) { user in
                     SingleSwipeUser(user: user)

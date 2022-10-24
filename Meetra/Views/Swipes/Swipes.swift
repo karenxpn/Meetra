@@ -21,7 +21,7 @@ struct Swipes: View {
     @State private var firstAppearance: Bool = true
     
     @State private var alert: Bool = false
-    @State private var enter: Bool = false
+    @Binding var enter: Bool
     
     var body: some View {
         NavigationView {
@@ -111,7 +111,9 @@ struct Swipes: View {
                     
                     NotificationButton()
                 }).onAppear {
-//                    getSwipesForFirstAppearance()
+                    if enter {
+                        getSwipes()
+                    }
                 }.onChange(of: showFilter) { value in
                     if !value {
                         placesVM.storeFilterValues(location: "swipe")
@@ -136,18 +138,14 @@ struct Swipes: View {
     }
     
     func getSwipes() {
-        if firstAppearance {
-            placesVM.loading = true
-            locationManager.initLocation()
-            placesVM.getSwipes()
-        } else {
-            placesVM.loading = false
-        }
+        placesVM.loading = true
+        locationManager.initLocation()
+        placesVM.getSwipes()
     }
 }
 
 struct Swipes_Previews: PreviewProvider {
     static var previews: some View {
-        Swipes()
+        Swipes(enter: .constant(false))
     }
 }
