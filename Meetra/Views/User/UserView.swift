@@ -47,7 +47,6 @@ struct UserView: View {
             
         }.task {
             userVM.getUser(userID: userID)
-            print("task")
             AppAnalytics().logScreenEvent(viewName: "\(UserView.self)")
         }.alert(isPresented: $userVM.showAlert, content: {
             Alert(title: Text("Error"), message: Text(userVM.alertMessage), dismissButton: .default(Text("Got it!")))
@@ -100,10 +99,12 @@ struct UserView: View {
                                         role: .destructive) {
                     self.showDialog.toggle()
                     userVM.blockUser(id: userID)
-                    self.presentationMode.wrappedValue.dismiss()
+//                    self.presentationMode.wrappedValue.dismiss()
                 }
             }
-        })
+        }).onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "block_user"))) { _ in
+            self.presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 

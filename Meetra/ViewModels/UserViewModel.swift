@@ -167,6 +167,7 @@ class UserViewModel: AlertViewModel, ObservableObject {
     func blockUser( id: Int ) {
         dataManager.blockUser(id: id)
             .sink { _ in
+                NotificationCenter.default.post(name: Notification.Name("block_user"), object: nil)
             }.store(in: &cancellableSet)
     }
     
