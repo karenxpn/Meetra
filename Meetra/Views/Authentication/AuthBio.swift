@@ -31,6 +31,7 @@ struct AuthBio: View {
                         .onAppear {
                             UITextView.appearance().backgroundColor = .clear
                         }.cornerRadius(10)
+                        .autocorrectionDisabled()
                     
                     if bio.isEmpty {
                         
