@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
+        
         completionHandler( .newData )
         let state = application.applicationState
         switch state {
@@ -32,19 +32,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         default:
             break
         }
-
-//        if let dict = userInfo.first?.value as? [String : Any] {
-//            if let alert = dict["alert"] as? [String : Any] {
-//                if let action = alert["action"] as? String {
-//                    NotificationCenter.default.post(name: Notification.Name("notificationFetched"), object: ["action" : action])
-//                }
-//            }
-//        }
+        
+        //        if let dict = userInfo.first?.value as? [String : Any] {
+        //            if let alert = dict["alert"] as? [String : Any] {
+        //                if let action = alert["action"] as? String {
+        //                    NotificationCenter.default.post(name: Notification.Name("notificationFetched"), object: ["action" : action])
+        //                }
+        //            }
+        //        }
     }
     
     // foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.badge, .list, .sound])
+        completionHandler([.banner, .sound])
     }
     
     // background // this is called when user taps on the notification
@@ -54,8 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-      FirebaseApp.configure()
-
-      return true
+        FirebaseApp.configure()
+        UNUserNotificationCenter.current().delegate = self
+        return true
     }
 }
