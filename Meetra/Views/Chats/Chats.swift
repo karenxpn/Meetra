@@ -41,6 +41,7 @@ struct Chats: View {
                                 .padding(.leading, 26)
                             
                             Interlocutors(interlocutors: chatVM.interlocutors)
+                                .environmentObject(chatVM)
                             
                         }.padding(.vertical, 18)
                             .listRowSeparator(.hidden)

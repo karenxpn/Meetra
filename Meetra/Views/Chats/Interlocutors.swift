@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Interlocutors: View {
-    
+    @EnvironmentObject var chatVM: ChatViewModel
     let interlocutors: [InterlocutorsViewModel]
     
     var body: some View {
@@ -16,6 +16,15 @@ struct Interlocutors: View {
             LazyHStack( spacing: 14 ) {
                 ForEach( interlocutors, id: \.id ) { interlocutor in
                     InterlocutorsCell(interlocutor: interlocutor)
+                        .onAppear(perform: {
+                            if interlocutor.id == chatVM.interlocutors.last?.id && !chatVM.loadingInterlocutors {
+                                chatVM.getInterlocutorList()
+                            }
+                        })
+                }
+                
+                if chatVM.loadingInterlocutors {
+                    ProgressView()
                 }
             }.padding(.horizontal, 26)
         }

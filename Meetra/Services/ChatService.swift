@@ -13,7 +13,7 @@ import AVFoundation
 
 protocol ChatServiceProtocol {
     func fetchChatList(page: Int, query: String) -> AnyPublisher<DataResponse<ChatListModel, NetworkError>, Never>
-    func fetchInterlocutors() -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never>
+    func fetchInterlocutors(token: String, skip: Int, take: Int) -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never>
     
     func changeChatNotificationStatus(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
     func deleteChat(id: Int) -> AnyPublisher<DataResponse<GlobalResponse, NetworkError>, Never>
@@ -224,8 +224,25 @@ extension ChatService: ChatServiceProtocol {
         
     }
     
-    func fetchInterlocutors() -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never> {
+    func fetchInterlocutors(token: String, skip: Int, take: Int) -> AnyPublisher<DataResponse<InterlocutorsListModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)chats/interlocutors")!
-        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: InterlocutorsListModel.self)
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(token)"]
+
+        return AF.request(url,
+                          method: .get,
+                          parameters: ["skip": skip,
+                                       "take": take],
+                          encoding: URLEncoding.default,
+                          headers: headers)
+            .validate()
+            .publishDecodable(type: InterlocutorsListModel.self)
+            .map { response in
+                response.mapError { error in
+                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BackendError.self, from: $0)}
+                    return NetworkError(initialError: error, backendError: backendError)
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }
