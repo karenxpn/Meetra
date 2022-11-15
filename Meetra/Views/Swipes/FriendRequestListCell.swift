@@ -8,47 +8,60 @@
 import SwiftUI
 
 struct FriendRequestListCell: View {
+    @State private var navigate: Bool = false
     @EnvironmentObject var userVM: UserViewModel
     let user: FriendRequestModel
     
     var body: some View {
         HStack( alignment: .top, spacing: 20) {
-            ImageHelper(image: user.image, contentMode: .fill)
-                .frame(width: 100, height: 100)
-                .clipShape(Circle())
             
-            VStack( alignment: .leading) {
-                Text( "\(user.name), \(user.age)" )
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-Medium", size: 18))
-                
-                if user.message.isEmpty {
-                    HStack {
-                        if !user.school.isEmpty {
-                            Image("user_school_icon")
-                            Text( user.school )
-                                .foregroundColor(.black)
-                                .font(.custom("Inter-Regular", size: 12))
-                        }
+            Button(action: {
+                navigate.toggle()
+            }, label: {
+                HStack {
+                    ImageHelper(image: user.image, contentMode: .fill)
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                    
+                    VStack( alignment: .leading) {
+                        Text( "\(user.name), \(user.age)" )
+                            .foregroundColor(.black)
+                            .font(.custom("Inter-Medium", size: 18))
                         
-                        if !user.location.isEmpty {
-                            Image("user_location_icon")
-                            Text( user.location )
-                                .foregroundColor(.black)
+                        if user.message.isEmpty {
+                            HStack {
+                                if !user.school.isEmpty {
+                                    Image("user_school_icon")
+                                    Text( user.school )
+                                        .foregroundColor(.black)
+                                        .font(.custom("Inter-Regular", size: 12))
+                                }
+                                
+                                if !user.location.isEmpty {
+                                    Image("user_location_icon")
+                                    Text( user.location )
+                                        .foregroundColor(.black)
+                                        .font(.custom("Inter-Regular", size: 12))
+                                }
+                            }
+                        } else {
+                            Text( user.message )
                                 .font(.custom("Inter-Regular", size: 12))
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(AppColors.accentColor)
+                                .cornerRadius([.topTrailing, .bottomTrailing, .bottomLeading], 20)
+                                .lineLimit(2)
                         }
-                    }
-                } else {
-                    Text( user.message )
-                        .font(.custom("Inter-Regular", size: 12))
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(AppColors.accentColor)
-                        .cornerRadius([.topTrailing, .bottomTrailing, .bottomLeading], 20)
-                        .lineLimit(2)
+                    }.frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
                 }
-            }            .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
-
+            }).background(
+                NavigationLink(isActive: $navigate, destination: {
+                    UserView(userID: user.id)
+                }, label: {
+                    EmptyView()
+                }).hidden()
+            )
             
             VStack {
                 Button {
