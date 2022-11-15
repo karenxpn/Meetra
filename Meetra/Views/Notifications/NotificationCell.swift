@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NotificationCell: View {
+    @State private var navigate: Bool = false
     @State private var navigateChat: Bool = false
     @State private var navigateRequests: Bool = false
     let notification: NotificationViewModel
@@ -19,45 +20,54 @@ struct NotificationCell: View {
                 .frame(width: 53, height: 53)
                 .clipShape(Circle())
             
-            LazyVStack(alignment: .leading, spacing: 4) {
-                Text( "\(notification.user.name), \(notification.user.age)" )
-                    .foregroundColor(AppColors.accentColor)
-                    .font(.custom("Inter-Regular", size: 12))
-                    .lineLimit(1)
+            Button {
+                navigate.toggle()
+            } label: {
+                LazyVStack(alignment: .leading, spacing: 4) {
+                    Text( "\(notification.user.name), \(notification.user.age)" )
+                        .foregroundColor(AppColors.accentColor)
+                        .font(.custom("Inter-Regular", size: 12))
+                        .lineLimit(1)
+                    
+                    if notification.type == "send-message" {
+                        Text( NSLocalizedString("wrote", comment: "") )
+                            .kerning(0.24)
+                            .foregroundColor(.black)
+                            .font(.custom("Inter-Regular", size: 12)) +
+                        Text( "message" )
+                            .kerning(0.24)
+                            .foregroundColor(AppColors.accentColor)
+                            .font(.custom("Inter-Regular", size: 12))
+                    } else if notification.type == "message-reaction" {
+                        Text( NSLocalizedString("left", comment: "") )
+                            .kerning(0.24)
+                            .foregroundColor(.black)
+                            .font(.custom("Inter-Regular", size: 12)) +
+                        Text( "reactedToMessage" )
+                            .kerning(0.24)
+                            .foregroundColor(AppColors.accentColor)
+                            .font(.custom("Inter-Regular", size: 12))
+                    } else {
+                        Text( NSLocalizedString("sent", comment: "") )
+                            .kerning(0.24)
+                            .foregroundColor(.black)
+                            .font(.custom("Inter-Regular", size: 12)) +
+                        Text( "friendRequest" )
+                            .kerning(0.24)
+                            .foregroundColor(AppColors.accentColor)
+                            .font(.custom("Inter-Regular", size: 12))
+                    }
+                    
+                    Text( notification.createdAt == NSLocalizedString("nowOnline", comment: "") ? NSLocalizedString("now", comment: "") : notification.createdAt )
+                        .foregroundColor(.gray)
+                        .font(.custom("Inter-Regular", size: 12))
+                }.frame(width: .greedy)
                 
-                if notification.type == "send-message" {
-                    Text( NSLocalizedString("wrote", comment: "") )
-                        .kerning(0.24)
-                        .foregroundColor(.black)
-                        .font(.custom("Inter-Regular", size: 12)) +
-                    Text( "message" )
-                        .kerning(0.24)
-                        .foregroundColor(AppColors.accentColor)
-                        .font(.custom("Inter-Regular", size: 12))
-                } else if notification.type == "message-reaction" {
-                    Text( NSLocalizedString("left", comment: "") )
-                        .kerning(0.24)
-                        .foregroundColor(.black)
-                        .font(.custom("Inter-Regular", size: 12)) +
-                    Text( "reactedToMessage" )
-                        .kerning(0.24)
-                        .foregroundColor(AppColors.accentColor)
-                        .font(.custom("Inter-Regular", size: 12))
-                } else {
-                    Text( NSLocalizedString("sent", comment: "") )
-                        .kerning(0.24)
-                        .foregroundColor(.black)
-                        .font(.custom("Inter-Regular", size: 12)) +
-                    Text( "friendRequest" )
-                        .kerning(0.24)
-                        .foregroundColor(AppColors.accentColor)
-                        .font(.custom("Inter-Regular", size: 12))
-                }
-                
-                Text( notification.createdAt == NSLocalizedString("nowOnline", comment: "") ? NSLocalizedString("now", comment: "") : notification.createdAt )
-                    .foregroundColor(.gray)
-                    .font(.custom("Inter-Regular", size: 12))
-            }.frame(width: .greedy)
+            }.background(
+                NavigationLink(destination: UserView(userID: notification.user.id), isActive: $navigate, label: {
+                    EmptyView()
+                }).hidden()
+            )
             
             Button {
                 if notification.type == "friend-request" {

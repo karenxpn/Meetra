@@ -10,6 +10,7 @@ import Combine
 import SwiftUI
 
 class ChatViewModel: AlertViewModel, ObservableObject {
+    @AppStorage("token") private var token: String = ""
     @AppStorage("userId") private var userID: Int = 0
     @Published var loading: Bool = false
     @Published var showAlert: Bool = false
@@ -20,6 +21,7 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     @Published var interlocutors = [InterlocutorsViewModel]()
     
     @Published var chatPage: Int = 1
+    @Published var loadingInterlocutors: Bool = false
     
     @Published var showSearchField: Bool = false
     @Published var search: String = ""
@@ -57,7 +59,8 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     func getChatScreen() {
         loading = true
         chatPage = 1
-        Publishers.Zip(dataManager.fetchChatList(page: 1, query: ""), dataManager.fetchInterlocutors())
+        Publishers.Zip(dataManager.fetchChatList(page: 1, query: ""),
+                       dataManager.fetchInterlocutors(token: token, skip: interlocutors.count, take: 10))
             .sink { chats, interlocutors in
                 self.loading = false
                 self.loaded = true
@@ -76,6 +79,18 @@ class ChatViewModel: AlertViewModel, ObservableObject {
                 
                 if interlocutors.error == nil {
                     self.interlocutors = interlocutors.value!.interlocutors.map(InterlocutorsViewModel.init)
+                    self.getInterlocutorList()
+                }
+            }.store(in: &cancellableSet)
+    }
+    
+    func getInterlocutorList() {
+        loadingInterlocutors = true
+        dataManager.fetchInterlocutors(token: token, skip: interlocutors.count, take: 10)
+            .sink { response in
+                self.loadingInterlocutors = false
+                if response.error == nil {
+                    self.interlocutors.append(contentsOf: response.value!.interlocutors.map(InterlocutorsViewModel.init))
                 }
             }.store(in: &cancellableSet)
     }
