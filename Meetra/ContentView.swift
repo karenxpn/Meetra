@@ -13,7 +13,7 @@ struct ContentView: View {
     @StateObject private var tabViewModel = TabViewModel()
     @StateObject private var networkVM = NetworkMonitor()
     @StateObject private var locationManager = LocationManager()
-    
+        
     @State private var enter: Bool = false
     
     init() {
@@ -49,6 +49,23 @@ struct ContentView: View {
 
             CustomTabBar()
                 .environmentObject(tabViewModel)
+            
+                PushNotification(notification: tabViewModel.notification)
+                    .offset(y: tabViewModel.notificationOffset)
+                    .animation(.interpolatingSpring(mass: 1.0, stiffness: 100.0, damping: 10, initialVelocity: 0), value: tabViewModel.notificationOffset)
+                    .gesture(DragGesture()
+                        .onChanged({ gesture in
+                            if gesture.translation.height < 0 {
+                                tabViewModel.notificationOffset = gesture.translation.height
+                            }
+                        })
+                        .onEnded({ gesture in
+                            if gesture.translation.height < -40 {
+                                tabViewModel.notificationOffset = -UIScreen.main.bounds.height
+                                tabViewModel.notification = nil
+                            }
+                        })
+                    )
 
         }.edgesIgnoringSafeArea(.bottom)
             .onAppear {

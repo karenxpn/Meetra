@@ -9,8 +9,8 @@ import SwiftUI
 
 @main
 struct MeetraApp: App {
-    
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var notificationVM = NotificationsViewModel()
+    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     @Environment(\.scenePhase) private var phase
     let appSocketManager = AppSocketManager.shared
     

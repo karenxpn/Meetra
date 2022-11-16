@@ -59,6 +59,7 @@ class ChatViewModel: AlertViewModel, ObservableObject {
     func getChatScreen() {
         loading = true
         chatPage = 1
+        interlocutors.removeAll(keepingCapacity: false)
         Publishers.Zip(dataManager.fetchChatList(page: 1, query: ""),
                        dataManager.fetchInterlocutors(token: token, skip: interlocutors.count, take: 10))
             .sink { chats, interlocutors in

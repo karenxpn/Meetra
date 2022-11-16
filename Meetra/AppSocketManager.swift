@@ -41,6 +41,8 @@ protocol AppSocketManagerProtocol {
     
     func disconnectSocket()
     func connectSocket(completion: @escaping() -> ())
+    
+    func fetchNotification(userID: Int, completion: @escaping(PushNotificationModel) -> ())
 }
 
 class AppSocketManager {
@@ -54,6 +56,15 @@ class AppSocketManager {
 }
 
 extension AppSocketManager: AppSocketManagerProtocol {
+    func fetchNotification(userID: Int, completion: @escaping (PushNotificationModel) -> ()) {
+        self.socket?.off("notification-\(userID)")
+        listenEvent(event: "notification-\(userID)", response: PushNotificationModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
+            }
+        }
+    }
+    
     func sendRead(messageID: Int, completion: @escaping () -> ()) {
         self.socket?.emit("read-message", ["messageId": messageID])
     }

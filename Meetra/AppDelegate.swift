@@ -8,11 +8,29 @@
 import Foundation
 import SwiftUI
 import FirebaseCore
+import UserNotifications
 
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate {
     
     @ObservedObject var notificationsVM = NotificationsViewModel()
     
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        UNUserNotificationCenter.current().delegate = self
+        FirebaseApp.configure()
+        notificationsVM.checkPermissionStatus { status in
+            if status == .authorized {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
+        return true
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken
             .map{ String( format: "%02.2hhx", $0)}
@@ -22,9 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         notificationsVM.sendDeviceToken()
     }
     
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("failed to register for remote notifications with with error: \(error)")
+    }
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        completionHandler( .newData )
         let state = application.applicationState
         switch state {
         case .background:
@@ -42,20 +63,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //        }
     }
     
-    // foreground
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound])
-    }
+//    // foreground
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//        print("foreground")
+//        print("\(notification.request.content.userInfo)")
+////        completionHandler([[.banner, .badge, .sound]])
+//    }
     
     // background // this is called when user taps on the notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         completionHandler()
-    }
-    
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        FirebaseApp.configure()
-        UNUserNotificationCenter.current().delegate = self
-        return true
     }
 }

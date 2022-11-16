@@ -76,7 +76,6 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         
         dataManager.fetchPlaceRoom(model: model)
             .sink { response in
-                print(response)
                 self.loading = false
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)

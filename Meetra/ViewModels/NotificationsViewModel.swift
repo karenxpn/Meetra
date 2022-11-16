@@ -62,21 +62,18 @@ class NotificationsViewModel: NSObject, UNUserNotificationCenterDelegate, Observ
     }
     
     func requestPermission() {
-        UNUserNotificationCenter.current().delegate = self
-        
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+
         UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
-                
-                if granted {
-                    DispatchQueue.main.async {
-                        UIApplication.shared.registerForRemoteNotifications()
-                    }
-                }
-                
-                DispatchQueue.main.async {
-                    self.token = self.initialToken
-                }
+            .requestAuthorization(options: options) { (granted, error) in
+            
+            guard granted else { return }
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+                self.token = self.initialToken
             }
+        }
     }
     
     func checkPermissionStatus(completion: @escaping(UNAuthorizationStatus) -> ()) {
