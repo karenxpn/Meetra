@@ -69,8 +69,6 @@ struct PlacesRoomView: View {
                             } else {
                                 SinglePlacePreview(user: placesVM.placeUsers[0][index])
                                     .onAppear {
-                                        print(placesVM.placeUsers[0][index].id, placesVM.placeRoom?.users.last?.id)
-
                                         if placesVM.placeUsers[0][index].id == placesVM.placeRoom?.users.last?.id && !placesVM.loadingRoomPage {
                                             placesVM.getRoom()
                                         }
@@ -88,8 +86,6 @@ struct PlacesRoomView: View {
                             SinglePlacePreview(user: placesVM.placeUsers[1][index])
                                 .padding(.top, index == 0 ? 40 : 0)
                                 .onAppear {
-                                    print(placesVM.placeUsers[1][index].id, placesVM.placeRoom?.users.last?.id)
-
                                     if placesVM.placeUsers[1][index].id == placesVM.placeRoom?.users.last?.id && !placesVM.loadingRoomPage {
                                         placesVM.getRoom()
                                     }
@@ -121,8 +117,6 @@ struct PlacesRoomView: View {
                             } else {
                                 SinglePlacePreview(user: placesVM.placeUsers[2][index])
                                     .onAppear {
-                                        print("appeared")
-                                        print(placesVM.placeUsers[2][index].id, placesVM.placeRoom?.users.last?.id)
                                         if placesVM.placeUsers[2][index].id == placesVM.placeRoom?.users.last?.id && !placesVM.loadingRoomPage {
                                             placesVM.getRoom()
                                         }
