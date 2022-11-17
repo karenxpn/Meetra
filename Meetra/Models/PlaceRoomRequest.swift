@@ -11,4 +11,6 @@ struct PlaceRoomRequest: Codable {
     var maxAge: Int
     var gender: String
     var status: String
+    var skip: Int
+    var take: Int
 }

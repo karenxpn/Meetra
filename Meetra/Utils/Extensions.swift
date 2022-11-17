@@ -236,3 +236,29 @@ struct NetworkReconnection: ViewModifier {
         
     }
 }
+
+extension Array {
+    func createGrid(size: Int) -> [[Element]] {
+        var result = [[Element]]()
+        for i in 0..<self.count {
+            if i % size == 0 {
+                if result.count == 0 {
+                    result.append([])
+                }
+                result[0].append(self[i])
+            } else if i % size == 1 {
+                if result.count == 1 {
+                    result.append([])
+                }
+                result[1].append(self[i])
+            } else if i % size == 2 {
+                if result.count == 2 {
+                    result.append([])
+                }
+                result[2].append(self[i])
+            }
+        }
+        
+        return result
+    }
+}

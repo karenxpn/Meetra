@@ -29,6 +29,8 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     @Published var status: String = ""
     
     @Published var loading: Bool = false
+    @Published var placeUsers = [[UserPreviewModel]]()
+    @Published var loadingRoomPage: Bool = false
     
     var dataManager: PlacesServiceProtocol
     private var cancellableSet: Set<AnyCancellable> = []
@@ -66,21 +68,40 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
             }
         }
     }
+
     
     func getRoom() {
-        loading = true
+        if placeRoom == nil {
+            loading = true
+        } else {
+            loadingRoomPage = true
+        }
         let model = PlaceRoomRequest(minAge: ageLowerBound,
                                      maxAge: ageUppwerBound,
                                      gender: preferredGender,
-                                     status: usersStatus)
+                                     status: usersStatus,
+                                     skip: self.placeRoom?.users.count ?? 0,
+                                     take: 10)
         
         dataManager.fetchPlaceRoom(model: model)
             .sink { response in
                 self.loading = false
+                self.loadingRoomPage = false
                 if response.error != nil {
                     self.makeAlert(with: response.error!, message: &self.alertMessage, alert: &self.showAlert)
                 } else {
-                    self.placeRoom = response.value!
+                    if self.placeRoom == nil {
+                        self.placeRoom = response.value!
+                        if !(self.placeRoom?.users.isEmpty ?? false) {
+                            // insert group chat and location icons
+                            self.placeRoom?.users.insert(UserPreviewModel(id: 0, image: "", name: "Общий чат", age: 0, online: false), at: 0)
+                            self.placeRoom?.users.insert(UserPreviewModel(id: 0, image: "", name: "Локация", age: 0, online: false), at: 2)
+                            self.placeUsers = self.placeRoom?.users.createGrid(size: 3) ?? [[]]
+                        }
+                    } else {
+                        self.placeRoom?.users.append(contentsOf: response.value!.users)
+                        self.placeUsers = self.placeRoom?.users.createGrid(size: 3) ?? [[]]
+                    }
                 }
             }.store(in: &cancellableSet)
     }
@@ -90,10 +111,11 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         let model = PlaceRoomRequest(minAge: ageLowerBound,
                                      maxAge: ageUppwerBound,
                                      gender: preferredGender,
-                                     status: usersStatus)
+                                     status: usersStatus,
+                                     skip: users.count,
+                                     take: 10)
         
-        dataManager.fetchSwipes(page: swipePage,
-                                model: model)
+        dataManager.fetchSwipes(model: model)
         .sink { response in
             self.loading = false
             if response.error != nil {

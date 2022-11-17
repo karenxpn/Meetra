@@ -42,6 +42,7 @@ struct Places: View {
                                 
                                 if placesVM.placeRoom != nil {
                                     PlacesRoomView(room: placesVM.placeRoom!)
+                                        .environmentObject(placesVM)
                                 }
                             }
                         }

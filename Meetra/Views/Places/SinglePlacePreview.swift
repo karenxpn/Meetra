@@ -21,15 +21,9 @@ struct SinglePlacePreview: View {
             VStack {
                 
                 ZStack( alignment: .bottomTrailing) {
-                    WebImage(url: URL(string: user.image)!)
-                        .placeholder {
-                            ProgressView()
-                        }
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+                    ImageHelper(image: user.image, contentMode: .fill)
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
-                    
                     
                     if user.online {
                         ZStack {

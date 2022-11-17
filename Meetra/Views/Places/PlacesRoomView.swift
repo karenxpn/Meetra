@@ -10,15 +10,13 @@ import WaterfallGrid
 
 struct PlacesRoomView: View {
     
+    @EnvironmentObject var placesVM: PlacesViewModel
     @State private var navigate: Bool = false
     var room: PlaceRoom
     
+    
     init(room: PlaceRoom) {
         self.room = room
-        if !self.room.users.isEmpty{
-            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Общий чат", age: 0, online: false), at: 0)
-            self.room.users.insert(UserPreviewModel(id: 0, image: "", name: "Локация", age: 0, online: false), at: 2)
-        }
     }
     
     var body: some View {
@@ -30,62 +28,111 @@ struct PlacesRoomView: View {
                 .multilineTextAlignment(.center)
                 .padding(.top, 15)
             
-            WaterfallGrid((0..<room.users.count), id: \.self) { index in
-                Group {
-                    if index == 0  {
-                        Button {
-                            navigate.toggle()
-                        } label: {
-                            
-                            VStack {
-                                Image("places_chat")
-                                    .frame(width: 50, height: 50)
-                                    .background(.white)
-                                    .clipShape(Circle())
-                                    .shadow(radius: 5)
-                                
-                                Text( "Общий чат")
-                                    .foregroundColor(.black)
-                                    .font(.custom("Inter-Regular", size: 16))
-                            }.padding(.top, 20)
-                        }.background(
-                            NavigationLink(isActive: $navigate, destination: {
-                                ChatRoom(group: true,
-                                         online: true,
-                                         lastVisit: "",
-                                         chatName: room.chat.name,
-                                         userID: 0,
-                                         chatID: room.chat.id,
-                                         left: room.chat.left,
-                                         blocked: false,
-                                         blockedByMe: false)
-                            }, label: {
-                                EmptyView()
-                            }).hidden()
-                        )
-                    } else if index == 2 {
-                        Button {
-                            
-                        } label: {
-                            VStack {
-                                Image("places_location")
-                                    .frame(width: 50, height: 50)
-                                    .background(.white)
-                                    .clipShape(Circle())
-                                    .shadow(radius: 5)
-                                
-                                Text( "Локация")
-                                    .foregroundColor(.black)
-                                    .font(.custom("Inter-Regular", size: 16))
-                            }.padding(.top, 20)
+            if !placesVM.placeUsers.isEmpty {
+                let columns: [GridItem] = Array(repeating: .init(.flexible(), alignment: .top), count: 3)
+                LazyVGrid(columns: columns) {
+                    
+                    // first columnn with grop chat check
+                    LazyVStack(spacing: 20) {
+                        ForEach(0..<placesVM.placeUsers[0].count, id: \.self) { index in
+                            if index == 0  {
+                                Button {
+                                    navigate.toggle()
+                                } label: {
+                                    
+                                    VStack {
+                                        Image("places_chat")
+                                            .frame(width: 50, height: 50)
+                                            .background(.white)
+                                            .clipShape(Circle())
+                                            .shadow(radius: 5)
+                                        
+                                        Text( "Общий чат")
+                                            .foregroundColor(.black)
+                                            .font(.custom("Inter-Regular", size: 16))
+                                    }.padding(.top, 20)
+                                }.background(
+                                    NavigationLink(isActive: $navigate, destination: {
+                                        ChatRoom(group: true,
+                                                 online: true,
+                                                 lastVisit: "",
+                                                 chatName: room.chat.name,
+                                                 userID: 0,
+                                                 chatID: room.chat.id,
+                                                 left: room.chat.left,
+                                                 blocked: false,
+                                                 blockedByMe: false)
+                                    }, label: {
+                                        EmptyView()
+                                    }).hidden()
+                                )
+                            } else {
+                                SinglePlacePreview(user: placesVM.placeUsers[0][index])
+                                    .onAppear {
+                                        print(placesVM.placeUsers[0][index].id, placesVM.placeRoom?.users.last?.id)
+
+                                        if placesVM.placeUsers[0][index].id == placesVM.placeRoom?.users.last?.id && !placesVM.loadingRoomPage {
+                                            placesVM.getRoom()
+                                        }
+                                    }
+                            }
                         }
-                    } else {
-                        SinglePlacePreview(user: room.users[index])
-                            .padding(.top, index == 1 ? 40 : 0)
+                    }
+                    
+                    // end of first column
+                    
+                    //                // second column
+                    LazyVStack(spacing: 20) {
+                        ForEach(0..<placesVM.placeUsers[1].count, id: \.self) { index in
+                            
+                            SinglePlacePreview(user: placesVM.placeUsers[1][index])
+                                .padding(.top, index == 0 ? 40 : 0)
+                                .onAppear {
+                                    print(placesVM.placeUsers[1][index].id, placesVM.placeRoom?.users.last?.id)
+
+                                    if placesVM.placeUsers[1][index].id == placesVM.placeRoom?.users.last?.id && !placesVM.loadingRoomPage {
+                                        placesVM.getRoom()
+                                    }
+                                }
+                        }
+                    }
+                    //
+                    //                // end of second column
+                    //
+                    // third column
+                    LazyVStack(spacing: 20) {
+                        ForEach(0..<placesVM.placeUsers[2].count, id: \.self) { index in
+                            if index == 0  {
+                                Button {
+                                    
+                                } label: {
+                                    VStack {
+                                        Image("places_location")
+                                            .frame(width: 50, height: 50)
+                                            .background(.white)
+                                            .clipShape(Circle())
+                                            .shadow(radius: 5)
+                                        
+                                        Text( "Локация")
+                                            .foregroundColor(.black)
+                                            .font(.custom("Inter-Regular", size: 16))
+                                    }.padding(.top, 20)
+                                }
+                            } else {
+                                SinglePlacePreview(user: placesVM.placeUsers[2][index])
+                                    .onAppear {
+                                        print("appeared")
+                                        print(placesVM.placeUsers[2][index].id, placesVM.placeRoom?.users.last?.id)
+                                        if placesVM.placeUsers[2][index].id == placesVM.placeRoom?.users.last?.id && !placesVM.loadingRoomPage {
+                                            placesVM.getRoom()
+                                        }
+                                    }
+                            }
+                        }
                     }
                 }
-            }.gridStyle(columns: 3, spacing: 20)
                 .padding(EdgeInsets(top: 0, leading: 20, bottom: 100, trailing: 20))
+            }
         }.padding(.top, 1)
     }
 }
