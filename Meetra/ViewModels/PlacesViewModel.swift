@@ -60,6 +60,8 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         
         if mark {
             if location == "place" {
+                self.placeRoom = nil
+                self.placeUsers.removeAll()
                 getRoom()
             } else {
                 swipePage = 1
