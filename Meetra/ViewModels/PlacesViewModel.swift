@@ -20,7 +20,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     @Published var placeRoom: PlaceRoom? = nil
     
     @Published var users = [SwipeUserViewModel]()
-    @Published var swipePage: Int = 1
+    @Published var swipePage: Int = 0
     
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
@@ -64,7 +64,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                 self.placeUsers.removeAll()
                 getRoom()
             } else {
-                swipePage = 1
+                swipePage = 0
                 self.users.removeAll(keepingCapacity: false)
                 getSwipes()
             }
@@ -114,7 +114,7 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                                      maxAge: ageUppwerBound,
                                      gender: preferredGender,
                                      status: usersStatus,
-                                     skip: users.count,
+                                     skip: swipePage * 10,
                                      take: 10)
         
         dataManager.fetchSwipes(model: model)
