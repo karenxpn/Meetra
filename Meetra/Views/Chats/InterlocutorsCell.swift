@@ -53,6 +53,7 @@ struct InterlocutorsCell: View {
                                                   online: interlocutor.online,
                                                   lastVisit: interlocutor.lastVisit,
                                                   chatName: interlocutor.name,
+                                                  chatImage: interlocutor.image,
                                                   userID: interlocutor.id,
                                                   chatID: interlocutor.chat,
                                                   left: false,
@@ -60,8 +61,8 @@ struct InterlocutorsCell: View {
                                                   blockedByMe: interlocutor.blockedByMe),
                            isActive: $navigate,
                            label: {
-                EmptyView()
-            }).hidden()
+                               EmptyView()
+                           }).hidden()
         )
     }
 }
