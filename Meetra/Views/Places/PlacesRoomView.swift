@@ -22,7 +22,7 @@ struct PlacesRoomView: View {
     var body: some View {
         ScrollView( showsIndicators: false) {
             
-            Text( "\(room.count-2) человек ищут знакомства в \(room.chat.name)" )
+            Text( "\(room.count) человек ищут знакомства в \(room.chat.name)" )
                 .foregroundColor(.black)
                 .font(.custom("Inter-SemiBold", size: 18))
                 .multilineTextAlignment(.center)
