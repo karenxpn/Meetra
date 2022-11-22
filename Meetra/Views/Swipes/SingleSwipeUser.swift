@@ -176,11 +176,11 @@ struct SingleSwipeUser: View {
             }.frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.55)
             
             
-            HStack( spacing: 15) {
+            HStack( spacing: 20) {
                 
-                SwipeButtonHelper(icon: "left_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
+                SwipeButtonHelper(icon: "left_arrow", width: 10, height: 18, horizontalPadding: 18, verticalPadding: 13) {
                     AppAnalytics().logEvent(event: "swipe")
-                    cardAction = .swipe
+                    cardAction = .report
                     withAnimation(animation) {
                         user.x = -1000; user.degree = -20
                         checkLastAndRequestMore()
@@ -199,22 +199,12 @@ struct SingleSwipeUser: View {
                     }
                 }
                 
-                SwipeButtonHelper(icon: "user_send_request", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
+                SwipeButtonHelper(icon: "right_arrow", width: 10, height: 18, horizontalPadding: 18, verticalPadding: 13) {
                     AppAnalytics().logEvent(event: "swipe_friend_request")
 
                     cardAction = .request
                     userVM.sendFriendRequest(userID: user.id)
                     // make request
-                    withAnimation(animation) {
-                        user.x = 1000; user.degree = 20
-                        checkLastAndRequestMore()
-                    }
-                }
-                
-                SwipeButtonHelper(icon: "right_arrow", width: 8, height: 14, horizontalPadding: 16, verticalPadding: 13) {
-                    AppAnalytics().logEvent(event: "swipe")
-
-                    cardAction = .swipe
                     withAnimation(animation) {
                         user.x = 1000; user.degree = 20
                         checkLastAndRequestMore()
@@ -245,7 +235,17 @@ struct SingleSwipeUser: View {
             .gesture(
                 DragGesture()
                     .onChanged({ value in
-                        self.cardAction = .swipe
+                        withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
+                            switch value.translation.width {
+                            case let x where x > 100:
+                                self.cardAction = .request
+                            case let x where x < -100:
+                                self.cardAction = .report
+                            default:
+                                self.cardAction = .swipe
+                            }
+                        }
+                        
                         withAnimation(.default) {
                             user.x = value.translation.width
                             user.degree = 7 * (value.translation.width > 0 ? 1 : -1)
@@ -259,9 +259,10 @@ struct SingleSwipeUser: View {
                                 user.x = 0
                                 user.degree = 0
                             case let x where x > 100:
+                                userVM.sendFriendRequest(userID: user.id)
                                 checkLastAndRequestMore()
                                 user.x = 1000; user.degree = 20
-                                AppAnalytics().logEvent(event: "swipe")
+                                AppAnalytics().logEvent(event: "swipe_friend_request")
                             case (-100)...(-1):
                                 self.cardAction = .none
                                 user.x = 0
