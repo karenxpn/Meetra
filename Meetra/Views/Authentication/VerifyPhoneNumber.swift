@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import Combine
 
 struct VerifyPhoneNumber: View {
     @EnvironmentObject var authVM: AuthViewModel
     @State var model: RegistrationRequest
+    @State private var buttonDisabled = false
+    @State private var timeRemaining = 30
+    @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
+    @State var connectedTimer: Cancellable? = nil
+    
     let phone: String
     
     var body: some View {
@@ -30,7 +36,6 @@ struct VerifyPhoneNumber: View {
                 UIApplication.shared.endEditing()
                 authVM.OTP = otp
             }
-            
             HStack( spacing: 0) {
                 Text( "Не пришло СМС?" )
                     .foregroundColor(.black)
@@ -38,15 +43,28 @@ struct VerifyPhoneNumber: View {
                 
                 Button(action: {
                     authVM.resendVerificationCode()
+                    self.buttonDisabled = true
+                    self.timer = Timer.publish(every: 1, on: .main, in: .common)
+                    self.connectedTimer = timer.connect()
                 }) {
                     Text( " Отправить ещё раз" )
-                        .foregroundColor(.black)
+                        .foregroundColor(changeColor(buttonDisabled: self.buttonDisabled))
                         .font(.custom("Inter-SemiBold", size: 12))
-                }
+                }.disabled(self.buttonDisabled == true)
+                    .onReceive(timer) { time in
+                        if timeRemaining > 1 {
+                            self.timeRemaining -= 1
+                        } else {
+                            self.connectedTimer?.cancel()
+                            self.buttonDisabled = false
+                            self.timeRemaining = 30
+                        }
+                    }
                 
             }.padding(.top)
-                .padding(.bottom, 30)
+                .padding(.bottom, 5)
             
+            Text("Попробуйте через \(self.timeRemaining)").opacity(self.buttonDisabled ? 1 : 0).font(.custom("Inter-Regular", size: 10))
             
             Spacer()
             
@@ -55,10 +73,10 @@ struct VerifyPhoneNumber: View {
                          label: NSLocalizedString("proceed", comment: "")) {
                 authVM.checkVerificationCode()
             }.background(
-                    NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
-                        EmptyView()
-                    }).hidden()
-                )
+                NavigationLink(destination: AuthNameInput(model: model), isActive: $authVM.proceedRegistration, label: {
+                    EmptyView()
+                }).hidden()
+            )
             
             
         }.navigationBarTitle("", displayMode: .inline)
@@ -74,6 +92,10 @@ struct VerifyPhoneNumber: View {
                 Alert(title: Text("Error"), message: Text(authVM.alertMessage), dismissButton: .default(Text("Got it!")))
             }
     }
+}
+
+func changeColor(buttonDisabled: Bool) -> Color {
+    return buttonDisabled ? Color.gray : Color.black
 }
 
 struct VerifyPhoneNumber_Previews: PreviewProvider {
