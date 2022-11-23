@@ -49,6 +49,6 @@ struct PushNotification: View {
 
 struct PushNotification_Previews: PreviewProvider {
     static var previews: some View {
-        PushNotification(notification: PushNotificationModel(title: "New message", content: "Karen Mirakyan sent you a new message"))
+        PushNotification(notification: PushNotificationModel(title: "New message", content: "Karen Mirakyan sent you a new message",type: "friend-request", chatId: 0,  user: PushNotificationUserPreview(id: 1) ))
     }
 }
