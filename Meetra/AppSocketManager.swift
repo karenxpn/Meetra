@@ -121,8 +121,8 @@ extension AppSocketManager: AppSocketManagerProtocol {
     }
     
     func fetchInterlocutorsUpdates(userID: Int, completion: @escaping (InterlocutorsModel) -> ()) {
-        self.socket?.off("interlocutos-list-\(userID)")
-        listenEvent(event: "interlocutos-list-\(userID)", response: InterlocutorsModel.self) { response in
+        self.socket?.off("interlocutors-list-\(userID)")
+        listenEvent(event: "interlocutors-list-\(userID)", response: InterlocutorsModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }
