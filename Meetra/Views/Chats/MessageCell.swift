@@ -38,7 +38,7 @@ struct MessageCell: View {
                         .frame(width: 30, height: 30)
                         .clipShape(Circle())
                 }.background(
-                    NavigationLink(destination: UserView(userID: userID), isActive: $navigate, label: {
+                    NavigationLink(destination: UserView(userID: message.sender.id), isActive: $navigate, label: {
                         EmptyView()
                     }).hidden()
                 )
@@ -122,14 +122,14 @@ struct MessageCell: View {
                                 showPopOver = false
                             }
                             Divider()
-                            
-                            MenuButtonsHelper(label: NSLocalizedString("edit", comment: ""), role: .cancel) {
-                                roomVM.editingMessage = message
-                                roomVM.message = message.content
-                                showPopOver = false
+                            if message.sender.id == userID {
+                                MenuButtonsHelper(label: NSLocalizedString("edit", comment: ""), role: .cancel) {
+                                    roomVM.editingMessage = message
+                                    roomVM.message = message.content
+                                    showPopOver = false
+                                }
+                                Divider()
                             }
-                            
-                            Divider()
                         }
                         
                         if message.sender.id == userID {
