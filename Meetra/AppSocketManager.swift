@@ -22,7 +22,7 @@ protocol AppSocketManagerProtocol {
     
     func connectChatRoom(chatID: Int, completion: @escaping() -> ())
     func sendMessage(chatID: Int, type: String, content: String, repliedTo: Int?, completion: @escaping() -> ())
-    func fetchMessage(chatID: Int, completion: @escaping(MessageModel) -> ())
+    func fetchMessage(chatID: Int, completion: @escaping(FetchMessageModel) -> ())
     
     func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ())
     func sendMedia(chatID: Int, messageID: Int, status: String)
@@ -141,9 +141,9 @@ extension AppSocketManager: AppSocketManagerProtocol {
         })
     }
     
-    func fetchMessage(chatID: Int, completion: @escaping (MessageModel) -> ()) {
+    func fetchMessage(chatID: Int, completion: @escaping (FetchMessageModel) -> ()) {
         self.socket?.off("send-message")
-        listenEvent(event: "send-message", response: MessageModel.self) { response in
+        listenEvent(event: "send-message", response: FetchMessageModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }
