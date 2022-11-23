@@ -235,18 +235,16 @@ struct SingleSwipeUser: View {
             .gesture(
                 DragGesture()
                     .onChanged({ value in
-                        withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)) {
+                        withAnimation(.default) {
                             switch value.translation.width {
-                            case let x where x > 100:
+                            case let x where x > 60:
                                 self.cardAction = .request
-                            case let x where x < -100:
+                            case let x where x < -60:
                                 self.cardAction = .report
                             default:
                                 self.cardAction = .swipe
                             }
-                        }
-                        
-                        withAnimation(.default) {
+                            
                             user.x = value.translation.width
                             user.degree = 7 * (value.translation.width > 0 ? 1 : -1)
                         }
