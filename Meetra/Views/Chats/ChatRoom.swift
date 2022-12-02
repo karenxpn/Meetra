@@ -76,10 +76,9 @@ struct ChatRoom: View {
                         .padding()
                         .padding(.bottom, 30)
                 }
-                
-                NavigationLink(destination: UserView(userID: userID), isActive: $navigate, label: {
-                    EmptyView()
-                }).hidden()
+                    NavigationLink(destination: UserView(userID: userID), isActive: $navigate, label: {
+                        EmptyView()
+                    }).hidden()
             }
         }.ignoresSafeArea(.container, edges: .bottom)
             .onAppear {
@@ -109,7 +108,9 @@ struct ChatRoom: View {
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading:
                                     Button {
-                navigate.toggle()
+                if !group {
+                    navigate.toggle()
+                }
             } label: {
                 if (!navigate) {
                     HStack {
@@ -138,9 +139,13 @@ struct ChatRoom: View {
                     }
                 }
             }, center: EmptyView(), trailing: Button(action: {
-                showPopup.toggle()
+                if !group {
+                    showPopup.toggle()
+                }
             }, label: {
-                Image("dots").foregroundColor(.black)
+                if !group {
+                    Image("dots").foregroundColor(.black)
+                }
             }))
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 roomVM.joinGetMessagesListenEventsOnInit()
