@@ -24,7 +24,7 @@ protocol AppSocketManagerProtocol {
     func sendMessage(chatID: Int, type: String, content: String, repliedTo: Int?, completion: @escaping() -> ())
     func fetchMessage(chatID: Int, completion: @escaping(FetchMessageModel) -> ())
     
-    func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ())
+    func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (FetchTabUnreadModel) -> ())
     func sendMedia(chatID: Int, messageID: Int, status: String)
     
     func editMessage(chatID: Int, messageID: Int, message: String, completion: @escaping() -> ())
@@ -100,13 +100,11 @@ extension AppSocketManager: AppSocketManagerProtocol {
                                     "status" : status])
     }
     
-    func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ()) {
+    func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (FetchTabUnreadModel) -> ()) {
         self.socket?.off("tab-unread-message-\(userID)")
-        self.socket?.on("tab-unread-message-\(userID)") { (data, ack) in
-            if let data = data[0] as? [String : Bool], let status = data["unreadMessage"] {
-                DispatchQueue.main.async {
-                    completion(status)
-                }
+        listenEvent(event: "tab-unread-message-\(userID)", response: FetchTabUnreadModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
             }
         }
     }

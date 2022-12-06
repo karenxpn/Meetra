@@ -41,12 +41,17 @@ struct CustomTabBar: View {
                                     ZStack {
                                         Circle()
                                             .fill(.white)
-                                            .frame(width: 10, height: 10)
+                                            .frame(width: 25, height: 25)
                                         
                                         Circle()
                                             .fill(.red)
-                                            .frame(width: 5, height: 5)
-                                    }
+                                            .frame(width: 20, height: 20)
+                                        
+                                        Text(String(tabViewModel.unreadMessageCount))
+                                            .foregroundColor(.white)
+                                            .font(.custom("Inter-Bold", size: 12))
+                                    }.position(x: 30, y: 5)
+                                        .frame(width:25, height:25)
                                 }
                                 
                             }.padding(10)

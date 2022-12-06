@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct FetchTabUnreadModel: Codable {
+    var unreadMessage: Bool
+    var unreadMessageCount: Int
+}

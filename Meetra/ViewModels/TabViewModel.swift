@@ -14,6 +14,7 @@ class TabViewModel: ObservableObject {
     
     @Published var currentTab: Int = 0
     @Published var hasUnreadMessage: Bool = false
+    @Published var unreadMessageCount: Int = 0
     @Published var notification: PushNotificationModel?
     @Published var notificationOffset: CGFloat = -UIScreen.main.bounds.height
     
@@ -28,7 +29,8 @@ class TabViewModel: ObservableObject {
     
     func getUnreadMessageResponse() {
         socketManager.fetchTabViewUnreadMessage(userID: userID) { response in
-            self.hasUnreadMessage = response
+            self.hasUnreadMessage = response.unreadMessage
+            self.unreadMessageCount = response.unreadMessageCount
         }
     }
     
