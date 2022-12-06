@@ -10,6 +10,8 @@ struct PlaceRoom: Codable {
     var users: [UserPreviewModel]
     var chat: PlaceChat
     var count: Int
+    var address: String
+    var link: String
 }
 
 struct PlaceChat: Codable {

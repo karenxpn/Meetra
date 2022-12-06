@@ -64,14 +64,14 @@ struct ProfilePreviewInnerView: View {
                 
                 HStack {
                     
-                    if fields.school.isEmpty {
+                    if !fields.school.isEmpty {
                         Image("user_school_icon")
                         Text( fields.school )
                             .foregroundColor(.black)
                             .font(.custom("Inter-Regular", size: 12))
                     }
                     
-                    if fields.city.isEmpty {
+                    if !fields.city.isEmpty {
                         Image("user_location_icon")
                         Text( fields.city )
                             .foregroundColor(.black)
