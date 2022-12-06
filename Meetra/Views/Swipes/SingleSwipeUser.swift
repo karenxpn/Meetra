@@ -178,7 +178,7 @@ struct SingleSwipeUser: View {
             
             HStack( spacing: 20) {
                 
-                SwipeButtonHelper(icon: "left_arrow", width: 10, height: 18, horizontalPadding: 18, verticalPadding: 13) {
+                SwipeButtonHelper(icon: "left_arrow", altIcon: "", change: true, width: 10, height: 18, horizontalPadding: 18, verticalPadding: 13) {
                     AppAnalytics().logEvent(event: "swipe")
                     cardAction = .report
                     withAnimation(animation) {
@@ -187,19 +187,18 @@ struct SingleSwipeUser: View {
                     }
                 }
                 
-                SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
+                SwipeButtonHelper(icon: "star.fill", altIcon: "star", change: user.starredUser, width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15) {
                     AppAnalytics().logEvent(event: "swipe_star")
-
-                    cardAction = .star
+                    //cardAction = .star
                     userVM.starUserFromSwipes(userID: user.id)
                     // make request
-                    withAnimation(animation) {
-                        user.x = 1000; user.degree = 20
-                        checkLastAndRequestMore()
-                    }
+//                    withAnimation(animation) {
+//                        user.x = 1000; user.degree = 20
+//                        checkLastAndRequestMore()
+//                    }
                 }
                 
-                SwipeButtonHelper(icon: "right_arrow", width: 10, height: 18, horizontalPadding: 18, verticalPadding: 13) {
+                SwipeButtonHelper(icon: "right_arrow", altIcon: "", change: true, width: 10, height: 18, horizontalPadding: 18, verticalPadding: 13) {
                     AppAnalytics().logEvent(event: "swipe_friend_request")
 
                     cardAction = .request
@@ -241,8 +240,8 @@ struct SingleSwipeUser: View {
                                 self.cardAction = .request
                             case let x where x < -60:
                                 self.cardAction = .report
-                            default:
-                                self.cardAction = .swipe
+                            default: break
+                                //self.cardAction = .swipe
                             }
                             
                             user.x = value.translation.width

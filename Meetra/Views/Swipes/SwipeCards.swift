@@ -26,9 +26,13 @@ struct SwipeCards: View {
             .onAppear {
                 AppAnalytics().logScreenEvent(viewName: "\(SwipeCards.self)")
             }
+        } else if locationManager.status == "use" && locationManager.alwaysRequested {
+            AlwaysLocationAlert()
+                .environmentObject(locationManager)
         } else {
             LostLocationAlert()
                 .environmentObject(locationManager)
+                .environmentObject(placesVM)
         }
     }
 }

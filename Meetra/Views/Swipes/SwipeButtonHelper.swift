@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SwipeButtonHelper: View {
     let icon: String
+    let altIcon: String
+    @State var change: Bool
     let width: CGFloat
     let height: CGFloat
     let horizontalPadding: CGFloat
@@ -17,8 +19,13 @@ struct SwipeButtonHelper: View {
     
     var body: some View {
         
-        Button(action: action) {
-            Image( icon )
+        Button {
+            action()
+            if altIcon != "" {
+                self.change.toggle()
+            }
+        } label: {
+            Image( change ? icon : altIcon )
                 .resizable()
                 .foregroundColor(AppColors.starColor)
                 .frame(width: width, height: height)
@@ -33,7 +40,7 @@ struct SwipeButtonHelper: View {
 
 struct SwipeButtonHelper_Previews: PreviewProvider {
     static var previews: some View {
-        SwipeButtonHelper(icon: "star.fill", width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15, action: {
+        SwipeButtonHelper(icon: "star.fill", altIcon: "", change: true, width: 18, height: 18, horizontalPadding: 15, verticalPadding: 15, action: {
             print("alskdjf")
         })
     }
