@@ -78,7 +78,7 @@ struct AuthInterests: View {
                     authVM.confirmSignUp(model: model)
                 }.background(
                     NavigationLink(destination:AnyView(AuthNotificationPermission()),
-              gi                     isActive: $authVM.navigate, label: {
+                                    isActive: $authVM.navigate, label: {
                                        EmptyView()
                                    }).hidden()
                 )
