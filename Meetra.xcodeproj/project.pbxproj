@@ -12,6 +12,7 @@
 		ECE5B2CE097FE0464302F642 /* Pods_Meetra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82066C131E14C9C53CF45866 /* Pods_Meetra.framework */; };
 		EF7240FD293E9912005F0764 /* AlwaysLocationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7240FC293E9912005F0764 /* AlwaysLocationAlert.swift */; };
 		EF7240FF293FB247005F0764 /* FetchTabUnreadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7240FE293FB247005F0764 /* FetchTabUnreadModel.swift */; };
+		EF724101294095FE005F0764 /* FriendRequestStatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF724100294095FE005F0764 /* FriendRequestStatModel.swift */; };
 		EFAF0122292E6D5E006BE936 /* FetchMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAF0121292E6D5E006BE936 /* FetchMessageModel.swift */; };
 		FF0156B1284438F400CD58F1 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0156B0284438F400CD58F1 /* NetworkMonitor.swift */; };
 		FF07F23027D0210A009B46B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF07F22F27D0210A009B46B7 /* LaunchScreen.storyboard */; };
@@ -241,6 +242,7 @@
 		B7EBDF1784B9B3A36A930C72 /* Pods-Meetra-MeetraUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra-MeetraUITests.debug.xcconfig"; path = "Target Support Files/Pods-Meetra-MeetraUITests/Pods-Meetra-MeetraUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF7240FC293E9912005F0764 /* AlwaysLocationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlwaysLocationAlert.swift; sourceTree = "<group>"; };
 		EF7240FE293FB247005F0764 /* FetchTabUnreadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTabUnreadModel.swift; sourceTree = "<group>"; };
+		EF724100294095FE005F0764 /* FriendRequestStatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestStatModel.swift; sourceTree = "<group>"; };
 		EFAF0121292E6D5E006BE936 /* FetchMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMessageModel.swift; sourceTree = "<group>"; };
 		FDB4FCB2EBFAF01EBA25E1FC /* Pods-Meetra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meetra.debug.xcconfig"; path = "Target Support Files/Pods-Meetra/Pods-Meetra.debug.xcconfig"; sourceTree = "<group>"; };
 		FF0156B0284438F400CD58F1 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -736,6 +738,7 @@
 				FF69A3A3292524A0001DAFA9 /* PushNotificationModel.swift */,
 				EFAF0121292E6D5E006BE936 /* FetchMessageModel.swift */,
 				EF7240FE293FB247005F0764 /* FetchTabUnreadModel.swift */,
+				EF724100294095FE005F0764 /* FriendRequestStatModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1184,6 +1187,7 @@
 				FFBF26DC281EBEB2002668D5 /* MessagesList.swift in Sources */,
 				FF37966927E8AA9E007F28E7 /* SinglePlacePreview.swift in Sources */,
 				FF61D41827F7867600FB9A23 /* AlamofireAPIHelper.swift in Sources */,
+				EF724101294095FE005F0764 /* FriendRequestStatModel.swift in Sources */,
 				FF97308627FDAAB900A7BF3F /* Profile.swift in Sources */,
 				FFED583C2825A4FD00E828F2 /* NewConversation.swift in Sources */,
 				FF7D0D1427CFDD2200A828C7 /* CountryCodeSelection.swift in Sources */,
@@ -1500,7 +1504,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Meetra/Meetra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
 				DEVELOPMENT_TEAM = PAUM7SK7SC;
 				ENABLE_PREVIEWS = YES;
@@ -1543,7 +1547,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Meetra/Meetra.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Meetra/Preview Content\"";
 				DEVELOPMENT_TEAM = PAUM7SK7SC;
 				ENABLE_PREVIEWS = YES;

@@ -15,6 +15,8 @@ class TabViewModel: ObservableObject {
     @Published var currentTab: Int = 0
     @Published var hasUnreadMessage: Bool = false
     @Published var unreadMessageCount: Int = 0
+    @Published var hasFriendRequest: Bool = false
+    @Published var friendRequestCount: Int = 0
     @Published var notification: PushNotificationModel?
     @Published var notificationOffset: CGFloat = -UIScreen.main.bounds.height
     
@@ -24,6 +26,7 @@ class TabViewModel: ObservableObject {
         self.socketManager = socketManager
         
         getUnreadMessageResponse()
+        getFriendRequestStat()
         getNotification()
     }
     
@@ -31,6 +34,13 @@ class TabViewModel: ObservableObject {
         socketManager.fetchTabViewUnreadMessage(userID: userID) { response in
             self.hasUnreadMessage = response.unreadMessage
             self.unreadMessageCount = response.unreadMessageCount
+        }
+    }
+    
+    func getFriendRequestStat() {
+        socketManager.fetchFriendRequestStat(userID: userID) { response in
+            self.hasFriendRequest = response.hasFriendRequest
+            self.friendRequestCount = response.friendRequestCount
         }
     }
     

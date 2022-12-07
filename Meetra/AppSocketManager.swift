@@ -25,6 +25,7 @@ protocol AppSocketManagerProtocol {
     func fetchMessage(chatID: Int, completion: @escaping(FetchMessageModel) -> ())
     
     func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (FetchTabUnreadModel) -> ())
+    func fetchFriendRequestStat(userID: Int, completion: @escaping (FriendRequestStatModel) -> ())
     func sendMedia(chatID: Int, messageID: Int, status: String)
     
     func editMessage(chatID: Int, messageID: Int, message: String, completion: @escaping() -> ())
@@ -103,6 +104,15 @@ extension AppSocketManager: AppSocketManagerProtocol {
     func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (FetchTabUnreadModel) -> ()) {
         self.socket?.off("tab-unread-message-\(userID)")
         listenEvent(event: "tab-unread-message-\(userID)", response: FetchTabUnreadModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
+            }
+        }
+    }
+    
+    func fetchFriendRequestStat(userID: Int, completion: @escaping (FriendRequestStatModel) -> ()) {
+        self.socket?.off("friend-request-stat-\(userID)")
+        listenEvent(event: "friend-request-stat-\(userID)", response: FriendRequestStatModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }
