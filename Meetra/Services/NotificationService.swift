@@ -12,6 +12,9 @@ import Alamofire
 protocol NotificationServiceProtocol {
     func sendDeviceToken( token: String, deviceToken: String ) -> AnyPublisher<GlobalResponse, Error>
     func fetchNotifications(page: Int) -> AnyPublisher<DataResponse<NotificationListModel, NetworkError>, Never>
+    
+    func fetchFriendRequestStat(id: Int) -> AnyPublisher<DataResponse<FriendRequestStatModel, NetworkError>, Never>
+    func fetchTabViewUnreadMessage(id: Int) -> AnyPublisher<DataResponse<FetchTabUnreadModel, NetworkError>, Never>
 }
 
 class NotificationService {
@@ -20,6 +23,18 @@ class NotificationService {
 }
 
 extension NotificationService: NotificationServiceProtocol {
+    func fetchFriendRequestStat(id: Int) -> AnyPublisher<Alamofire.DataResponse<FriendRequestStatModel, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)notifications/fetch-friend-request-stat/\(id)")!
+        
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: FriendRequestStatModel.self)
+    }
+    
+    func fetchTabViewUnreadMessage(id: Int) -> AnyPublisher<Alamofire.DataResponse<FetchTabUnreadModel, NetworkError>, Never> {
+        let url = URL(string: "\(Credentials.BASE_URL)notifications/fetch-tab-view-unread-message/\(id)")!
+        
+        return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: FetchTabUnreadModel.self)
+    }
+    
     func fetchNotifications(page: Int) -> AnyPublisher<DataResponse<NotificationListModel, NetworkError>, Never> {
         let url = URL(string: "\(Credentials.BASE_URL)notifications/\(page)")!
         return AlamofireAPIHelper.shared.get_deleteRequest(url: url, responseType: NotificationListModel.self)
