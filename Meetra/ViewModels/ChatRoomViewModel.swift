@@ -244,13 +244,14 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     }
     
     func getMessage() {
-        socketManager.fetchMessage(chatID: chatID) { message in
-            withAnimation {
-                
-                self.lastMessageID = message.id
-                self.newConversation = false
-                self.newConversationResponse = nil
-                self.messages.insert(MessageViewModel(message: message), at: 0)
+        socketManager.fetchMessage(chatID: chatID) { response in
+            if response.chatId == self.chatID {
+                withAnimation {
+                    self.lastMessageID = response.message.id
+                    self.newConversation = false
+                    self.newConversationResponse = nil
+                    self.messages.insert(MessageViewModel(message: response.message), at: 0)
+                }
             }
         }
     }

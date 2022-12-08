@@ -77,10 +77,8 @@ struct AuthInterests: View {
                     model.interests = authVM.selected_interests
                     authVM.confirmSignUp(model: model)
                 }.background(
-                    NavigationLink(destination: locationManager.status == "request" ?
-                                   AnyView(AuthLocationPermission()) :
-                                    AnyView(AuthNotificationPermission()),
-                                   isActive: $authVM.navigate, label: {
+                    NavigationLink(destination:AnyView(AuthNotificationPermission()),
+                                    isActive: $authVM.navigate, label: {
                                        EmptyView()
                                    }).hidden()
                 )
@@ -100,15 +98,7 @@ struct AuthInterests: View {
             locationManager.initLocation()
         }.alert(isPresented: $authVM.showAlert) {
             Alert(title: Text( "Error" ), message: Text( authVM.alertMessage ), dismissButton: .default(Text( "OK" )))
-        }.navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                model.interests = []
-                authVM.confirmSignUp(model: model)
-            }, label: {
-                Text( "Пропустить")
-                    .foregroundColor(AppColors.proceedButtonColor)
-                    .font(.custom("Inter-SemiBold", size: 18))
-            }))
+        }
     }
 }
 

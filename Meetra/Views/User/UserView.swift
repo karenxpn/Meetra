@@ -36,13 +36,13 @@ struct UserView: View {
                             userVM.friendRequestSentOffset = gesture.translation.height
                         }
                     })
-                    .onEnded({ gesture in
-                        if gesture.translation.height < -40 {
-                            userVM.friendRequestSentOffset = -UIScreen.main.bounds.height
-                        } else {
-                            userVM.friendRequestSentOffset = 0
-                        }
-                    })
+                        .onEnded({ gesture in
+                            if gesture.translation.height < -40 {
+                                userVM.friendRequestSentOffset = -UIScreen.main.bounds.height
+                            } else {
+                                userVM.friendRequestSentOffset = 0
+                            }
+                        })
                 )
             
         }.task {
@@ -50,7 +50,7 @@ struct UserView: View {
             AppAnalytics().logScreenEvent(viewName: "\(UserView.self)")
         }.alert(isPresented: $userVM.showAlert, content: {
             Alert(title: Text("Error"), message: Text(userVM.alertMessage), dismissButton: .default(Text("Got it!")))
-        }).navigationBarItems(center: EmptyView(), trailing: Button {
+        }).navigationBarItems(leading: Text(""), center: EmptyView(), trailing: Button {
             showDialog.toggle()
         } label: {
             Image("dots")
@@ -67,7 +67,7 @@ struct UserView: View {
                         userVM.reportReason = NSLocalizedString("fraud", comment: "")
                         userVM.reportUser(id: userID)
                         self.showDialog.toggle()
-
+                        
                     } label: {
                         Text( NSLocalizedString("fraud", comment: "") )
                     }
@@ -89,7 +89,7 @@ struct UserView: View {
                     }
                     
                     Button(NSLocalizedString("cancel", comment: ""), role: .cancel) { }
-
+                    
                 })
                 
                 Divider()
@@ -99,7 +99,7 @@ struct UserView: View {
                                         role: .destructive) {
                     self.showDialog.toggle()
                     userVM.blockUser(id: userID)
-//                    self.presentationMode.wrappedValue.dismiss()
+                    //                    self.presentationMode.wrappedValue.dismiss()
                 }
             }
         }).onReceive(NotificationCenter.default.publisher(for: Notification.Name(rawValue: "block_user"))) { _ in

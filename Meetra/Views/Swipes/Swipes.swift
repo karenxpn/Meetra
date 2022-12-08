@@ -23,6 +23,9 @@ struct Swipes: View {
     @State private var alert: Bool = false
     @Binding var enter: Bool
     
+    var hasfriendRequest: Bool
+    var friendRequestCount: Int
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -37,15 +40,27 @@ struct Swipes: View {
                         VStack( alignment: .leading, spacing: 20 ) {
                             
                             HStack( spacing: 20 ) {
-                                ForEach(sections, id: \.self) { section in
+                                ForEach ( 0..<sections.count, id: \.self ) { id in
                                     Button {
-                                        selection = section
-                                        
+                                        selection = sections[id]
                                     } label: {
-                                        Text( section )
-                                            .foregroundColor(selection == section ? .black : .gray)
-                                            .font(.custom(selection == section ? "Inter-SemiBold" :"Inter-Regular", size: 16))
-                                            .padding(.top)
+                                        HStack (spacing: 5) {
+                                            Text( sections[id] )
+                                                .foregroundColor(selection == sections[id] ? .black : .gray)
+                                                .font(.custom(selection == sections[id] ? "Inter-SemiBold" :"Inter-Regular", size: 16))
+                                                .padding(.top)
+                                            if id == 1 && hasfriendRequest {
+                                                ZStack {
+                                                    Circle()
+                                                        .fill(.red)
+                                                        .frame(width: 17, height: 17)
+                                                    
+                                                    Text(String(friendRequestCount))
+                                                        .foregroundColor(.white)
+                                                        .font(.custom("Inter-Bold", size: 10))
+                                                }.padding(.top)
+                                            }
+                                        }
                                     }
                                 }
                             }.padding(.leading, 25)
@@ -146,6 +161,6 @@ struct Swipes: View {
 
 struct Swipes_Previews: PreviewProvider {
     static var previews: some View {
-        Swipes(enter: .constant(false))
+        Swipes(enter: .constant(false), hasfriendRequest: true, friendRequestCount: 10).environmentObject(LocationManager())
     }
 }

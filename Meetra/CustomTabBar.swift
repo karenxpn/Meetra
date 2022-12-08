@@ -36,16 +36,37 @@ struct CustomTabBar: View {
                                     .foregroundColor(id == tabViewModel.currentTab ? AppColors.accentColor : .black)
                                     .frame(width: 28, height: 28)
                                 
-                                
-                                if id == 2 && tabViewModel.hasUnreadMessage {
-                                    ZStack {
-                                        Circle()
-                                            .fill(.white)
-                                            .frame(width: 10, height: 10)
-                                        
-                                        Circle()
-                                            .fill(.red)
-                                            .frame(width: 5, height: 5)
+                                Group {
+                                    if id == 2 && tabViewModel.hasUnreadMessage {
+                                        ZStack {
+                                            Circle()
+                                                .fill(.white)
+                                                .frame(width: 25, height: 25)
+                                            
+                                            Circle()
+                                                .fill(.red)
+                                                .frame(width: 20, height: 20)
+                                            
+                                            Text(String(tabViewModel.unreadMessageCount))
+                                                .foregroundColor(.white)
+                                                .font(.custom("Inter-Bold", size: 12))
+                                        }.position(x: 30, y: 5)
+                                            .frame(width:25, height:25)
+                                    } else if id == 1 && tabViewModel.hasFriendRequest {
+                                        ZStack {
+                                            Circle()
+                                                .fill(.white)
+                                                .frame(width: 25, height: 25)
+                                            
+                                            Circle()
+                                                .fill(.red)
+                                                .frame(width: 20, height: 20)
+                                            
+                                            Text(String(tabViewModel.friendRequestCount))
+                                                .foregroundColor(.white)
+                                                .font(.custom("Inter-Bold", size: 12))
+                                        }.position(x: 30, y: 5)
+                                            .frame(width:25, height:25)
                                     }
                                 }
                                 

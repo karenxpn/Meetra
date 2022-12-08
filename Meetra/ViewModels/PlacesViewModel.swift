@@ -78,11 +78,12 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
         } else {
             loadingRoomPage = true
         }
+        var skip = self.placeRoom?.users.count ?? 0
         let model = PlaceRoomRequest(minAge: ageLowerBound,
                                      maxAge: ageUppwerBound,
                                      gender: preferredGender,
                                      status: usersStatus,
-                                     skip: self.placeRoom?.users.count ?? 0,
+                                     skip: skip > 0 ? skip - 2 : 0,
                                      take: 10)
         
         dataManager.fetchPlaceRoom(model: model)

@@ -46,10 +46,13 @@ struct Places: View {
                                 }
                             }
                         }
-                        
+                    } else if locationManager.status == "use" && locationManager.alwaysRequested {
+                        AlwaysLocationAlert()
+                            .environmentObject(locationManager)
                     } else {
                         LostLocationAlert()
                             .environmentObject(locationManager)
+                            .environmentObject(placesVM)
                     }
                 }
                 

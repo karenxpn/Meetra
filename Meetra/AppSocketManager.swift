@@ -22,9 +22,10 @@ protocol AppSocketManagerProtocol {
     
     func connectChatRoom(chatID: Int, completion: @escaping() -> ())
     func sendMessage(chatID: Int, type: String, content: String, repliedTo: Int?, completion: @escaping() -> ())
-    func fetchMessage(chatID: Int, completion: @escaping(MessageModel) -> ())
+    func fetchMessage(chatID: Int, completion: @escaping(FetchMessageModel) -> ())
     
-    func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ())
+    func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (FetchTabUnreadModel) -> ())
+    func fetchFriendRequestStat(userID: Int, completion: @escaping (FriendRequestStatModel) -> ())
     func sendMedia(chatID: Int, messageID: Int, status: String)
     
     func editMessage(chatID: Int, messageID: Int, message: String, completion: @escaping() -> ())
@@ -100,13 +101,20 @@ extension AppSocketManager: AppSocketManagerProtocol {
                                     "status" : status])
     }
     
-    func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (Bool) -> ()) {
+    func fetchTabViewUnreadMessage(userID: Int, completion: @escaping (FetchTabUnreadModel) -> ()) {
         self.socket?.off("tab-unread-message-\(userID)")
-        self.socket?.on("tab-unread-message-\(userID)") { (data, ack) in
-            if let data = data[0] as? [String : Bool], let status = data["unreadMessage"] {
-                DispatchQueue.main.async {
-                    completion(status)
-                }
+        listenEvent(event: "tab-unread-message-\(userID)", response: FetchTabUnreadModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
+            }
+        }
+    }
+    
+    func fetchFriendRequestStat(userID: Int, completion: @escaping (FriendRequestStatModel) -> ()) {
+        self.socket?.off("friend-request-stat-\(userID)")
+        listenEvent(event: "friend-request-stat-\(userID)", response: FriendRequestStatModel.self) { response in
+            DispatchQueue.main.async {
+                completion(response)
             }
         }
     }
@@ -121,8 +129,8 @@ extension AppSocketManager: AppSocketManagerProtocol {
     }
     
     func fetchInterlocutorsUpdates(userID: Int, completion: @escaping (InterlocutorsModel) -> ()) {
-        self.socket?.off("interlocutos-list-\(userID)")
-        listenEvent(event: "interlocutos-list-\(userID)", response: InterlocutorsModel.self) { response in
+        self.socket?.off("interlocutors-list-\(userID)")
+        listenEvent(event: "interlocutors-list-\(userID)", response: InterlocutorsModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }
@@ -141,9 +149,9 @@ extension AppSocketManager: AppSocketManagerProtocol {
         })
     }
     
-    func fetchMessage(chatID: Int, completion: @escaping (MessageModel) -> ()) {
+    func fetchMessage(chatID: Int, completion: @escaping (FetchMessageModel) -> ()) {
         self.socket?.off("send-message")
-        listenEvent(event: "send-message", response: MessageModel.self) { response in
+        listenEvent(event: "send-message", response: FetchMessageModel.self) { response in
             DispatchQueue.main.async {
                 completion(response)
             }

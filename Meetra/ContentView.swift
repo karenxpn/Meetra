@@ -35,7 +35,7 @@ struct ContentView: View {
                         .environmentObject(locationManager)
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 1 {
-                    Swipes(enter: $enter)
+                    Swipes(enter: $enter, hasfriendRequest: tabViewModel.hasFriendRequest, friendRequestCount: tabViewModel.friendRequestCount)
                         .environmentObject(locationManager)
                         .frame( minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 } else if tabViewModel.currentTab == 2 {

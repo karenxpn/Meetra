@@ -17,6 +17,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var location: CLLocationCoordinate2D?
     @Published var navigate: Bool = false
     @Published var locationStatus: CLAuthorizationStatus?
+    @Published var alwaysRequested: Bool = false
     
     @Published var regions = [RegionModel]()
     @Published var regionState: CLRegionState?
@@ -41,10 +42,12 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     var status: String {
-        if locationStatus == .authorizedAlways || locationStatus == .authorizedWhenInUse {
+        if locationStatus == .authorizedAlways  {
             return "true"
         } else if locationStatus == .notDetermined {
             return "request"
+        } else if locationStatus == .authorizedWhenInUse {
+            return "use"
         } else {
             return "settings"
         }
@@ -70,7 +73,15 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func requestLocation() {
         initLocation()
+        manager.requestWhenInUseAuthorization()
+        alwaysRequested = false
+        startUpdating()
+    }
+    
+    func requestAlwaysLocation() {
+        initLocation()
         manager.requestAlwaysAuthorization()
+        alwaysRequested = true
         startUpdating()
     }
     
@@ -134,7 +145,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         locationStatus = manager.authorizationStatus
-        navigate = true
+        if (locationStatus == .authorizedAlways) {
+            navigate = true
+        }
     }
     
     func getRegions() {

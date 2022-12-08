@@ -90,6 +90,7 @@ struct NotificationCell: View {
                                                              online: notification.user.online,
                                                              lastVisit: notification.lastVisit,
                                                              chatName: notification.user.name,
+                                                             chatImage: notification.user.image,
                                                              userID: notification.user.id,
                                                              chatID: notification.chat!, left: false,
                                                              blocked: notification.blocked,

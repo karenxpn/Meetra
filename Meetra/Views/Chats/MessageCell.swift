@@ -14,6 +14,7 @@ struct MessageCell: View {
     @EnvironmentObject var roomVM: ChatRoomViewModel
     @State private var offset: CGFloat = .zero
     @State private var present: Bool = false
+    @State private var navigate: Bool = false
     
     @State private var showPopOver: Bool = false
     @State private var showMessageReactions: Bool = false
@@ -30,9 +31,17 @@ struct MessageCell: View {
             }
             
             if group && message.sender.id != userID {
-                ImageHelper(image: message.sender.image, contentMode: .fill)
-                    .frame(width: 30, height: 30)
-                    .clipShape(Circle())
+                Button {
+                    navigate.toggle()
+                } label: {
+                    ImageHelper(image: message.sender.image, contentMode: .fill)
+                        .frame(width: 30, height: 30)
+                        .clipShape(Circle())
+                }.background(
+                    NavigationLink(destination: UserView(userID: message.sender.id), isActive: $navigate, label: {
+                        EmptyView()
+                    }).hidden()
+                )
                 
             }
             
@@ -113,14 +122,14 @@ struct MessageCell: View {
                                 showPopOver = false
                             }
                             Divider()
-                            
-                            MenuButtonsHelper(label: NSLocalizedString("edit", comment: ""), role: .cancel) {
-                                roomVM.editingMessage = message
-                                roomVM.message = message.content
-                                showPopOver = false
+                            if message.sender.id == userID {
+                                MenuButtonsHelper(label: NSLocalizedString("edit", comment: ""), role: .cancel) {
+                                    roomVM.editingMessage = message
+                                    roomVM.message = message.content
+                                    showPopOver = false
+                                }
+                                Divider()
                             }
-                            
-                            Divider()
                         }
                         
                         if message.sender.id == userID {

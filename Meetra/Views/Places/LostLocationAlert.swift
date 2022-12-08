@@ -10,19 +10,50 @@ import SwiftUI
 struct LostLocationAlert: View {
     @State private var settings: Bool = false
     @EnvironmentObject var locationManager: LocationManager
+    @EnvironmentObject var placesVM: PlacesViewModel
     
     var body: some View {
         VStack( spacing: 30 ){
             Spacer()
-            LocationPermission(image: (locationManager.status == "request" && locationManager.regionState != .inside ) ? "icon_no_location" : "lost_location_icon",
-                               title: (locationManager.status == "request" && locationManager.regionState != .inside ) ? NSLocalizedString("noLocationTitle", comment: "") : NSLocalizedString("lostLocationTitle", comment: ""),
-                               content: (locationManager.locationStatus == .notDetermined && locationManager.regionState != .inside) ? NSLocalizedString("noLocationContent", comment: "") : NSLocalizedString("lostLocationContent", comment: ""))
+            if locationManager.locationStatus == .authorizedWhenInUse {
+                LocationPermission(image:  "lost_location_icon",
+                                   title: NSLocalizedString("noLocationAlwaysTitle", comment: ""),
+                                   content: NSLocalizedString("locationAlwaysRequest", comment: ""))
+            } else if locationManager.locationStatus == .authorizedAlways && locationManager.regionState != .inside {
+                LocationPermission(image:  "icon_no_location",
+                                   title: NSLocalizedString("lostLocationTitle", comment: ""),
+                                   content: NSLocalizedString("lostLocationContent", comment: ""))
+                Spacer()
+                if let a = placesVM.placeRoom?.address, let b = placesVM.placeRoom?.link {
+                    HStack(alignment: .top){
+                        Text(NSLocalizedString("addressDescription", comment: "")+": ")
+                            .foregroundColor(.black)
+                            .font(.custom("Inter-Regular", size: 16))
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Link(placesVM.placeRoom!.address, destination: URL(string: placesVM.placeRoom!.link)! )
+                            .foregroundColor(AppColors.accentColor)
+                            .font(.custom("Inter-Regular", size: 16))
+                            .multilineTextAlignment(.leading)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+               
+                
+            } else {
+                LocationPermission(image: "lost_location_icon",
+                                   title: NSLocalizedString("noLocationTitle", comment: ""),
+                                   content: NSLocalizedString("noLocationContent", comment: ""))
+            }
             Spacer()
             
             Button(action: {
-                
                 if locationManager.locationStatus == .notDetermined {
                     locationManager.requestLocation()
+                } else if locationManager.locationStatus == .authorizedWhenInUse {
+                    locationManager.requestAlwaysLocation()
+                } else if locationManager.locationStatus == .authorizedAlways && locationManager.regionState != .inside {
+                    getRoom()
                 } else {
 //                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                     settings.toggle()
@@ -55,6 +86,12 @@ struct LostLocationAlert: View {
             maxHeight: .infinity
         ).padding(30)
             .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
+    }
+    
+    func getRoom() {
+        placesVM.loading = true
+        locationManager.initLocation()
+        placesVM.getRoom()
     }
 }
 

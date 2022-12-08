@@ -57,6 +57,7 @@ struct PlacesRoomView: View {
                                                  online: true,
                                                  lastVisit: "",
                                                  chatName: room.chat.name,
+                                                 chatImage: "",
                                                  userID: 0,
                                                  chatID: room.chat.id,
                                                  left: room.chat.left,

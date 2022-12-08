@@ -12,12 +12,14 @@ struct ChatRoom: View {
     
     @StateObject var userVM = UserViewModel()
     @StateObject var roomVM = ChatRoomViewModel()
+    @State private var navigate: Bool = false
     @State private var showPopup: Bool = false
     @State private var showReportConfirmation: Bool = false
     let group: Bool
     let online: Bool
     let lastVisit: String
     let chatName: String
+    let chatImage: String
     let userID: Int
     let chatID: Int
     let left: Bool
@@ -74,6 +76,9 @@ struct ChatRoom: View {
                         .padding()
                         .padding(.bottom, 30)
                 }
+                    NavigationLink(destination: UserView(userID: userID), isActive: $navigate, label: {
+                        EmptyView()
+                    }).hidden()
             }
         }.ignoresSafeArea(.container, edges: .bottom)
             .onAppear {
@@ -101,27 +106,46 @@ struct ChatRoom: View {
                 Alert(title: Text( "Error" ), message: Text(roomVM.alertMessage), dismissButton: .default(Text("Got It!")))
             })
             .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(leading: VStack( alignment: .leading) {
-                Text( chatName )
-                    .foregroundColor(.black)
-                    .font(.custom("Inter-Black", size: 24))
-                    .kerning(0.56)
-                    .lineLimit(1)
-                
-                // content should be here either group content or just online
+            .navigationBarItems(leading:
+                                    Button {
                 if !group {
-                    Text( "\(roomVM.online ? NSLocalizedString("nowOnline", comment: "") : roomVM.lastVisit)" )
-                        .foregroundColor(.gray)
-                        .font(.custom("Inter-Regular", size: 12))
-                        .kerning(0.24)
-                        .lineLimit(1)
-                        .fixedSize()
+                    navigate.toggle()
                 }
-                
+            } label: {
+                if (!navigate) {
+                    HStack {
+                        if !group {
+                            ImageHelper(image: chatImage, contentMode: .fill)
+                                .frame(width: 40, height: 40)
+                                .clipShape(Circle())
+                        }
+                        VStack(alignment: .leading) {
+                            Text( chatName )
+                                .foregroundColor(.black)
+                                .font(.custom("Inter-Black", size: 20))
+                                .kerning(0.56)
+                                .lineLimit(1)
+                            
+                            // content should be here either group content or just online
+                            if !group {
+                                Text( "\(roomVM.online ? NSLocalizedString("nowOnline", comment: "") : roomVM.lastVisit)" )
+                                    .foregroundColor(.gray)
+                                    .font(.custom("Inter-Regular", size: 12))
+                                    .kerning(0.24)
+                                    .lineLimit(1)
+                                    .fixedSize()
+                            }
+                        }
+                    }
+                }
             }, center: EmptyView(), trailing: Button(action: {
-                showPopup.toggle()
+                if !group {
+                    showPopup.toggle()
+                }
             }, label: {
-                Image("dots").foregroundColor(.black)
+                if !group {
+                    Image("dots").foregroundColor(.black)
+                }
             }))
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 roomVM.joinGetMessagesListenEventsOnInit()
@@ -212,6 +236,6 @@ struct ChatRoom: View {
 
 struct ChatRoom_Previews: PreviewProvider {
     static var previews: some View {
-        ChatRoom(group: false, online: true, lastVisit: "", chatName: "Hunt Lounge Bar", userID: 1, chatID: 1, left: true, blocked: true, blockedByMe: false)
+        ChatRoom(group: false, online: true, lastVisit: "", chatName: "Михаил", chatImage: AppPreviewModels.chats[2].image, userID: 1, chatID: 1, left: false, blocked: false, blockedByMe: false)
     }
 }

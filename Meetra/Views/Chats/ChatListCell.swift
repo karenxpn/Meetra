@@ -97,6 +97,7 @@ struct ChatListCell: View {
                                                      online: chat.online,
                                                      lastVisit: chat.lastVisit,
                                                      chatName: chat.name,
+                                                     chatImage: chat.image,
                                                      userID: chat.interlocutorId,
                                                      chatID: chat.id,
                                                      left: chat.left,

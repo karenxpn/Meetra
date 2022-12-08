@@ -21,6 +21,7 @@ struct SwipeUserModel: Identifiable, Codable {
     var interests: [UserInterestModel]
     var online: Bool
     var isVerified: Bool
+    var starredUser: Bool
 }
 
 struct SwipeUserViewModel: Identifiable {
@@ -37,7 +38,8 @@ struct SwipeUserViewModel: Identifiable {
     var online: Bool                    { self.user.online }
     var interests: [UserInterestModel]  { self.user.interests }
     var verified: Bool                  { self.user.isVerified }
-
+    var starredUser: Bool               {self.user.starredUser}
+    
     
     
     // Card x position
