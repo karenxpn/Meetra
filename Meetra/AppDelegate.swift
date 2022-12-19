@@ -9,10 +9,13 @@ import Foundation
 import SwiftUI
 import FirebaseCore
 import UserNotifications
+import Combine
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     @ObservedObject var notificationsVM = NotificationsViewModel()
+    @ObservedObject var locationManager = LocationManager()
+    private var cancellableSet: Set<AnyCancellable> = []
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -27,6 +30,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             }
         }
         return true
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        if locationManager.locationStatus == .authorizedAlways {
+            print("mi tut")
+            locationManager.locationManager.sendRegionState(identifier: "ChIJi6C1MxquEmsR9-c-3O48ykI", state: false).sink { _ in
+            }.store(in: &cancellableSet)
+            sleep(2)
+        }
     }
 }
 
