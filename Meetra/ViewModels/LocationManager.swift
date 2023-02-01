@@ -127,7 +127,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         // check if the previous value of the region state is not the same -> send request
         if self.regionState != state {
             self.regionState = state
-            self.sendRegionState(region: region, state: state == .inside ? true : false)
+            self.sendRegionState(region: region, state: state == .inside)
         }
     }
     
