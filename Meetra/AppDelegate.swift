@@ -29,15 +29,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 }
             }
         }
+        
+        locationManager.initLocation()
+        
         return true
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         if locationManager.locationStatus == .authorizedAlways {
-            print("mi tut")
-            locationManager.locationManager.sendRegionState(identifier: "ChIJi6C1MxquEmsR9-c-3O48ykI", state: false).sink { _ in
-            }.store(in: &cancellableSet)
-            sleep(2)
+//            print("mi tut")
+//            locationManager.locationManager.sendRegionState(identifier: "ChIJi6C1MxquEmsR9-c-3O48ykI", state: false).sink { _ in
+//            }.store(in: &cancellableSet)
+//            sleep(2)
         }
     }
 }
