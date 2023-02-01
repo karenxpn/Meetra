@@ -20,6 +20,7 @@ struct Places: View {
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
     
+    @State var switcher: Bool = false
 
     var body: some View {
         
@@ -41,8 +42,8 @@ struct Places: View {
                             VStack {
                                 
                                 if placesVM.placeRoom != nil {
-                                    PlacesRoomView(room: placesVM.placeRoom!)
-                                        .environmentObject(placesVM)
+                                        PlacesRoomView(room: placesVM.placeRoom!, switcher: $switcher)
+                                            .environmentObject(placesVM)
                                 }
                             }
                         }
@@ -72,8 +73,7 @@ struct Places: View {
                             }
                         }))
                 
-            }
-            .alert(isPresented: $placesVM.showAlert, content: {
+            }.alert(isPresented: $placesVM.showAlert, content: {
                 Alert(title: Text("Error"), message: Text(placesVM.alertMessage), dismissButton: .default(Text("Got it!")))
             })
             .alert(isPresented: $alert) {
@@ -88,11 +88,12 @@ struct Places: View {
                 }))
             }
             .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(leading: Text("Meetra")
-                .kerning(0.56)
-                .foregroundColor(.black)
-                .font(.custom("Inter-Black", size: 28))
-                .padding(10), trailing: HStack( spacing: 20) {
+            .navigationBarItems(leading: HStack {
+                Text("Meetra")
+                    .kerning(0.56)
+                    .foregroundColor(.black)
+                    .font(.custom("Inter-Black", size: 28))
+                .padding(10)}, trailing: HStack( spacing: 20) {
                     Button {
                         showFilter.toggle()
                     } label: {
@@ -131,6 +132,9 @@ struct Places: View {
         placesVM.loading = true
         locationManager.initLocation()
         placesVM.getRoom()
+        if placesVM.users.count == 0 {
+            placesVM.getSwipes()
+        }
     }
 }
 

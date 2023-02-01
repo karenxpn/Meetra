@@ -13,11 +13,7 @@ struct PlacesRoomView: View {
     @EnvironmentObject var placesVM: PlacesViewModel
     @State private var navigate: Bool = false
     var room: PlaceRoom
-    
-    
-    init(room: PlaceRoom) {
-        self.room = room
-    }
+    @Binding var switcher: Bool
     
     var body: some View {
         ScrollView( showsIndicators: false) {
@@ -101,20 +97,28 @@ struct PlacesRoomView: View {
                         ForEach(0..<placesVM.placeUsers[2].count, id: \.self) { index in
                             if index == 0  {
                                 Button {
-                                    
+                                    switcher.toggle()
                                 } label: {
                                     VStack {
-                                        Image("places_location")
+                                        Image("profiles_icon")
                                             .frame(width: 50, height: 50)
                                             .background(.white)
+                                            .foregroundColor(.black)
                                             .clipShape(Circle())
                                             .shadow(radius: 5)
                                         
-                                        Text( "Локация")
+                                        Text( "Свайпы")
                                             .foregroundColor(.black)
                                             .font(.custom("Inter-Regular", size: 16))
                                     }.padding(.top, 20)
-                                }
+                                }.background(
+                                    NavigationLink(isActive: $switcher, destination: {
+                                        SwipeCards(switcher: $switcher)
+                                            .environmentObject(placesVM)
+                                    }, label: {
+                                        EmptyView()
+                                    }).hidden()
+                                )
                             } else {
                                 SinglePlacePreview(user: placesVM.placeUsers[2][index])
                                     .onAppear {
@@ -134,6 +138,6 @@ struct PlacesRoomView: View {
 
 struct PlacesRoomView_Previews: PreviewProvider {
     static var previews: some View {
-        PlacesRoomView(room: AppPreviewModels.placeRoom)
+        PlacesRoomView(room: AppPreviewModels.placeRoom, switcher: .constant(false))
     }
 }

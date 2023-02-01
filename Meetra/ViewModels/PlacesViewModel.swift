@@ -63,6 +63,9 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                 self.placeRoom = nil
                 self.placeUsers.removeAll()
                 getRoom()
+                swipePage = 0
+                self.users.removeAll(keepingCapacity: false)
+                getSwipes()
             } else {
                 swipePage = 0
                 self.users.removeAll(keepingCapacity: false)
@@ -110,17 +113,17 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
     }
     
     func getSwipes() {
-        loading = true
+        //loading = true
         let model = PlaceRoomRequest(minAge: ageLowerBound,
                                      maxAge: ageUppwerBound,
                                      gender: preferredGender,
                                      status: usersStatus,
-                                     skip: swipePage * 10,
-                                     take: 10)
+                                     skip: swipePage * 4,
+                                     take: 4)
         
         dataManager.fetchSwipes(model: model)
         .sink { response in
-            self.loading = false
+            //self.loading = false
             if response.error != nil {
                 self.users.removeAll(keepingCapacity: false)
                 self.makeAlert(with: response.error!,
