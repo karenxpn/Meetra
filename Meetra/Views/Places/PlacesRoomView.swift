@@ -13,7 +13,7 @@ struct PlacesRoomView: View {
     @EnvironmentObject var placesVM: PlacesViewModel
     @State private var navigate: Bool = false
     var room: PlaceRoom
-    @Binding var switcher: Bool
+    @State private var switcher: Bool = false
     
     var body: some View {
         ScrollView( showsIndicators: false) {
@@ -113,7 +113,7 @@ struct PlacesRoomView: View {
                                     }.padding(.top, 20)
                                 }.background(
                                     NavigationLink(isActive: $switcher, destination: {
-                                        SwipeCards(switcher: $switcher)
+                                        SwipeCards()
                                             .environmentObject(placesVM)
                                     }, label: {
                                         EmptyView()
@@ -138,6 +138,6 @@ struct PlacesRoomView: View {
 
 struct PlacesRoomView_Previews: PreviewProvider {
     static var previews: some View {
-        PlacesRoomView(room: AppPreviewModels.placeRoom, switcher: .constant(false))
+        PlacesRoomView(room: AppPreviewModels.placeRoom)
     }
 }

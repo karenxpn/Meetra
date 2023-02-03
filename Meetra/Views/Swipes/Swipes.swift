@@ -42,7 +42,7 @@ struct Swipes: View {
                                                 .foregroundColor(selection == sections[id] ? .black : .gray)
                                                 .font(.custom(selection == sections[id] ? "Inter-SemiBold" :"Inter-Regular", size: 16))
                                                 .padding(.top)
-                                            if id == 1 && hasfriendRequest {
+                                            if id == 0 && hasfriendRequest {
                                                 ZStack {
                                                     Circle()
                                                         .fill(.red)

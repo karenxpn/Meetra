@@ -102,8 +102,8 @@ class PlacesViewModel: AlertViewModel, ObservableObject {
                             // insert group chat and location icons
                             self.placeRoom?.users.insert(UserPreviewModel(id: 0, image: "", name: "Общий чат", age: 0, online: false), at: 0)
                             self.placeRoom?.users.insert(UserPreviewModel(id: 0, image: "", name: "Локация", age: 0, online: false), at: 2)
-                            self.placeUsers = self.placeRoom?.users.createGrid(size: 3) ?? [[]]
                         }
+                        self.placeUsers = self.placeRoom?.users.createGrid(size: 3) ?? [[]]
                     } else {
                         self.placeRoom?.users.append(contentsOf: response.value!.users)
                         self.placeUsers = self.placeRoom?.users.createGrid(size: 3) ?? [[]]

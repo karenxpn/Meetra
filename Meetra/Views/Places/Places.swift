@@ -19,11 +19,8 @@ struct Places: View {
     
     @State private var showFilter: Bool = false
     @State private var offsetOnDrag: CGFloat = 0
-    
-    @State var switcher: Bool = false
 
     var body: some View {
-        
         NavigationView {
             ZStack {
                 
@@ -42,7 +39,7 @@ struct Places: View {
                             VStack {
                                 
                                 if placesVM.placeRoom != nil {
-                                        PlacesRoomView(room: placesVM.placeRoom!, switcher: $switcher)
+                                        PlacesRoomView(room: placesVM.placeRoom!)
                                             .environmentObject(placesVM)
                                 }
                             }
@@ -105,6 +102,7 @@ struct Places: View {
                 }).onAppear {
                     AppAnalytics().logScreenEvent(viewName: "\(Places.self)")
                     if enter {
+                        placesVM.placeRoom = nil
                         getRoom()
                     }
                 }.onChange(of: showFilter) { value in

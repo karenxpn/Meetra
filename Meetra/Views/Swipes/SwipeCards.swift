@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SwipeCards: View {
     @EnvironmentObject var placesVM: PlacesViewModel
-    @Binding var switcher: Bool
     @Environment(\.presentationMode) var presentationMode
     
     @State private var showFilter: Bool = false
@@ -48,7 +47,7 @@ struct SwipeCards: View {
                 AppAnalytics().logScreenEvent(viewName: "\(SwipeCards.self)")
             }.onChange(of: showFilter) { value in
                 if !value {
-                    placesVM.storeFilterValues(location: "place")
+                    placesVM.storeFilterValues(location: "swipe")
                 }
             }.navigationBarTitle("", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
@@ -82,6 +81,6 @@ struct SwipeCards: View {
 
 struct SwipeCards_Previews: PreviewProvider {
     static var previews: some View {
-        SwipeCards(switcher: .constant(false))
+        SwipeCards()
     }
 }
