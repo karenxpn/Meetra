@@ -68,7 +68,7 @@ struct MessageCell: View {
                     }
                 }).fullScreenCover(isPresented: $present, content: {
                     SingleMediaContentPreview(url: URL(string: message.content)!)
-                }).onLongPressGesture(minimumDuration: 0.7, perform: {
+                }).onLongPressGesture(minimumDuration: 0.5, perform: {
                     showPopOver = true
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                 })
