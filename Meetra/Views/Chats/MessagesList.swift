@@ -49,7 +49,7 @@ struct MessagesList: View {
             }
         }.rotationEffect(.radians(3.14))
         .padding(.top, 1)
-        .padding(.bottom, roomVM.message.numberOfLines > 10 ? 160 : CGFloat(16*roomVM.message.numberOfLines))
+        .padding(.bottom, roomVM.message.numberOfLinesForTextEditor(width: 275) > 10 ? 160 : CGFloat(16*roomVM.message.numberOfLinesForTextEditor(width: 275)))
         .onTapGesture{
             self.hideKeyboard()
         }

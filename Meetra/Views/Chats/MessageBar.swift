@@ -65,23 +65,32 @@ struct MessageBar: View {
                                 .foregroundColor(.black)
                                 .font(.custom("Inter-Regular", size: 13))
                                 .background(AppColors.addProfileImageBG)
-                                .cornerRadius(10)
+                                .cornerRadius(20)
                                 .scrollContentBackground(.hidden)
                                 .focused($isTextFieldFocused)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(AppColors.addProfileImageBG, lineWidth: 2)
+                                    )
                         } else {
                             TextEditor(text: $roomVM.message)
                                 .foregroundColor(.black)
                                 .font(.custom("Inter-Regular", size: 13))
                                 .background(AppColors.addProfileImageBG)
-                                .cornerRadius(10)
+                                .cornerRadius(20)
                                 .onAppear {
                                     UITextView.appearance().backgroundColor = .clear
                                 }
                                 .focused($isTextFieldFocused)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(AppColors.addProfileImageBG, lineWidth: 2)
+                                    )
                         }
                         
                         Text(roomVM.message == "" ? NSLocalizedString("messageBarPlaceholder", comment: "") : roomVM.message)
                             .opacity(roomVM.message == "" ? 0.5 : 0)
+                            .cornerRadius(20)
                             .font(.custom("Inter-Regular", size: 13))
                             .padding(.leading, 5)
                             .padding(.bottom, 1)
@@ -116,7 +125,7 @@ struct MessageBar: View {
                         }
                     }
                 }
-            }.frame(height: roomVM.message.numberOfLines > 10 ? 220 : 60+CGFloat(16*roomVM.message.numberOfLines))
+            }.frame(height: roomVM.message.numberOfLinesForTextEditor(width: 275) > 10 ? 220 : 60+CGFloat(16*roomVM.message.numberOfLinesForTextEditor(width: 275)))
                 .padding(.bottom, isTextFieldFocused ? 0 : 30)
                 .background(.white)
                 .cornerRadius([.topLeft, .topRight], (roomVM.editingMessage != nil || roomVM.replyMessage != nil) ? 0 : 35)

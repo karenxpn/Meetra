@@ -276,3 +276,23 @@ extension String {
     }
 
 }
+
+extension String {
+   func widthOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.width
+    }
+}
+
+extension String {
+    func numberOfLinesForTextEditor(width: CGFloat) -> Int {
+        let separatedStrings = self.components(separatedBy: "\n")
+        var counter = separatedStrings.count
+        
+        separatedStrings.forEach{str in
+            counter += Int(str.widthOfString(usingFont: UIFont.systemFont(ofSize: 13, weight: .regular))/width)
+        }
+        return counter
+    }
+}
