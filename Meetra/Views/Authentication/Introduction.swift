@@ -68,8 +68,7 @@ struct Introduction: View {
             
             GetTapLocation { point in
                 
-                if point.y <= UIScreen.main.bounds.size.height * 0.5 {
-                    if (UIScreen.main.bounds.size.width * 0.5...UIScreen.main.bounds.size.width).contains(point.x){
+                    if (UIScreen.main.bounds.size.width * 0.2...UIScreen.main.bounds.size.width).contains(point.x){
                         if page < 2 {
                             withAnimation {
                                 page += 1
@@ -77,8 +76,14 @@ struct Introduction: View {
                         } else {
                             showAuth.toggle()
                         }
+                    } else {
+                        if page > 0 {
+                            withAnimation {
+                                page -= 1
+                            }
+                        }
                     }
-                }
+            
             }.frame(height: UIScreen.main.bounds.size.height * 0.7)
             
             
