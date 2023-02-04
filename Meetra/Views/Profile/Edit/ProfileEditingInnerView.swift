@@ -50,21 +50,38 @@ struct ProfileEditingInnerView: View {
                 
                 ZStack(alignment: .topLeading) {
                     
-                    TextEditor(text: $fields.bio)
-                        .foregroundColor(Color.black)
-                        .font(.custom("Inter-Regular", size: 12))
-                        .padding(.leading, 5)
-                        .frame(height: 80)
-                        .background(AppColors.addProfileImageBG)
-                        .onAppear {
-                            UITextView.appearance().backgroundColor = .clear
-                        }.cornerRadius(10)
-                        .focused($isFocused)
-                        .onChange(of: isFocused) { isFocused in
-                            if !isFocused {
-                                profileVM.updateProfile(fields: fields.fields)
+                    if #available(iOS 16.0, *) {
+                        TextEditor(text: $fields.bio)
+                            .foregroundColor(Color.black)
+                            .font(.custom("Inter-Regular", size: 12))
+                            .padding(.leading, 5)
+                            .frame(height: 80)
+                            .background(AppColors.addProfileImageBG)
+                            .cornerRadius(10)
+                            .focused($isFocused)
+                            .onChange(of: isFocused) { isFocused in
+                                if !isFocused {
+                                    profileVM.updateProfile(fields: fields.fields)
+                                }
                             }
-                        }
+                            .scrollContentBackground(.hidden)
+                    } else {
+                        TextEditor(text: $fields.bio)
+                            .foregroundColor(Color.black)
+                            .font(.custom("Inter-Regular", size: 12))
+                            .padding(.leading, 5)
+                            .frame(height: 80)
+                            .background(AppColors.addProfileImageBG)
+                            .onAppear {
+                                UITextView.appearance().backgroundColor = .clear
+                            }.cornerRadius(10)
+                            .focused($isFocused)
+                            .onChange(of: isFocused) { isFocused in
+                                if !isFocused {
+                                    profileVM.updateProfile(fields: fields.fields)
+                                }
+                            }
+                    }
                     
                     if fields.bio.isEmpty {
                         Text("Расскажите вкратце о себе")
@@ -73,6 +90,8 @@ struct ProfileEditingInnerView: View {
                             .foregroundColor(Color.black)
                             .padding([.top, .leading], 10)
                     }
+                }.onAppear {
+                    UITextView.appearance().backgroundColor = .clear
                 }
                 
                 VStack( spacing: 5) {

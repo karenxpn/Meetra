@@ -23,15 +23,26 @@ struct AuthBio: View {
                 
                 ZStack(alignment: .leading) {
                     
-                    TextEditor(text: $bio)
-                        .foregroundColor(Color.gray)
-                        .font(.custom("Inter-Regular", size: 16))
-                        .frame(height: 150)
-                        .background(AppColors.addProfileImageBG)
-                        .onAppear {
-                            UITextView.appearance().backgroundColor = .clear
-                        }.cornerRadius(10)
-                        .autocorrectionDisabled()
+                    if #available(iOS 16.0, *) {
+                        TextEditor(text: $bio)
+                            .foregroundColor(Color.gray)
+                            .font(.custom("Inter-Regular", size: 16))
+                            .frame(height: 150)
+                            .background(AppColors.addProfileImageBG)
+                            .cornerRadius(10)
+                            .autocorrectionDisabled()
+                            .scrollContentBackground(.hidden)
+                    } else {
+                        TextEditor(text: $bio)
+                            .foregroundColor(Color.gray)
+                            .font(.custom("Inter-Regular", size: 16))
+                            .frame(height: 150)
+                            .background(AppColors.addProfileImageBG)
+                            .onAppear {
+                                UITextView.appearance().backgroundColor = .clear
+                            }.cornerRadius(10)
+                            .autocorrectionDisabled()
+                    }
                     
                     if bio.isEmpty {
                         
