@@ -52,12 +52,12 @@ struct AuthInterests: View {
                                         Text(tag)
                                             .fixedSize()
                                             .padding(EdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14))
-                                            .foregroundColor( authVM.selected_interests.contains(where: {$0 == tag}) ?  AppColors.accentColor : .white)
+                                            .foregroundColor( authVM.selected_interests.contains(where: {$0 == tag}) ? .white : AppColors.accentColor)
                                             .background(RoundedRectangle(cornerRadius: 30)
                                                 .strokeBorder(AppColors.accentColor, lineWidth: 1.5)
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 30)
-                                                        .fill(authVM.selected_interests.contains(where: {$0 == tag}) ? .white : AppColors.accentColor)
+                                                        .fill(authVM.selected_interests.contains(where: {$0 == tag}) ?  AppColors.accentColor : .white)
                                                 )
                                             )
                                         
