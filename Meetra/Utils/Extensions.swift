@@ -37,6 +37,12 @@ extension View {
     }
 }
 
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
 struct RoundedCorner: Shape {
     
     var radius: CGFloat = .infinity
@@ -261,4 +267,12 @@ extension Array {
         
         return result
     }
+}
+
+extension String {
+
+    var numberOfLines: Int {
+        return self.components(separatedBy: "\n").count
+    }
+
 }

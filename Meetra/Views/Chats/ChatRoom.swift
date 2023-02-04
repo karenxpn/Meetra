@@ -101,6 +101,7 @@ struct ChatRoom: View {
                 }
             }.onDisappear {
                 NotificationCenter.default.post(name: Notification.Name("showTabBar"), object: nil)
+                self.hideKeyboard()
             }
             .alert(isPresented: $roomVM.showAlert, content: {
                 Alert(title: Text( "Error" ), message: Text(roomVM.alertMessage), dismissButton: .default(Text("Got It!")))

@@ -12,6 +12,8 @@ struct MessageBar: View {
     @EnvironmentObject var roomVM: ChatRoomViewModel
     @StateObject private var audioVM = AudioRecorderViewModel()
     
+    @FocusState private var isTextFieldFocused: Bool
+    
     @State private var openAttachment: Bool = false
     @State private var openGallery: Bool = false
     @State private var openCamera: Bool = false
@@ -41,7 +43,7 @@ struct MessageBar: View {
                 }.padding(.trailing, 40)
             }
             
-            HStack {
+            HStack(alignment: .bottom) {
                 if audioVM.showRecording {
                     AudioRecordingView()
                         .environmentObject(audioVM)
@@ -52,14 +54,40 @@ struct MessageBar: View {
                         openAttachment.toggle()
                     } label: {
                         Image("icon_attachment")
-                            .padding([.leading, .vertical], 20)
+                            .padding([.leading, .top], 20)
+                            .padding(.bottom, 25)
                     }
                     
-                    TextField(NSLocalizedString("messageBarPlaceholder", comment: ""), text: $roomVM.message)
-                        .foregroundColor(.black)
-                        .font(.custom("Inter-Regular", size: 13))
-                        .frame(height: 44)
-                        .padding(.horizontal, 20)
+                    ZStack(alignment: .leading) {
+                        
+                        if #available(iOS 16.0, *) {
+                            TextEditor(text: $roomVM.message)
+                                .foregroundColor(.black)
+                                .font(.custom("Inter-Regular", size: 13))
+                                .background(AppColors.addProfileImageBG)
+                                .cornerRadius(10)
+                                .scrollContentBackground(.hidden)
+                                .focused($isTextFieldFocused)
+                        } else {
+                            TextEditor(text: $roomVM.message)
+                                .foregroundColor(.black)
+                                .font(.custom("Inter-Regular", size: 13))
+                                .background(AppColors.addProfileImageBG)
+                                .cornerRadius(10)
+                                .onAppear {
+                                    UITextView.appearance().backgroundColor = .clear
+                                }
+                                .focused($isTextFieldFocused)
+                        }
+                        
+                        Text(roomVM.message == "" ? NSLocalizedString("messageBarPlaceholder", comment: "") : roomVM.message)
+                            .opacity(roomVM.message == "" ? 0.5 : 0)
+                            .font(.custom("Inter-Regular", size: 13))
+                            .padding(.leading, 5)
+                            .padding(.bottom, 1)
+                            
+                    }.padding(.vertical, 20)
+                        .padding(.horizontal, 10)
                     
                     if !roomVM.message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         Button {
@@ -70,24 +98,26 @@ struct MessageBar: View {
                             }
                         } label: {
                             Image("icon_send_message")
-                                .padding([.trailing, .vertical], 20)
+                                .padding([.trailing, .top], 20)
+                                .padding(.bottom, 25)
                         }
-                    }
-                    
-                    
-                    Button {
-                        if audioVM.permissionStatus == .granted {
-                            audioVM.recordAudio()
-                        } else {
-                            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                    } else {
+                        Button() {
+                            if audioVM.permissionStatus == .granted {
+                                audioVM.recordAudio()
+                            } else {
+                                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                            }
+                            
+                        } label: {
+                            Image("icon_voice_message")
+                                .padding([.trailing, .top], 20)
+                                .padding(.bottom, 25)
                         }
-                        
-                    } label: {
-                        Image("icon_voice_message")
-                            .padding([.trailing, .vertical], 20)
                     }
                 }
-            }.frame(height: 96)
+            }.frame(height: roomVM.message.numberOfLines > 10 ? 220 : 60+CGFloat(16*roomVM.message.numberOfLines))
+                .padding(.bottom, isTextFieldFocused ? 0 : 30)
                 .background(.white)
                 .cornerRadius([.topLeft, .topRight], (roomVM.editingMessage != nil || roomVM.replyMessage != nil) ? 0 : 35)
                 .shadow(color: (roomVM.editingMessage != nil || roomVM.replyMessage != nil) ? Color.clear : Color.gray.opacity(0.1), radius: 2, x: 0, y: -3)
