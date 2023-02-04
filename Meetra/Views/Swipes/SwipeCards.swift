@@ -23,7 +23,7 @@ struct SwipeCards: View {
                 }
                 
                 FilterUsers(present: $showFilter, gender: $placesVM.gender, status: $placesVM.status, range: $placesVM.ageRange)
-                    .offset(y: showFilter ?  -UIScreen.main.bounds.size.height/5: -UIScreen.main.bounds.size.height)
+                    .offset(y: showFilter ?  -UIScreen.main.bounds.size.height/8: -UIScreen.main.bounds.size.height)
                     .animation(.interpolatingSpring(mass: 1.0, stiffness: 100.0, damping: 50, initialVelocity: 0), value: showFilter)
                     .offset(y: offsetOnDrag)
                     .gesture(DragGesture()
