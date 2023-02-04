@@ -32,7 +32,7 @@ struct LostLocationAlert: View {
                             .multilineTextAlignment(.center)
                             .fixedSize(horizontal: false, vertical: true)
                         Link(placesVM.placeRoom!.address, destination: URL(string: placesVM.placeRoom!.link)! )
-                            .foregroundColor(AppColors.accentColor)
+                            .foregroundColor(.blue)
                             .font(.custom("Inter-Regular", size: 16))
                             .multilineTextAlignment(.leading)
                             .fixedSize(horizontal: false, vertical: true)
