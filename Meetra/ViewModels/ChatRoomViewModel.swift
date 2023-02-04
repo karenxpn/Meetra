@@ -83,7 +83,11 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
                 self.loading = false
                 if response.error == nil {
                     let messages = response.value!.messages
-                    self.messages.append(contentsOf: messages.reversed().map(MessageViewModel.init))
+                    if (messageID == 0) {
+                        self.messages =  messages.reversed().map(MessageViewModel.init)
+                    } else {
+                        self.messages.append(contentsOf: messages.reversed().map(MessageViewModel.init))
+                    }
                     
                     if !messages.isEmpty {
                         self.lastMessageID = self.messages[0].id
@@ -170,7 +174,7 @@ class ChatRoomViewModel: AlertViewModel, ObservableObject {
     }
     
     func joinGetMessagesListenEventsOnInit() {
-        self.messages.removeAll(keepingCapacity: false)
+        //self.messages.removeAll(keepingCapacity: false)
         getMessageList(messageID: 0)
         joinRoom()
         // mark all messages as read
