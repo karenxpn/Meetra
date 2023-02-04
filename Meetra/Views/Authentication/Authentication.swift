@@ -90,7 +90,7 @@ struct Authentication: View {
                     .foregroundColor(.blue)
                     .font(.custom("Inter-Regular", size: 12))
                 
-                Text( "*Required" )
+                Text( "*Обязательно" )
                     .foregroundColor(.red)
                     .font(.custom("Inter-Regular", size: 10))
                 
