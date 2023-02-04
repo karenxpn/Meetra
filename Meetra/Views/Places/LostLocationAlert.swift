@@ -23,6 +23,9 @@ struct LostLocationAlert: View {
                 LocationPermission(image:  "icon_no_location",
                                    title: NSLocalizedString("lostLocationTitle", comment: ""),
                                    content: NSLocalizedString("lostLocationContent", comment: ""))
+                Text("Включите WI-FI для точного определения геопозиции")
+                    .font(.custom("Inter-SemiBold", size: 16))
+                    .multilineTextAlignment(.center)
                 Spacer()
                 if let a = placesVM.placeRoom?.address, let b = placesVM.placeRoom?.link {
                     HStack(alignment: .top){
