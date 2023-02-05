@@ -49,6 +49,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     }
     
     func sendVerificationCode() {
+        AppAnalytics().logEvent(event: "send_verificationc_code")
         loading = true
         
         dataManager.sendVerificationCode(phoneNumber: "+\(code)\(phoneNumber)")
@@ -66,6 +67,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     }
     
     func checkVerificationCode() {
+        AppAnalytics().logEvent(event: "check_verificationc_code")
         loading = true
         dataManager.checkVerificationCode(code: OTP)
             .sink { response in
@@ -110,7 +112,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     }
     
     func upload(images: [Data], urls: [String]) {
-
+        AppAnalytics().logEvent(event: "upload_images_auth")
         Just(zip(images, urls))
             .setFailureType(to: AFError.self)
             .flatMap { sequence -> Publishers.MergeMany<AnyPublisher<DataResponse<Data?, AFError>, Never>> in
@@ -134,12 +136,14 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     }
     
     func resendVerificationCode() {
+        AppAnalytics().logEvent(event: "resend_verificationc_code")
         dataManager.resendVerificationCode()
             .sink { _ in
             }.store(in: &cancellableSet)
     }
     
     func getInterests() {
+        AppAnalytics().logEvent(event: "get_interests")
         loading = true
         dataManager.fetchInterests()
             .sink { response in
@@ -153,6 +157,7 @@ class AuthViewModel: AlertViewModel, ObservableObject {
     }
     
     func confirmSignUp(model: RegistrationRequest) {
+        AppAnalytics().logEvent(event: "confirm_sign_up")
         loading = true
         dataManager.signUpConfirm(model: model)
             .sink { response in

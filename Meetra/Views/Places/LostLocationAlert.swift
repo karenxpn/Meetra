@@ -52,13 +52,17 @@ struct LostLocationAlert: View {
             
             Button(action: {
                 if locationManager.locationStatus == .notDetermined {
+                    AppAnalytics().logEvent(event: "request_location_when_in_use")
                     locationManager.requestLocation()
                 } else if locationManager.locationStatus == .authorizedWhenInUse {
+                    AppAnalytics().logEvent(event: "request_location_always")
                     locationManager.requestAlwaysLocation()
                 } else if locationManager.locationStatus == .authorizedAlways && locationManager.regionState != .inside {
-                    getRoom()
+                    AppAnalytics().logEvent(event: "request_location_user_not_inside")
+                    //getRoom()
                 } else {
 //                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                    AppAnalytics().logEvent(event: "request_location_settings")
                     settings.toggle()
                 }
             }) {
@@ -91,11 +95,11 @@ struct LostLocationAlert: View {
             .padding(.bottom, UIScreen.main.bounds.size.height * 0.1)
     }
     
-    func getRoom() {
-        placesVM.loading = true
-        locationManager.initLocation()
-        placesVM.getRoom()
-    }
+//    func getRoom() {
+//        placesVM.loading = true
+//        locationManager.initLocation()
+//        placesVM.getRoom()
+//    }
 }
 
 struct LostLocationAlert_Previews: PreviewProvider {

@@ -27,6 +27,7 @@ struct EnterLocation: View {
             Spacer()
             
             Button(action: {
+                AppAnalytics().logEvent(event: "enter_location_request")
                 alert.toggle()
             }) {
                 

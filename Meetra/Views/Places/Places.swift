@@ -77,10 +77,12 @@ struct Places: View {
                 Alert(title: Text(NSLocalizedString("enterLocation", comment: "")),
                       message: Text(NSLocalizedString("enterLocationTerms", comment: "")),
                       primaryButton: .default(Text(NSLocalizedString("accept", comment: "")), action: {
+                    AppAnalytics().logEvent(event: "enter_location_request_accepted")
                     enter = true
                     getRoom()
                 }),
                       secondaryButton: .default(Text(NSLocalizedString("reject", comment: "")), action: {
+                    AppAnalytics().logEvent(event: "enter_location_request_rejected")
                     enter = false
                 }))
             }

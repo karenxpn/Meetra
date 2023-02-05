@@ -142,6 +142,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     }
     
     func sendVerificationCode() {
+        AppAnalytics().logEvent(event: "send_verification_code_profile")
         loading = true
         dataManager.sendVerificationCode(phoneNumber: "+\(code)\(phoneNumber)")
             .sink { response in
@@ -155,6 +156,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     }
     
     func checkVerificationCode() {
+        AppAnalytics().logEvent(event: "check_verification_code")
         dataManager.checkVerificationCode(phoneNumber: "+\(code)\(phoneNumber)", code: OTP)
             .sink { response in
                 if response.error != nil {
@@ -172,6 +174,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     }
     
     func logout() {
+        AppAnalytics().logEvent(event: "sighout_account")
         dataManager.signout()
             .sink { response in
                 if response.error == nil {
@@ -182,6 +185,7 @@ class ProfileViewModel: AlertViewModel, ObservableObject {
     }
     
     func deactivateAccount() {
+        AppAnalytics().logEvent(event: "delete_account")
         dataManager.delete_account()
             .sink { response in
                 if response.error == nil {
